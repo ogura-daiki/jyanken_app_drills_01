@@ -5,16 +5,24 @@ import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/wi
 import 'package:jyanken_app_drills/src/model/widget_entity.dart';
 
 class WidgetEntityWidget extends StatelessWidget {
-  final WidgetEntity entity;
+  final WidgetEntity? entity;
 
   const WidgetEntityWidget({super.key, required this.entity});
 
   @override
   Widget build(BuildContext context) {
+
+    ErrorWidget.builder = (details) {
+      final error = details.exception;
+      return Text("エラーが発生\n$error");
+    };
     return switch (entity) {
-      WidgetEntityText e => WidgetText(entity: e),
-      WidgetEntityCenter e => WidgetCenter(entity: e),
-      WidgetEntityColumn e => WidgetColumn(entity: e),
+      null => const Offstage(),
+      WidgetEntity we => switch (we) {
+        WidgetEntityText e => WidgetText(entity: e),
+        WidgetEntityColumn e => WidgetColumn(entity: e),
+        WidgetEntityCenter e => WidgetCenter(entity: e),
+      },
     };
   }
 }

@@ -10,8 +10,8 @@ class WidgetColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: entity.crossAxisAlignment,
-      children: entity.children
+      crossAxisAlignment: entity.args.crossAxisAlignment,
+      children: entity.args.children
           .map((we) => WidgetEntityWidget(entity: we))
           .toList(),
     );

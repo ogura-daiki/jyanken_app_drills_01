@@ -9,6 +9,6 @@ class WidgetCenter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: WidgetEntityWidget(entity: entity.child));
+    return Center(child: WidgetEntityWidget(entity: entity.args.child));
   }
 }

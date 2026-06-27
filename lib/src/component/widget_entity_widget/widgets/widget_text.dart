@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity.dart';
 
 class WidgetText extends StatelessWidget {
@@ -8,6 +8,11 @@ class WidgetText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(entity.text);
+    return Text(
+      entity.args.text,
+      style: Theme.of(
+        context,
+      ).textTheme.bodyMedium?.copyWith(fontSize: entity.args.fontSize),
+    );
   }
 }
