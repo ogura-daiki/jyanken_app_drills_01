@@ -1,1 +1,1 @@
-enum WidgetArgsType { string, widget }
+enum WidgetArgsType { string, widget, widgetList, crossAxisAlignment }

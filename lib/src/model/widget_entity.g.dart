@@ -23,3 +23,31 @@ WidgetEntityCenter _$WidgetEntityCenterFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$WidgetEntityCenterToJson(WidgetEntityCenter instance) =>
     <String, dynamic>{'child': instance.child, 'runtimeType': instance.$type};
+
+WidgetEntityColumn _$WidgetEntityColumnFromJson(Map<String, dynamic> json) =>
+    WidgetEntityColumn(
+      crossAxisAlignment: $enumDecode(
+        _$CrossAxisAlignmentEnumMap,
+        json['crossAxisAlignment'],
+      ),
+      children: (json['children'] as List<dynamic>)
+          .map((e) => WidgetEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$WidgetEntityColumnToJson(WidgetEntityColumn instance) =>
+    <String, dynamic>{
+      'crossAxisAlignment':
+          _$CrossAxisAlignmentEnumMap[instance.crossAxisAlignment]!,
+      'children': instance.children,
+      'runtimeType': instance.$type,
+    };
+
+const _$CrossAxisAlignmentEnumMap = {
+  CrossAxisAlignment.start: 'start',
+  CrossAxisAlignment.end: 'end',
+  CrossAxisAlignment.center: 'center',
+  CrossAxisAlignment.stretch: 'stretch',
+  CrossAxisAlignment.baseline: 'baseline',
+};

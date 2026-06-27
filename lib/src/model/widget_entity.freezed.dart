@@ -24,6 +24,10 @@ WidgetEntity _$WidgetEntityFromJson(
           return WidgetEntityCenter.fromJson(
             json
           );
+                case 'column':
+          return WidgetEntityColumn.fromJson(
+            json
+          );
         
           default:
             throw CheckedFromJsonException(
@@ -82,12 +86,13 @@ extension WidgetEntityPatterns on WidgetEntity {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( WidgetEntityText value)?  text,TResult Function( WidgetEntityCenter value)?  center,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( WidgetEntityText value)?  text,TResult Function( WidgetEntityCenter value)?  center,TResult Function( WidgetEntityColumn value)?  column,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case WidgetEntityText() when text != null:
 return text(_that);case WidgetEntityCenter() when center != null:
-return center(_that);case _:
+return center(_that);case WidgetEntityColumn() when column != null:
+return column(_that);case _:
   return orElse();
 
 }
@@ -105,12 +110,13 @@ return center(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( WidgetEntityText value)  text,required TResult Function( WidgetEntityCenter value)  center,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( WidgetEntityText value)  text,required TResult Function( WidgetEntityCenter value)  center,required TResult Function( WidgetEntityColumn value)  column,}){
 final _that = this;
 switch (_that) {
 case WidgetEntityText():
 return text(_that);case WidgetEntityCenter():
-return center(_that);}
+return center(_that);case WidgetEntityColumn():
+return column(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -124,12 +130,13 @@ return center(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( WidgetEntityText value)?  text,TResult? Function( WidgetEntityCenter value)?  center,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( WidgetEntityText value)?  text,TResult? Function( WidgetEntityCenter value)?  center,TResult? Function( WidgetEntityColumn value)?  column,}){
 final _that = this;
 switch (_that) {
 case WidgetEntityText() when text != null:
 return text(_that);case WidgetEntityCenter() when center != null:
-return center(_that);case _:
+return center(_that);case WidgetEntityColumn() when column != null:
+return column(_that);case _:
   return null;
 
 }
@@ -146,11 +153,12 @@ return center(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String text)?  text,TResult Function( WidgetEntity child)?  center,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String text)?  text,TResult Function( WidgetEntity child)?  center,TResult Function( CrossAxisAlignment crossAxisAlignment,  List<WidgetEntity> children)?  column,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case WidgetEntityText() when text != null:
 return text(_that.text);case WidgetEntityCenter() when center != null:
-return center(_that.child);case _:
+return center(_that.child);case WidgetEntityColumn() when column != null:
+return column(_that.crossAxisAlignment,_that.children);case _:
   return orElse();
 
 }
@@ -168,11 +176,12 @@ return center(_that.child);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String text)  text,required TResult Function( WidgetEntity child)  center,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String text)  text,required TResult Function( WidgetEntity child)  center,required TResult Function( CrossAxisAlignment crossAxisAlignment,  List<WidgetEntity> children)  column,}) {final _that = this;
 switch (_that) {
 case WidgetEntityText():
 return text(_that.text);case WidgetEntityCenter():
-return center(_that.child);}
+return center(_that.child);case WidgetEntityColumn():
+return column(_that.crossAxisAlignment,_that.children);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -186,11 +195,12 @@ return center(_that.child);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String text)?  text,TResult? Function( WidgetEntity child)?  center,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String text)?  text,TResult? Function( WidgetEntity child)?  center,TResult? Function( CrossAxisAlignment crossAxisAlignment,  List<WidgetEntity> children)?  column,}) {final _that = this;
 switch (_that) {
 case WidgetEntityText() when text != null:
 return text(_that.text);case WidgetEntityCenter() when center != null:
-return center(_that.child);case _:
+return center(_that.child);case WidgetEntityColumn() when column != null:
+return column(_that.crossAxisAlignment,_that.children);case _:
   return null;
 
 }
@@ -351,6 +361,87 @@ $WidgetEntityCopyWith<$Res> get child {
     return _then(_self.copyWith(child: value));
   });
 }
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class WidgetEntityColumn extends WidgetEntity {
+  const WidgetEntityColumn({required this.crossAxisAlignment, required  List<WidgetEntity> children,  String? $type}): _children = children,$type = $type ?? 'column',super._();
+  factory WidgetEntityColumn.fromJson(Map<String, dynamic> json) => _$WidgetEntityColumnFromJson(json);
+
+ final  CrossAxisAlignment crossAxisAlignment;
+ final  List<WidgetEntity> _children;
+ List<WidgetEntity> get children {
+  if (_children is EqualUnmodifiableListView) return _children;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_children);
+}
+
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
+
+/// Create a copy of WidgetEntity
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$WidgetEntityColumnCopyWith<WidgetEntityColumn> get copyWith => _$WidgetEntityColumnCopyWithImpl<WidgetEntityColumn>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$WidgetEntityColumnToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WidgetEntityColumn&&(identical(other.crossAxisAlignment, crossAxisAlignment) || other.crossAxisAlignment == crossAxisAlignment)&&const DeepCollectionEquality().equals(other._children, _children));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,crossAxisAlignment,const DeepCollectionEquality().hash(_children));
+
+@override
+String toString() {
+  return 'WidgetEntity.column(crossAxisAlignment: $crossAxisAlignment, children: $children)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $WidgetEntityColumnCopyWith<$Res> implements $WidgetEntityCopyWith<$Res> {
+  factory $WidgetEntityColumnCopyWith(WidgetEntityColumn value, $Res Function(WidgetEntityColumn) _then) = _$WidgetEntityColumnCopyWithImpl;
+@useResult
+$Res call({
+ CrossAxisAlignment crossAxisAlignment, List<WidgetEntity> children
+});
+
+
+
+
+}
+/// @nodoc
+class _$WidgetEntityColumnCopyWithImpl<$Res>
+    implements $WidgetEntityColumnCopyWith<$Res> {
+  _$WidgetEntityColumnCopyWithImpl(this._self, this._then);
+
+  final WidgetEntityColumn _self;
+  final $Res Function(WidgetEntityColumn) _then;
+
+/// Create a copy of WidgetEntity
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? crossAxisAlignment = null,Object? children = null,}) {
+  return _then(WidgetEntityColumn(
+crossAxisAlignment: null == crossAxisAlignment ? _self.crossAxisAlignment : crossAxisAlignment // ignore: cast_nullable_to_non_nullable
+as CrossAxisAlignment,children: null == children ? _self._children : children // ignore: cast_nullable_to_non_nullable
+as List<WidgetEntity>,
+  ));
+}
+
+
 }
 
 // dart format on

@@ -7,7 +7,16 @@ class ScreenEntityTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WidgetEntityWidget(
-      entity: .center(child: .text(text: "テストテキスト")),
+      entity: .column(
+        crossAxisAlignment: .center,
+        children: [
+          .text(text: "テスト1"),
+          .text(text: "テスト2"),
+          .text(text: "テスト3"),
+          .text(text: "テスト4"),
+          .text(text: "テスト5"),
+        ],
+      ),
     );
   }
 }
