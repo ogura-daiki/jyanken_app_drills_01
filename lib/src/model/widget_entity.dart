@@ -29,6 +29,12 @@ sealed class WidgetEntity with _$WidgetEntity {
     WidgetEntityCenter() => .center,
   };
 
+  factory WidgetEntity.fromType(WidgetType type) => switch (type) {
+    .text => .text(args: .initial),
+    .column => .column(args: .initial),
+    .center => .center(args: .initial),
+  };
+
   factory WidgetEntity.fromArgsWrapper(WidgetArgsWrapper wrapper) =>
       switch (wrapper.type) {
         .text => .text(

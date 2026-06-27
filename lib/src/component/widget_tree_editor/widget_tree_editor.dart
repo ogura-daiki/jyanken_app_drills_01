@@ -1,10 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/selection_node.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_args_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity.dart';
+import 'package:jyanken_app_drills/src/model/widget_type.dart';
 
 const List<Color> loopColor = [
   Colors.yellow,
@@ -32,14 +32,18 @@ class WidgetTreeEditor extends StatelessWidget {
     final wrapper = WidgetArgsWrapper.fromWidget(entity);
     final subTree = wrapper.args.entries.where((e) => e.key.type.hasChild);
 
-    return Column(
-      crossAxisAlignment: .stretch,
-      mainAxisSize: .min,
-      mainAxisAlignment: .start,
-      children: [
-        InkWell(
-          child: Container(
-            color: loopColor[depth % loopColor.length].withAlpha(76),
+    return Container(
+      color: Color.lerp(
+        Theme.of(context).colorScheme.surface,
+        loopColor[depth % loopColor.length],
+        0.3,
+      ),
+      child: Column(
+        crossAxisAlignment: .stretch,
+        mainAxisSize: .min,
+        mainAxisAlignment: .start,
+        children: [
+          InkWell(
             child: Padding(
               padding: .only(
                 left: 8 + 8 * depth.toDouble(),
@@ -72,98 +76,151 @@ class WidgetTreeEditor extends StatelessWidget {
                 ],
               ),
             ),
+            onTap: () {
+              onSelection(.new(entity: entity, onChange: onChange));
+            },
           ),
-          onTap: () {
-            onSelection(.new(entity: entity, onChange: onChange));
-          },
-        ),
-        ...subTree.map((e) {
-          return Column(
-            crossAxisAlignment: .stretch,
-            mainAxisSize: .min,
-            mainAxisAlignment: .start,
-            children: [
-              Padding(
-                padding: .only(
-                  left: 16 + 8 * depth.toDouble(),
-                  right: 8,
-                  top: 4,
-                  bottom: 0,
-                ),
-                child: Text(e.key.name),
-              ),
-              ...switch (e.value) {
-                WidgetEntity we => [
-                  WidgetTreeEditor(
-                    depth: depth + 1,
-                    entity: we,
-                    onSelection: onSelection,
-                    onChange: (newEntity) {
-                      final newArgs = {...wrapper.args};
-                      newArgs[e.key] = newEntity;
-                      onChange(
-                        WidgetEntity.fromArgsWrapper(
-                          wrapper.copyWith(args: newArgs),
-                        ),
-                      );
-                    },
+          ...subTree.map((e) {
+            return Column(
+              crossAxisAlignment: .stretch,
+              mainAxisSize: .min,
+              mainAxisAlignment: .start,
+              children: [
+                Padding(
+                  padding: .only(
+                    left: 16 + 8 * depth.toDouble(),
+                    right: 8,
+                    top: 4,
+                    bottom: 0,
                   ),
-                ],
-                List<WidgetEntity> wel => [
-                  ...wel.indexed.map((entry) {
-                    final idx = entry.$1;
-                    final we = entry.$2;
-                    return WidgetTreeEditor(
+                  child: Text(e.key.name),
+                ),
+                ...switch (e.value) {
+                  WidgetEntity we => [
+                    WidgetTreeEditor(
                       depth: depth + 1,
                       entity: we,
-                      onSelection: (selection) {
-                        onSelection(selection);
-                      },
+                      onSelection: onSelection,
                       onChange: (newEntity) {
                         final newArgs = {...wrapper.args};
-                        List<WidgetEntity?> newList = [...newArgs[e.key]];
-                        newList[idx] = newEntity;
-                        newArgs[e.key] = newList
-                            .whereType<WidgetEntity>()
-                            .toList();
+                        newArgs[e.key] = newEntity;
                         onChange(
                           WidgetEntity.fromArgsWrapper(
                             wrapper.copyWith(args: newArgs),
                           ),
                         );
                       },
-                    );
-                  }),
+                    ),
+                  ],
+                  List<WidgetEntity> wel => [
+                    ...wel.indexed.map((entry) {
+                      final idx = entry.$1;
+                      final we = entry.$2;
+                      return WidgetTreeEditor(
+                        depth: depth + 1,
+                        entity: we,
+                        onSelection: (selection) {
+                          onSelection(selection);
+                        },
+                        onChange: (newEntity) {
+                          final newArgs = {...wrapper.args};
+                          List<WidgetEntity?> newList = [...newArgs[e.key]];
+                          newList[idx] = newEntity;
+                          newArgs[e.key] = newList
+                              .whereType<WidgetEntity>()
+                              .toList();
+                          onChange(
+                            WidgetEntity.fromArgsWrapper(
+                              wrapper.copyWith(args: newArgs),
+                            ),
+                          );
+                        },
+                      );
+                    }),
+      
+                    Container(
+                      color: Color.lerp(
+                        Theme.of(context).colorScheme.surface,
+                        loopColor[(depth + 1) % loopColor.length],
+                        0.3,
+                      ),
+                      child: DragTarget(
+                        onWillAcceptWithDetails: (details) {
+                          return details.data is WidgetType;
+                        },
+                        onAcceptWithDetails: (details) {
+                          final data = details.data;
+                          if (data is! WidgetType) return;
 
-                  TextButton(
-                    onPressed: () {
-                      final newArgs = {...wrapper.args};
-                      List<WidgetEntity?> newList = [...newArgs[e.key]];
-                      newList.add(
-                        .text(
-                          args: .initial.copyWith(
-                            text: "${Random().nextInt(99999)}",
-                          ),
-                        ),
-                      );
-                      newArgs[e.key] = newList
-                          .whereType<WidgetEntity>()
-                          .toList();
-                      onChange(
-                        WidgetEntity.fromArgsWrapper(
-                          wrapper.copyWith(args: newArgs),
-                        ),
-                      );
-                    },
-                    child: Text("追加する"),
-                  ),
-                ],
-                _ => [Text("空")],
-              },
-            ],
-          );
-        }),
-      ],
+                          final newArgs = {...wrapper.args};
+                          List<WidgetEntity?> newList = [...newArgs[e.key]];
+                          newList.add(.fromType(data));
+                          newArgs[e.key] = newList
+                              .whereType<WidgetEntity>()
+                              .toList();
+                          onChange(
+                            WidgetEntity.fromArgsWrapper(
+                              wrapper.copyWith(args: newArgs),
+                            ),
+                          );
+                        },
+                        builder: (context, candidateData, rejectedData) {
+                          late final Color bgColor;
+                          late final double borderWidth;
+                          late final Color borderColor;
+                          late final FontWeight fontWeight;
+                          if (candidateData.firstOrNull is! WidgetType) {
+                            bgColor = Colors.transparent;
+                            borderWidth = 1;
+                            borderColor = Theme.of(
+                              context,
+                            ).colorScheme.onSurface;
+                            fontWeight = .normal;
+                          } else {
+                            bgColor = Theme.of(
+                              context,
+                            ).colorScheme.primaryContainer;
+                            borderWidth = 2;
+                            borderColor = Theme.of(
+                              context,
+                            ).colorScheme.onPrimaryContainer;
+                            fontWeight = .bold;
+                          }
+                          return Padding(
+                            padding: const .all(4),
+                            child: Container(
+                              height: 40,
+                              decoration: BoxDecoration(
+                                color: bgColor,
+                                border: Border.all(
+                                  color: borderColor,
+                                  width: borderWidth,
+                                ),
+                                borderRadius: .circular(8),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "カタログからドロップして追加",
+                                  style: Theme.of(context).textTheme.labelMedium
+                                      ?.copyWith(
+                                        color: borderColor,
+                                        fontWeight: fontWeight,
+                                      ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                  _ => [Text("空")],
+                },
+              ],
+            );
+          }),
+        ],
+      ),
     );
   }
 }

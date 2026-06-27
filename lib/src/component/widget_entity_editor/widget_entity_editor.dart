@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:jyanken_app_drills/src/component/arg_editor/arg_editor.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_args_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity.dart';
