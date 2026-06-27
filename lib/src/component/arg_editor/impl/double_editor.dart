@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class DoubleEditor extends StatelessWidget {
-  final String value;
-  final void Function(String newVal) onChange;
+  final double value;
+  final void Function(double newVal) onChange;
 
   const DoubleEditor({super.key, required this.value, required this.onChange});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      initialValue: value,
+      initialValue: "$value",
       inputFormatters: [
         .withFunction((oldValue, newValue) {
           if (!RegExp(r'[0-9]*(\.[0-9]*)?').hasMatch(newValue.text)) {
@@ -19,7 +19,7 @@ class DoubleEditor extends StatelessWidget {
         }),
       ],
       onChanged: (value) {
-        onChange(value);
+        onChange(double.tryParse(value) ?? 0.0);
       },
     );
   }

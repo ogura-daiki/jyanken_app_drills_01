@@ -15,20 +15,21 @@ class _ScreenEntityTestState extends State<ScreenEntityTest> {
 
   @override
   void initState() {
-    tree = ValueNotifier(
-      .column(
-        args: .new(
-          crossAxisAlignment: .center,
-          children: [
-            .text(args: .new(text: "テスト1")),
-            .text(args: .new(text: "テスト2")),
-            .text(args: .new(text: "テスト3")),
-            .text(args: .new(text: "テスト4")),
-            .text(args: .new(text: "テスト5")),
-          ],
-        ),
-      ),
-    );
+    tree = ValueNotifier(.text(args: .new(text: "テスト")));
+    // tree = ValueNotifier(
+    //   .column(
+    //     args: .new(
+    //       crossAxisAlignment: .center,
+    //       children: [
+    //         .text(args: .new(text: "テスト1")),
+    //         .text(args: .new(text: "テスト2")),
+    //         .text(args: .new(text: "テスト3")),
+    //         .text(args: .new(text: "テスト4")),
+    //         .text(args: .new(text: "テスト5")),
+    //       ],
+    //     ),
+    //   ),
+    // );
     super.initState();
   }
 
