@@ -6,6 +6,13 @@ import 'package:jyanken_app_drills/src/component/widget_tree_editor/selection_no
 import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_args_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity.dart';
 
+const List<Color> loopColor = [
+  Colors.yellow,
+  Colors.green,
+  Colors.red,
+  Colors.blue,
+];
+
 class WidgetTreeEditor extends StatelessWidget {
   final int depth;
   final WidgetEntity entity;
@@ -31,30 +38,33 @@ class WidgetTreeEditor extends StatelessWidget {
       mainAxisAlignment: .start,
       children: [
         InkWell(
-          child: Padding(
-            padding: .only(
-              left: 8 + 8 * depth.toDouble(),
-              right: 8,
-              top: 8,
-              bottom: 8,
-            ),
-            child: Row(
-              mainAxisSize: .max,
-              mainAxisAlignment: .start,
-              crossAxisAlignment: .center,
-              spacing: 4,
-              children: [
-                switch (entity.type) {
-                  .text => Icon(Icons.label),
-                  .column => Container(
-                    transform: .rotationZ(pi / 2),
-                    transformAlignment: .center,
-                    child: Icon(Icons.view_column),
-                  ),
-                  .center => Icon(Icons.center_focus_strong),
-                },
-                Text(entity.type.name),
-              ],
+          child: Container(
+            color: loopColor[depth % loopColor.length].withAlpha(76),
+            child: Padding(
+              padding: .only(
+                left: 8 + 8 * depth.toDouble(),
+                right: 8,
+                top: 8,
+                bottom: 8,
+              ),
+              child: Row(
+                mainAxisSize: .max,
+                mainAxisAlignment: .start,
+                crossAxisAlignment: .center,
+                spacing: 4,
+                children: [
+                  switch (entity.type) {
+                    .text => Icon(Icons.label),
+                    .column => Container(
+                      transform: .rotationZ(pi / 2),
+                      transformAlignment: .center,
+                      child: Icon(Icons.view_column),
+                    ),
+                    .center => Icon(Icons.center_focus_strong),
+                  },
+                  Text(entity.type.name),
+                ],
+              ),
             ),
           ),
           onTap: () {
@@ -67,6 +77,15 @@ class WidgetTreeEditor extends StatelessWidget {
             mainAxisSize: .min,
             mainAxisAlignment: .start,
             children: [
+              Padding(
+                padding: .only(
+                  left: 16 + 8 * depth.toDouble(),
+                  right: 8,
+                  top: 4,
+                  bottom: 0,
+                ),
+                child: Text(e.key.name),
+              ),
               ...switch (e.value) {
                 WidgetEntity we => [
                   WidgetTreeEditor(
