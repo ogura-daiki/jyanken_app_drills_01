@@ -47,11 +47,14 @@ class _ScreenEntityTestState extends State<ScreenEntityTest> {
               if (value == null) {
                 return Center(child: Text("ウィジェットがありません"));
               }
-              return WidgetTreeEditor(
-                entity: value,
-                onChange: (WidgetEntity? newEntity) {
-                  tree.value = newEntity;
-                },
+              return SingleChildScrollView(
+                padding: const .only(bottom: 48, top: 16),
+                child: WidgetTreeEditor(
+                  entity: value,
+                  onChange: (WidgetEntity? newEntity) {
+                    tree.value = newEntity;
+                  },
+                ),
               );
             },
           ),
