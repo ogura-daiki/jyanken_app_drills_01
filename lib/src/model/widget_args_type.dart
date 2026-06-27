@@ -1,0 +1,1 @@
+enum WidgetArgsType { string, widget }
