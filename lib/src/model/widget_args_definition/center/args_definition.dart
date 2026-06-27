@@ -11,7 +11,7 @@ abstract class CenterArgsDefinition with _$CenterArgsDefinition {
   const factory CenterArgsDefinition({@Default(null) WidgetEntity? value}) =
       _CenterArgsDefinition;
   static CenterArgsDefinition child({@Default(null) WidgetEntity? value}) =>
-      CenterArgsDefinition();
+      CenterArgsDefinition(value: value);
 
   CenterArgsKey get key => switch (this) {
     CenterArgsDefinition() => .child,
