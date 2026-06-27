@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_editor/widget_entity_editor.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widget_entity_widget.dart';
+import 'package:jyanken_app_drills/src/component/widget_tree_editor/selection_node.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_editor.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity.dart';
 
@@ -13,6 +14,7 @@ class ScreenEntityTest extends StatefulWidget {
 
 class _ScreenEntityTestState extends State<ScreenEntityTest> {
   late final ValueNotifier<WidgetEntity?> tree;
+  late final ValueNotifier<SelectionNode?> selection;
 
   @override
   void initState() {
@@ -22,15 +24,11 @@ class _ScreenEntityTestState extends State<ScreenEntityTest> {
         args: .new(
           crossAxisAlignment: .center,
           children: [
-            .text(args: .new(text: "テスト1")),
-            .text(args: .new(text: "テスト2")),
-            .text(args: .new(text: "テスト3")),
-            .text(args: .new(text: "テスト4")),
-            .text(args: .new(text: "テスト5")),
           ],
         ),
       ),
     );
+    selection = .new(null);
     super.initState();
   }
 
@@ -51,6 +49,9 @@ class _ScreenEntityTestState extends State<ScreenEntityTest> {
                 padding: const .only(bottom: 48, top: 16),
                 child: WidgetTreeEditor(
                   entity: value,
+                  onSelection: (newSelection) {
+                    selection.value = newSelection;
+                  },
                   onChange: (WidgetEntity? newEntity) {
                     tree.value = newEntity;
                   },
@@ -62,16 +63,15 @@ class _ScreenEntityTestState extends State<ScreenEntityTest> {
         VerticalDivider(),
         Expanded(
           child: ValueListenableBuilder(
-            valueListenable: tree,
+            valueListenable: selection,
             builder: (context, value, child) {
               if (value == null) {
                 return Center(child: Text("ウィジェットがありません"));
               }
               return WidgetEntityEditor(
-                entity: value,
-                onChange: (newValue) {
-                  tree.value = newValue;
-                },
+                key: ValueKey(value.id),
+                entity: value.entity,
+                onChange: value.onChange,
               );
             },
           ),

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:jyanken_app_drills/src/component/widget_tree_editor/selection_node.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_args_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity.dart';
 
@@ -9,11 +10,13 @@ class WidgetTreeEditor extends StatelessWidget {
   final int depth;
   final WidgetEntity entity;
   final void Function(WidgetEntity? newEntity) onChange;
+  final void Function(SelectionNode selection) onSelection;
 
   const WidgetTreeEditor({
     super.key,
     required this.entity,
     required this.onChange,
+    required this.onSelection,
     this.depth = 0,
   });
 
@@ -54,7 +57,9 @@ class WidgetTreeEditor extends StatelessWidget {
               ],
             ),
           ),
-          onTap: () {},
+          onTap: () {
+            onSelection(.new(entity: entity, onChange: onChange));
+          },
         ),
         ...subTree.map((e) {
           return Column(
@@ -67,6 +72,7 @@ class WidgetTreeEditor extends StatelessWidget {
                   WidgetTreeEditor(
                     depth: depth + 1,
                     entity: we,
+                    onSelection: onSelection,
                     onChange: (newEntity) {
                       final newArgs = {...wrapper.args};
                       newArgs[e.key] = newEntity;
@@ -85,6 +91,9 @@ class WidgetTreeEditor extends StatelessWidget {
                     return WidgetTreeEditor(
                       depth: depth + 1,
                       entity: we,
+                      onSelection: (selection) {
+                        onSelection(selection);
+                      },
                       onChange: (newEntity) {
                         final newArgs = {...wrapper.args};
                         List<WidgetEntity?> newList = [...newArgs[e.key]];
