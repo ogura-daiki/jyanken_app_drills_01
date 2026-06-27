@@ -62,7 +62,13 @@ class WidgetTreeEditor extends StatelessWidget {
                     ),
                     .center => Icon(Icons.center_focus_strong),
                   },
-                  Text(entity.type.name),
+                  Expanded(child: Text(entity.type.name)),
+                  IconButton(
+                    onPressed: () {
+                      onChange(null);
+                    },
+                    icon: Icon(Icons.delete_forever),
+                  ),
                 ],
               ),
             ),
