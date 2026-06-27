@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_editor/widget_entity_editor.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widget_entity_widget.dart';
+import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_editor.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity.dart';
 
 class ScreenEntityTest extends StatefulWidget {
@@ -15,21 +16,21 @@ class _ScreenEntityTestState extends State<ScreenEntityTest> {
 
   @override
   void initState() {
-    tree = ValueNotifier(.text(args: .new(text: "テスト")));
-    // tree = ValueNotifier(
-    //   .column(
-    //     args: .new(
-    //       crossAxisAlignment: .center,
-    //       children: [
-    //         .text(args: .new(text: "テスト1")),
-    //         .text(args: .new(text: "テスト2")),
-    //         .text(args: .new(text: "テスト3")),
-    //         .text(args: .new(text: "テスト4")),
-    //         .text(args: .new(text: "テスト5")),
-    //       ],
-    //     ),
-    //   ),
-    // );
+    // tree = ValueNotifier(.text(args: .new(text: "テスト")));
+    tree = ValueNotifier(
+      .column(
+        args: .new(
+          crossAxisAlignment: .center,
+          children: [
+            .text(args: .new(text: "テスト1")),
+            .text(args: .new(text: "テスト2")),
+            .text(args: .new(text: "テスト3")),
+            .text(args: .new(text: "テスト4")),
+            .text(args: .new(text: "テスト5")),
+          ],
+        ),
+      ),
+    );
     super.initState();
   }
 
@@ -46,6 +47,23 @@ class _ScreenEntityTestState extends State<ScreenEntityTest> {
               if (value == null) {
                 return Center(child: Text("ウィジェットがありません"));
               }
+              return WidgetTreeEditor(
+                entity: value,
+                onChange: (WidgetEntity? newEntity) {
+                  tree.value = newEntity;
+                },
+              );
+            },
+          ),
+        ),
+        VerticalDivider(),
+        Expanded(
+          child: ValueListenableBuilder(
+            valueListenable: tree,
+            builder: (context, value, child) {
+              if (value == null) {
+                return Center(child: Text("ウィジェットがありません"));
+              }
               return WidgetEntityEditor(
                 entity: value,
                 onChange: (newValue) {
@@ -55,6 +73,7 @@ class _ScreenEntityTestState extends State<ScreenEntityTest> {
             },
           ),
         ),
+        VerticalDivider(),
         Padding(
           padding: const .all(16),
           child: AspectRatio(
