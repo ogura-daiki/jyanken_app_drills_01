@@ -10,9 +10,10 @@ class WidgetText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       entity.args.text,
-      style: Theme.of(
-        context,
-      ).textTheme.bodyMedium?.copyWith(fontSize: entity.args.fontSize),
+      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+        fontSize: entity.args.fontSize,
+        color: entity.args.color?.color,
+      ),
     );
   }
 }

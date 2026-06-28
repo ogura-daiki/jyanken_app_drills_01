@@ -3,7 +3,8 @@ import 'package:jyanken_app_drills/src/model/widget_args_type.dart';
 
 enum TextArg with WidgetArgKey {
   text(.string),
-  fontSize(.double);
+  fontSize(.double),
+  color(.colorNullable);
 
   @override
   final WidgetArgsType type;

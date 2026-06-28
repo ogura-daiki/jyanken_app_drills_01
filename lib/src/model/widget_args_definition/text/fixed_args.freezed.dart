@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$FixedTextArgs {
 
- String get text; double get fontSize;
+ String get text; double get fontSize; ColorWrapper? get color;
 /// Create a copy of FixedTextArgs
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $FixedTextArgsCopyWith<FixedTextArgs> get copyWith => _$FixedTextArgsCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FixedTextArgs&&(identical(other.text, text) || other.text == text)&&(identical(other.fontSize, fontSize) || other.fontSize == fontSize));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FixedTextArgs&&(identical(other.text, text) || other.text == text)&&(identical(other.fontSize, fontSize) || other.fontSize == fontSize)&&(identical(other.color, color) || other.color == color));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,text,fontSize);
+int get hashCode => Object.hash(runtimeType,text,fontSize,color);
 
 @override
 String toString() {
-  return 'FixedTextArgs(text: $text, fontSize: $fontSize)';
+  return 'FixedTextArgs(text: $text, fontSize: $fontSize, color: $color)';
 }
 
 
@@ -48,11 +48,11 @@ abstract mixin class $FixedTextArgsCopyWith<$Res>  {
   factory $FixedTextArgsCopyWith(FixedTextArgs value, $Res Function(FixedTextArgs) _then) = _$FixedTextArgsCopyWithImpl;
 @useResult
 $Res call({
- String text, double fontSize
+ String text, double fontSize, ColorWrapper? color
 });
 
 
-
+$ColorWrapperCopyWith<$Res>? get color;
 
 }
 /// @nodoc
@@ -65,14 +65,27 @@ class _$FixedTextArgsCopyWithImpl<$Res>
 
 /// Create a copy of FixedTextArgs
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? text = null,Object? fontSize = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? text = null,Object? fontSize = null,Object? color = freezed,}) {
   return _then(_self.copyWith(
 text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
 as String,fontSize: null == fontSize ? _self.fontSize : fontSize // ignore: cast_nullable_to_non_nullable
-as double,
+as double,color: freezed == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
+as ColorWrapper?,
   ));
 }
+/// Create a copy of FixedTextArgs
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ColorWrapperCopyWith<$Res>? get color {
+    if (_self.color == null) {
+    return null;
+  }
 
+  return $ColorWrapperCopyWith<$Res>(_self.color!, (value) {
+    return _then(_self.copyWith(color: value));
+  });
+}
 }
 
 
@@ -154,10 +167,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String text,  double fontSize)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String text,  double fontSize,  ColorWrapper? color)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FixedTextArgs() when $default != null:
-return $default(_that.text,_that.fontSize);case _:
+return $default(_that.text,_that.fontSize,_that.color);case _:
   return orElse();
 
 }
@@ -175,10 +188,10 @@ return $default(_that.text,_that.fontSize);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String text,  double fontSize)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String text,  double fontSize,  ColorWrapper? color)  $default,) {final _that = this;
 switch (_that) {
 case _FixedTextArgs():
-return $default(_that.text,_that.fontSize);case _:
+return $default(_that.text,_that.fontSize,_that.color);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -195,10 +208,10 @@ return $default(_that.text,_that.fontSize);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String text,  double fontSize)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String text,  double fontSize,  ColorWrapper? color)?  $default,) {final _that = this;
 switch (_that) {
 case _FixedTextArgs() when $default != null:
-return $default(_that.text,_that.fontSize);case _:
+return $default(_that.text,_that.fontSize,_that.color);case _:
   return null;
 
 }
@@ -210,11 +223,12 @@ return $default(_that.text,_that.fontSize);case _:
 @JsonSerializable()
 
 class _FixedTextArgs extends FixedTextArgs {
-  const _FixedTextArgs({required this.text, this.fontSize = 18.0}): super._();
+  const _FixedTextArgs({required this.text, this.fontSize = 18.0, this.color = null}): super._();
   factory _FixedTextArgs.fromJson(Map<String, dynamic> json) => _$FixedTextArgsFromJson(json);
 
 @override final  String text;
 @override@JsonKey() final  double fontSize;
+@override@JsonKey() final  ColorWrapper? color;
 
 /// Create a copy of FixedTextArgs
 /// with the given fields replaced by the non-null parameter values.
@@ -229,16 +243,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FixedTextArgs&&(identical(other.text, text) || other.text == text)&&(identical(other.fontSize, fontSize) || other.fontSize == fontSize));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FixedTextArgs&&(identical(other.text, text) || other.text == text)&&(identical(other.fontSize, fontSize) || other.fontSize == fontSize)&&(identical(other.color, color) || other.color == color));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,text,fontSize);
+int get hashCode => Object.hash(runtimeType,text,fontSize,color);
 
 @override
 String toString() {
-  return 'FixedTextArgs(text: $text, fontSize: $fontSize)';
+  return 'FixedTextArgs(text: $text, fontSize: $fontSize, color: $color)';
 }
 
 
@@ -249,11 +263,11 @@ abstract mixin class _$FixedTextArgsCopyWith<$Res> implements $FixedTextArgsCopy
   factory _$FixedTextArgsCopyWith(_FixedTextArgs value, $Res Function(_FixedTextArgs) _then) = __$FixedTextArgsCopyWithImpl;
 @override @useResult
 $Res call({
- String text, double fontSize
+ String text, double fontSize, ColorWrapper? color
 });
 
 
-
+@override $ColorWrapperCopyWith<$Res>? get color;
 
 }
 /// @nodoc
@@ -266,15 +280,28 @@ class __$FixedTextArgsCopyWithImpl<$Res>
 
 /// Create a copy of FixedTextArgs
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? text = null,Object? fontSize = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? text = null,Object? fontSize = null,Object? color = freezed,}) {
   return _then(_FixedTextArgs(
 text: null == text ? _self.text : text // ignore: cast_nullable_to_non_nullable
 as String,fontSize: null == fontSize ? _self.fontSize : fontSize // ignore: cast_nullable_to_non_nullable
-as double,
+as double,color: freezed == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
+as ColorWrapper?,
   ));
 }
 
+/// Create a copy of FixedTextArgs
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ColorWrapperCopyWith<$Res>? get color {
+    if (_self.color == null) {
+    return null;
+  }
 
+  return $ColorWrapperCopyWith<$Res>(_self.color!, (value) {
+    return _then(_self.copyWith(color: value));
+  });
+}
 }
 
 // dart format on
