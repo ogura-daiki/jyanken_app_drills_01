@@ -1,7 +1,7 @@
 import 'package:flutter/rendering.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/column/arg.dart';
-import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_args_wrapper.dart';
+import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_arg.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity.dart';
 part 'fixed_args.freezed.dart';
 part 'fixed_args.g.dart';
@@ -15,7 +15,7 @@ abstract class FixedColumnArgs with _$FixedColumnArgs {
   }) = _FixedColumnArgs;
 
   static const initial = FixedColumnArgs();
-  
+
   dynamic getValue(ColumnArg key) => switch (key) {
     .crossAxisAlignment => crossAxisAlignment,
     .children => children,
@@ -25,14 +25,14 @@ abstract class FixedColumnArgs with _$FixedColumnArgs {
     .children => copyWith(children: value),
   };
 
-  WidgetArgsWrapper toWrapper() => .new(
-    type: .column,
-    args: {for (final key in ColumnArg.values) key.toArg(): getValue(key)},
-  );
-  factory FixedColumnArgs.fromWrapper(WidgetArgsWrapper value) {
+  Map<WidgetArg, dynamic> toCommonArgs() => {
+    for (final key in ColumnArg.values) key.toArg(): getValue(key),
+  };
+
+  factory FixedColumnArgs.fromCommonArgs(Map<WidgetArg, dynamic> args) {
     var result = initial;
     for (final key in ColumnArg.values) {
-      result = result.setValue(key, value.args[key.toArg()]);
+      result = result.setValue(key, args[key.toArg()]);
     }
     return result;
   }

@@ -3,7 +3,7 @@ import 'package:jyanken_app_drills/src/model/widget_args_definition/center/fixed
 import 'package:jyanken_app_drills/src/model/widget_args_definition/column/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/container/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/text/fixed_args.dart';
-import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_args_wrapper.dart';
+import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_entity_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget_type.dart';
 part 'widget_entity.freezed.dart';
 part 'widget_entity.g.dart';
@@ -11,13 +11,25 @@ part 'widget_entity.g.dart';
 @freezed
 sealed class WidgetEntity with _$WidgetEntity {
   const WidgetEntity._();
-  const factory WidgetEntity.container({required FixedContainerArgs args}) =
+  const factory WidgetEntity.container({
+    @Default(-1) int id,
+    required FixedContainerArgs args,
+  }) =
       WidgetEntityContainer;
-  const factory WidgetEntity.text({required FixedTextArgs args}) =
+  const factory WidgetEntity.text({
+    @Default(-1) int id,
+    required FixedTextArgs args,
+  }) =
       WidgetEntityText;
-  const factory WidgetEntity.column({required FixedColumnArgs args}) =
+  const factory WidgetEntity.column({
+    @Default(-1) int id,
+    required FixedColumnArgs args,
+  }) =
       WidgetEntityColumn;
-  const factory WidgetEntity.center({required FixedCenterArgs args}) =
+  const factory WidgetEntity.center({
+    @Default(-1) int id,
+    required FixedCenterArgs args,
+  }) =
       WidgetEntityCenter;
 
   WidgetType get type => switch (this) {
@@ -34,19 +46,38 @@ sealed class WidgetEntity with _$WidgetEntity {
     .center => .center(args: .initial),
   };
 
-  factory WidgetEntity.fromArgsWrapper(WidgetArgsWrapper wrapper) =>
+  factory WidgetEntity.fromArgsWrapper(WidgetEntityWrapper wrapper) =>
       switch (wrapper.type) {
-        .container => .container(args: .fromWrapper(wrapper)),
-        .text => .text(args: .fromWrapper(wrapper)),
-        .column => .column(args: .fromWrapper(wrapper)),
-        .center => .center(args: .fromWrapper(wrapper)),
+        .container => .container(
+          id: wrapper.id,
+          args: .fromCommonArgs(wrapper.args),
+        ),
+        .text => .text(id: wrapper.id, args: .fromCommonArgs(wrapper.args)),
+        .column => .column(id: wrapper.id, args: .fromCommonArgs(wrapper.args)),
+        .center => .center(id: wrapper.id, args: .fromCommonArgs(wrapper.args)),
       };
 
-  WidgetArgsWrapper toWrapper() => switch (this) {
-    WidgetEntityContainer w => w.args.toWrapper(),
-    WidgetEntityText w => w.args.toWrapper(),
-    WidgetEntityColumn w => w.args.toWrapper(),
-    WidgetEntityCenter w => w.args.toWrapper(),
+  WidgetEntityWrapper toWrapper() => switch (this) {
+    WidgetEntityContainer w => .new(
+      id: id,
+      type: .container,
+      args: w.args.toCommonArgs(),
+    ),
+    WidgetEntityText w => .new(
+      id: id,
+      type: .text,
+      args: w.args.toCommonArgs(),
+    ),
+    WidgetEntityColumn w => .new(
+      id: id,
+      type: .column,
+      args: w.args.toCommonArgs(),
+    ),
+    WidgetEntityCenter w => .new(
+      id: id,
+      type: .center,
+      args: w.args.toCommonArgs(),
+    ),
   };
 
   factory WidgetEntity.fromJson(Map<String, dynamic> json) =>

@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jyanken_app_drills/src/model/color/color_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/text/arg.dart';
-import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_args_wrapper.dart';
+import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_arg.dart';
 part 'fixed_args.freezed.dart';
 part 'fixed_args.g.dart';
 
@@ -27,14 +27,14 @@ abstract class FixedTextArgs with _$FixedTextArgs {
     .color => copyWith(color: value),
   };
 
-  WidgetArgsWrapper toWrapper() => .new(
-    type: .text,
-    args: {for (final key in TextArg.values) key.toArg(): getValue(key)},
-  );
-  factory FixedTextArgs.fromWrapper(WidgetArgsWrapper value) {
+  Map<WidgetArg, dynamic> toCommonArgs() => {
+    for (final key in TextArg.values) key.toArg(): getValue(key),
+  };
+
+  factory FixedTextArgs.fromCommonArgs(Map<WidgetArg, dynamic> args) {
     var result = initial;
     for (final key in TextArg.values) {
-      result = result.setValue(key, value.args[key.toArg()]);
+      result = result.setValue(key, args[key.toArg()]);
     }
     return result;
   }

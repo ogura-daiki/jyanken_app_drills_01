@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/center/arg.dart';
-import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_args_wrapper.dart';
+import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_arg.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity.dart';
 part 'fixed_args.freezed.dart';
 part 'fixed_args.g.dart';
@@ -20,14 +20,14 @@ abstract class FixedCenterArgs with _$FixedCenterArgs {
     .child => copyWith(child: value),
   };
 
-  WidgetArgsWrapper toWrapper() => .new(
-    type: .center,
-    args: {for (final key in CenterArg.values) key.toArg(): getValue(key)},
-  );
-  factory FixedCenterArgs.fromWrapper(WidgetArgsWrapper value) {
+  Map<WidgetArg, dynamic> toCommonArgs() => {
+    for (final key in CenterArg.values) key.toArg(): getValue(key),
+  };
+
+  factory FixedCenterArgs.fromCommonArgs(Map<WidgetArg, dynamic> args) {
     var result = initial;
     for (final key in CenterArg.values) {
-      result = result.setValue(key, value.args[key.toArg()]);
+      result = result.setValue(key, args[key.toArg()]);
     }
     return result;
   }

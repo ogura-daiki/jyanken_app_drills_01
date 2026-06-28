@@ -19,14 +19,7 @@ class _ScreenEntityTestState extends State<ScreenEntityTest> {
 
   @override
   void initState() {
-    // tree = ValueNotifier(.text(args: .new(text: "テスト")));
-    tree = ValueNotifier(
-      .column(
-        args: .new(crossAxisAlignment: .center, children: [
-          ],
-        ),
-      ),
-    );
+    tree = ValueNotifier(null);
     selection = .new(null);
     super.initState();
   }
