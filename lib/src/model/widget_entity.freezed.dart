@@ -252,10 +252,10 @@ return center(_that.id,_that.args);case _:
 @JsonSerializable()
 
 class WidgetEntityContainer extends WidgetEntity {
-  const WidgetEntityContainer({this.id = -1, required this.args, final  String? $type}): $type = $type ?? 'container',super._();
+  const WidgetEntityContainer({required this.id, required this.args, final  String? $type}): $type = $type ?? 'container',super._();
   factory WidgetEntityContainer.fromJson(Map<String, dynamic> json) => _$WidgetEntityContainerFromJson(json);
 
-@override@JsonKey() final  int id;
+@override final  int id;
 @override final  FixedContainerArgs args;
 
 @JsonKey(name: 'runtimeType')
@@ -336,10 +336,10 @@ $FixedContainerArgsCopyWith<$Res> get args {
 @JsonSerializable()
 
 class WidgetEntityText extends WidgetEntity {
-  const WidgetEntityText({this.id = -1, required this.args, final  String? $type}): $type = $type ?? 'text',super._();
+  const WidgetEntityText({required this.id, required this.args, final  String? $type}): $type = $type ?? 'text',super._();
   factory WidgetEntityText.fromJson(Map<String, dynamic> json) => _$WidgetEntityTextFromJson(json);
 
-@override@JsonKey() final  int id;
+@override final  int id;
 @override final  FixedTextArgs args;
 
 @JsonKey(name: 'runtimeType')
@@ -420,10 +420,10 @@ $FixedTextArgsCopyWith<$Res> get args {
 @JsonSerializable()
 
 class WidgetEntityColumn extends WidgetEntity {
-  const WidgetEntityColumn({this.id = -1, required this.args, final  String? $type}): $type = $type ?? 'column',super._();
+  const WidgetEntityColumn({required this.id, required this.args, final  String? $type}): $type = $type ?? 'column',super._();
   factory WidgetEntityColumn.fromJson(Map<String, dynamic> json) => _$WidgetEntityColumnFromJson(json);
 
-@override@JsonKey() final  int id;
+@override final  int id;
 @override final  FixedColumnArgs args;
 
 @JsonKey(name: 'runtimeType')
@@ -504,10 +504,10 @@ $FixedColumnArgsCopyWith<$Res> get args {
 @JsonSerializable()
 
 class WidgetEntityCenter extends WidgetEntity {
-  const WidgetEntityCenter({this.id = -1, required this.args, final  String? $type}): $type = $type ?? 'center',super._();
+  const WidgetEntityCenter({required this.id, required this.args, final  String? $type}): $type = $type ?? 'center',super._();
   factory WidgetEntityCenter.fromJson(Map<String, dynamic> json) => _$WidgetEntityCenterFromJson(json);
 
-@override@JsonKey() final  int id;
+@override final  int id;
 @override final  FixedCenterArgs args;
 
 @JsonKey(name: 'runtimeType')

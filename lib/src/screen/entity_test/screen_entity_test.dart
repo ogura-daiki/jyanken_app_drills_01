@@ -72,7 +72,8 @@ class _ScreenEntityTestState extends State<ScreenEntityTest> {
                 return Center(child: Text("ウィジェットがありません"));
               }
               return WidgetEntityEditor(
-                key: ValueKey(value.id),
+                key: ValueKey(value.entity.id),
+                selector: value.selector,
                 initialValue: value.entity,
                 onChange: (newVal) {
                   value.onChange(newVal);

@@ -9,7 +9,7 @@ part of 'widget_entity.dart';
 WidgetEntityContainer _$WidgetEntityContainerFromJson(
   Map<String, dynamic> json,
 ) => WidgetEntityContainer(
-  id: (json['id'] as num?)?.toInt() ?? -1,
+  id: (json['id'] as num).toInt(),
   args: FixedContainerArgs.fromJson(json['args'] as Map<String, dynamic>),
   $type: json['runtimeType'] as String?,
 );
@@ -24,7 +24,7 @@ Map<String, dynamic> _$WidgetEntityContainerToJson(
 
 WidgetEntityText _$WidgetEntityTextFromJson(Map<String, dynamic> json) =>
     WidgetEntityText(
-      id: (json['id'] as num?)?.toInt() ?? -1,
+      id: (json['id'] as num).toInt(),
       args: FixedTextArgs.fromJson(json['args'] as Map<String, dynamic>),
       $type: json['runtimeType'] as String?,
     );
@@ -38,7 +38,7 @@ Map<String, dynamic> _$WidgetEntityTextToJson(WidgetEntityText instance) =>
 
 WidgetEntityColumn _$WidgetEntityColumnFromJson(Map<String, dynamic> json) =>
     WidgetEntityColumn(
-      id: (json['id'] as num?)?.toInt() ?? -1,
+      id: (json['id'] as num).toInt(),
       args: FixedColumnArgs.fromJson(json['args'] as Map<String, dynamic>),
       $type: json['runtimeType'] as String?,
     );
@@ -52,7 +52,7 @@ Map<String, dynamic> _$WidgetEntityColumnToJson(WidgetEntityColumn instance) =>
 
 WidgetEntityCenter _$WidgetEntityCenterFromJson(Map<String, dynamic> json) =>
     WidgetEntityCenter(
-      id: (json['id'] as num?)?.toInt() ?? -1,
+      id: (json['id'] as num).toInt(),
       args: FixedCenterArgs.fromJson(json['args'] as Map<String, dynamic>),
       $type: json['runtimeType'] as String?,
     );
