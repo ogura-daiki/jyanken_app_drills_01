@@ -1,17 +1,11 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:jyanken_app_drills/src/component/widget_tree_editor/depth_color_extension.dart';
+import 'package:jyanken_app_drills/src/component/widget_tree_editor/depth_colored_material.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/selection_node.dart';
+import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_header.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_args_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity.dart';
 import 'package:jyanken_app_drills/src/model/widget_type.dart';
-
-const List<Color> loopColor = [
-  Colors.yellow,
-  Colors.green,
-  Colors.red,
-  Colors.blue,
-];
 
 class WidgetTreeEditor extends StatelessWidget {
   final int depth;
@@ -32,64 +26,22 @@ class WidgetTreeEditor extends StatelessWidget {
     final wrapper = WidgetArgsWrapper.fromWidget(entity);
     final subTree = wrapper.args.entries.where((e) => e.key.type.hasChild);
 
-    return Container(
-      color: Color.lerp(
-        Theme.of(context).colorScheme.surface,
-        loopColor[depth % loopColor.length],
-        0.3,
-      ),
+    return DepthColoredMaterial(
+      depth: depth,
       child: Column(
         crossAxisAlignment: .stretch,
         mainAxisSize: .min,
         mainAxisAlignment: .start,
         children: [
-          Material(
-            child: InkWell(
-              child: Ink(
-                decoration: BoxDecoration(
-                  color: Color.lerp(
-                    Theme.of(context).colorScheme.surface,
-                    loopColor[depth % loopColor.length],
-                    0.3,
-                  ),
-                ),
-                child: Padding(
-                  padding: .only(
-                    left: 8 + 8 * depth.toDouble(),
-                    right: 8,
-                    top: 8,
-                    bottom: 8,
-                  ),
-                  child: Row(
-                    mainAxisSize: .max,
-                    mainAxisAlignment: .start,
-                    crossAxisAlignment: .center,
-                    spacing: 4,
-                    children: [
-                      switch (entity.type) {
-                        .text => Icon(Icons.label),
-                        .column => Container(
-                          transform: .rotationZ(pi / 2),
-                          transformAlignment: .center,
-                          child: Icon(Icons.view_column),
-                        ),
-                        .center => Icon(Icons.center_focus_strong),
-                      },
-                      Expanded(child: Text(entity.type.name)),
-                      IconButton(
-                        onPressed: () {
-                          onChange(null);
-                        },
-                        icon: Icon(Icons.delete_forever),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              onTap: () {
-                onSelection(.new(entity: entity, onChange: onChange));
-              },
-            ),
+          WidgetTreeHeader(
+            depth: depth,
+            type: entity.type,
+            onSelect: () {
+              onSelection(.new(entity: entity, onChange: onChange));
+            },
+            onDelete: () {
+              onChange(null);
+            },
           ),
           ...subTree.map((e) {
             return Column(
@@ -124,11 +76,7 @@ class WidgetTreeEditor extends StatelessWidget {
                         },
                       ),
                       _ => Container(
-                        color: Color.lerp(
-                          Theme.of(context).colorScheme.surface,
-                          loopColor[(depth + 1) % loopColor.length],
-                          0.3,
-                        ),
+                        color: context.depthColor(depth + 1),
                         child: DragTarget(
                           onWillAcceptWithDetails: (details) {
                             return details.data is WidgetType;
@@ -226,11 +174,7 @@ class WidgetTreeEditor extends StatelessWidget {
                     }),
 
                     Container(
-                      color: Color.lerp(
-                        Theme.of(context).colorScheme.surface,
-                        loopColor[(depth + 1) % loopColor.length],
-                        0.3,
-                      ),
+                      color: context.depthColor(depth + 1),
                       child: DragTarget(
                         onWillAcceptWithDetails: (details) {
                           return details.data is WidgetType;
