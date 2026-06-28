@@ -1,14 +1,16 @@
 enum WidgetArgsType {
   string,
   double,
-  widget,
+  doubleNullable,
+  widgetNullable,
   widgetList,
   crossAxisAlignment;
 
   bool get hasChild => switch (this) {
     .string => false,
     .double => false,
-    .widget => true,
+    .doubleNullable => false,
+    .widgetNullable => true,
     .widgetList => true,
     .crossAxisAlignment => false,
   };

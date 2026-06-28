@@ -20,12 +20,21 @@ class ArgEditor extends StatelessWidget {
   Widget build(BuildContext context) {
     return switch (arg) {
       .string => StringEditor(value: value, onChange: onChange),
-      .double => DoubleEditor(value: value, onChange: onChange),
+      .double => DoubleEditor(
+        nullable: false,
+        value: value,
+        onChange: (v) => onChange(v as double),
+      ),
+      .doubleNullable => DoubleEditor(
+        nullable: true,
+        value: value,
+        onChange: onChange,
+      ),
       .crossAxisAlignment => CrossAxisAlignmentEditor(
         value: value,
         onChange: onChange,
       ),
-      .widget => Text("ツリーから編集"),
+      .widgetNullable => Text("ツリーから編集"),
       .widgetList => Text("ツリーから編集"),
     };
   }

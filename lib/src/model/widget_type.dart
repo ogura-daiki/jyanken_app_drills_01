@@ -1,1 +1,1 @@
-enum WidgetType { text, column, center }
+enum WidgetType { container, text, column, center }

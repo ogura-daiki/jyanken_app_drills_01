@@ -20,7 +20,8 @@ Map<String, dynamic> _$WidgetArgToJson(_WidgetArg instance) =>
 const _$WidgetArgsTypeEnumMap = {
   WidgetArgsType.string: 'string',
   WidgetArgsType.double: 'double',
-  WidgetArgsType.widget: 'widget',
+  WidgetArgsType.doubleNullable: 'doubleNullable',
+  WidgetArgsType.widgetNullable: 'widgetNullable',
   WidgetArgsType.widgetList: 'widgetList',
   WidgetArgsType.crossAxisAlignment: 'crossAxisAlignment',
 };

@@ -13,6 +13,7 @@ class WidgetTypeIcon extends StatelessWidget {
     return IconTheme(
       data: .new(color: color, size: size),
       child: switch (type) {
+        .container => const Icon(Icons.crop_free),
         .text => const Icon(Icons.title),
         .column => const RotatedBox(
           quarterTurns: 1,

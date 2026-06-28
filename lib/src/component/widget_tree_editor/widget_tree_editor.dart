@@ -68,7 +68,7 @@ class WidgetTreeEditor extends StatelessWidget {
                   child: Text(e.key.name),
                 ),
                 ...switch (e.key.type) {
-                  .widget => [
+                  .widgetNullable => [
                     switch (e.value) {
                       WidgetEntity we => WidgetTreeEditor(
                         depth: depth + 1,

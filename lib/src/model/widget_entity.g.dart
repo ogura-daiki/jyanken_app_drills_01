@@ -6,6 +6,17 @@ part of 'widget_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+WidgetEntityContainer _$WidgetEntityContainerFromJson(
+  Map<String, dynamic> json,
+) => WidgetEntityContainer(
+  args: FixedContainerArgs.fromJson(json['args'] as Map<String, dynamic>),
+  $type: json['runtimeType'] as String?,
+);
+
+Map<String, dynamic> _$WidgetEntityContainerToJson(
+  WidgetEntityContainer instance,
+) => <String, dynamic>{'args': instance.args, 'runtimeType': instance.$type};
+
 WidgetEntityText _$WidgetEntityTextFromJson(Map<String, dynamic> json) =>
     WidgetEntityText(
       args: FixedTextArgs.fromJson(json['args'] as Map<String, dynamic>),
