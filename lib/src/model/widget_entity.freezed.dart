@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'widget_entity.dart';
@@ -9,7 +9,6 @@ part of 'widget_entity.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 WidgetEntity _$WidgetEntityFromJson(
@@ -212,7 +211,7 @@ return center(_that.args);case _:
 @JsonSerializable()
 
 class WidgetEntityText extends WidgetEntity {
-  const WidgetEntityText({required this.args,  String? $type}): $type = $type ?? 'text',super._();
+  const WidgetEntityText({required this.args, final  String? $type}): $type = $type ?? 'text',super._();
   factory WidgetEntityText.fromJson(Map<String, dynamic> json) => _$WidgetEntityTextFromJson(json);
 
 @override final  FixedTextArgs args;
@@ -294,7 +293,7 @@ $FixedTextArgsCopyWith<$Res> get args {
 @JsonSerializable()
 
 class WidgetEntityColumn extends WidgetEntity {
-  const WidgetEntityColumn({required this.args,  String? $type}): $type = $type ?? 'column',super._();
+  const WidgetEntityColumn({required this.args, final  String? $type}): $type = $type ?? 'column',super._();
   factory WidgetEntityColumn.fromJson(Map<String, dynamic> json) => _$WidgetEntityColumnFromJson(json);
 
 @override final  FixedColumnArgs args;
@@ -376,7 +375,7 @@ $FixedColumnArgsCopyWith<$Res> get args {
 @JsonSerializable()
 
 class WidgetEntityCenter extends WidgetEntity {
-  const WidgetEntityCenter({required this.args,  String? $type}): $type = $type ?? 'center',super._();
+  const WidgetEntityCenter({required this.args, final  String? $type}): $type = $type ?? 'center',super._();
   factory WidgetEntityCenter.fromJson(Map<String, dynamic> json) => _$WidgetEntityCenterFromJson(json);
 
 @override final  FixedCenterArgs args;

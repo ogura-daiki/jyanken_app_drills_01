@@ -30,7 +30,7 @@ abstract class FixedTextArgs with _$FixedTextArgs {
   factory FixedTextArgs.fromWrapper(WidgetArgsWrapper value) {
     var result = initial;
     for (final key in TextArg.values) {
-      result = initial.setValue(key, value.args[key.toArg()]);
+      result = result.setValue(key, value.args[key.toArg()]);
     }
     return result;
   }

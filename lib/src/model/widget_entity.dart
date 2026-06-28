@@ -1,10 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:jyanken_app_drills/src/model/widget_args_definition/center/args_definition.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/center/fixed_args.dart';
-import 'package:jyanken_app_drills/src/model/widget_args_definition/center/list_ext.dart';
-import 'package:jyanken_app_drills/src/model/widget_args_definition/column/args_definition.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/column/fixed_args.dart';
-import 'package:jyanken_app_drills/src/model/widget_args_definition/column/list_ext.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/text/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_args_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget_type.dart';
@@ -36,24 +32,14 @@ sealed class WidgetEntity with _$WidgetEntity {
   factory WidgetEntity.fromArgsWrapper(WidgetArgsWrapper wrapper) =>
       switch (wrapper.type) {
         .text => .text(args: .fromWrapper(wrapper)),
-        .column => .column(
-          args: wrapper.args.entries
-              .map((e) => ColumnArgsDefinition.fromKV(e.key.name, e.value))
-              .toList()
-              .fixed,
-        ),
-        .center => .center(
-          args: wrapper.args.entries
-              .map((e) => CenterArgsDefinition.fromKV(e.key.name, e.value))
-              .toList()
-              .fixed,
-        ),
+        .column => .column(args: .fromWrapper(wrapper)),
+        .center => .center(args: .fromWrapper(wrapper)),
       };
 
   WidgetArgsWrapper toWrapper() => switch (this) {
-    WidgetEntityText w => w.toWrapper(),
-    WidgetEntityColumn w => ColumnArgsDefinition.fromFixed(w.args).toArgs(),
-    WidgetEntityCenter w => CenterArgsDefinition.fromFixed(w.args).toArgs(),
+    WidgetEntityText w => w.args.toWrapper(),
+    WidgetEntityColumn w => w.args.toWrapper(),
+    WidgetEntityCenter w => w.args.toWrapper(),
   };
 
   factory WidgetEntity.fromJson(Map<String, dynamic> json) =>
