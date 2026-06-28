@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:jyanken_app_drills/src/component/widget_tree_editor/depth_color_extension.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/depth_colored_material.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/selection_node.dart';
+import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_drop_zone.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_header.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_args_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity.dart';
-import 'package:jyanken_app_drills/src/model/widget_type.dart';
 
 class WidgetTreeEditor extends StatelessWidget {
   final int depth;
@@ -75,71 +74,16 @@ class WidgetTreeEditor extends StatelessWidget {
                           );
                         },
                       ),
-                      _ => Container(
-                        color: context.depthColor(depth + 1),
-                        child: DragTarget(
-                          onWillAcceptWithDetails: (details) {
-                            return details.data is WidgetType;
-                          },
-                          onAcceptWithDetails: (details) {
-                            final data = details.data;
-                            if (data is! WidgetType) return;
-
+                      _ => DepthColoredMaterial(
+                        depth: depth + 1,
+                        child: WidgetTreeDropZone(
+                          onDrop: (type) {
                             final newArgs = {...wrapper.args};
 
-                            newArgs[e.key] = WidgetEntity.fromType(data);
+                            newArgs[e.key] = WidgetEntity.fromType(type);
                             onChange(
                               WidgetEntity.fromArgsWrapper(
                                 wrapper.copyWith(args: newArgs),
-                              ),
-                            );
-                          },
-                          builder: (context, candidateData, rejectedData) {
-                            late final Color bgColor;
-                            late final double borderWidth;
-                            late final Color borderColor;
-                            late final FontWeight fontWeight;
-                            if (candidateData.firstOrNull is! WidgetType) {
-                              bgColor = Colors.transparent;
-                              borderWidth = 1;
-                              borderColor = Theme.of(
-                                context,
-                              ).colorScheme.onSurface;
-                              fontWeight = .normal;
-                            } else {
-                              bgColor = Theme.of(
-                                context,
-                              ).colorScheme.primaryContainer;
-                              borderWidth = 2;
-                              borderColor = Theme.of(
-                                context,
-                              ).colorScheme.onPrimaryContainer;
-                              fontWeight = .bold;
-                            }
-                            return Padding(
-                              padding: const .all(4),
-                              child: Container(
-                                height: 40,
-                                decoration: BoxDecoration(
-                                  color: bgColor,
-                                  border: Border.all(
-                                    color: borderColor,
-                                    width: borderWidth,
-                                  ),
-                                  borderRadius: .circular(8),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "カタログからドロップして追加",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelMedium
-                                        ?.copyWith(
-                                          color: borderColor,
-                                          fontWeight: fontWeight,
-                                        ),
-                                  ),
-                                ),
                               ),
                             );
                           },
@@ -172,73 +116,19 @@ class WidgetTreeEditor extends StatelessWidget {
                         },
                       );
                     }),
-
-                    Container(
-                      color: context.depthColor(depth + 1),
-                      child: DragTarget(
-                        onWillAcceptWithDetails: (details) {
-                          return details.data is WidgetType;
-                        },
-                        onAcceptWithDetails: (details) {
-                          final data = details.data;
-                          if (data is! WidgetType) return;
-
+                    DepthColoredMaterial(
+                      depth: depth + 1,
+                      child: WidgetTreeDropZone(
+                        onDrop: (type) {
                           final newArgs = {...wrapper.args};
                           List<WidgetEntity?> newList = [...newArgs[e.key]];
-                          newList.add(.fromType(data));
+                          newList.add(.fromType(type));
                           newArgs[e.key] = newList
                               .whereType<WidgetEntity>()
                               .toList();
                           onChange(
                             WidgetEntity.fromArgsWrapper(
                               wrapper.copyWith(args: newArgs),
-                            ),
-                          );
-                        },
-                        builder: (context, candidateData, rejectedData) {
-                          late final Color bgColor;
-                          late final double borderWidth;
-                          late final Color borderColor;
-                          late final FontWeight fontWeight;
-                          if (candidateData.firstOrNull is! WidgetType) {
-                            bgColor = Colors.transparent;
-                            borderWidth = 1;
-                            borderColor = Theme.of(
-                              context,
-                            ).colorScheme.onSurface;
-                            fontWeight = .normal;
-                          } else {
-                            bgColor = Theme.of(
-                              context,
-                            ).colorScheme.primaryContainer;
-                            borderWidth = 2;
-                            borderColor = Theme.of(
-                              context,
-                            ).colorScheme.onPrimaryContainer;
-                            fontWeight = .bold;
-                          }
-                          return Padding(
-                            padding: const .all(4),
-                            child: Container(
-                              height: 40,
-                              decoration: BoxDecoration(
-                                color: bgColor,
-                                border: Border.all(
-                                  color: borderColor,
-                                  width: borderWidth,
-                                ),
-                                borderRadius: .circular(8),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "カタログからドロップして追加",
-                                  style: Theme.of(context).textTheme.labelMedium
-                                      ?.copyWith(
-                                        color: borderColor,
-                                        fontWeight: fontWeight,
-                                      ),
-                                ),
-                              ),
                             ),
                           );
                         },
