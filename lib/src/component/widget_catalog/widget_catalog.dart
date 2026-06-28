@@ -74,7 +74,13 @@ class WidgetCatalog extends HookWidget {
                             child: SizedBox(
                               width: constraints.maxWidth * 0.8,
                               height: constraints.maxHeight * 0.8,
-                              child: WidgetCatalogItem(type: type),
+                              child: FittedBox(
+                                child: SizedBox(
+                                  width: constraints.maxWidth,
+                                  height: constraints.maxHeight,
+                                  child: WidgetCatalogItem(type: type),
+                                ),
+                              ),
                             ),
                           ),
                           child: WidgetCatalogItem(type: type),
