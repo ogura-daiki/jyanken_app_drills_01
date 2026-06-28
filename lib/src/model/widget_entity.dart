@@ -5,9 +5,7 @@ import 'package:jyanken_app_drills/src/model/widget_args_definition/center/list_
 import 'package:jyanken_app_drills/src/model/widget_args_definition/column/args_definition.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/column/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/column/list_ext.dart';
-import 'package:jyanken_app_drills/src/model/widget_args_definition/text/args_definition.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/text/fixed_args.dart';
-import 'package:jyanken_app_drills/src/model/widget_args_definition/text/list_ext.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_args_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget_type.dart';
 part 'widget_entity.freezed.dart';
@@ -37,12 +35,7 @@ sealed class WidgetEntity with _$WidgetEntity {
 
   factory WidgetEntity.fromArgsWrapper(WidgetArgsWrapper wrapper) =>
       switch (wrapper.type) {
-        .text => .text(
-          args: wrapper.args.entries
-              .map((e) => TextArgsDefinition.fromKV(e.key.name, e.value))
-              .toList()
-              .fixed,
-        ),
+        .text => .text(args: .fromWrapper(wrapper)),
         .column => .column(
           args: wrapper.args.entries
               .map((e) => ColumnArgsDefinition.fromKV(e.key.name, e.value))
@@ -58,7 +51,7 @@ sealed class WidgetEntity with _$WidgetEntity {
       };
 
   WidgetArgsWrapper toWrapper() => switch (this) {
-    WidgetEntityText w => TextArgsDefinition.fromFixed(w.args).toArgs(),
+    WidgetEntityText w => w.toWrapper(),
     WidgetEntityColumn w => ColumnArgsDefinition.fromFixed(w.args).toArgs(),
     WidgetEntityCenter w => CenterArgsDefinition.fromFixed(w.args).toArgs(),
   };
