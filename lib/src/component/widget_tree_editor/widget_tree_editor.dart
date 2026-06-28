@@ -3,7 +3,6 @@ import 'package:jyanken_app_drills/src/component/widget_tree_editor/depth_colore
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/selection_node.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_drop_zone.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_header.dart';
-import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_args_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity.dart';
 
 class WidgetTreeEditor extends StatelessWidget {
@@ -33,7 +32,7 @@ class WidgetTreeEditor extends StatelessWidget {
         ),
       );
     }
-    final wrapper = WidgetArgsWrapper.fromWidget(entity);
+    final wrapper = entity.toWrapper();
     final subTree = wrapper.args.entries.where((e) => e.key.type.hasChild);
 
     return DepthColoredMaterial(

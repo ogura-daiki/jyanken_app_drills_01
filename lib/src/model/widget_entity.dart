@@ -57,6 +57,12 @@ sealed class WidgetEntity with _$WidgetEntity {
         ),
       };
 
+  WidgetArgsWrapper toWrapper() => switch (this) {
+    WidgetEntityText w => TextArgsDefinition.fromFixed(w.args).toArgs(),
+    WidgetEntityColumn w => ColumnArgsDefinition.fromFixed(w.args).toArgs(),
+    WidgetEntityCenter w => CenterArgsDefinition.fromFixed(w.args).toArgs(),
+  };
+
   factory WidgetEntity.fromJson(Map<String, dynamic> json) =>
       _$WidgetEntityFromJson(json);
 }

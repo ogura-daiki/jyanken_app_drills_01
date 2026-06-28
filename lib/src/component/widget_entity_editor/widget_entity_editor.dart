@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jyanken_app_drills/src/component/arg_editor/arg_editor.dart';
-import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_args_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity.dart';
 
 class WidgetEntityEditor extends StatelessWidget {
@@ -15,7 +14,7 @@ class WidgetEntityEditor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final wrapper = WidgetArgsWrapper.fromWidget(entity);
+    final wrapper = entity.toWrapper();
     final keys = wrapper.args.keys.toList();
     return ListView.builder(
       itemCount: keys.length + 1,
