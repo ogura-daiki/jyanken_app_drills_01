@@ -82,7 +82,10 @@ class _ScreenEntityTestState extends State<ScreenEntityTest> {
             },
           ),
         ),
-        VerticalDivider(),
+        Container(
+          width: 1,
+          color: Theme.of(context).colorScheme.outlineVariant,
+        ),
         Padding(
           padding: const .all(16),
           child: AspectRatio(
