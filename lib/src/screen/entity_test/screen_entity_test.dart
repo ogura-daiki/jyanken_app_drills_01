@@ -80,8 +80,10 @@ class _ScreenEntityTestState extends State<ScreenEntityTest> {
               }
               return WidgetEntityEditor(
                 key: ValueKey(value.id),
-                entity: value.entity,
-                onChange: value.onChange,
+                initialValue: value.entity,
+                onChange: (newVal) {
+                  value.onChange(newVal);
+                },
               );
             },
           ),

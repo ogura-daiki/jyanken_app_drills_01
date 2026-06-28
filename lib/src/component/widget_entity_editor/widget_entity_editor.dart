@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:jyanken_app_drills/src/component/arg_editor/arg_editor.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity.dart';
 
-class WidgetEntityEditor extends StatelessWidget {
-  final WidgetEntity entity;
+class WidgetEntityEditor extends HookWidget {
+  final WidgetEntity initialValue;
   final void Function(WidgetEntity newEntity) onChange;
 
   const WidgetEntityEditor({
     super.key,
-    required this.entity,
+    required this.initialValue,
     required this.onChange,
   });
 
   @override
   Widget build(BuildContext context) {
-    final wrapper = entity.toWrapper();
+    final entity = useState(initialValue);
+    final wrapper = entity.value.toWrapper();
     final keys = wrapper.args.keys.toList();
     return ListView.builder(
       itemCount: keys.length + 1,
@@ -23,7 +25,7 @@ class WidgetEntityEditor extends StatelessWidget {
           return Padding(
             padding: const .symmetric(vertical: 8.0, horizontal: 16),
             child: Text(
-              entity.type.name,
+              entity.value.type.name,
               style: Theme.of(context).textTheme.headlineLarge,
             ),
           );
@@ -48,11 +50,11 @@ class WidgetEntityEditor extends StatelessWidget {
                     onChange: (newValue) {
                       final newArgs = {...wrapper.args};
                       newArgs[key] = newValue;
-                      onChange(
-                        WidgetEntity.fromArgsWrapper(
-                          wrapper.copyWith(args: newArgs),
-                        ),
+                      final newEntity = WidgetEntity.fromArgsWrapper(
+                        wrapper.copyWith(args: newArgs),
                       );
+                      onChange(newEntity);
+                      entity.value = newEntity;
                     },
                   ),
                 ),
