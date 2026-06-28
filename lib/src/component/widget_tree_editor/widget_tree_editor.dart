@@ -8,7 +8,7 @@ import 'package:jyanken_app_drills/src/model/widget_entity.dart';
 
 class WidgetTreeEditor extends StatelessWidget {
   final int depth;
-  final WidgetEntity entity;
+  final WidgetEntity? entity;
   final void Function(WidgetEntity? newEntity) onChange;
   final void Function(SelectionNode selection) onSelection;
 
@@ -22,6 +22,17 @@ class WidgetTreeEditor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final entity = this.entity;
+    if (entity == null) {
+      return DepthColoredMaterial(
+        depth: depth,
+        child: WidgetTreeDropZone(
+          onDrop: (type) {
+            onChange(WidgetEntity.fromType(type));
+          },
+        ),
+      );
+    }
     final wrapper = WidgetArgsWrapper.fromWidget(entity);
     final subTree = wrapper.args.entries.where((e) => e.key.type.hasChild);
 
