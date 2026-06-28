@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jyanken_app_drills/src/component/arg_editor/impl/color_editor/color_editor.dart';
 import 'package:jyanken_app_drills/src/component/arg_editor/impl/cross_axis_alignment_editor.dart';
 import 'package:jyanken_app_drills/src/component/arg_editor/impl/double_editor.dart';
 import 'package:jyanken_app_drills/src/component/arg_editor/impl/string_editor.dart';
@@ -26,6 +27,11 @@ class ArgEditor extends StatelessWidget {
         onChange: (v) => onChange(v as double),
       ),
       .doubleNullable => DoubleEditor(
+        nullable: true,
+        value: value,
+        onChange: onChange,
+      ),
+      .colorNullable => ColorEditor(
         nullable: true,
         value: value,
         onChange: onChange,

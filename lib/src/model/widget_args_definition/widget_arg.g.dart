@@ -21,7 +21,8 @@ const _$WidgetArgsTypeEnumMap = {
   WidgetArgsType.string: 'string',
   WidgetArgsType.double: 'double',
   WidgetArgsType.doubleNullable: 'doubleNullable',
+  WidgetArgsType.crossAxisAlignment: 'crossAxisAlignment',
+  WidgetArgsType.colorNullable: 'colorNullable',
   WidgetArgsType.widgetNullable: 'widgetNullable',
   WidgetArgsType.widgetList: 'widgetList',
-  WidgetArgsType.crossAxisAlignment: 'crossAxisAlignment',
 };

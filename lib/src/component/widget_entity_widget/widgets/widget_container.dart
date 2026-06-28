@@ -10,7 +10,7 @@ class WidgetContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color: Colors.red),
+      decoration: BoxDecoration(color: entity.args.color?.color),
       width: entity.args.width,
       height: entity.args.height,
       clipBehavior: .antiAliasWithSaveLayer,

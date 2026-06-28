@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$FixedContainerArgs {
 
- double? get width; double? get height; WidgetEntity? get child;
+ double? get width; double? get height; ColorWrapper? get color; WidgetEntity? get child;
 /// Create a copy of FixedContainerArgs
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $FixedContainerArgsCopyWith<FixedContainerArgs> get copyWith => _$FixedContainer
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FixedContainerArgs&&(identical(other.width, width) || other.width == width)&&(identical(other.height, height) || other.height == height)&&(identical(other.child, child) || other.child == child));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FixedContainerArgs&&(identical(other.width, width) || other.width == width)&&(identical(other.height, height) || other.height == height)&&(identical(other.color, color) || other.color == color)&&(identical(other.child, child) || other.child == child));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,width,height,child);
+int get hashCode => Object.hash(runtimeType,width,height,color,child);
 
 @override
 String toString() {
-  return 'FixedContainerArgs(width: $width, height: $height, child: $child)';
+  return 'FixedContainerArgs(width: $width, height: $height, color: $color, child: $child)';
 }
 
 
@@ -48,11 +48,11 @@ abstract mixin class $FixedContainerArgsCopyWith<$Res>  {
   factory $FixedContainerArgsCopyWith(FixedContainerArgs value, $Res Function(FixedContainerArgs) _then) = _$FixedContainerArgsCopyWithImpl;
 @useResult
 $Res call({
- double? width, double? height, WidgetEntity? child
+ double? width, double? height, ColorWrapper? color, WidgetEntity? child
 });
 
 
-$WidgetEntityCopyWith<$Res>? get child;
+$ColorWrapperCopyWith<$Res>? get color;$WidgetEntityCopyWith<$Res>? get child;
 
 }
 /// @nodoc
@@ -65,15 +65,28 @@ class _$FixedContainerArgsCopyWithImpl<$Res>
 
 /// Create a copy of FixedContainerArgs
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? width = freezed,Object? height = freezed,Object? child = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? width = freezed,Object? height = freezed,Object? color = freezed,Object? child = freezed,}) {
   return _then(_self.copyWith(
 width: freezed == width ? _self.width : width // ignore: cast_nullable_to_non_nullable
 as double?,height: freezed == height ? _self.height : height // ignore: cast_nullable_to_non_nullable
-as double?,child: freezed == child ? _self.child : child // ignore: cast_nullable_to_non_nullable
+as double?,color: freezed == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
+as ColorWrapper?,child: freezed == child ? _self.child : child // ignore: cast_nullable_to_non_nullable
 as WidgetEntity?,
   ));
 }
 /// Create a copy of FixedContainerArgs
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ColorWrapperCopyWith<$Res>? get color {
+    if (_self.color == null) {
+    return null;
+  }
+
+  return $ColorWrapperCopyWith<$Res>(_self.color!, (value) {
+    return _then(_self.copyWith(color: value));
+  });
+}/// Create a copy of FixedContainerArgs
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -167,10 +180,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( double? width,  double? height,  WidgetEntity? child)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( double? width,  double? height,  ColorWrapper? color,  WidgetEntity? child)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FixedContainerArgs() when $default != null:
-return $default(_that.width,_that.height,_that.child);case _:
+return $default(_that.width,_that.height,_that.color,_that.child);case _:
   return orElse();
 
 }
@@ -188,10 +201,10 @@ return $default(_that.width,_that.height,_that.child);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( double? width,  double? height,  WidgetEntity? child)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( double? width,  double? height,  ColorWrapper? color,  WidgetEntity? child)  $default,) {final _that = this;
 switch (_that) {
 case _FixedContainerArgs():
-return $default(_that.width,_that.height,_that.child);case _:
+return $default(_that.width,_that.height,_that.color,_that.child);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -208,10 +221,10 @@ return $default(_that.width,_that.height,_that.child);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( double? width,  double? height,  WidgetEntity? child)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( double? width,  double? height,  ColorWrapper? color,  WidgetEntity? child)?  $default,) {final _that = this;
 switch (_that) {
 case _FixedContainerArgs() when $default != null:
-return $default(_that.width,_that.height,_that.child);case _:
+return $default(_that.width,_that.height,_that.color,_that.child);case _:
   return null;
 
 }
@@ -223,11 +236,12 @@ return $default(_that.width,_that.height,_that.child);case _:
 @JsonSerializable()
 
 class _FixedContainerArgs extends FixedContainerArgs {
-  const _FixedContainerArgs({this.width = null, this.height = null, this.child = null}): super._();
+  const _FixedContainerArgs({this.width = null, this.height = null, this.color = null, this.child = null}): super._();
   factory _FixedContainerArgs.fromJson(Map<String, dynamic> json) => _$FixedContainerArgsFromJson(json);
 
 @override@JsonKey() final  double? width;
 @override@JsonKey() final  double? height;
+@override@JsonKey() final  ColorWrapper? color;
 @override@JsonKey() final  WidgetEntity? child;
 
 /// Create a copy of FixedContainerArgs
@@ -243,16 +257,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FixedContainerArgs&&(identical(other.width, width) || other.width == width)&&(identical(other.height, height) || other.height == height)&&(identical(other.child, child) || other.child == child));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FixedContainerArgs&&(identical(other.width, width) || other.width == width)&&(identical(other.height, height) || other.height == height)&&(identical(other.color, color) || other.color == color)&&(identical(other.child, child) || other.child == child));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,width,height,child);
+int get hashCode => Object.hash(runtimeType,width,height,color,child);
 
 @override
 String toString() {
-  return 'FixedContainerArgs(width: $width, height: $height, child: $child)';
+  return 'FixedContainerArgs(width: $width, height: $height, color: $color, child: $child)';
 }
 
 
@@ -263,11 +277,11 @@ abstract mixin class _$FixedContainerArgsCopyWith<$Res> implements $FixedContain
   factory _$FixedContainerArgsCopyWith(_FixedContainerArgs value, $Res Function(_FixedContainerArgs) _then) = __$FixedContainerArgsCopyWithImpl;
 @override @useResult
 $Res call({
- double? width, double? height, WidgetEntity? child
+ double? width, double? height, ColorWrapper? color, WidgetEntity? child
 });
 
 
-@override $WidgetEntityCopyWith<$Res>? get child;
+@override $ColorWrapperCopyWith<$Res>? get color;@override $WidgetEntityCopyWith<$Res>? get child;
 
 }
 /// @nodoc
@@ -280,16 +294,29 @@ class __$FixedContainerArgsCopyWithImpl<$Res>
 
 /// Create a copy of FixedContainerArgs
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? width = freezed,Object? height = freezed,Object? child = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? width = freezed,Object? height = freezed,Object? color = freezed,Object? child = freezed,}) {
   return _then(_FixedContainerArgs(
 width: freezed == width ? _self.width : width // ignore: cast_nullable_to_non_nullable
 as double?,height: freezed == height ? _self.height : height // ignore: cast_nullable_to_non_nullable
-as double?,child: freezed == child ? _self.child : child // ignore: cast_nullable_to_non_nullable
+as double?,color: freezed == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
+as ColorWrapper?,child: freezed == child ? _self.child : child // ignore: cast_nullable_to_non_nullable
 as WidgetEntity?,
   ));
 }
 
 /// Create a copy of FixedContainerArgs
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ColorWrapperCopyWith<$Res>? get color {
+    if (_self.color == null) {
+    return null;
+  }
+
+  return $ColorWrapperCopyWith<$Res>(_self.color!, (value) {
+    return _then(_self.copyWith(color: value));
+  });
+}/// Create a copy of FixedContainerArgs
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')

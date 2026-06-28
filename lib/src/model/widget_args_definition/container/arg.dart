@@ -4,6 +4,7 @@ import 'package:jyanken_app_drills/src/model/widget_args_type.dart';
 enum ContainerArg with WidgetArgKey {
   width(.doubleNullable),
   height(.doubleNullable),
+  color(.colorNullable),
   child(.widgetNullable);
 
   @override

@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:jyanken_app_drills/src/model/color/color_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/container/arg.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_args_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity.dart';
@@ -11,6 +12,7 @@ abstract class FixedContainerArgs with _$FixedContainerArgs {
   const factory FixedContainerArgs({
     @Default(null) double? width,
     @Default(null) double? height,
+    @Default(null) ColorWrapper? color,
     @Default(null) WidgetEntity? child,
   }) = _FixedContainerArgs;
 
@@ -19,11 +21,13 @@ abstract class FixedContainerArgs with _$FixedContainerArgs {
   dynamic getValue(ContainerArg key) => switch (key) {
     .width => width,
     .height => height,
+    .color => color,
     .child => child,
   };
   FixedContainerArgs setValue(ContainerArg key, dynamic value) => switch (key) {
     .width => copyWith(width: value),
     .height => copyWith(height: value),
+    .color => copyWith(color: value),
     .child => copyWith(child: value),
   };
 
