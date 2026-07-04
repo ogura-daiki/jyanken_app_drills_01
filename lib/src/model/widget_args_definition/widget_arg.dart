@@ -50,31 +50,3 @@ sealed class WidgetArg with _$WidgetArg {
     WidgetArgWidgetList() => true,
   };
 }
-
-// import 'package:freezed_annotation/freezed_annotation.dart';
-
-// part 'widget_arg.freezed.dart';
-// part 'widget_arg.g.dart';
-
-// @Freezed(genericArgumentFactories: true)
-// abstract class WidgetArg<T> with _$WidgetArg<T> {
-//   const WidgetArg._();
-//   const factory WidgetArg({required String name, required T defaultValue}) =
-//       _WidgetArg;
-//   factory WidgetArg.fromJson(
-//     Map<String, dynamic> json,
-//     T Function(Object?) fromJsonT,
-//   ) => _$WidgetArgFromJson(json, fromJsonT);
-// }
-
-// @freezed
-// abstract class WidgetArg with _$WidgetArg {
-//   const WidgetArg._();
-//   const factory WidgetArg({
-//     required WidgetArgsType type,
-//     required String name,
-//   }) = _WidgetArg;
-
-//   factory WidgetArg.fromJson(Map<String, dynamic> json) =>
-//       _$WidgetArgFromJson(json);
-// }

@@ -61,16 +61,37 @@ class WidgetTreeEditor extends StatelessWidget {
                 ),
                 ...switch (e.key) {
                   WidgetArgWidget() => [
-                    WidgetTreeEditor(
-                      selector: [
-                        ...selector,
-                        if (e.value != null)
-                          .new(arg: e.key, entityId: e.value.id),
-                      ],
-                      entity: e.value,
-                      onSelection: onSelection,
-                      onAction: onAction,
-                    ),
+                    switch (e.value) {
+                      WidgetEntity we => WidgetTreeEditor(
+                        selector: [
+                          ...selector,
+                          if (e.value != null)
+                            .new(arg: e.key, entityId: e.value.id),
+                        ],
+                        entity: we,
+                        onSelection: onSelection,
+                        onAction: onAction,
+                      ),
+                      _ => DepthColoredMaterial(
+                        depth: depth + 1,
+                        child: WidgetTreeDropZone(
+                          onDrop: (type) {
+                            final newArgs = {...wrapper.args};
+                            newArgs[e.key] = WidgetEntity.fromType(type);
+                            final newEntity = WidgetEntity.fromWrapper(
+                              wrapper.copyWith(args: newArgs),
+                            );
+                            onAction(
+                              .update(
+                                selector: selector,
+                                oldValue: entity,
+                                newValue: newEntity,
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    },
                   ],
                   WidgetArgWidgetList() => [
                     ...(e.value as List<WidgetEntity>).indexed.map((entry) {

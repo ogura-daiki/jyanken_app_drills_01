@@ -4,10 +4,10 @@ import 'package:get_it/get_it.dart';
 import 'package:jyanken_app_drills/src/component/flutter_editor/flutter_editor_state.dart';
 import 'package:jyanken_app_drills/src/core/result.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_arg.dart';
+import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_entity_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity.dart';
 import 'package:jyanken_app_drills/src/model/widget_tree/tree_node_selector.dart';
 import 'package:jyanken_app_drills/src/model/widget_tree_action/widget_tree_action.dart';
-import 'package:jyanken_app_drills/src/usecase/get_widget_entity_argument_value_usecase.dart';
 import 'package:jyanken_app_drills/src/usecase/parse_tree_node_selector_usecase.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -17,9 +17,6 @@ part 'flutter_editor_viewmodel.g.dart';
 class FlutterEditorViewmodel extends _$FlutterEditorViewmodel {
   ParseTreeNodeSelectorUsecase get _getWidget =>
       GetIt.I.get<ParseTreeNodeSelectorUsecase>();
-  GetWidgetEntityArgumentValueUsecase get _getArgValue =>
-      GetIt.I.get<GetWidgetEntityArgumentValueUsecase>();
-
   @override
   FlutterEditorState build(int id) {
     return FlutterEditorState(editorId: id, treeRoot: null, selection: []);
@@ -60,12 +57,14 @@ class FlutterEditorViewmodel extends _$FlutterEditorViewmodel {
       try {
         final next = switch (selector.arg) {
           WidgetArgWidget wa =>
-            _getArgValue
-                .execute<WidgetEntity?>(arg: wa, entity: cursor)
+            cursor
+                .toWrapper()
+                .getTyped<WidgetEntity?>(wa)
                 .getOrThrow(currentException),
           WidgetArgWidgetList wla =>
-            _getArgValue
-                .execute<List<WidgetEntity>>(arg: wla, entity: cursor)
+            cursor
+                .toWrapper()
+                .getTyped<List<WidgetEntity>>(wla)
                 .getOrThrow(currentException)
                 .where((w) => w.id == selector.entityId)
                 .firstOrNull,
@@ -105,18 +104,27 @@ class FlutterEditorViewmodel extends _$FlutterEditorViewmodel {
           final parent = stack.removeLast();
 
           final wrapper = parent.toWrapper();
-          final newArgs = {...wrapper.args};
           final selector = selectorHistory.removeLast();
-          if (selector.arg is WidgetArgWidget) {
-            newArgs[selector.arg] = null;
-          } else if (selector.arg is WidgetArgWidgetList) {
-            final newList = <WidgetEntity>[...newArgs[selector.arg] ?? []];
-            newList.removeWhere((e) => e.id == selector.entityId);
-            newArgs[selector.arg] = newList;
-          } else {
-            throw UnsupportedError("Widget以外をRemoveできません");
-          }
-          updated = .fromWrapper(wrapper.copyWith(args: newArgs));
+          updated = .fromWrapper(
+            wrapper.putWith(
+              arg: selector.arg,
+              value: switch (selector.arg) {
+                //単一の子要素の削除
+                WidgetArgWidget() => null,
+                //複数ある子要素のうちの一つを削除
+                WidgetArgWidgetList() =>
+                  wrapper
+                      .getTyped<List<WidgetEntity>>(selector.arg)
+                      .getOrThrow(TypeMismatchException())
+                    ..removeWhere((e) => e.id == selector.entityId),
+                //未実装、および例外ども
+                _ => switch (selector.arg.canHaveWidget) {
+                  true => throw UnimplementedError(),
+                  false => throw throw UnsupportedError("Widget以外をRemoveできません"),
+                },
+              },
+            ),
+          );
         }
     }
 

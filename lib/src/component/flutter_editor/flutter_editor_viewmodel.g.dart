@@ -60,7 +60,7 @@ final class FlutterEditorViewmodelProvider
 }
 
 String _$flutterEditorViewmodelHash() =>
-    r'8850fa004fa30a5ed59f9027a6fb933cda3aceaf';
+    r'9d694fc29feaf4330cf8eb36c5c0fc2c897fedb9';
 
 final class FlutterEditorViewmodelFamily extends $Family
     with
