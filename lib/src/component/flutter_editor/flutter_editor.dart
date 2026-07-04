@@ -92,6 +92,7 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
           child: switch (selectedWidget) {
             Failure() => const Center(child: Text("ウィジェットがありません")),
             Success(:final value) => WidgetEntityEditor(
+              key: ValueKey(value.id),
               selector: state.selection,
               initialValue: value,
               onChange: (newValue) {
