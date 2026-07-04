@@ -61,12 +61,12 @@ class WidgetEntityEditor extends HookWidget {
                 Padding(
                   padding: const .only(left: 8),
                   child: ArgEditor(
-                    arg: key.type,
+                    arg: key,
                     value: arg,
                     onChange: (newValue) {
                       final newArgs = {...wrapper.args};
                       newArgs[key] = newValue;
-                      final newEntity = WidgetEntity.fromArgsWrapper(
+                      final newEntity = WidgetEntity.fromWrapper(
                         wrapper.copyWith(args: newArgs),
                       );
                       onChange(newEntity);

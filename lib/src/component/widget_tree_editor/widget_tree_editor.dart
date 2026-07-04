@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/depth_colored_material.dart';
-import 'package:jyanken_app_drills/src/component/widget_tree_editor/selection_node.dart';
+import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_arg.dart';
 import 'package:jyanken_app_drills/src/model/widget_tree/tree_node_selector.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_drop_zone.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_header.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity.dart';
+import 'package:jyanken_app_drills/src/model/widget_tree_action/widget_tree_action.dart';
 
 class WidgetTreeEditor extends StatelessWidget {
   final List<TreeNodeSelector> selector;
-  final WidgetEntity? entity;
-  final void Function(WidgetEntity? newEntity) onChange;
-  final void Function(SelectionNode selection) onSelection;
+  final WidgetEntity entity;
+  final void Function(WidgetTreeAction action) onAction;
+  final void Function(List<TreeNodeSelector> selector) onSelection;
 
   const WidgetTreeEditor({
     super.key,
     required this.entity,
-    required this.onChange,
+    required this.onAction,
     required this.onSelection,
     this.selector = const [],
   });
@@ -23,19 +24,8 @@ class WidgetTreeEditor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final depth = selector.length;
-    final entity = this.entity;
-    if (entity == null) {
-      return DepthColoredMaterial(
-        depth: depth,
-        child: WidgetTreeDropZone(
-          onDrop: (type) {
-            onChange(WidgetEntity.fromType(type));
-          },
-        ),
-      );
-    }
     final wrapper = entity.toWrapper();
-    final subTree = wrapper.args.entries.where((e) => e.key.type.hasChild);
+    final subTree = wrapper.args.entries.where((e) => e.key.canHaveWidget);
 
     return DepthColoredMaterial(
       depth: depth,
@@ -48,12 +38,10 @@ class WidgetTreeEditor extends StatelessWidget {
             depth: depth,
             type: entity.type,
             onSelect: () {
-              onSelection(
-                .new(entity: entity, selector: selector, onChange: onChange),
-              );
+              onSelection(selector);
             },
             onDelete: () {
-              onChange(null);
+              onAction(.remove(selector: selector));
             },
           ),
           ...subTree.map((e) {
@@ -71,8 +59,8 @@ class WidgetTreeEditor extends StatelessWidget {
                   ),
                   child: Text(e.key.name),
                 ),
-                ...switch (e.key.type) {
-                  .widgetNullable => [
+                ...switch (e.key) {
+                  WidgetArgWidget() => [
                     WidgetTreeEditor(
                       selector: [
                         ...selector,
@@ -81,20 +69,11 @@ class WidgetTreeEditor extends StatelessWidget {
                       ],
                       entity: e.value,
                       onSelection: onSelection,
-                      onChange: (newEntity) {
-                        final newArgs = {...wrapper.args};
-                        newArgs[e.key] = newEntity;
-                        onChange(
-                          WidgetEntity.fromArgsWrapper(
-                            wrapper.copyWith(args: newArgs),
-                          ),
-                        );
-                      },
+                      onAction: onAction,
                     ),
                   ],
-                  .widgetList => [
+                  WidgetArgWidgetList() => [
                     ...(e.value as List<WidgetEntity>).indexed.map((entry) {
-                      final idx = entry.$1;
                       final we = entry.$2;
                       return WidgetTreeEditor(
                         selector: [
@@ -102,37 +81,28 @@ class WidgetTreeEditor extends StatelessWidget {
                           .new(arg: e.key, entityId: we.id),
                         ],
                         entity: we,
-                        onSelection: (selection) {
-                          onSelection(selection);
-                        },
-                        onChange: (newEntity) {
-                          final newArgs = {...wrapper.args};
-                          List<WidgetEntity?> newList = [...newArgs[e.key]];
-                          newList[idx] = newEntity;
-                          newArgs[e.key] = newList
-                              .whereType<WidgetEntity>()
-                              .toList();
-                          onChange(
-                            WidgetEntity.fromArgsWrapper(
-                              wrapper.copyWith(args: newArgs),
-                            ),
-                          );
-                        },
+                        onSelection: onSelection,
+                        onAction: onAction,
                       );
                     }),
                     DepthColoredMaterial(
                       depth: depth + 1,
                       child: WidgetTreeDropZone(
                         onDrop: (type) {
-                          final newArgs = {...wrapper.args};
-                          List<WidgetEntity?> newList = [...newArgs[e.key]];
+                          var newList =
+                              (wrapper.args[e.key] as List<WidgetEntity>)
+                                  .toList();
                           newList.add(.fromType(type));
-                          newArgs[e.key] = newList
-                              .whereType<WidgetEntity>()
-                              .toList();
-                          onChange(
-                            WidgetEntity.fromArgsWrapper(
-                              wrapper.copyWith(args: newArgs),
+                          final newArgs = {...wrapper.args};
+                          newArgs[e.key] = newList;
+                          final newEntity = WidgetEntity.fromWrapper(
+                            wrapper.copyWith(args: newArgs),
+                          );
+                          onAction(
+                            .update(
+                              selector: selector,
+                              oldValue: entity,
+                              newValue: newEntity,
                             ),
                           );
                         },

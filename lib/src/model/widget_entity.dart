@@ -46,7 +46,7 @@ sealed class WidgetEntity with _$WidgetEntity {
     .center => .center(id: WidgetEntityIdGenerator.i.getId(), args: .initial),
   };
 
-  factory WidgetEntity.fromArgsWrapper(WidgetEntityWrapper wrapper) =>
+  factory WidgetEntity.fromWrapper(WidgetEntityWrapper wrapper) =>
       switch (wrapper.type) {
         .container => .container(
           id: wrapper.id,

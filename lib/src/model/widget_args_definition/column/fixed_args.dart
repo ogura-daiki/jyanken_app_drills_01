@@ -26,13 +26,13 @@ abstract class FixedColumnArgs with _$FixedColumnArgs {
   };
 
   Map<WidgetArg, dynamic> toCommonArgs() => {
-    for (final key in ColumnArg.values) key.toArg(): getValue(key),
+    for (final key in ColumnArg.values) key.arg: getValue(key),
   };
 
   factory FixedColumnArgs.fromCommonArgs(Map<WidgetArg, dynamic> args) {
     var result = initial;
     for (final key in ColumnArg.values) {
-      result = result.setValue(key, args[key.toArg()]);
+      result = result.setValue(key, args[key.arg]);
     }
     return result;
   }

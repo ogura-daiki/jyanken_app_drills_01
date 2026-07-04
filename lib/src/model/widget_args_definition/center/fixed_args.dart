@@ -21,13 +21,13 @@ abstract class FixedCenterArgs with _$FixedCenterArgs {
   };
 
   Map<WidgetArg, dynamic> toCommonArgs() => {
-    for (final key in CenterArg.values) key.toArg(): getValue(key),
+    for (final key in CenterArg.values) key.arg: getValue(key),
   };
 
   factory FixedCenterArgs.fromCommonArgs(Map<WidgetArg, dynamic> args) {
     var result = initial;
     for (final key in CenterArg.values) {
-      result = result.setValue(key, args[key.toArg()]);
+      result = result.setValue(key, args[key.arg]);
     }
     return result;
   }

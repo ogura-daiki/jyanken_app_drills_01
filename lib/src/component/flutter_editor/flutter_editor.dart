@@ -1,31 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:jyanken_app_drills/src/component/flutter_editor/flutter_editor_viewmodel.dart';
 import 'package:jyanken_app_drills/src/component/widget_catalog/widget_catalog.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_editor/widget_entity_editor.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widget_entity_widget.dart';
-import 'package:jyanken_app_drills/src/component/widget_tree_editor/selection_node.dart';
+import 'package:jyanken_app_drills/src/component/widget_tree_editor/depth_colored_material.dart';
+import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_drop_zone.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_editor.dart';
+import 'package:jyanken_app_drills/src/core/result.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity.dart';
 
-class FlutterEditor extends StatefulWidget {
+class FlutterEditor extends StatefulHookConsumerWidget {
   const FlutterEditor({super.key});
 
   @override
-  State<FlutterEditor> createState() => _FlutterEditorState();
+  ConsumerState<FlutterEditor> createState() => _FlutterEditorState();
 }
 
-class _FlutterEditorState extends State<FlutterEditor> {
-  late final ValueNotifier<WidgetEntity?> tree;
-  late final ValueNotifier<SelectionNode?> selection;
+class _FlutterEditorState extends ConsumerState<FlutterEditor> {
+  late final int id;
+
+  static int _id = 0;
 
   @override
   void initState() {
-    tree = ValueNotifier(null);
-    selection = .new(null);
+    id = _id++;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    final provider = flutterEditorViewmodelProvider(id);
+    final state = ref.watch(provider);
+    final viewModel = ref.read(provider.notifier);
+
+    final selectedWidget = useMemoized<Result<WidgetEntity>>(() {
+      return viewModel.getSelectedWidget();
+    }, [state]);
+
     return Row(
       crossAxisAlignment: .stretch,
       mainAxisSize: .max,
@@ -37,23 +50,34 @@ class _FlutterEditorState extends State<FlutterEditor> {
               crossAxisAlignment: .stretch,
               children: [
                 Expanded(
-                  child: ValueListenableBuilder(
-                    valueListenable: tree,
-                    builder: (context, value, child) {
-                      return SingleChildScrollView(
-                        padding: const .only(bottom: 48, top: 16),
-                        child: WidgetTreeEditor(
-                          entity: value,
-                          onSelection: (newSelection) {
-                            selection.value = newSelection;
-                          },
-                          onChange: (WidgetEntity? newEntity) {
-                            tree.value = newEntity;
-                          },
-                        ),
-                      );
-                    },
-                  ),
+                  child: switch (state.treeRoot) {
+                    WidgetEntity we => SingleChildScrollView(
+                      padding: const .only(bottom: 48, top: 16),
+                      child: WidgetTreeEditor(
+                        entity: we,
+                        onSelection: (newSelection) {
+                          viewModel.updateSelection(newSelection);
+                        },
+                        onAction: (action) {
+                          viewModel.onAction(action);
+                        },
+                      ),
+                    ),
+                    null => DepthColoredMaterial(
+                      depth: 0,
+                      child: WidgetTreeDropZone(
+                        onDrop: (type) {
+                          viewModel.onAction(
+                            .update(
+                              selector: [],
+                              oldValue: null,
+                              newValue: .fromType(type),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  },
                 ),
                 WidgetCatalog(),
               ],
@@ -65,22 +89,22 @@ class _FlutterEditorState extends State<FlutterEditor> {
           color: Theme.of(context).colorScheme.outlineVariant,
         ),
         Expanded(
-          child: ValueListenableBuilder(
-            valueListenable: selection,
-            builder: (context, value, child) {
-              if (value == null) {
-                return Center(child: Text("ウィジェットがありません"));
-              }
-              return WidgetEntityEditor(
-                key: ValueKey(value.entity.id),
-                selector: value.selector,
-                initialValue: value.entity,
-                onChange: (newVal) {
-                  value.onChange(newVal);
-                },
-              );
-            },
-          ),
+          child: switch (selectedWidget) {
+            Failure() => const Center(child: Text("ウィジェットがありません")),
+            Success(:final value) => WidgetEntityEditor(
+              selector: state.selection,
+              initialValue: value,
+              onChange: (newValue) {
+                viewModel.onAction(
+                  .update(
+                    selector: state.selection,
+                    oldValue: value,
+                    newValue: newValue,
+                  ),
+                );
+              },
+            ),
+          },
         ),
         Container(
           width: 1,
@@ -93,12 +117,7 @@ class _FlutterEditorState extends State<FlutterEditor> {
             child: Material(
               elevation: 4,
               clipBehavior: .antiAliasWithSaveLayer,
-              child: ValueListenableBuilder(
-                valueListenable: tree,
-                builder: (context, value, child) {
-                  return WidgetEntityWidget(entity: value);
-                },
-              ),
+              child: WidgetEntityWidget(entity: state.treeRoot),
             ),
           ),
         ),

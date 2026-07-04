@@ -1,13 +1,13 @@
 import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_arg_key.dart';
-import 'package:jyanken_app_drills/src/model/widget_args_type.dart';
+import 'package:jyanken_app_drills/src/model/widget_entity.dart';
 
-enum CenterArg with WidgetArgKey {
-  child(.widgetNullable);
+enum CenterArg<T> with WidgetArgKey<T> {
+  child<WidgetEntity?>(null);
 
   @override
-  final WidgetArgsType type;
+  final T defaultValue;
 
-  const CenterArg(this.type);
+  const CenterArg(this.defaultValue);
 
   static CenterArg fromName(String name) =>
       values.singleWhere((e) => e.name == name);

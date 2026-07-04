@@ -32,13 +32,13 @@ abstract class FixedContainerArgs with _$FixedContainerArgs {
   };
 
   Map<WidgetArg, dynamic> toCommonArgs() => {
-    for (final key in ContainerArg.values) key.toArg(): getValue(key),
+    for (final key in ContainerArg.values) key.arg: getValue(key),
   };
 
   factory FixedContainerArgs.fromCommonArgs(Map<WidgetArg, dynamic> args) {
     var result = initial;
     for (final key in ContainerArg.values) {
-      result = result.setValue(key, args[key.toArg()]);
+      result = result.setValue(key, args[key.arg]);
     }
     return result;
   }
