@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:jyanken_app_drills/src/component/widget_tree_editor/tree_node_selector.dart';
+import 'package:jyanken_app_drills/src/model/widget_tree/tree_node_selector.dart';
 
 class NodeSelectorDisplay extends StatelessWidget {
   final List<TreeNodeSelector> selector;
