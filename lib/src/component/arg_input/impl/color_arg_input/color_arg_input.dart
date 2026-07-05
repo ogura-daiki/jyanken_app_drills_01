@@ -1,13 +1,17 @@
 import 'package:flutter/widget_previews.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:jyanken_app_drills/src/component/arg_editor/impl/color_editor/rgb_slider.dart';
-import 'package:jyanken_app_drills/src/component/arg_editor/impl/color_editor/theme_color_picker.dart';
+import 'package:jyanken_app_drills/src/component/arg_input/arg_input_value_widget_interface.dart';
+import 'package:jyanken_app_drills/src/component/arg_input/impl/color_arg_input/rgb_slider.dart';
+import 'package:jyanken_app_drills/src/component/arg_input/impl/color_arg_input/theme_color_picker.dart';
 import 'package:jyanken_app_drills/src/model/color/color_wrapper.dart';
 
-class ColorEditor extends HookWidget {
+class ColorEditor extends HookWidget
+    implements ArgInputValueWidgetInterface<ColorWrapper?> {
   final bool nullable;
+  @override
   final ColorWrapper? value;
+  @override
   final void Function(ColorWrapper? newVal) onChange;
 
   const ColorEditor({

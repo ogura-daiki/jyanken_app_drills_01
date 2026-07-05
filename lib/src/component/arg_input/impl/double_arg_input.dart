@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:jyanken_app_drills/src/component/arg_input/arg_input_value_widget_interface.dart';
 
-class DoubleEditor extends StatelessWidget {
+class DoubleArgInput extends StatelessWidget
+    implements ArgInputValueWidgetInterface<double?> {
   final bool nullable;
+  @override
   final double? value;
+  @override
   final void Function(double? newVal) onChange;
 
-  const DoubleEditor({
+  const DoubleArgInput({
     super.key,
     required this.nullable,
     required this.value,

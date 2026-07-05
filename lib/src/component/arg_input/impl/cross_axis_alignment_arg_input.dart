@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:jyanken_app_drills/src/component/arg_input/arg_input_value_widget_interface.dart';
 
-class CrossAxisAlignmentEditor extends StatelessWidget {
+class CrossAxisAlignmentArgInput extends StatelessWidget
+    implements ArgInputValueWidgetInterface<CrossAxisAlignment> {
+  @override
   final CrossAxisAlignment value;
+  @override
   final void Function(CrossAxisAlignment newVal) onChange;
 
-  const CrossAxisAlignmentEditor({
+  const CrossAxisAlignmentArgInput({
     super.key,
     required this.value,
     required this.onChange,
@@ -13,7 +17,7 @@ class CrossAxisAlignmentEditor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownMenuFormField<CrossAxisAlignment>(
-      initialSelection: .stretch,
+      initialSelection: value,
       onSelected: (value) {
         onChange(value ?? .stretch);
       },

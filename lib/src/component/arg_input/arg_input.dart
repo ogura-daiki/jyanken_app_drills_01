@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:jyanken_app_drills/src/component/arg_editor/impl/color_editor/color_editor.dart';
-import 'package:jyanken_app_drills/src/component/arg_editor/impl/cross_axis_alignment_editor.dart';
-import 'package:jyanken_app_drills/src/component/arg_editor/impl/double_editor.dart';
-import 'package:jyanken_app_drills/src/component/arg_editor/impl/string_editor.dart';
+import 'package:jyanken_app_drills/src/component/arg_input/impl/color_arg_input/color_arg_input.dart';
+import 'package:jyanken_app_drills/src/component/arg_input/impl/cross_axis_alignment_arg_input.dart';
+import 'package:jyanken_app_drills/src/component/arg_input/impl/double_arg_input.dart';
+import 'package:jyanken_app_drills/src/component/arg_input/impl/string_arg_input.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_arg.dart';
 
-class ArgEditor extends StatelessWidget {
+class ArgInput extends StatelessWidget {
   final WidgetArg arg;
   final dynamic value;
   final void Function(dynamic newValue) onChange;
 
-  const ArgEditor({
+  const ArgInput({
     super.key,
     required this.arg,
     this.value,
@@ -20,13 +20,13 @@ class ArgEditor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return switch (arg) {
-      WidgetArgString() => StringEditor(value: value, onChange: onChange),
-      WidgetArgDouble() => DoubleEditor(
+      WidgetArgString() => StringArgInput(value: value, onChange: onChange),
+      WidgetArgDouble() => DoubleArgInput(
         nullable: false,
         value: value,
         onChange: (v) => onChange(v as double),
       ),
-      WidgetArgDoubleNullable() => DoubleEditor(
+      WidgetArgDoubleNullable() => DoubleArgInput(
         nullable: true,
         value: value,
         onChange: onChange,
@@ -36,7 +36,7 @@ class ArgEditor extends StatelessWidget {
         value: value,
         onChange: onChange,
       ),
-      WidgetArgCrossAxisAlignment() => CrossAxisAlignmentEditor(
+      WidgetArgCrossAxisAlignment() => CrossAxisAlignmentArgInput(
         value: value,
         onChange: onChange,
       ),
