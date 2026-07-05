@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:get_it/get_it.dart';
 import 'package:jyanken_app_drills/src/component/flutter_editor/flutter_editor_state.dart';
 import 'package:jyanken_app_drills/src/core/result.dart';
-import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_arg.dart';
+import 'package:jyanken_app_drills/src/model/widget_entity/widget_arg/widget_arg.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
 import 'package:jyanken_app_drills/src/model/widget_tree/widget_child_selector.dart';
 import 'package:jyanken_app_drills/src/model/widget_tree_action/widget_tree_action.dart';

@@ -1,29 +1,32 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:jyanken_app_drills/src/model/widget_args_definition/center/arg.dart';
-import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_arg.dart';
+import 'package:jyanken_app_drills/src/model/widget_definition/center/arg.dart';
+import 'package:jyanken_app_drills/src/model/widget_definition/widget_arguments_definition.dart';
+import 'package:jyanken_app_drills/src/model/widget_entity/widget_arg/widget_arg.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
 part 'fixed_args.freezed.dart';
 part 'fixed_args.g.dart';
 
 @freezed
-abstract class FixedCenterArgs with _$FixedCenterArgs {
+abstract class FixedCenterArgs extends WidgetArgumentsDefinition<CenterArg>
+    with _$FixedCenterArgs {
   const FixedCenterArgs._();
   const factory FixedCenterArgs({@Default(null) WidgetEntity? child}) =
       _FixedCenterArgs;
 
-  static const initial = FixedCenterArgs();
-
+  @override
   dynamic getValue(CenterArg key) => switch (key) {
     .child => child,
   };
+  @override
   FixedCenterArgs setValue(CenterArg key, dynamic value) => switch (key) {
     .child => copyWith(child: value),
   };
-
+  @override
   Map<WidgetArg, dynamic> toCommonArgs() => {
     for (final key in CenterArg.values) key.arg: getValue(key),
   };
 
+  static const initial = FixedCenterArgs();
   factory FixedCenterArgs.fromCommonArgs(Map<WidgetArg, dynamic> args) {
     var result = initial;
     for (final key in CenterArg.values) {

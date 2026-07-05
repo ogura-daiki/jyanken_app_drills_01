@@ -4,8 +4,8 @@ import 'package:jyanken_app_drills/src/component/arg_input/impl/color_arg_input/
 import 'package:jyanken_app_drills/src/component/arg_input/impl/enum_base_arg_input.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/text_base_arg_input.dart';
 import 'package:jyanken_app_drills/src/core/null_ext.dart';
-import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_arg.dart';
-import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_arg_ext.dart';
+import 'package:jyanken_app_drills/src/model/widget_entity/widget_arg/widget_arg.dart';
+import 'package:jyanken_app_drills/src/model/widget_entity/widget_arg/widget_arg_ext.dart';
 
 class ArgInput extends StatelessWidget {
   final WidgetArg arg;

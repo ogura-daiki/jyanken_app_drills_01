@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/depth_colored_material.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_drop_zone.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_editor.dart';
-import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_arg.dart';
+import 'package:jyanken_app_drills/src/model/widget_entity/widget_arg/widget_arg.dart';
 import 'package:jyanken_app_drills/src/model/widget_tree/widget_child_selector.dart';
 import 'package:jyanken_app_drills/src/model/widget_tree_action/widget_tree_action.dart';
 

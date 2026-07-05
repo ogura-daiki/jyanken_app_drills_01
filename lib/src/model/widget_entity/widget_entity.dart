@@ -1,9 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:jyanken_app_drills/src/model/widget_args_definition/center/fixed_args.dart';
-import 'package:jyanken_app_drills/src/model/widget_args_definition/column/fixed_args.dart';
-import 'package:jyanken_app_drills/src/model/widget_args_definition/container/fixed_args.dart';
-import 'package:jyanken_app_drills/src/model/widget_args_definition/text/fixed_args.dart';
-import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_entity_wrapper.dart';
+import 'package:jyanken_app_drills/src/model/widget_definition/center/fixed_args.dart';
+import 'package:jyanken_app_drills/src/model/widget_definition/column/fixed_args.dart';
+import 'package:jyanken_app_drills/src/model/widget_definition/container/fixed_args.dart';
+import 'package:jyanken_app_drills/src/model/widget_definition/text/fixed_args.dart';
+import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity_id.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_type.dart';
 part 'widget_entity.freezed.dart';
