@@ -1,9 +1,11 @@
 import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:jyanken_app_drills/src/core/result.dart';
 import 'package:jyanken_app_drills/src/model/color/color_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_arg/typed_arg.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity_id.dart';
+import 'package:jyanken_app_drills/src/usecase/parse_tree_node_selector_usecase.dart';
 part 'widget_arg.freezed.dart';
 part 'widget_arg.g.dart';
 
@@ -12,6 +14,24 @@ extension CanHaveChildArgChildrenGetter on MapEntry<CanHaveChildArg, dynamic> {
     WidgetArgWidget() => [if (value is WidgetEntity) value],
     WidgetArgWidgetList() => value,
   };
+
+  Result<WidgetEntity> getChild(WidgetEntityId id) {
+    try {
+      return .success(
+        children.singleWhere(
+          (we) => we.id == id,
+          orElse: () => throw WidgetEntityNotFoundException([
+            .new(arg: key, entityId: id),
+          ]),
+        ),
+      );
+    } catch (e) {
+      if (e is WidgetEntityNotFoundException) {
+        return .failure(e);
+      }
+      rethrow;
+    }
+  }
 
   bool get canAppendChild => switch (key) {
     //いくらでも追加してOK
@@ -47,6 +67,29 @@ extension CanHaveChildArgChildrenGetter on MapEntry<CanHaveChildArg, dynamic> {
       ),
       WidgetArgWidget() => .new(key, null),
     };
+  }
+
+  MapEntry<CanHaveChildArg, dynamic> copyWithUpdateWidget({
+    required WidgetEntity newEntity,
+  }) {
+    if (!contains(newEntity.id)) {
+      throw StateError("${newEntity.id}は引数内に存在しません");
+    }
+
+    switch (key) {
+      case WidgetArgWidgetList():
+        {
+          final index = children.indexWhere((we) => we.id == newEntity.id);
+          return .new(
+            key,
+            [...children]..replaceRange(index, index + 1, [newEntity]),
+          );
+        }
+      case WidgetArgWidget():
+        {
+          return .new(key, newEntity);
+        }
+    }
   }
 }
 

@@ -9,7 +9,7 @@ abstract class FlutterEditorState with _$FlutterEditorState {
   const FlutterEditorState._();
   const factory FlutterEditorState({
     required int editorId,
-    required WidgetEntity? treeRoot,
+    required WidgetEntityRoot treeRoot,
     required List<WidgetChildSelector> selection,
   }) = _FlutterEditorState;
 

@@ -9,9 +9,7 @@ part of 'flutter_editor_state.dart';
 _FlutterEditorState _$FlutterEditorStateFromJson(Map<String, dynamic> json) =>
     _FlutterEditorState(
       editorId: (json['editorId'] as num).toInt(),
-      treeRoot: json['treeRoot'] == null
-          ? null
-          : WidgetEntity.fromJson(json['treeRoot'] as Map<String, dynamic>),
+      treeRoot: WidgetEntity.fromJson(json['treeRoot'] as Map<String, dynamic>),
       selection: (json['selection'] as List<dynamic>)
           .map((e) => WidgetChildSelector.fromJson(e as Map<String, dynamic>))
           .toList(),

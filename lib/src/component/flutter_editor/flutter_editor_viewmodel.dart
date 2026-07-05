@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:get_it/get_it.dart';
 import 'package:jyanken_app_drills/src/component/flutter_editor/flutter_editor_state.dart';
 import 'package:jyanken_app_drills/src/core/result.dart';
@@ -7,6 +5,7 @@ import 'package:jyanken_app_drills/src/model/widget_entity/widget_arg/widget_arg
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
 import 'package:jyanken_app_drills/src/model/widget_tree/widget_child_selector.dart';
 import 'package:jyanken_app_drills/src/model/widget_tree_action/widget_tree_action.dart';
+import 'package:jyanken_app_drills/src/model/widget_tree_action/widget_tree_action_reject_reason.dart';
 import 'package:jyanken_app_drills/src/usecase/parse_tree_node_selector_usecase.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -18,11 +17,11 @@ class FlutterEditorViewmodel extends _$FlutterEditorViewmodel {
       GetIt.I.get<ParseTreeNodeSelectorUsecase>();
   @override
   FlutterEditorState build(int id) {
-    return FlutterEditorState(editorId: id, treeRoot: null, selection: []);
-  }
-
-  void updateTree(WidgetEntity? treeRoot) {
-    state = state.copyWith(treeRoot: treeRoot);
+    return FlutterEditorState(
+      editorId: id,
+      treeRoot: WidgetEntityRoot(id: .create(), args: .new()),
+      selection: [],
+    );
   }
 
   Result<WidgetEntity> getSelectedWidget() {
@@ -37,47 +36,32 @@ class FlutterEditorViewmodel extends _$FlutterEditorViewmodel {
   }
 
   Result onAction(WidgetTreeAction action) {
-    final stack = <WidgetEntity>[];
-    var cursor = state.treeRoot;
-    if (cursor != null) {
-      stack.add(cursor);
-    }
+    final stack = <WidgetEntity>[state.treeRoot];
 
+    //最上位からセレクタの通りにたどっていってターゲットの要素にたどり着くか確認
     final selectorHistory = <WidgetChildSelector>[];
-    for (int index = 0; index < action.selector.length; index++) {
-      final selector = action.selector[index];
+    for (final selector in action.selector) {
       selectorHistory.add(selector);
-      final currentException = WidgetEntityNotFoundException(selectorHistory);
+      final ex = WidgetEntityNotFoundException(selectorHistory);
 
       try {
-        cursor = stack.lastOrNull;
-        if (cursor == null) {
-          return .failure(currentException);
-        }
-
-        final next = cursor
-            .toWrapper()
-            .getEntry(selector.arg)
-            .getOrThrow(null)
-            .children
-            .singleWhere(
-              (we) => we.id == selector.entityId,
-              orElse: () => throw currentException,
-            );
-
+        final cursor = stack.last.toWrapper();
+        final next = cursor.getChildOrThrow(selector: selector, throws: ex);
         stack.add(next);
       } catch (e) {
-        switch (e) {
-          case WidgetEntityNotFoundException e:
-            return .failure(e);
-          default:
-            rethrow;
+        if (e is WidgetEntityNotFoundException) {
+          return .failure(e);
         }
+        rethrow;
       }
     }
+    if (stack.last.id != action.selector.last.entityId) {
+      return .failure(WidgetEntityNotFoundException(action.selector));
+    }
 
-    late WidgetEntity? updated;
+    late WidgetEntity updated;
 
+    //アクションを実行
     switch (action) {
       case WidgetTreeActionUpdate action:
         {
@@ -86,17 +70,17 @@ class FlutterEditorViewmodel extends _$FlutterEditorViewmodel {
         }
       case WidgetTreeActionRemove():
         {
-          //TODO: Root要素を作成して番兵を立てておく
-          if (stack.length <= 1) {
-            updated = null;
-            break;
+          final self = stack.removeLast();
+          if (!self.type.deletable) {
+            //削除できないタイプのウィジェットだった
+            return .failure(
+              WidgetTreeActionRejectNotDeletable(id: self.id, type: self.type),
+            );
           }
-          //自分を捨てる
-          stack.removeLast();
           final parent = stack.removeLast();
-
-          final wrapper = parent.toWrapper();
+          //parentからselfを見るためのselector
           final selector = selectorHistory.removeLast();
+          final wrapper = parent.toWrapper();
           updated = wrapper
               .putWith(
                 arg: selector.arg,
@@ -110,29 +94,23 @@ class FlutterEditorViewmodel extends _$FlutterEditorViewmodel {
         }
     }
 
+    //子の変更を親に反映していく
     for (final selector in selectorHistory.reversed) {
-      if (updated == null) {
-        throw Exception("ステートがおかしいと思う");
-      }
       final parent = stack.removeLast();
-      print("parent: ${parent.id}, ${jsonEncode(selector.toJson())}");
-      final wrapper = parent.toWrapper();
-      final newArgs = {...wrapper.args};
-      if (selector.arg is WidgetArgWidget) {
-        newArgs[selector.arg] = updated;
-      } else if (selector.arg is WidgetArgWidgetList) {
-        final newList = <WidgetEntity>[...wrapper.args[selector.arg]];
-        final index = newList.indexWhere((e) => e.id == selector.entityId);
-        newList[index] = updated;
-        newArgs[selector.arg] = newList;
-      } else {
-        throw UnsupportedError("このタイプの編集をまだサポートしていません");
-      }
-
-      updated = .fromWrapper(wrapper.copyWith(args: newArgs));
+      //print("parent: ${parent.id}, ${jsonEncode(selector.toJson())}");
+      final targetEntry = parent
+          .toWrapper()
+          .getEntry(selector.arg)
+          .getOrThrow(
+            WidgetEntityNotFoundException([
+              .new(arg: selector.arg, entityId: selector.entityId),
+            ]),
+          );
+      final newEntry = targetEntry.copyWithUpdateWidget(newEntity: updated);
+      updated = parent.toWrapper().putWithEntry(newEntry).toEntity();
     }
 
-    updateTree(updated);
+    state = state.copyWith(treeRoot: updated);
     return .success(null);
   }
 }

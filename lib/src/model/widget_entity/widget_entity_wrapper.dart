@@ -4,6 +4,7 @@ import 'package:jyanken_app_drills/src/model/widget_entity/widget_arg/widget_arg
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity_id.dart';
 import 'package:jyanken_app_drills/src/model/widget_definition/widget_type.dart';
+import 'package:jyanken_app_drills/src/model/widget_tree/widget_child_selector.dart';
 part 'widget_entity_wrapper.freezed.dart';
 
 @freezed
@@ -31,6 +32,15 @@ abstract class WidgetEntityWrapper with _$WidgetEntityWrapper {
     }
   }
 
+  WidgetEntity getChildOrThrow({
+    required WidgetChildSelector selector,
+    required Exception throws,
+  }) {
+    return getEntry(
+      selector.arg,
+    ).getOrThrow(throws).getChild(selector.entityId).getOrThrow(throws);
+  }
+
   Result<dynamic> get(WidgetArg key) {
     if (!args.containsKey(key)) {
       return .failure(WidgetArgNotFoundException(key));
@@ -56,6 +66,9 @@ abstract class WidgetEntityWrapper with _$WidgetEntityWrapper {
     newArgs[arg] = value;
     return copyWith(args: newArgs);
   }
+
+  WidgetEntityWrapper putWithEntry(MapEntry<WidgetArg, dynamic> entry) =>
+      putWith(arg: entry.key, value: entry.value);
 
   WidgetEntity toEntity() => .fromWrapper(this);
 

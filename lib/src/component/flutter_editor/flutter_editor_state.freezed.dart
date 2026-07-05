@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$FlutterEditorState {
 
- int get editorId; WidgetEntity? get treeRoot; List<WidgetChildSelector> get selection;
+ int get editorId; WidgetEntity get treeRoot; List<WidgetChildSelector> get selection;
 /// Create a copy of FlutterEditorState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,11 +48,11 @@ abstract mixin class $FlutterEditorStateCopyWith<$Res>  {
   factory $FlutterEditorStateCopyWith(FlutterEditorState value, $Res Function(FlutterEditorState) _then) = _$FlutterEditorStateCopyWithImpl;
 @useResult
 $Res call({
- int editorId, WidgetEntity? treeRoot, List<WidgetChildSelector> selection
+ int editorId, WidgetEntity treeRoot, List<WidgetChildSelector> selection
 });
 
 
-$WidgetEntityCopyWith<$Res>? get treeRoot;
+$WidgetEntityCopyWith<$Res> get treeRoot;
 
 }
 /// @nodoc
@@ -65,11 +65,11 @@ class _$FlutterEditorStateCopyWithImpl<$Res>
 
 /// Create a copy of FlutterEditorState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? editorId = null,Object? treeRoot = freezed,Object? selection = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? editorId = null,Object? treeRoot = null,Object? selection = null,}) {
   return _then(_self.copyWith(
 editorId: null == editorId ? _self.editorId : editorId // ignore: cast_nullable_to_non_nullable
-as int,treeRoot: freezed == treeRoot ? _self.treeRoot : treeRoot // ignore: cast_nullable_to_non_nullable
-as WidgetEntity?,selection: null == selection ? _self.selection : selection // ignore: cast_nullable_to_non_nullable
+as int,treeRoot: null == treeRoot ? _self.treeRoot : treeRoot // ignore: cast_nullable_to_non_nullable
+as WidgetEntity,selection: null == selection ? _self.selection : selection // ignore: cast_nullable_to_non_nullable
 as List<WidgetChildSelector>,
   ));
 }
@@ -77,12 +77,9 @@ as List<WidgetChildSelector>,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$WidgetEntityCopyWith<$Res>? get treeRoot {
-    if (_self.treeRoot == null) {
-    return null;
-  }
-
-  return $WidgetEntityCopyWith<$Res>(_self.treeRoot!, (value) {
+$WidgetEntityCopyWith<$Res> get treeRoot {
+  
+  return $WidgetEntityCopyWith<$Res>(_self.treeRoot, (value) {
     return _then(_self.copyWith(treeRoot: value));
   });
 }
@@ -167,7 +164,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int editorId,  WidgetEntity? treeRoot,  List<WidgetChildSelector> selection)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int editorId,  WidgetEntity treeRoot,  List<WidgetChildSelector> selection)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FlutterEditorState() when $default != null:
 return $default(_that.editorId,_that.treeRoot,_that.selection);case _:
@@ -188,7 +185,7 @@ return $default(_that.editorId,_that.treeRoot,_that.selection);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int editorId,  WidgetEntity? treeRoot,  List<WidgetChildSelector> selection)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int editorId,  WidgetEntity treeRoot,  List<WidgetChildSelector> selection)  $default,) {final _that = this;
 switch (_that) {
 case _FlutterEditorState():
 return $default(_that.editorId,_that.treeRoot,_that.selection);case _:
@@ -208,7 +205,7 @@ return $default(_that.editorId,_that.treeRoot,_that.selection);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int editorId,  WidgetEntity? treeRoot,  List<WidgetChildSelector> selection)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int editorId,  WidgetEntity treeRoot,  List<WidgetChildSelector> selection)?  $default,) {final _that = this;
 switch (_that) {
 case _FlutterEditorState() when $default != null:
 return $default(_that.editorId,_that.treeRoot,_that.selection);case _:
@@ -227,7 +224,7 @@ class _FlutterEditorState extends FlutterEditorState {
   factory _FlutterEditorState.fromJson(Map<String, dynamic> json) => _$FlutterEditorStateFromJson(json);
 
 @override final  int editorId;
-@override final  WidgetEntity? treeRoot;
+@override final  WidgetEntity treeRoot;
  final  List<WidgetChildSelector> _selection;
 @override List<WidgetChildSelector> get selection {
   if (_selection is EqualUnmodifiableListView) return _selection;
@@ -269,11 +266,11 @@ abstract mixin class _$FlutterEditorStateCopyWith<$Res> implements $FlutterEdito
   factory _$FlutterEditorStateCopyWith(_FlutterEditorState value, $Res Function(_FlutterEditorState) _then) = __$FlutterEditorStateCopyWithImpl;
 @override @useResult
 $Res call({
- int editorId, WidgetEntity? treeRoot, List<WidgetChildSelector> selection
+ int editorId, WidgetEntity treeRoot, List<WidgetChildSelector> selection
 });
 
 
-@override $WidgetEntityCopyWith<$Res>? get treeRoot;
+@override $WidgetEntityCopyWith<$Res> get treeRoot;
 
 }
 /// @nodoc
@@ -286,11 +283,11 @@ class __$FlutterEditorStateCopyWithImpl<$Res>
 
 /// Create a copy of FlutterEditorState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? editorId = null,Object? treeRoot = freezed,Object? selection = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? editorId = null,Object? treeRoot = null,Object? selection = null,}) {
   return _then(_FlutterEditorState(
 editorId: null == editorId ? _self.editorId : editorId // ignore: cast_nullable_to_non_nullable
-as int,treeRoot: freezed == treeRoot ? _self.treeRoot : treeRoot // ignore: cast_nullable_to_non_nullable
-as WidgetEntity?,selection: null == selection ? _self._selection : selection // ignore: cast_nullable_to_non_nullable
+as int,treeRoot: null == treeRoot ? _self.treeRoot : treeRoot // ignore: cast_nullable_to_non_nullable
+as WidgetEntity,selection: null == selection ? _self._selection : selection // ignore: cast_nullable_to_non_nullable
 as List<WidgetChildSelector>,
   ));
 }
@@ -299,12 +296,9 @@ as List<WidgetChildSelector>,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$WidgetEntityCopyWith<$Res>? get treeRoot {
-    if (_self.treeRoot == null) {
-    return null;
-  }
-
-  return $WidgetEntityCopyWith<$Res>(_self.treeRoot!, (value) {
+$WidgetEntityCopyWith<$Res> get treeRoot {
+  
+  return $WidgetEntityCopyWith<$Res>(_self.treeRoot, (value) {
     return _then(_self.copyWith(treeRoot: value));
   });
 }

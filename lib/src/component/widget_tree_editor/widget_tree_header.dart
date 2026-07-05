@@ -19,15 +19,16 @@ class WidgetTreeHeader extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final showDeleteButton = useState(false);
+    final showDeleteButtonState = useState(false);
+    final showDeleteButton = showDeleteButtonState.value && type.deletable;
     final focusNode = useFocusNode();
     return InkWell(
       focusNode: focusNode,
       onFocusChange: (value) {
-        showDeleteButton.value = value;
+        showDeleteButtonState.value = value;
       },
       onHover: (value) {
-        showDeleteButton.value = focusNode.hasFocus || value;
+        showDeleteButtonState.value = focusNode.hasFocus || value;
       },
       onTap: onSelect,
       child: Padding(
@@ -46,9 +47,9 @@ class WidgetTreeHeader extends HookWidget {
             WidgetTypeIcon(type: type),
             Expanded(child: Text(type.name, overflow: .ellipsis)),
             Opacity(
-              opacity: showDeleteButton.value ? 1 : 0,
+              opacity: showDeleteButton ? 1 : 0,
               child: IgnorePointer(
-                ignoring: !showDeleteButton.value,
+                ignoring: !showDeleteButton,
                 child: IconButton(
                   onPressed: onDelete,
                   icon: Icon(Icons.delete_forever),

@@ -1,0 +1,1 @@
+enum WidgetCategory { common }

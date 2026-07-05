@@ -5,8 +5,6 @@ import 'package:jyanken_app_drills/src/component/flutter_editor/flutter_editor_v
 import 'package:jyanken_app_drills/src/component/widget_catalog/widget_catalog.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_editor/widget_entity_editor.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widget_entity_widget.dart';
-import 'package:jyanken_app_drills/src/component/widget_tree_editor/depth_colored_material.dart';
-import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_drop_zone.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_editor.dart';
 import 'package:jyanken_app_drills/src/core/result.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
@@ -61,20 +59,6 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
                         },
                         onAction: (action) {
                           viewModel.onAction(action);
-                        },
-                      ),
-                    ),
-                    null => DepthColoredMaterial(
-                      depth: 0,
-                      child: WidgetTreeDropZone(
-                        onDrop: (type) {
-                          viewModel.onAction(
-                            .update(
-                              selector: [],
-                              oldValue: null,
-                              newValue: .fromType(type),
-                            ),
-                          );
                         },
                       ),
                     ),
