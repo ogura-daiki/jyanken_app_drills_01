@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jyanken_app_drills/src/model/color/color_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
+import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity_id.dart';
 part 'widget_arg.freezed.dart';
 part 'widget_arg.g.dart';
 
@@ -29,13 +30,13 @@ extension CanHaveChildArgChildrenGetter on MapEntry<CanHaveChildArg, dynamic> {
     };
   }
 
-  bool contains(int id) {
+  bool contains(WidgetEntityId id) {
     return children.any((we) => we.id == id);
   }
 
-  MapEntry<CanHaveChildArg, dynamic> copyWithRemoveId(int id) {
+  MapEntry<CanHaveChildArg, dynamic> copyWithRemoveId(WidgetEntityId id) {
     if (!contains(id)) {
-      throw StateError("WidgetEntity(id: $id)は引数内に存在しません");
+      throw StateError("$idは引数内に存在しません");
     }
 
     return switch (key) {

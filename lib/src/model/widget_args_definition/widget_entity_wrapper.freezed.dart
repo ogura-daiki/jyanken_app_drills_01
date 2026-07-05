@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$WidgetEntityWrapper {
 
- int get id; WidgetType get type; Map<WidgetArg, dynamic> get args;
+ WidgetEntityId get id; WidgetType get type; Map<WidgetArg, dynamic> get args;
 /// Create a copy of WidgetEntityWrapper
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45,11 +45,11 @@ abstract mixin class $WidgetEntityWrapperCopyWith<$Res>  {
   factory $WidgetEntityWrapperCopyWith(WidgetEntityWrapper value, $Res Function(WidgetEntityWrapper) _then) = _$WidgetEntityWrapperCopyWithImpl;
 @useResult
 $Res call({
- int id, WidgetType type, Map<WidgetArg, dynamic> args
+ WidgetEntityId id, WidgetType type, Map<WidgetArg, dynamic> args
 });
 
 
-
+$WidgetEntityIdCopyWith<$Res> get id;
 
 }
 /// @nodoc
@@ -65,12 +65,21 @@ class _$WidgetEntityWrapperCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? type = null,Object? args = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as WidgetEntityId,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as WidgetType,args: null == args ? _self.args : args // ignore: cast_nullable_to_non_nullable
 as Map<WidgetArg, dynamic>,
   ));
 }
-
+/// Create a copy of WidgetEntityWrapper
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WidgetEntityIdCopyWith<$Res> get id {
+  
+  return $WidgetEntityIdCopyWith<$Res>(_self.id, (value) {
+    return _then(_self.copyWith(id: value));
+  });
+}
 }
 
 
@@ -152,7 +161,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  WidgetType type,  Map<WidgetArg, dynamic> args)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( WidgetEntityId id,  WidgetType type,  Map<WidgetArg, dynamic> args)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WidgetEntityWrapper() when $default != null:
 return $default(_that.id,_that.type,_that.args);case _:
@@ -173,7 +182,7 @@ return $default(_that.id,_that.type,_that.args);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  WidgetType type,  Map<WidgetArg, dynamic> args)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( WidgetEntityId id,  WidgetType type,  Map<WidgetArg, dynamic> args)  $default,) {final _that = this;
 switch (_that) {
 case _WidgetEntityWrapper():
 return $default(_that.id,_that.type,_that.args);case _:
@@ -193,7 +202,7 @@ return $default(_that.id,_that.type,_that.args);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  WidgetType type,  Map<WidgetArg, dynamic> args)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( WidgetEntityId id,  WidgetType type,  Map<WidgetArg, dynamic> args)?  $default,) {final _that = this;
 switch (_that) {
 case _WidgetEntityWrapper() when $default != null:
 return $default(_that.id,_that.type,_that.args);case _:
@@ -211,7 +220,7 @@ class _WidgetEntityWrapper extends WidgetEntityWrapper {
   const _WidgetEntityWrapper({required this.id, required this.type, required final  Map<WidgetArg, dynamic> args}): _args = args,super._();
   
 
-@override final  int id;
+@override final  WidgetEntityId id;
 @override final  WidgetType type;
  final  Map<WidgetArg, dynamic> _args;
 @override Map<WidgetArg, dynamic> get args {
@@ -251,11 +260,11 @@ abstract mixin class _$WidgetEntityWrapperCopyWith<$Res> implements $WidgetEntit
   factory _$WidgetEntityWrapperCopyWith(_WidgetEntityWrapper value, $Res Function(_WidgetEntityWrapper) _then) = __$WidgetEntityWrapperCopyWithImpl;
 @override @useResult
 $Res call({
- int id, WidgetType type, Map<WidgetArg, dynamic> args
+ WidgetEntityId id, WidgetType type, Map<WidgetArg, dynamic> args
 });
 
 
-
+@override $WidgetEntityIdCopyWith<$Res> get id;
 
 }
 /// @nodoc
@@ -271,13 +280,22 @@ class __$WidgetEntityWrapperCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? type = null,Object? args = null,}) {
   return _then(_WidgetEntityWrapper(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as WidgetEntityId,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as WidgetType,args: null == args ? _self._args : args // ignore: cast_nullable_to_non_nullable
 as Map<WidgetArg, dynamic>,
   ));
 }
 
-
+/// Create a copy of WidgetEntityWrapper
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WidgetEntityIdCopyWith<$Res> get id {
+  
+  return $WidgetEntityIdCopyWith<$Res>(_self.id, (value) {
+    return _then(_self.copyWith(id: value));
+  });
+}
 }
 
 // dart format on

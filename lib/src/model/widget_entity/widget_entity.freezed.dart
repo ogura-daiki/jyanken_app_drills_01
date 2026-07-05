@@ -46,7 +46,7 @@ WidgetEntity _$WidgetEntityFromJson(
 /// @nodoc
 mixin _$WidgetEntity {
 
- int get id; Object get args;
+ WidgetEntityId get id; Object get args;
 /// Create a copy of WidgetEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -79,11 +79,11 @@ abstract mixin class $WidgetEntityCopyWith<$Res>  {
   factory $WidgetEntityCopyWith(WidgetEntity value, $Res Function(WidgetEntity) _then) = _$WidgetEntityCopyWithImpl;
 @useResult
 $Res call({
- int id
+ WidgetEntityId id
 });
 
 
-
+$WidgetEntityIdCopyWith<$Res> get id;
 
 }
 /// @nodoc
@@ -99,10 +99,19 @@ class _$WidgetEntityCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,
+as WidgetEntityId,
   ));
 }
-
+/// Create a copy of WidgetEntity
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WidgetEntityIdCopyWith<$Res> get id {
+  
+  return $WidgetEntityIdCopyWith<$Res>(_self.id, (value) {
+    return _then(_self.copyWith(id: value));
+  });
+}
 }
 
 
@@ -190,7 +199,7 @@ return center(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int id,  FixedContainerArgs args)?  container,TResult Function( int id,  FixedTextArgs args)?  text,TResult Function( int id,  FixedColumnArgs args)?  column,TResult Function( int id,  FixedCenterArgs args)?  center,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( WidgetEntityId id,  FixedContainerArgs args)?  container,TResult Function( WidgetEntityId id,  FixedTextArgs args)?  text,TResult Function( WidgetEntityId id,  FixedColumnArgs args)?  column,TResult Function( WidgetEntityId id,  FixedCenterArgs args)?  center,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case WidgetEntityContainer() when container != null:
 return container(_that.id,_that.args);case WidgetEntityText() when text != null:
@@ -214,7 +223,7 @@ return center(_that.id,_that.args);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int id,  FixedContainerArgs args)  container,required TResult Function( int id,  FixedTextArgs args)  text,required TResult Function( int id,  FixedColumnArgs args)  column,required TResult Function( int id,  FixedCenterArgs args)  center,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( WidgetEntityId id,  FixedContainerArgs args)  container,required TResult Function( WidgetEntityId id,  FixedTextArgs args)  text,required TResult Function( WidgetEntityId id,  FixedColumnArgs args)  column,required TResult Function( WidgetEntityId id,  FixedCenterArgs args)  center,}) {final _that = this;
 switch (_that) {
 case WidgetEntityContainer():
 return container(_that.id,_that.args);case WidgetEntityText():
@@ -234,7 +243,7 @@ return center(_that.id,_that.args);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int id,  FixedContainerArgs args)?  container,TResult? Function( int id,  FixedTextArgs args)?  text,TResult? Function( int id,  FixedColumnArgs args)?  column,TResult? Function( int id,  FixedCenterArgs args)?  center,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( WidgetEntityId id,  FixedContainerArgs args)?  container,TResult? Function( WidgetEntityId id,  FixedTextArgs args)?  text,TResult? Function( WidgetEntityId id,  FixedColumnArgs args)?  column,TResult? Function( WidgetEntityId id,  FixedCenterArgs args)?  center,}) {final _that = this;
 switch (_that) {
 case WidgetEntityContainer() when container != null:
 return container(_that.id,_that.args);case WidgetEntityText() when text != null:
@@ -255,7 +264,7 @@ class WidgetEntityContainer extends WidgetEntity {
   const WidgetEntityContainer({required this.id, required this.args, final  String? $type}): $type = $type ?? 'container',super._();
   factory WidgetEntityContainer.fromJson(Map<String, dynamic> json) => _$WidgetEntityContainerFromJson(json);
 
-@override final  int id;
+@override final  WidgetEntityId id;
 @override final  FixedContainerArgs args;
 
 @JsonKey(name: 'runtimeType')
@@ -295,11 +304,11 @@ abstract mixin class $WidgetEntityContainerCopyWith<$Res> implements $WidgetEnti
   factory $WidgetEntityContainerCopyWith(WidgetEntityContainer value, $Res Function(WidgetEntityContainer) _then) = _$WidgetEntityContainerCopyWithImpl;
 @override @useResult
 $Res call({
- int id, FixedContainerArgs args
+ WidgetEntityId id, FixedContainerArgs args
 });
 
 
-$FixedContainerArgsCopyWith<$Res> get args;
+@override $WidgetEntityIdCopyWith<$Res> get id;$FixedContainerArgsCopyWith<$Res> get args;
 
 }
 /// @nodoc
@@ -315,12 +324,21 @@ class _$WidgetEntityContainerCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? args = null,}) {
   return _then(WidgetEntityContainer(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,args: null == args ? _self.args : args // ignore: cast_nullable_to_non_nullable
+as WidgetEntityId,args: null == args ? _self.args : args // ignore: cast_nullable_to_non_nullable
 as FixedContainerArgs,
   ));
 }
 
 /// Create a copy of WidgetEntity
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WidgetEntityIdCopyWith<$Res> get id {
+  
+  return $WidgetEntityIdCopyWith<$Res>(_self.id, (value) {
+    return _then(_self.copyWith(id: value));
+  });
+}/// Create a copy of WidgetEntity
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -339,7 +357,7 @@ class WidgetEntityText extends WidgetEntity {
   const WidgetEntityText({required this.id, required this.args, final  String? $type}): $type = $type ?? 'text',super._();
   factory WidgetEntityText.fromJson(Map<String, dynamic> json) => _$WidgetEntityTextFromJson(json);
 
-@override final  int id;
+@override final  WidgetEntityId id;
 @override final  FixedTextArgs args;
 
 @JsonKey(name: 'runtimeType')
@@ -379,11 +397,11 @@ abstract mixin class $WidgetEntityTextCopyWith<$Res> implements $WidgetEntityCop
   factory $WidgetEntityTextCopyWith(WidgetEntityText value, $Res Function(WidgetEntityText) _then) = _$WidgetEntityTextCopyWithImpl;
 @override @useResult
 $Res call({
- int id, FixedTextArgs args
+ WidgetEntityId id, FixedTextArgs args
 });
 
 
-$FixedTextArgsCopyWith<$Res> get args;
+@override $WidgetEntityIdCopyWith<$Res> get id;$FixedTextArgsCopyWith<$Res> get args;
 
 }
 /// @nodoc
@@ -399,12 +417,21 @@ class _$WidgetEntityTextCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? args = null,}) {
   return _then(WidgetEntityText(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,args: null == args ? _self.args : args // ignore: cast_nullable_to_non_nullable
+as WidgetEntityId,args: null == args ? _self.args : args // ignore: cast_nullable_to_non_nullable
 as FixedTextArgs,
   ));
 }
 
 /// Create a copy of WidgetEntity
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WidgetEntityIdCopyWith<$Res> get id {
+  
+  return $WidgetEntityIdCopyWith<$Res>(_self.id, (value) {
+    return _then(_self.copyWith(id: value));
+  });
+}/// Create a copy of WidgetEntity
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -423,7 +450,7 @@ class WidgetEntityColumn extends WidgetEntity {
   const WidgetEntityColumn({required this.id, required this.args, final  String? $type}): $type = $type ?? 'column',super._();
   factory WidgetEntityColumn.fromJson(Map<String, dynamic> json) => _$WidgetEntityColumnFromJson(json);
 
-@override final  int id;
+@override final  WidgetEntityId id;
 @override final  FixedColumnArgs args;
 
 @JsonKey(name: 'runtimeType')
@@ -463,11 +490,11 @@ abstract mixin class $WidgetEntityColumnCopyWith<$Res> implements $WidgetEntityC
   factory $WidgetEntityColumnCopyWith(WidgetEntityColumn value, $Res Function(WidgetEntityColumn) _then) = _$WidgetEntityColumnCopyWithImpl;
 @override @useResult
 $Res call({
- int id, FixedColumnArgs args
+ WidgetEntityId id, FixedColumnArgs args
 });
 
 
-$FixedColumnArgsCopyWith<$Res> get args;
+@override $WidgetEntityIdCopyWith<$Res> get id;$FixedColumnArgsCopyWith<$Res> get args;
 
 }
 /// @nodoc
@@ -483,12 +510,21 @@ class _$WidgetEntityColumnCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? args = null,}) {
   return _then(WidgetEntityColumn(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,args: null == args ? _self.args : args // ignore: cast_nullable_to_non_nullable
+as WidgetEntityId,args: null == args ? _self.args : args // ignore: cast_nullable_to_non_nullable
 as FixedColumnArgs,
   ));
 }
 
 /// Create a copy of WidgetEntity
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WidgetEntityIdCopyWith<$Res> get id {
+  
+  return $WidgetEntityIdCopyWith<$Res>(_self.id, (value) {
+    return _then(_self.copyWith(id: value));
+  });
+}/// Create a copy of WidgetEntity
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -507,7 +543,7 @@ class WidgetEntityCenter extends WidgetEntity {
   const WidgetEntityCenter({required this.id, required this.args, final  String? $type}): $type = $type ?? 'center',super._();
   factory WidgetEntityCenter.fromJson(Map<String, dynamic> json) => _$WidgetEntityCenterFromJson(json);
 
-@override final  int id;
+@override final  WidgetEntityId id;
 @override final  FixedCenterArgs args;
 
 @JsonKey(name: 'runtimeType')
@@ -547,11 +583,11 @@ abstract mixin class $WidgetEntityCenterCopyWith<$Res> implements $WidgetEntityC
   factory $WidgetEntityCenterCopyWith(WidgetEntityCenter value, $Res Function(WidgetEntityCenter) _then) = _$WidgetEntityCenterCopyWithImpl;
 @override @useResult
 $Res call({
- int id, FixedCenterArgs args
+ WidgetEntityId id, FixedCenterArgs args
 });
 
 
-$FixedCenterArgsCopyWith<$Res> get args;
+@override $WidgetEntityIdCopyWith<$Res> get id;$FixedCenterArgsCopyWith<$Res> get args;
 
 }
 /// @nodoc
@@ -567,12 +603,21 @@ class _$WidgetEntityCenterCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? args = null,}) {
   return _then(WidgetEntityCenter(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,args: null == args ? _self.args : args // ignore: cast_nullable_to_non_nullable
+as WidgetEntityId,args: null == args ? _self.args : args // ignore: cast_nullable_to_non_nullable
 as FixedCenterArgs,
   ));
 }
 
 /// Create a copy of WidgetEntity
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WidgetEntityIdCopyWith<$Res> get id {
+  
+  return $WidgetEntityIdCopyWith<$Res>(_self.id, (value) {
+    return _then(_self.copyWith(id: value));
+  });
+}/// Create a copy of WidgetEntity
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')

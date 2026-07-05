@@ -4,7 +4,7 @@ import 'package:jyanken_app_drills/src/model/widget_args_definition/column/fixed
 import 'package:jyanken_app_drills/src/model/widget_args_definition/container/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/text/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_entity_wrapper.dart';
-import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity_id_generator.dart';
+import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity_id.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_type.dart';
 part 'widget_entity.freezed.dart';
 part 'widget_entity.g.dart';
@@ -13,19 +13,19 @@ part 'widget_entity.g.dart';
 sealed class WidgetEntity with _$WidgetEntity {
   const WidgetEntity._();
   const factory WidgetEntity.container({
-    required int id,
+    required WidgetEntityId id,
     required FixedContainerArgs args,
   }) = WidgetEntityContainer;
   const factory WidgetEntity.text({
-    required int id,
+    required WidgetEntityId id,
     required FixedTextArgs args,
   }) = WidgetEntityText;
   const factory WidgetEntity.column({
-    required int id,
+    required WidgetEntityId id,
     required FixedColumnArgs args,
   }) = WidgetEntityColumn;
   const factory WidgetEntity.center({
-    required int id,
+    required WidgetEntityId id,
     required FixedCenterArgs args,
   }) = WidgetEntityCenter;
 
@@ -37,13 +37,10 @@ sealed class WidgetEntity with _$WidgetEntity {
   };
 
   factory WidgetEntity.fromType(WidgetType type) => switch (type) {
-    .container => .container(
-      id: WidgetEntityIdGenerator.i.getId(),
-      args: .initial,
-    ),
-    .text => .text(id: WidgetEntityIdGenerator.i.getId(), args: .initial),
-    .column => .column(id: WidgetEntityIdGenerator.i.getId(), args: .initial),
-    .center => .center(id: WidgetEntityIdGenerator.i.getId(), args: .initial),
+    .container => .container(id: .create(), args: .initial),
+    .text => .text(id: .create(), args: .initial),
+    .column => .column(id: .create(), args: .initial),
+    .center => .center(id: .create(), args: .initial),
   };
 
   factory WidgetEntity.fromWrapper(WidgetEntityWrapper wrapper) =>
