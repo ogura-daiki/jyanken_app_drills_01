@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:jyanken_app_drills/src/model/widget_tree/tree_node_selector.dart';
 
 class NodeSelectorDisplay extends StatelessWidget {
@@ -25,7 +24,7 @@ class NodeSelectorDisplay extends StatelessWidget {
           final s = selector[index];
           return SizedBox(
             height: height,
-            child: Center(child: Text("${s.arg.name}  ${s.entityId}")),
+            child: Center(child: Text("${s.arg.name}  ${s.entityId.value}")),
           );
         },
         separatorBuilder: (context, index) => const SizedBox(
