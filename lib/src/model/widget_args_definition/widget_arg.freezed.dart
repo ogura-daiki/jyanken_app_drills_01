@@ -668,7 +668,7 @@ as CrossAxisAlignment,
 /// @nodoc
 @JsonSerializable()
 
-class WidgetArgWidget extends WidgetArg {
+class WidgetArgWidget extends WidgetArg implements CanHaveChildArg {
   const WidgetArgWidget({required this.name, required this.defaultValue, final  String? $type}): $type = $type ?? 'widget',super._();
   factory WidgetArgWidget.fromJson(Map<String, dynamic> json) => _$WidgetArgWidgetFromJson(json);
 
@@ -755,7 +755,7 @@ $WidgetEntityCopyWith<$Res>? get defaultValue {
 /// @nodoc
 @JsonSerializable()
 
-class WidgetArgWidgetList extends WidgetArg {
+class WidgetArgWidgetList extends WidgetArg implements CanHaveChildArg {
   const WidgetArgWidgetList({required this.name, required final  List<WidgetEntity> defaultValue, final  String? $type}): _defaultValue = defaultValue,$type = $type ?? 'widgetList',super._();
   factory WidgetArgWidgetList.fromJson(Map<String, dynamic> json) => _$WidgetArgWidgetListFromJson(json);
 

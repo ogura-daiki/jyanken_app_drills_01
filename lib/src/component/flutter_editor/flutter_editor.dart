@@ -55,6 +55,7 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
                       padding: const .only(bottom: 48, top: 16),
                       child: WidgetTreeEditor(
                         entity: we,
+                        selector: [],
                         onSelection: (newSelection) {
                           viewModel.updateSelection(newSelection);
                         },

@@ -8,7 +8,11 @@ sealed class Result<T> {
 
   Result<V> convert<V>(V Function(T value) convert);
 
-  T getOrThrow(Exception e);
+  ///
+  ///Success：Resultの値を取得する。
+  ///
+  ///Failure：渡された例外をスローする。　nullが渡された時は自分の持つ例外を再度スローする。
+  T getOrThrow(Exception? e);
 }
 
 class Success<T> implements Result<T> {
@@ -21,7 +25,7 @@ class Success<T> implements Result<T> {
   }
 
   @override
-  T getOrThrow(Exception e) => value;
+  T getOrThrow(Exception? e) => value;
 }
 
 class Failure<Void> implements Result<Void> {
@@ -35,5 +39,5 @@ class Failure<Void> implements Result<Void> {
   }
 
   @override
-  Void getOrThrow(Exception e) => throw e;
+  Void getOrThrow(Exception? e) => throw e ?? exception;
 }

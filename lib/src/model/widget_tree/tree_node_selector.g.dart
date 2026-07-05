@@ -8,7 +8,7 @@ part of 'tree_node_selector.dart';
 
 _TreeNodeSelector _$TreeNodeSelectorFromJson(Map<String, dynamic> json) =>
     _TreeNodeSelector(
-      arg: WidgetArg.fromJson(json['arg'] as Map<String, dynamic>),
+      arg: CanHaveChildArg.fromJson(json['arg'] as Map<String, dynamic>),
       entityId: (json['entityId'] as num).toInt(),
     );
 

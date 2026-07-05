@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$TreeNodeSelector {
 
-@Assert('arg.canHaveWidget') WidgetArg get arg; int get entityId;
+ CanHaveChildArg get arg; int get entityId;
 /// Create a copy of TreeNodeSelector
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,11 +48,11 @@ abstract mixin class $TreeNodeSelectorCopyWith<$Res>  {
   factory $TreeNodeSelectorCopyWith(TreeNodeSelector value, $Res Function(TreeNodeSelector) _then) = _$TreeNodeSelectorCopyWithImpl;
 @useResult
 $Res call({
-@Assert('arg.canHaveWidget') WidgetArg arg, int entityId
+ CanHaveChildArg arg, int entityId
 });
 
 
-$WidgetArgCopyWith<$Res> get arg;
+
 
 }
 /// @nodoc
@@ -68,20 +68,11 @@ class _$TreeNodeSelectorCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? arg = null,Object? entityId = null,}) {
   return _then(_self.copyWith(
 arg: null == arg ? _self.arg : arg // ignore: cast_nullable_to_non_nullable
-as WidgetArg,entityId: null == entityId ? _self.entityId : entityId // ignore: cast_nullable_to_non_nullable
+as CanHaveChildArg,entityId: null == entityId ? _self.entityId : entityId // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
-/// Create a copy of TreeNodeSelector
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$WidgetArgCopyWith<$Res> get arg {
-  
-  return $WidgetArgCopyWith<$Res>(_self.arg, (value) {
-    return _then(_self.copyWith(arg: value));
-  });
-}
+
 }
 
 
@@ -163,7 +154,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@Assert('arg.canHaveWidget')  WidgetArg arg,  int entityId)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( CanHaveChildArg arg,  int entityId)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _TreeNodeSelector() when $default != null:
 return $default(_that.arg,_that.entityId);case _:
@@ -184,7 +175,7 @@ return $default(_that.arg,_that.entityId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@Assert('arg.canHaveWidget')  WidgetArg arg,  int entityId)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( CanHaveChildArg arg,  int entityId)  $default,) {final _that = this;
 switch (_that) {
 case _TreeNodeSelector():
 return $default(_that.arg,_that.entityId);case _:
@@ -204,7 +195,7 @@ return $default(_that.arg,_that.entityId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@Assert('arg.canHaveWidget')  WidgetArg arg,  int entityId)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( CanHaveChildArg arg,  int entityId)?  $default,) {final _that = this;
 switch (_that) {
 case _TreeNodeSelector() when $default != null:
 return $default(_that.arg,_that.entityId);case _:
@@ -219,10 +210,10 @@ return $default(_that.arg,_that.entityId);case _:
 @JsonSerializable()
 
 class _TreeNodeSelector extends TreeNodeSelector {
-  const _TreeNodeSelector({@Assert('arg.canHaveWidget') required this.arg, required this.entityId}): super._();
+  const _TreeNodeSelector({required this.arg, required this.entityId}): super._();
   factory _TreeNodeSelector.fromJson(Map<String, dynamic> json) => _$TreeNodeSelectorFromJson(json);
 
-@override@Assert('arg.canHaveWidget') final  WidgetArg arg;
+@override final  CanHaveChildArg arg;
 @override final  int entityId;
 
 /// Create a copy of TreeNodeSelector
@@ -258,11 +249,11 @@ abstract mixin class _$TreeNodeSelectorCopyWith<$Res> implements $TreeNodeSelect
   factory _$TreeNodeSelectorCopyWith(_TreeNodeSelector value, $Res Function(_TreeNodeSelector) _then) = __$TreeNodeSelectorCopyWithImpl;
 @override @useResult
 $Res call({
-@Assert('arg.canHaveWidget') WidgetArg arg, int entityId
+ CanHaveChildArg arg, int entityId
 });
 
 
-@override $WidgetArgCopyWith<$Res> get arg;
+
 
 }
 /// @nodoc
@@ -278,21 +269,12 @@ class __$TreeNodeSelectorCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? arg = null,Object? entityId = null,}) {
   return _then(_TreeNodeSelector(
 arg: null == arg ? _self.arg : arg // ignore: cast_nullable_to_non_nullable
-as WidgetArg,entityId: null == entityId ? _self.entityId : entityId // ignore: cast_nullable_to_non_nullable
+as CanHaveChildArg,entityId: null == entityId ? _self.entityId : entityId // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
 
-/// Create a copy of TreeNodeSelector
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$WidgetArgCopyWith<$Res> get arg {
-  
-  return $WidgetArgCopyWith<$Res>(_self.arg, (value) {
-    return _then(_self.copyWith(arg: value));
-  });
-}
+
 }
 
 // dart format on

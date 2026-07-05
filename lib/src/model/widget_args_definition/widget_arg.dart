@@ -5,6 +5,49 @@ import 'package:jyanken_app_drills/src/model/widget_entity.dart';
 part 'widget_arg.freezed.dart';
 part 'widget_arg.g.dart';
 
+extension CanHaveChildArgChildrenGetter on MapEntry<CanHaveChildArg, dynamic> {
+  List<WidgetEntity> get children => switch (key) {
+    WidgetArgWidget() => [if (value is WidgetEntity) value],
+    WidgetArgWidgetList() => value,
+  };
+
+  bool get canAppendChild => switch (key) {
+    //いくらでも追加してOK
+    WidgetArgWidgetList() => true,
+    //子が未設定なら子を追加できる
+    WidgetArgWidget() => children.isEmpty,
+  };
+
+  MapEntry<CanHaveChildArg, dynamic> copyWithAppend(WidgetEntity entity) {
+    if (!canAppendChild) {
+      throw StateError("追加できる子要素の上限を超えています。");
+    }
+
+    return switch (key) {
+      WidgetArgWidgetList() => .new(key, [...children, entity]),
+      WidgetArgWidget() => .new(key, entity),
+    };
+  }
+
+  bool contains(int id) {
+    return children.any((we) => we.id == id);
+  }
+
+  MapEntry<CanHaveChildArg, dynamic> copyWithRemoveId(int id) {
+    if (!contains(id)) {
+      throw StateError("WidgetEntity(id: $id)は引数内に存在しません");
+    }
+
+    return switch (key) {
+      WidgetArgWidgetList() => .new(
+        key,
+        children..removeWhere((we) => we.id == id),
+      ),
+      WidgetArgWidget() => .new(key, null),
+    };
+  }
+}
+
 @freezed
 sealed class WidgetArg with _$WidgetArg {
   const WidgetArg._();
@@ -28,10 +71,12 @@ sealed class WidgetArg with _$WidgetArg {
     required String name,
     required CrossAxisAlignment defaultValue,
   }) = WidgetArgCrossAxisAlignment;
+  @Implements<CanHaveChildArg>()
   const factory WidgetArg.widget({
     required String name,
     required WidgetEntity? defaultValue,
   }) = WidgetArgWidget;
+  @Implements<CanHaveChildArg>()
   const factory WidgetArg.widgetList({
     required String name,
     required List<WidgetEntity> defaultValue,
@@ -39,14 +84,9 @@ sealed class WidgetArg with _$WidgetArg {
 
   factory WidgetArg.fromJson(Map<String, dynamic> json) =>
       _$WidgetArgFromJson(json);
+}
 
-  bool get canHaveWidget => switch (this) {
-    WidgetArgString() => false,
-    WidgetArgDouble() => false,
-    WidgetArgDoubleNullable() => false,
-    WidgetArgColorNullable() => false,
-    WidgetArgCrossAxisAlignment() => false,
-    WidgetArgWidget() => true,
-    WidgetArgWidgetList() => true,
-  };
+sealed class CanHaveChildArg extends WidgetArg {
+  factory CanHaveChildArg.fromJson(Map<String, dynamic> json) =>
+      _$WidgetArgFromJson(json) as CanHaveChildArg;
 }

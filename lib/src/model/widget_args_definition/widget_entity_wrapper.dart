@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jyanken_app_drills/src/core/result.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_arg.dart';
+import 'package:jyanken_app_drills/src/model/widget_entity.dart';
 import 'package:jyanken_app_drills/src/model/widget_type.dart';
 part 'widget_entity_wrapper.freezed.dart';
 
@@ -12,6 +13,19 @@ abstract class WidgetEntityWrapper with _$WidgetEntityWrapper {
     required WidgetType type,
     required Map<WidgetArg, dynamic> args,
   }) = _WidgetEntityWrapper;
+
+  Result<MapEntry<T, dynamic>> getEntry<T extends WidgetArg>(T key) {
+    try {
+      return .success(
+        args.entries.singleWhere((e) => e.key == key) as MapEntry<T, dynamic>,
+      );
+    } catch (e) {
+      if (e is StateError) {
+        return .failure(WidgetArgNotFoundException(key));
+      }
+      rethrow;
+    }
+  }
 
   Result<dynamic> get(WidgetArg key) {
     if (!args.containsKey(key)) {
@@ -38,6 +52,11 @@ abstract class WidgetEntityWrapper with _$WidgetEntityWrapper {
     newArgs[arg] = value;
     return copyWith(args: newArgs);
   }
+
+  WidgetEntity toEntity() => .fromWrapper(this);
+
+  Iterable<MapEntry<CanHaveChildArg, dynamic>> get subtree =>
+      args.entries.whereType<MapEntry<CanHaveChildArg, dynamic>>();
 }
 
 class TypeMismatchException<T> implements Exception {

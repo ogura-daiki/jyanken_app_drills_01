@@ -7,8 +7,7 @@ part 'tree_node_selector.g.dart';
 abstract class TreeNodeSelector with _$TreeNodeSelector {
   const TreeNodeSelector._();
   const factory TreeNodeSelector({
-    @Assert('arg.canHaveWidget')
-    required WidgetArg arg,
+    required CanHaveChildArg arg,
     required int entityId,
   }) = _TreeNodeSelector;
 
