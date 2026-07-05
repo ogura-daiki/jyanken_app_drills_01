@@ -103,7 +103,8 @@ class FlutterEditorViewmodel extends _$FlutterEditorViewmodel {
                 value: wrapper
                     .getEntry(selector.arg)
                     .getOrThrow(null)
-                    .copyWithRemoveId(selector.entityId),
+                    .copyWithRemoveId(selector.entityId)
+                    .value,
               )
               .toEntity();
         }
