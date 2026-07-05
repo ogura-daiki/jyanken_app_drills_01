@@ -55,7 +55,8 @@ class FlutterEditorViewmodel extends _$FlutterEditorViewmodel {
         rethrow;
       }
     }
-    if (stack.last.id != action.selector.last.entityId) {
+    if (action.selector.isNotEmpty &&
+        stack.last.id != action.selector.last.entityId) {
       return .failure(WidgetEntityNotFoundException(action.selector));
     }
 
