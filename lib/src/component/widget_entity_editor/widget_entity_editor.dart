@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/arg_input.dart';
-import 'package:jyanken_app_drills/src/component/widget_entity_editor/node_selector_display.dart';
+import 'package:jyanken_app_drills/src/component/widget_entity_editor/widget_selector_display.dart';
 import 'package:jyanken_app_drills/src/model/widget_tree/widget_child_selector.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
 
@@ -31,7 +31,7 @@ class WidgetEntityEditor extends HookWidget {
             child: Column(
               crossAxisAlignment: .stretch,
               children: [
-                NodeSelectorDisplay(
+                WidgetSelectorDisplay(
                   padding: const .symmetric(horizontal: 16),
                   selector: selector,
                 ),
