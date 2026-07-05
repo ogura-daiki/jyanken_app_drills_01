@@ -57,9 +57,9 @@ class WidgetEntityEditor extends HookWidget {
               mainAxisSize: .min,
               mainAxisAlignment: .start,
               children: [
-                Text(key.name),
+                Text(key.name, style: Theme.of(context).textTheme.labelLarge),
                 Padding(
-                  padding: const .only(left: 8),
+                  padding: const .only(left: 8, right: 8),
                   child: ArgEditor(
                     arg: key,
                     value: arg,

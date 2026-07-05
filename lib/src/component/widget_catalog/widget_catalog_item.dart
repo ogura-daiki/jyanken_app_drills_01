@@ -10,7 +10,7 @@ class WidgetCatalogItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding: const .all(8),
+        padding: const .symmetric(vertical: 4, horizontal: 8),
         child: Column(
           spacing: 8,
           crossAxisAlignment: .stretch,
@@ -19,7 +19,7 @@ class WidgetCatalogItem extends StatelessWidget {
             Expanded(
               child: Center(child: WidgetTypeIcon(type: type)),
             ),
-            Text(type.name),
+            Text(type.name, style: Theme.of(context).textTheme.labelSmall),
           ],
         ),
       ),
