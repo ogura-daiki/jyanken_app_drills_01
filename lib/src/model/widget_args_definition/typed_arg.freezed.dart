@@ -145,11 +145,11 @@ return nullable(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function(@Assert("value is! TypedArg")  T nonnull)?  nonNull,TResult Function(@Assert("value is! TypedArg")  T? nullable)?  nullable,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function(@Assert("value is! TypedArg")  T nonnullDefault)?  nonNull,TResult Function(@Assert("value is! TypedArg")  T? nullableDefault)?  nullable,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case NonnullArg() when nonNull != null:
-return nonNull(_that.nonnull);case NullableArg() when nullable != null:
-return nullable(_that.nullable);case _:
+return nonNull(_that.nonnullDefault);case NullableArg() when nullable != null:
+return nullable(_that.nullableDefault);case _:
   return orElse();
 
 }
@@ -167,11 +167,11 @@ return nullable(_that.nullable);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function(@Assert("value is! TypedArg")  T nonnull)  nonNull,required TResult Function(@Assert("value is! TypedArg")  T? nullable)  nullable,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function(@Assert("value is! TypedArg")  T nonnullDefault)  nonNull,required TResult Function(@Assert("value is! TypedArg")  T? nullableDefault)  nullable,}) {final _that = this;
 switch (_that) {
 case NonnullArg():
-return nonNull(_that.nonnull);case NullableArg():
-return nullable(_that.nullable);}
+return nonNull(_that.nonnullDefault);case NullableArg():
+return nullable(_that.nullableDefault);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -185,11 +185,11 @@ return nullable(_that.nullable);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function(@Assert("value is! TypedArg")  T nonnull)?  nonNull,TResult? Function(@Assert("value is! TypedArg")  T? nullable)?  nullable,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function(@Assert("value is! TypedArg")  T nonnullDefault)?  nonNull,TResult? Function(@Assert("value is! TypedArg")  T? nullableDefault)?  nullable,}) {final _that = this;
 switch (_that) {
 case NonnullArg() when nonNull != null:
-return nonNull(_that.nonnull);case NullableArg() when nullable != null:
-return nullable(_that.nullable);case _:
+return nonNull(_that.nonnullDefault);case NullableArg() when nullable != null:
+return nullable(_that.nullableDefault);case _:
   return null;
 
 }
@@ -201,10 +201,10 @@ return nullable(_that.nullable);case _:
 @JsonSerializable(genericArgumentFactories: true)
 
 class NonnullArg<T> extends TypedArg<T> {
-  const NonnullArg(@Assert("value is! TypedArg") this.nonnull, {final  String? $type}): $type = $type ?? 'nonNull',super._();
+  const NonnullArg(@Assert("value is! TypedArg") this.nonnullDefault, {final  String? $type}): $type = $type ?? 'nonNull',super._();
   factory NonnullArg.fromJson(Map<String, dynamic> json,T Function(Object?) fromJsonT) => _$NonnullArgFromJson(json,fromJsonT);
 
-@Assert("value is! TypedArg") final  T nonnull;
+@Assert("value is! TypedArg") final  T nonnullDefault;
 
 @JsonKey(name: 'runtimeType')
 final String $type;
@@ -223,16 +223,16 @@ Map<String, dynamic> toJson(Object? Function(T) toJsonT) {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NonnullArg<T>&&const DeepCollectionEquality().equals(other.nonnull, nonnull));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NonnullArg<T>&&const DeepCollectionEquality().equals(other.nonnullDefault, nonnullDefault));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(nonnull));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(nonnullDefault));
 
 @override
 String toString() {
-  return 'TypedArg<$T>.nonNull(nonnull: $nonnull)';
+  return 'TypedArg<$T>.nonNull(nonnullDefault: $nonnullDefault)';
 }
 
 
@@ -243,7 +243,7 @@ abstract mixin class $NonnullArgCopyWith<T,$Res> implements $TypedArgCopyWith<T,
   factory $NonnullArgCopyWith(NonnullArg<T> value, $Res Function(NonnullArg<T>) _then) = _$NonnullArgCopyWithImpl;
 @useResult
 $Res call({
-@Assert("value is! TypedArg") T nonnull
+@Assert("value is! TypedArg") T nonnullDefault
 });
 
 
@@ -260,9 +260,9 @@ class _$NonnullArgCopyWithImpl<T,$Res>
 
 /// Create a copy of TypedArg
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? nonnull = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? nonnullDefault = freezed,}) {
   return _then(NonnullArg<T>(
-freezed == nonnull ? _self.nonnull : nonnull // ignore: cast_nullable_to_non_nullable
+freezed == nonnullDefault ? _self.nonnullDefault : nonnullDefault // ignore: cast_nullable_to_non_nullable
 as T,
   ));
 }
@@ -274,10 +274,10 @@ as T,
 @JsonSerializable(genericArgumentFactories: true)
 
 class NullableArg<T> extends TypedArg<T> {
-  const NullableArg([@Assert("value is! TypedArg") this.nullable = null, final  String? $type]): $type = $type ?? 'nullable',super._();
+  const NullableArg([@Assert("value is! TypedArg") this.nullableDefault = null, final  String? $type]): $type = $type ?? 'nullable',super._();
   factory NullableArg.fromJson(Map<String, dynamic> json,T Function(Object?) fromJsonT) => _$NullableArgFromJson(json,fromJsonT);
 
-@JsonKey()@Assert("value is! TypedArg") final  T? nullable;
+@JsonKey()@Assert("value is! TypedArg") final  T? nullableDefault;
 
 @JsonKey(name: 'runtimeType')
 final String $type;
@@ -296,16 +296,16 @@ Map<String, dynamic> toJson(Object? Function(T) toJsonT) {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NullableArg<T>&&const DeepCollectionEquality().equals(other.nullable, nullable));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NullableArg<T>&&const DeepCollectionEquality().equals(other.nullableDefault, nullableDefault));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(nullable));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(nullableDefault));
 
 @override
 String toString() {
-  return 'TypedArg<$T>.nullable(nullable: $nullable)';
+  return 'TypedArg<$T>.nullable(nullableDefault: $nullableDefault)';
 }
 
 
@@ -316,7 +316,7 @@ abstract mixin class $NullableArgCopyWith<T,$Res> implements $TypedArgCopyWith<T
   factory $NullableArgCopyWith(NullableArg<T> value, $Res Function(NullableArg<T>) _then) = _$NullableArgCopyWithImpl;
 @useResult
 $Res call({
-@Assert("value is! TypedArg") T? nullable
+@Assert("value is! TypedArg") T? nullableDefault
 });
 
 
@@ -333,9 +333,9 @@ class _$NullableArgCopyWithImpl<T,$Res>
 
 /// Create a copy of TypedArg
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? nullable = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? nullableDefault = freezed,}) {
   return _then(NullableArg<T>(
-freezed == nullable ? _self.nullable : nullable // ignore: cast_nullable_to_non_nullable
+freezed == nullableDefault ? _self.nullableDefault : nullableDefault // ignore: cast_nullable_to_non_nullable
 as T?,
   ));
 }

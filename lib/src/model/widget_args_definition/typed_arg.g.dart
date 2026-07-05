@@ -10,7 +10,7 @@ NonnullArg<T> _$NonnullArgFromJson<T>(
   Map<String, dynamic> json,
   T Function(Object? json) fromJsonT,
 ) => NonnullArg<T>(
-  fromJsonT(json['nonnull']),
+  fromJsonT(json['nonnullDefault']),
   $type: json['runtimeType'] as String?,
 );
 
@@ -18,7 +18,7 @@ Map<String, dynamic> _$NonnullArgToJson<T>(
   NonnullArg<T> instance,
   Object? Function(T value) toJsonT,
 ) => <String, dynamic>{
-  'nonnull': toJsonT(instance.nonnull),
+  'nonnullDefault': toJsonT(instance.nonnullDefault),
   'runtimeType': instance.$type,
 };
 
@@ -26,7 +26,7 @@ NullableArg<T> _$NullableArgFromJson<T>(
   Map<String, dynamic> json,
   T Function(Object? json) fromJsonT,
 ) => NullableArg<T>(
-  _$nullableGenericFromJson(json['nullable'], fromJsonT) ?? null,
+  _$nullableGenericFromJson(json['nullableDefault'], fromJsonT) ?? null,
   json['runtimeType'] as String?,
 );
 
@@ -34,7 +34,7 @@ Map<String, dynamic> _$NullableArgToJson<T>(
   NullableArg<T> instance,
   Object? Function(T value) toJsonT,
 ) => <String, dynamic>{
-  'nullable': _$nullableGenericToJson(instance.nullable, toJsonT),
+  'nullableDefault': _$nullableGenericToJson(instance.nullableDefault, toJsonT),
   'runtimeType': instance.$type,
 };
 

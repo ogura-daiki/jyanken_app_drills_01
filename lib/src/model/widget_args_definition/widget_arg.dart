@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jyanken_app_drills/src/model/color/color_wrapper.dart';
+import 'package:jyanken_app_drills/src/model/widget_args_definition/typed_arg.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity_id.dart';
 part 'widget_arg.freezed.dart';
@@ -90,4 +91,8 @@ sealed class WidgetArg with _$WidgetArg {
 sealed class CanHaveChildArg extends WidgetArg {
   factory CanHaveChildArg.fromJson(Map<String, dynamic> json) =>
       _$WidgetArgFromJson(json) as CanHaveChildArg;
+}
+
+abstract class WidgetArgMixin<T> with _$WidgetArg {
+  TypedArg<T> toTyped();
 }

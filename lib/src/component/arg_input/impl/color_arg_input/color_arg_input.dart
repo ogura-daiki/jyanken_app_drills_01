@@ -5,10 +5,14 @@ import 'package:jyanken_app_drills/src/component/arg_input/arg_input_value_widge
 import 'package:jyanken_app_drills/src/component/arg_input/impl/color_arg_input/rgb_slider.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/color_arg_input/theme_color_picker.dart';
 import 'package:jyanken_app_drills/src/model/color/color_wrapper.dart';
+import 'package:jyanken_app_drills/src/model/widget_args_definition/typed_arg.dart';
 
 class ColorEditor extends HookWidget
-    implements ArgInputValueWidgetInterface<ColorWrapper?> {
+    implements ArgInputValueWidgetInterface<ColorWrapper> {
   final bool nullable;
+  
+  @override
+  TypedArg<ColorWrapper> get type => .nullable(null);
   @override
   final ColorWrapper? value;
   @override
