@@ -41,7 +41,7 @@ extension CanHaveChildArgChildrenGetter on MapEntry<CanHaveChildArg, dynamic> {
     return switch (key) {
       WidgetArgWidgetList() => .new(
         key,
-        children..removeWhere((we) => we.id == id),
+        [...children]..removeWhere((we) => we.id == id),
       ),
       WidgetArgWidget() => .new(key, null),
     };

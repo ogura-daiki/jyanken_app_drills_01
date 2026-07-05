@@ -40,7 +40,10 @@ class SubtreeArgDisplay extends StatelessWidget {
         ),
         ...children.map(
           (we) => WidgetTreeEditor(
-            selector: selector..add(.new(arg: argEntry.key, entityId: we.id)),
+            selector: [
+              ...selector,
+              .new(arg: argEntry.key, entityId: we.id),
+            ],
             entity: we,
             onAction: onAction,
             onSelection: onSelection,
