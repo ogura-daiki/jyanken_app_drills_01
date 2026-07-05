@@ -31,10 +31,10 @@ class ParseTreeNodeSelectorUsecaseImpl implements ParseTreeNodeSelectorUsecase {
     var cursor = treeRoot;
     for (final s in selector) {
       final wrapper = cursor.toWrapper();
-      if (!wrapper.args.containsKey(s.arg)) {
+      final value = wrapper.args[s.arg];
+      if (value == null) {
         return .failure(WidgetEntityNotFoundException(selector));
       }
-      final value = wrapper.args[s.arg]!;
       try {
         cursor = switch (value) {
           WidgetEntity we => we,
