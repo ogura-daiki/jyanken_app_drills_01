@@ -5,17 +5,15 @@ import 'package:jyanken_app_drills/src/model/widget_tree/widget_child_selector.d
 class WidgetSelectorDisplay extends StatelessWidget {
   final List<WidgetChildSelector> selector;
   final EdgeInsets padding;
+  final void Function(List<WidgetChildSelector> selector) onSelect;
 
-  static const TextStyle defaultStyle = .new(
-    fontSize: 18,
-    height: 1.3,
-    color: Colors.red,
-  );
+  static const TextStyle defaultStyle = .new(fontSize: 18, height: 1.3);
 
   const WidgetSelectorDisplay({
     super.key,
     required this.selector,
     required this.padding,
+    required this.onSelect,
   });
 
   static const String rootLabel = "Root";
@@ -28,7 +26,7 @@ class WidgetSelectorDisplay extends StatelessWidget {
     final height = textStyle.lineHeight();
 
     return SizedBox(
-      height: height,
+      height: height * 2,
       child: ListView.separated(
         padding: padding,
         scrollDirection: .horizontal,
@@ -38,9 +36,11 @@ class WidgetSelectorDisplay extends StatelessWidget {
             0 => rootLabel,
             _ => _buildLabel(selector[index - 1]),
           };
-          return SizedBox(
-            height: height,
-            child: Center(child: Text(label, style: textStyle)),
+          return ActionChip(
+            label: Text(label, style: textStyle),
+            onPressed: () {
+              onSelect(selector.sublist(0, index));
+            },
           );
         },
         separatorBuilder: (context, index) => SizedBox(

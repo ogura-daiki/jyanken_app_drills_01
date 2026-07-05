@@ -9,12 +9,14 @@ class WidgetEntityEditor extends HookWidget {
   final List<WidgetChildSelector> selector;
   final WidgetEntity initialValue;
   final void Function(WidgetEntity newEntity) onChange;
+  final void Function(List<WidgetChildSelector> selector) onSelect;
 
   const WidgetEntityEditor({
     super.key,
     required this.selector,
     required this.initialValue,
     required this.onChange,
+    required this.onSelect,
   });
 
   @override
@@ -34,6 +36,7 @@ class WidgetEntityEditor extends HookWidget {
                 WidgetSelectorDisplay(
                   padding: const .symmetric(horizontal: 16),
                   selector: selector,
+                  onSelect: onSelect,
                 ),
                 Padding(
                   padding: const .symmetric(horizontal: 16),

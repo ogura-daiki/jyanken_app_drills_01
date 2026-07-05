@@ -80,6 +80,7 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
               key: ValueKey(value.id),
               selector: state.selection,
               initialValue: value,
+              onSelect: viewModel.updateSelection,
               onChange: (newValue) {
                 viewModel.onAction(
                   .update(
