@@ -17,7 +17,10 @@ abstract class WidgetEntityWrapper with _$WidgetEntityWrapper {
   Result<MapEntry<T, dynamic>> getEntry<T extends WidgetArg>(T key) {
     try {
       return .success(
-        args.entries.singleWhere((e) => e.key == key) as MapEntry<T, dynamic>,
+        args.entries
+            .where((e) => e.key is T)
+            .map<MapEntry<T, dynamic>>((e) => .new(e.key as T, e.value))
+            .singleWhere((e) => e.key == key),
       );
     } catch (e) {
       if (e is StateError) {
@@ -55,8 +58,9 @@ abstract class WidgetEntityWrapper with _$WidgetEntityWrapper {
 
   WidgetEntity toEntity() => .fromWrapper(this);
 
-  Iterable<MapEntry<CanHaveChildArg, dynamic>> get subtree =>
-      args.entries.whereType<MapEntry<CanHaveChildArg, dynamic>>();
+  Iterable<MapEntry<CanHaveChildArg, dynamic>> get subtree => args.entries
+      .where((e) => e.key is CanHaveChildArg)
+      .map((e) => .new(e.key as CanHaveChildArg, e.value));
 }
 
 class TypeMismatchException<T> implements Exception {
