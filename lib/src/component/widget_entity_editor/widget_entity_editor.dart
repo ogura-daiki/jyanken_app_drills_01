@@ -50,10 +50,10 @@ class WidgetEntityEditor extends HookWidget {
         final arg = wrapper.args[key];
         return Card(
           child: Padding(
-            padding: const .all(8.0),
+            padding: const .symmetric(horizontal: 12, vertical: 8),
             child: Column(
-              spacing: 2,
-              crossAxisAlignment: .start,
+              spacing: 8,
+              crossAxisAlignment: .stretch,
               mainAxisSize: .min,
               mainAxisAlignment: .start,
               children: [
