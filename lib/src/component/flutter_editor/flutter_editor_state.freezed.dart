@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$FlutterEditorState {
 
- int get editorId; WidgetEntity? get treeRoot; List<TreeNodeSelector> get selection;
+ int get editorId; WidgetEntity? get treeRoot; List<WidgetChildSelector> get selection;
 /// Create a copy of FlutterEditorState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $FlutterEditorStateCopyWith<$Res>  {
   factory $FlutterEditorStateCopyWith(FlutterEditorState value, $Res Function(FlutterEditorState) _then) = _$FlutterEditorStateCopyWithImpl;
 @useResult
 $Res call({
- int editorId, WidgetEntity? treeRoot, List<TreeNodeSelector> selection
+ int editorId, WidgetEntity? treeRoot, List<WidgetChildSelector> selection
 });
 
 
@@ -70,7 +70,7 @@ class _$FlutterEditorStateCopyWithImpl<$Res>
 editorId: null == editorId ? _self.editorId : editorId // ignore: cast_nullable_to_non_nullable
 as int,treeRoot: freezed == treeRoot ? _self.treeRoot : treeRoot // ignore: cast_nullable_to_non_nullable
 as WidgetEntity?,selection: null == selection ? _self.selection : selection // ignore: cast_nullable_to_non_nullable
-as List<TreeNodeSelector>,
+as List<WidgetChildSelector>,
   ));
 }
 /// Create a copy of FlutterEditorState
@@ -167,7 +167,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int editorId,  WidgetEntity? treeRoot,  List<TreeNodeSelector> selection)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int editorId,  WidgetEntity? treeRoot,  List<WidgetChildSelector> selection)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FlutterEditorState() when $default != null:
 return $default(_that.editorId,_that.treeRoot,_that.selection);case _:
@@ -188,7 +188,7 @@ return $default(_that.editorId,_that.treeRoot,_that.selection);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int editorId,  WidgetEntity? treeRoot,  List<TreeNodeSelector> selection)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int editorId,  WidgetEntity? treeRoot,  List<WidgetChildSelector> selection)  $default,) {final _that = this;
 switch (_that) {
 case _FlutterEditorState():
 return $default(_that.editorId,_that.treeRoot,_that.selection);case _:
@@ -208,7 +208,7 @@ return $default(_that.editorId,_that.treeRoot,_that.selection);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int editorId,  WidgetEntity? treeRoot,  List<TreeNodeSelector> selection)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int editorId,  WidgetEntity? treeRoot,  List<WidgetChildSelector> selection)?  $default,) {final _that = this;
 switch (_that) {
 case _FlutterEditorState() when $default != null:
 return $default(_that.editorId,_that.treeRoot,_that.selection);case _:
@@ -223,13 +223,13 @@ return $default(_that.editorId,_that.treeRoot,_that.selection);case _:
 @JsonSerializable()
 
 class _FlutterEditorState extends FlutterEditorState {
-  const _FlutterEditorState({required this.editorId, required this.treeRoot, required final  List<TreeNodeSelector> selection}): _selection = selection,super._();
+  const _FlutterEditorState({required this.editorId, required this.treeRoot, required final  List<WidgetChildSelector> selection}): _selection = selection,super._();
   factory _FlutterEditorState.fromJson(Map<String, dynamic> json) => _$FlutterEditorStateFromJson(json);
 
 @override final  int editorId;
 @override final  WidgetEntity? treeRoot;
- final  List<TreeNodeSelector> _selection;
-@override List<TreeNodeSelector> get selection {
+ final  List<WidgetChildSelector> _selection;
+@override List<WidgetChildSelector> get selection {
   if (_selection is EqualUnmodifiableListView) return _selection;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_selection);
@@ -269,7 +269,7 @@ abstract mixin class _$FlutterEditorStateCopyWith<$Res> implements $FlutterEdito
   factory _$FlutterEditorStateCopyWith(_FlutterEditorState value, $Res Function(_FlutterEditorState) _then) = __$FlutterEditorStateCopyWithImpl;
 @override @useResult
 $Res call({
- int editorId, WidgetEntity? treeRoot, List<TreeNodeSelector> selection
+ int editorId, WidgetEntity? treeRoot, List<WidgetChildSelector> selection
 });
 
 
@@ -291,7 +291,7 @@ class __$FlutterEditorStateCopyWithImpl<$Res>
 editorId: null == editorId ? _self.editorId : editorId // ignore: cast_nullable_to_non_nullable
 as int,treeRoot: freezed == treeRoot ? _self.treeRoot : treeRoot // ignore: cast_nullable_to_non_nullable
 as WidgetEntity?,selection: null == selection ? _self._selection : selection // ignore: cast_nullable_to_non_nullable
-as List<TreeNodeSelector>,
+as List<WidgetChildSelector>,
   ));
 }
 

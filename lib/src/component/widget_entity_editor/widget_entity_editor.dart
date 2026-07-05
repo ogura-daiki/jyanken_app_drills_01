@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/arg_input.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_editor/node_selector_display.dart';
-import 'package:jyanken_app_drills/src/model/widget_tree/tree_node_selector.dart';
+import 'package:jyanken_app_drills/src/model/widget_tree/widget_child_selector.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
 
 class WidgetEntityEditor extends HookWidget {
-  final List<TreeNodeSelector> selector;
+  final List<WidgetChildSelector> selector;
   final WidgetEntity initialValue;
   final void Function(WidgetEntity newEntity) onChange;
 

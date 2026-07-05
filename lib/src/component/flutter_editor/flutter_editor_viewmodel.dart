@@ -5,7 +5,7 @@ import 'package:jyanken_app_drills/src/component/flutter_editor/flutter_editor_s
 import 'package:jyanken_app_drills/src/core/result.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_arg.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
-import 'package:jyanken_app_drills/src/model/widget_tree/tree_node_selector.dart';
+import 'package:jyanken_app_drills/src/model/widget_tree/widget_child_selector.dart';
 import 'package:jyanken_app_drills/src/model/widget_tree_action/widget_tree_action.dart';
 import 'package:jyanken_app_drills/src/usecase/parse_tree_node_selector_usecase.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -32,7 +32,7 @@ class FlutterEditorViewmodel extends _$FlutterEditorViewmodel {
     );
   }
 
-  void updateSelection(List<TreeNodeSelector> selector) {
+  void updateSelection(List<WidgetChildSelector> selector) {
     state = state.copyWith(selection: selector);
   }
 
@@ -43,7 +43,7 @@ class FlutterEditorViewmodel extends _$FlutterEditorViewmodel {
       stack.add(cursor);
     }
 
-    final selectorHistory = <TreeNodeSelector>[];
+    final selectorHistory = <WidgetChildSelector>[];
     for (int index = 0; index < action.selector.length; index++) {
       final selector = action.selector[index];
       selectorHistory.add(selector);

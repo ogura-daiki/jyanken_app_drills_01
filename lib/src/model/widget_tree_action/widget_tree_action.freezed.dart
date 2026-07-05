@@ -38,7 +38,7 @@ WidgetTreeAction _$WidgetTreeActionFromJson(
 /// @nodoc
 mixin _$WidgetTreeAction {
 
- List<TreeNodeSelector> get selector;
+ List<WidgetChildSelector> get selector;
 /// Create a copy of WidgetTreeAction
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -71,7 +71,7 @@ abstract mixin class $WidgetTreeActionCopyWith<$Res>  {
   factory $WidgetTreeActionCopyWith(WidgetTreeAction value, $Res Function(WidgetTreeAction) _then) = _$WidgetTreeActionCopyWithImpl;
 @useResult
 $Res call({
- List<TreeNodeSelector> selector
+ List<WidgetChildSelector> selector
 });
 
 
@@ -91,7 +91,7 @@ class _$WidgetTreeActionCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? selector = null,}) {
   return _then(_self.copyWith(
 selector: null == selector ? _self.selector : selector // ignore: cast_nullable_to_non_nullable
-as List<TreeNodeSelector>,
+as List<WidgetChildSelector>,
   ));
 }
 
@@ -176,7 +176,7 @@ return remove(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( List<TreeNodeSelector> selector,  WidgetEntity? oldValue,  WidgetEntity newValue)?  update,TResult Function( List<TreeNodeSelector> selector)?  remove,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( List<WidgetChildSelector> selector,  WidgetEntity? oldValue,  WidgetEntity newValue)?  update,TResult Function( List<WidgetChildSelector> selector)?  remove,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case WidgetTreeActionUpdate() when update != null:
 return update(_that.selector,_that.oldValue,_that.newValue);case WidgetTreeActionRemove() when remove != null:
@@ -198,7 +198,7 @@ return remove(_that.selector);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( List<TreeNodeSelector> selector,  WidgetEntity? oldValue,  WidgetEntity newValue)  update,required TResult Function( List<TreeNodeSelector> selector)  remove,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( List<WidgetChildSelector> selector,  WidgetEntity? oldValue,  WidgetEntity newValue)  update,required TResult Function( List<WidgetChildSelector> selector)  remove,}) {final _that = this;
 switch (_that) {
 case WidgetTreeActionUpdate():
 return update(_that.selector,_that.oldValue,_that.newValue);case WidgetTreeActionRemove():
@@ -216,7 +216,7 @@ return remove(_that.selector);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( List<TreeNodeSelector> selector,  WidgetEntity? oldValue,  WidgetEntity newValue)?  update,TResult? Function( List<TreeNodeSelector> selector)?  remove,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( List<WidgetChildSelector> selector,  WidgetEntity? oldValue,  WidgetEntity newValue)?  update,TResult? Function( List<WidgetChildSelector> selector)?  remove,}) {final _that = this;
 switch (_that) {
 case WidgetTreeActionUpdate() when update != null:
 return update(_that.selector,_that.oldValue,_that.newValue);case WidgetTreeActionRemove() when remove != null:
@@ -232,11 +232,11 @@ return remove(_that.selector);case _:
 @JsonSerializable()
 
 class WidgetTreeActionUpdate extends WidgetTreeAction {
-  const WidgetTreeActionUpdate({required final  List<TreeNodeSelector> selector, required this.oldValue, required this.newValue, final  String? $type}): _selector = selector,$type = $type ?? 'update',super._();
+  const WidgetTreeActionUpdate({required final  List<WidgetChildSelector> selector, required this.oldValue, required this.newValue, final  String? $type}): _selector = selector,$type = $type ?? 'update',super._();
   factory WidgetTreeActionUpdate.fromJson(Map<String, dynamic> json) => _$WidgetTreeActionUpdateFromJson(json);
 
- final  List<TreeNodeSelector> _selector;
-@override List<TreeNodeSelector> get selector {
+ final  List<WidgetChildSelector> _selector;
+@override List<WidgetChildSelector> get selector {
   if (_selector is EqualUnmodifiableListView) return _selector;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_selector);
@@ -282,7 +282,7 @@ abstract mixin class $WidgetTreeActionUpdateCopyWith<$Res> implements $WidgetTre
   factory $WidgetTreeActionUpdateCopyWith(WidgetTreeActionUpdate value, $Res Function(WidgetTreeActionUpdate) _then) = _$WidgetTreeActionUpdateCopyWithImpl;
 @override @useResult
 $Res call({
- List<TreeNodeSelector> selector, WidgetEntity? oldValue, WidgetEntity newValue
+ List<WidgetChildSelector> selector, WidgetEntity? oldValue, WidgetEntity newValue
 });
 
 
@@ -302,7 +302,7 @@ class _$WidgetTreeActionUpdateCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? selector = null,Object? oldValue = freezed,Object? newValue = null,}) {
   return _then(WidgetTreeActionUpdate(
 selector: null == selector ? _self._selector : selector // ignore: cast_nullable_to_non_nullable
-as List<TreeNodeSelector>,oldValue: freezed == oldValue ? _self.oldValue : oldValue // ignore: cast_nullable_to_non_nullable
+as List<WidgetChildSelector>,oldValue: freezed == oldValue ? _self.oldValue : oldValue // ignore: cast_nullable_to_non_nullable
 as WidgetEntity?,newValue: null == newValue ? _self.newValue : newValue // ignore: cast_nullable_to_non_nullable
 as WidgetEntity,
   ));
@@ -336,11 +336,11 @@ $WidgetEntityCopyWith<$Res> get newValue {
 @JsonSerializable()
 
 class WidgetTreeActionRemove extends WidgetTreeAction {
-  const WidgetTreeActionRemove({required final  List<TreeNodeSelector> selector, final  String? $type}): _selector = selector,$type = $type ?? 'remove',super._();
+  const WidgetTreeActionRemove({required final  List<WidgetChildSelector> selector, final  String? $type}): _selector = selector,$type = $type ?? 'remove',super._();
   factory WidgetTreeActionRemove.fromJson(Map<String, dynamic> json) => _$WidgetTreeActionRemoveFromJson(json);
 
- final  List<TreeNodeSelector> _selector;
-@override List<TreeNodeSelector> get selector {
+ final  List<WidgetChildSelector> _selector;
+@override List<WidgetChildSelector> get selector {
   if (_selector is EqualUnmodifiableListView) return _selector;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_selector);
@@ -384,7 +384,7 @@ abstract mixin class $WidgetTreeActionRemoveCopyWith<$Res> implements $WidgetTre
   factory $WidgetTreeActionRemoveCopyWith(WidgetTreeActionRemove value, $Res Function(WidgetTreeActionRemove) _then) = _$WidgetTreeActionRemoveCopyWithImpl;
 @override @useResult
 $Res call({
- List<TreeNodeSelector> selector
+ List<WidgetChildSelector> selector
 });
 
 
@@ -404,7 +404,7 @@ class _$WidgetTreeActionRemoveCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? selector = null,}) {
   return _then(WidgetTreeActionRemove(
 selector: null == selector ? _self._selector : selector // ignore: cast_nullable_to_non_nullable
-as List<TreeNodeSelector>,
+as List<WidgetChildSelector>,
   ));
 }
 

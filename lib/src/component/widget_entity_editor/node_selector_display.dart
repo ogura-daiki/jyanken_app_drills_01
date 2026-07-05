@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jyanken_app_drills/src/model/widget_tree/tree_node_selector.dart';
+import 'package:jyanken_app_drills/src/model/widget_tree/widget_child_selector.dart';
 
 class NodeSelectorDisplay extends StatelessWidget {
-  final List<TreeNodeSelector> selector;
+  final List<WidgetChildSelector> selector;
   final EdgeInsets padding;
   static const height = 20.0;
 

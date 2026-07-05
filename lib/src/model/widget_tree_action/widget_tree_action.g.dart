@@ -10,7 +10,7 @@ WidgetTreeActionUpdate _$WidgetTreeActionUpdateFromJson(
   Map<String, dynamic> json,
 ) => WidgetTreeActionUpdate(
   selector: (json['selector'] as List<dynamic>)
-      .map((e) => TreeNodeSelector.fromJson(e as Map<String, dynamic>))
+      .map((e) => WidgetChildSelector.fromJson(e as Map<String, dynamic>))
       .toList(),
   oldValue: json['oldValue'] == null
       ? null
@@ -32,7 +32,7 @@ WidgetTreeActionRemove _$WidgetTreeActionRemoveFromJson(
   Map<String, dynamic> json,
 ) => WidgetTreeActionRemove(
   selector: (json['selector'] as List<dynamic>)
-      .map((e) => TreeNodeSelector.fromJson(e as Map<String, dynamic>))
+      .map((e) => WidgetChildSelector.fromJson(e as Map<String, dynamic>))
       .toList(),
   $type: json['runtimeType'] as String?,
 );

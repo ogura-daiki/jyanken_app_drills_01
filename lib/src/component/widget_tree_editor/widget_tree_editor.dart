@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/depth_colored_material.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/subtree_arg_display.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_arg.dart';
-import 'package:jyanken_app_drills/src/model/widget_tree/tree_node_selector.dart';
+import 'package:jyanken_app_drills/src/model/widget_tree/widget_child_selector.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_header.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
 import 'package:jyanken_app_drills/src/model/widget_tree_action/widget_tree_action.dart';
 
 class WidgetTreeEditor extends StatelessWidget {
-  final List<TreeNodeSelector> selector;
+  final List<WidgetChildSelector> selector;
   final WidgetEntity entity;
   final void Function(WidgetTreeAction action) onAction;
-  final void Function(List<TreeNodeSelector> selector) onSelection;
+  final void Function(List<WidgetChildSelector> selector) onSelection;
 
   const WidgetTreeEditor({
     super.key,

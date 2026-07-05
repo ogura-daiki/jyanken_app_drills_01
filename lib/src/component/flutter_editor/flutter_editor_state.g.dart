@@ -13,7 +13,7 @@ _FlutterEditorState _$FlutterEditorStateFromJson(Map<String, dynamic> json) =>
           ? null
           : WidgetEntity.fromJson(json['treeRoot'] as Map<String, dynamic>),
       selection: (json['selection'] as List<dynamic>)
-          .map((e) => TreeNodeSelector.fromJson(e as Map<String, dynamic>))
+          .map((e) => WidgetChildSelector.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

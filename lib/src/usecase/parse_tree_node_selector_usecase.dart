@@ -1,16 +1,16 @@
 import 'package:jyanken_app_drills/src/core/result.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
-import 'package:jyanken_app_drills/src/model/widget_tree/tree_node_selector.dart';
+import 'package:jyanken_app_drills/src/model/widget_tree/widget_child_selector.dart';
 
 abstract class ParseTreeNodeSelectorUsecase {
   Result<WidgetEntity> execute({
-    required List<TreeNodeSelector> selector,
+    required List<WidgetChildSelector> selector,
     required WidgetEntity? treeRoot,
   });
 }
 
 class WidgetEntityNotFoundException implements Exception {
-  final List<TreeNodeSelector> selector;
+  final List<WidgetChildSelector> selector;
 
   WidgetEntityNotFoundException([this.selector = const []]);
   @override
@@ -22,7 +22,7 @@ class WidgetEntityNotFoundException implements Exception {
 class ParseTreeNodeSelectorUsecaseImpl implements ParseTreeNodeSelectorUsecase {
   @override
   Result<WidgetEntity> execute({
-    required List<TreeNodeSelector> selector,
+    required List<WidgetChildSelector> selector,
     required WidgetEntity? treeRoot,
   }) {
     if (treeRoot == null) {
