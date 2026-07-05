@@ -6,6 +6,20 @@ part of 'widget_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+WidgetEntityRoot _$WidgetEntityRootFromJson(Map<String, dynamic> json) =>
+    WidgetEntityRoot(
+      id: WidgetEntityId.fromJson(json['id'] as Map<String, dynamic>),
+      args: FixedRootArgs.fromJson(json['args'] as Map<String, dynamic>),
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$WidgetEntityRootToJson(WidgetEntityRoot instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'args': instance.args,
+      'runtimeType': instance.$type,
+    };
+
 WidgetEntityContainer _$WidgetEntityContainerFromJson(
   Map<String, dynamic> json,
 ) => WidgetEntityContainer(

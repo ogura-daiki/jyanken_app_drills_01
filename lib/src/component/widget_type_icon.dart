@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jyanken_app_drills/src/model/widget_entity/widget_type.dart';
+import 'package:jyanken_app_drills/src/model/widget_definition/widget_type.dart';
 
 class WidgetTypeIcon extends StatelessWidget {
   final WidgetType type;
@@ -13,6 +13,7 @@ class WidgetTypeIcon extends StatelessWidget {
     return IconTheme(
       data: .new(color: color, size: size),
       child: switch (type) {
+        .root => const Icon(Icons.monitor),
         .container => const Icon(Icons.crop_free),
         .text => const Icon(Icons.title),
         .column => const RotatedBox(

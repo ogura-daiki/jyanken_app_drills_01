@@ -2,16 +2,21 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jyanken_app_drills/src/model/widget_definition/center/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget_definition/column/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget_definition/container/fixed_args.dart';
+import 'package:jyanken_app_drills/src/model/widget_definition/root/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget_definition/text/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity_id.dart';
-import 'package:jyanken_app_drills/src/model/widget_entity/widget_type.dart';
+import 'package:jyanken_app_drills/src/model/widget_definition/widget_type.dart';
 part 'widget_entity.freezed.dart';
 part 'widget_entity.g.dart';
 
 @freezed
 sealed class WidgetEntity with _$WidgetEntity {
   const WidgetEntity._();
+  const factory WidgetEntity.root({
+    required WidgetEntityId id,
+    required FixedRootArgs args,
+  }) = WidgetEntityRoot;
   const factory WidgetEntity.container({
     required WidgetEntityId id,
     required FixedContainerArgs args,
@@ -30,6 +35,7 @@ sealed class WidgetEntity with _$WidgetEntity {
   }) = WidgetEntityCenter;
 
   WidgetType get type => switch (this) {
+    WidgetEntityRoot() => .root,
     WidgetEntityContainer() => .container,
     WidgetEntityText() => .text,
     WidgetEntityColumn() => .column,
@@ -37,6 +43,7 @@ sealed class WidgetEntity with _$WidgetEntity {
   };
 
   factory WidgetEntity.fromType(WidgetType type) => switch (type) {
+    .root => .root(id: .create(), args: .initial),
     .container => .container(id: .create(), args: .initial),
     .text => .text(id: .create(), args: .initial),
     .column => .column(id: .create(), args: .initial),
@@ -45,6 +52,7 @@ sealed class WidgetEntity with _$WidgetEntity {
 
   factory WidgetEntity.fromWrapper(WidgetEntityWrapper wrapper) =>
       switch (wrapper.type) {
+        .root => .root(id: wrapper.id, args: .fromCommonArgs(wrapper.args)),
         .container => .container(
           id: wrapper.id,
           args: .fromCommonArgs(wrapper.args),
@@ -55,6 +63,11 @@ sealed class WidgetEntity with _$WidgetEntity {
       };
 
   WidgetEntityWrapper toWrapper() => switch (this) {
+    WidgetEntityRoot w => .new(
+      id: id,
+      type: .root,
+      args: w.args.toCommonArgs(),
+    ),
     WidgetEntityContainer w => .new(
       id: id,
       type: .container,

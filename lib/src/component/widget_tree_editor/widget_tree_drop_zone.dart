@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jyanken_app_drills/src/model/widget_entity/widget_type.dart';
+import 'package:jyanken_app_drills/src/model/widget_definition/widget_type.dart';
 
 class WidgetTreeDropZone extends StatelessWidget {
   final Set<WidgetType> allowType;

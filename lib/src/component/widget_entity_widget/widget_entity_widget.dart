@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_center.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_column.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_container.dart';
+import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_root.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_text.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
 
@@ -20,6 +21,7 @@ class WidgetEntityWidget extends StatelessWidget {
     return switch (entity) {
       null => const Offstage(),
       WidgetEntity we => switch (we) {
+        WidgetEntityRoot e => WidgetRoot(entity: e),
         WidgetEntityContainer e => WidgetContainer(entity: e),
         WidgetEntityText e => WidgetText(entity: e),
         WidgetEntityColumn e => WidgetColumn(entity: e),
