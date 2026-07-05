@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_center.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_column.dart';
@@ -16,7 +17,7 @@ class WidgetEntityWidget extends StatelessWidget {
 
     ErrorWidget.builder = (details) {
       final error = details.exception;
-      return Text("エラーが発生\n$error");
+      return SelectableText("エラーが発生\n$error");
     };
     return switch (entity) {
       null => const Offstage(),

@@ -4,30 +4,35 @@ import 'package:jyanken_app_drills/src/component/widget_entity_widget/widget_ent
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
 
 class WidgetRoot extends StatelessWidget {
-  final WidgetEntity entity;
+  final WidgetEntityRoot entity;
 
   const WidgetRoot({super.key, required this.entity});
   @override
   Widget build(BuildContext context) {
-    return WidgetEntityWidget(entity: entity);
+    return WidgetEntityWidget(entity: entity.args.child);
   }
 }
 
 @Preview(name: 'root widget')
 Widget previewRootWidget() {
   return WidgetRoot(
-    entity: .container(
+    entity: WidgetEntityRoot(
       id: .create(),
       args: .new(
-        height: 100,
-        width: 100,
-        color: .fromColor(Colors.red),
-        child: .center(
+        child: .container(
           id: .create(),
           args: .new(
-            child: .text(
+            height: 100,
+            width: 100,
+            color: .fromColor(Colors.red),
+            child: .center(
               id: .create(),
-              args: .new(text: "test", color: .fromColor(Colors.white)),
+              args: .new(
+                child: .text(
+                  id: .create(),
+                  args: .new(text: "test", color: .fromColor(Colors.white)),
+                ),
+              ),
             ),
           ),
         ),

@@ -3,7 +3,7 @@ import 'package:jyanken_app_drills/src/model/widget_definition/widget_arg_key.da
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
 
 enum RootArg<T> with WidgetArgKey {
-  child<WidgetEntity?>(.nullable());
+  child<WidgetEntity>(.nullable());
 
   @override
   final TypedArg<T> defaultValue;
