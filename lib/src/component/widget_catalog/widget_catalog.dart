@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:jyanken_app_drills/src/component/widget_catalog/widget_catalog_item.dart';
-import 'package:jyanken_app_drills/src/model/widget_type.dart';
+import 'package:jyanken_app_drills/src/model/widget_entity/widget_type.dart';
 
 class WidgetCatalog extends HookWidget {
   const WidgetCatalog({super.key});

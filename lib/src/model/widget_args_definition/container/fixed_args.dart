@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jyanken_app_drills/src/model/color/color_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/container/arg.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_arg.dart';
-import 'package:jyanken_app_drills/src/model/widget_entity.dart';
+import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
 part 'fixed_args.freezed.dart';
 part 'fixed_args.g.dart';
 

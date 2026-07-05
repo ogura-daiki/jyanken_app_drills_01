@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jyanken_app_drills/src/core/result.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_arg.dart';
-import 'package:jyanken_app_drills/src/model/widget_entity.dart';
-import 'package:jyanken_app_drills/src/model/widget_type.dart';
+import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
+import 'package:jyanken_app_drills/src/model/widget_entity/widget_type.dart';
 part 'widget_entity_wrapper.freezed.dart';
 
 @freezed

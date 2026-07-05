@@ -3,7 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:jyanken_app_drills/src/component/arg_editor/arg_editor.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_editor/node_selector_display.dart';
 import 'package:jyanken_app_drills/src/model/widget_tree/tree_node_selector.dart';
-import 'package:jyanken_app_drills/src/model/widget_entity.dart';
+import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
 
 class WidgetEntityEditor extends HookWidget {
   final List<TreeNodeSelector> selector;

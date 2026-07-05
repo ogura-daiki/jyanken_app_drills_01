@@ -1,5 +1,5 @@
 import 'package:jyanken_app_drills/src/model/widget_tree/tree_node_selector.dart';
-import 'package:jyanken_app_drills/src/model/widget_entity.dart';
+import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
 
 class SelectionNode {
   final WidgetEntity entity;

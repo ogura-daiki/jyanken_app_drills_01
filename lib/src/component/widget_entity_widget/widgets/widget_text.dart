@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jyanken_app_drills/src/model/widget_entity.dart';
+import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
 
 class WidgetText extends StatelessWidget {
   final WidgetEntityText entity;

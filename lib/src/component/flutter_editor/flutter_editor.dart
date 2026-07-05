@@ -9,7 +9,7 @@ import 'package:jyanken_app_drills/src/component/widget_tree_editor/depth_colore
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_drop_zone.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_editor.dart';
 import 'package:jyanken_app_drills/src/core/result.dart';
-import 'package:jyanken_app_drills/src/model/widget_entity.dart';
+import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
 
 class FlutterEditor extends StatefulHookConsumerWidget {
   const FlutterEditor({super.key});

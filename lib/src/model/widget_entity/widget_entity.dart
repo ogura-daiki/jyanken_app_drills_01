@@ -4,8 +4,8 @@ import 'package:jyanken_app_drills/src/model/widget_args_definition/column/fixed
 import 'package:jyanken_app_drills/src/model/widget_args_definition/container/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/text/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget_args_definition/widget_entity_wrapper.dart';
-import 'package:jyanken_app_drills/src/model/widget_entity_id_generator.dart';
-import 'package:jyanken_app_drills/src/model/widget_type.dart';
+import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity_id_generator.dart';
+import 'package:jyanken_app_drills/src/model/widget_entity/widget_type.dart';
 part 'widget_entity.freezed.dart';
 part 'widget_entity.g.dart';
 
