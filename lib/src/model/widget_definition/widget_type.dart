@@ -11,4 +11,8 @@ enum WidgetType {
   final Set<WidgetCategory> categories;
 
   const WidgetType({this.deletable = true, required this.categories});
+
+  static Iterable<WidgetType> findByCategories(
+    Set<WidgetCategory> categories,
+  ) => values.where((v) => v.categories.any((c) => categories.contains(c)));
 }

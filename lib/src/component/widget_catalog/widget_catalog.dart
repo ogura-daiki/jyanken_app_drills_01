@@ -4,7 +4,8 @@ import 'package:jyanken_app_drills/src/component/widget_catalog/widget_catalog_i
 import 'package:jyanken_app_drills/src/model/widget_definition/widget_type.dart';
 
 class WidgetCatalog extends HookWidget {
-  const WidgetCatalog({super.key});
+  final Set<WidgetType> widgetTypes;
+  const WidgetCatalog({super.key, required this.widgetTypes});
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +57,9 @@ class WidgetCatalog extends HookWidget {
                     mainAxisSpacing: 4,
                     crossAxisSpacing: 4,
                   ),
-                  itemCount: WidgetType.values.length,
+                  itemCount: widgetTypes.length,
                   itemBuilder: (context, index) {
-                    final type = WidgetType.values[index];
+                    final type = widgetTypes.elementAt(index);
                     return LayoutBuilder(
                       builder: (context, constraints) {
                         return Draggable(

@@ -7,10 +7,12 @@ import 'package:jyanken_app_drills/src/component/widget_entity_editor/widget_ent
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widget_entity_widget.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_editor.dart';
 import 'package:jyanken_app_drills/src/core/result.dart';
+import 'package:jyanken_app_drills/src/model/widget_definition/widget_type.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
 
 class FlutterEditor extends StatefulHookConsumerWidget {
-  const FlutterEditor({super.key});
+  final Set<WidgetType> allowTypes;
+  const FlutterEditor({super.key, required this.allowTypes});
 
   @override
   ConsumerState<FlutterEditor> createState() => _FlutterEditorState();
@@ -64,7 +66,7 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
                     ),
                   },
                 ),
-                WidgetCatalog(),
+                WidgetCatalog(widgetTypes: widget.allowTypes),
               ],
             ),
           ),
