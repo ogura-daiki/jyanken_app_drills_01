@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jyanken_app_drills/src/core/result.dart';
-import 'package:jyanken_app_drills/src/model/widget_entity/widget_arg/widget_arg.dart';
+import 'package:jyanken_app_drills/src/model/widget_entity/widget_arg/widget_arg_definition.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity_id.dart';
 import 'package:jyanken_app_drills/src/model/widget_definition/widget_type.dart';
@@ -13,10 +13,10 @@ abstract class WidgetEntityWrapper with _$WidgetEntityWrapper {
   const factory WidgetEntityWrapper({
     required WidgetEntityId id,
     required WidgetType type,
-    required Map<WidgetArg, dynamic> args,
+    required Map<WidgetArgDefinition, dynamic> args,
   }) = _WidgetEntityWrapper;
 
-  Result<MapEntry<T, dynamic>> getEntry<T extends WidgetArg>(T key) {
+  Result<MapEntry<T, dynamic>> getEntry<T extends WidgetArgDefinition>(T key) {
     try {
       return .success(
         args.entries
@@ -41,14 +41,14 @@ abstract class WidgetEntityWrapper with _$WidgetEntityWrapper {
     ).getOrThrow(throws).getChild(selector.entityId).getOrThrow(throws);
   }
 
-  Result<dynamic> get(WidgetArg key) {
+  Result<dynamic> get(WidgetArgDefinition key) {
     if (!args.containsKey(key)) {
       return .failure(WidgetArgNotFoundException(key));
     }
     return .success(args[key]);
   }
 
-  Result<T> getTyped<T>(WidgetArg key) {
+  Result<T> getTyped<T>(WidgetArgDefinition key) {
     return get(key).convert<T>((v) {
       try {
         return v as T;
@@ -59,7 +59,7 @@ abstract class WidgetEntityWrapper with _$WidgetEntityWrapper {
   }
 
   WidgetEntityWrapper putWith({
-    required WidgetArg arg,
+    required WidgetArgDefinition arg,
     required dynamic value,
   }) {
     final newArgs = {...args};
@@ -67,7 +67,9 @@ abstract class WidgetEntityWrapper with _$WidgetEntityWrapper {
     return copyWith(args: newArgs);
   }
 
-  WidgetEntityWrapper putWithEntry(MapEntry<WidgetArg, dynamic> entry) =>
+  WidgetEntityWrapper putWithEntry(
+    MapEntry<WidgetArgDefinition, dynamic> entry,
+  ) =>
       putWith(arg: entry.key, value: entry.value);
 
   WidgetEntity toEntity() => .fromWrapper(this);
@@ -87,7 +89,7 @@ class TypeMismatchException<T> implements Exception {
 }
 
 class WidgetArgNotFoundException implements Exception {
-  final WidgetArg arg;
+  final WidgetArgDefinition arg;
   WidgetArgNotFoundException(this.arg);
   @override
   String toString() {

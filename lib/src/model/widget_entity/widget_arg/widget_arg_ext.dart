@@ -1,45 +1,48 @@
 import 'package:flutter/widgets.dart';
 import 'package:jyanken_app_drills/src/model/color/color_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_arg/typed_arg.dart';
-import 'package:jyanken_app_drills/src/model/widget_entity/widget_arg/widget_arg.dart';
+import 'package:jyanken_app_drills/src/model/widget_entity/widget_arg/widget_arg_definition.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
 
-extension WidgetArgExt on WidgetArg {
+extension WidgetArgDefinitionExt on WidgetArgDefinition {
   TypedArg<dynamic> toTyped() => switch (this) {
-    WidgetArgString a => a.toTypedImpl(),
-    WidgetArgDouble a => a.toTypedImpl(),
-    WidgetArgDoubleNullable a => a.toTypedImpl(),
-    WidgetArgColorNullable a => a.toTypedImpl(),
-    WidgetArgCrossAxisAlignment a => a.toTypedImpl(),
-    WidgetArgWidget a => a.toTypedImpl(),
-    WidgetArgWidgetList a => a.toTypedImpl(),
+    WidgetArgDefinitionString a => a.toTypedImpl(),
+    WidgetArgDefinitionDouble a => a.toTypedImpl(),
+    WidgetArgDefinitionDoubleNullable a => a.toTypedImpl(),
+    WidgetArgDefinitionColorNullable a => a.toTypedImpl(),
+    WidgetArgDefinitionCrossAxisAlignment a => a.toTypedImpl(),
+    WidgetArgDefinitionWidget a => a.toTypedImpl(),
+    WidgetArgDefinitionWidgetList a => a.toTypedImpl(),
   };
 }
 
-extension WidgetArgStringImpl on WidgetArgString {
+extension WidgetArgDefinitionStringImpl on WidgetArgDefinitionString {
   TypedArg<String> toTypedImpl() => .nonNull(defaultValue);
 }
 
-extension WidgetArgDoubleImpl on WidgetArgDouble {
+extension WidgetArgDefinitionDoubleImpl on WidgetArgDefinitionDouble {
   TypedArg<double> toTypedImpl() => .nonNull(defaultValue);
 }
 
-extension WidgetArgDoubleNullableImpl on WidgetArgDoubleNullable {
+extension WidgetArgDefinitionDoubleNullableImpl
+    on WidgetArgDefinitionDoubleNullable {
   TypedArg<double> toTypedImpl() => .nullable(defaultValue);
 }
 
-extension WidgetArgColorNullableImpl on WidgetArgColorNullable {
+extension WidgetArgDefinitionColorNullableImpl
+    on WidgetArgDefinitionColorNullable {
   TypedArg<ColorWrapper> toTypedImpl() => .nullable(defaultValue);
 }
 
-extension WidgetArgCrossAxisAlignmentImpl on WidgetArgCrossAxisAlignment {
+extension WidgetArgDefinitionCrossAxisAlignmentImpl
+    on WidgetArgDefinitionCrossAxisAlignment {
   TypedArg<CrossAxisAlignment> toTypedImpl() => .nonNull(defaultValue);
 }
 
-extension WidgetArgWidgetImpl on WidgetArgWidget {
+extension WidgetArgDefinitionWidgetImpl on WidgetArgDefinitionWidget {
   TypedArg<WidgetEntity> toTypedImpl() => .nullable(defaultValue);
 }
 
-extension WidgetArgWidgetListImpl on WidgetArgWidgetList {
+extension WidgetArgDefinitionWidgetListImpl on WidgetArgDefinitionWidgetList {
   TypedArg<List<WidgetEntity>> toTypedImpl() => .nonNull(defaultValue);
 }

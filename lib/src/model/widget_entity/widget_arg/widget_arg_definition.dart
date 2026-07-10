@@ -6,13 +6,13 @@ import 'package:jyanken_app_drills/src/model/widget_entity/widget_arg/typed_arg.
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity_id.dart';
 import 'package:jyanken_app_drills/src/usecase/parse_tree_node_selector_usecase.dart';
-part 'widget_arg.freezed.dart';
-part 'widget_arg.g.dart';
+part 'widget_arg_definition.freezed.dart';
+part 'widget_arg_definition.g.dart';
 
 extension CanHaveChildArgChildrenGetter on MapEntry<CanHaveChildArg, dynamic> {
   List<WidgetEntity> get children => switch (key) {
-    WidgetArgWidget() => [if (value is WidgetEntity) value],
-    WidgetArgWidgetList() => value,
+    WidgetArgDefinitionWidget() => [if (value is WidgetEntity) value],
+    WidgetArgDefinitionWidgetList() => value,
   };
 
   Result<WidgetEntity> getChild(WidgetEntityId id) {
@@ -35,9 +35,9 @@ extension CanHaveChildArgChildrenGetter on MapEntry<CanHaveChildArg, dynamic> {
 
   bool get canAppendChild => switch (key) {
     //いくらでも追加してOK
-    WidgetArgWidgetList() => true,
+    WidgetArgDefinitionWidgetList() => true,
     //子が未設定なら子を追加できる
-    WidgetArgWidget() => children.isEmpty,
+    WidgetArgDefinitionWidget() => children.isEmpty,
   };
 
   MapEntry<CanHaveChildArg, dynamic> copyWithAppend(WidgetEntity entity) {
@@ -46,8 +46,8 @@ extension CanHaveChildArgChildrenGetter on MapEntry<CanHaveChildArg, dynamic> {
     }
 
     return switch (key) {
-      WidgetArgWidgetList() => .new(key, [...children, entity]),
-      WidgetArgWidget() => .new(key, entity),
+      WidgetArgDefinitionWidgetList() => .new(key, [...children, entity]),
+      WidgetArgDefinitionWidget() => .new(key, entity),
     };
   }
 
@@ -61,11 +61,11 @@ extension CanHaveChildArgChildrenGetter on MapEntry<CanHaveChildArg, dynamic> {
     }
 
     return switch (key) {
-      WidgetArgWidgetList() => .new(
+      WidgetArgDefinitionWidgetList() => .new(
         key,
         [...children]..removeWhere((we) => we.id == id),
       ),
-      WidgetArgWidget() => .new(key, null),
+      WidgetArgDefinitionWidget() => .new(key, null),
     };
   }
 
@@ -77,7 +77,7 @@ extension CanHaveChildArgChildrenGetter on MapEntry<CanHaveChildArg, dynamic> {
     }
 
     switch (key) {
-      case WidgetArgWidgetList():
+      case WidgetArgDefinitionWidgetList():
         {
           final index = children.indexWhere((we) => we.id == newEntity.id);
           return .new(
@@ -85,7 +85,7 @@ extension CanHaveChildArgChildrenGetter on MapEntry<CanHaveChildArg, dynamic> {
             [...children]..replaceRange(index, index + 1, [newEntity]),
           );
         }
-      case WidgetArgWidget():
+      case WidgetArgDefinitionWidget():
         {
           return .new(key, newEntity);
         }
@@ -94,48 +94,48 @@ extension CanHaveChildArgChildrenGetter on MapEntry<CanHaveChildArg, dynamic> {
 }
 
 @freezed
-sealed class WidgetArg with _$WidgetArg {
-  const WidgetArg._();
-  const factory WidgetArg.string({
+sealed class WidgetArgDefinition with _$WidgetArgDefinition {
+  const WidgetArgDefinition._();
+  const factory WidgetArgDefinition.string({
     required String name,
     required String defaultValue,
-  }) = WidgetArgString;
-  const factory WidgetArg.double({
+  }) = WidgetArgDefinitionString;
+  const factory WidgetArgDefinition.double({
     required String name,
     required double defaultValue,
-  }) = WidgetArgDouble;
-  const factory WidgetArg.doubleNullable({
+  }) = WidgetArgDefinitionDouble;
+  const factory WidgetArgDefinition.doubleNullable({
     required String name,
     required double? defaultValue,
-  }) = WidgetArgDoubleNullable;
-  const factory WidgetArg.colorNullable({
+  }) = WidgetArgDefinitionDoubleNullable;
+  const factory WidgetArgDefinition.colorNullable({
     required String name,
     required ColorWrapper? defaultValue,
-  }) = WidgetArgColorNullable;
-  const factory WidgetArg.crossAxisAlignment({
+  }) = WidgetArgDefinitionColorNullable;
+  const factory WidgetArgDefinition.crossAxisAlignment({
     required String name,
     required CrossAxisAlignment defaultValue,
-  }) = WidgetArgCrossAxisAlignment;
+  }) = WidgetArgDefinitionCrossAxisAlignment;
   @Implements<CanHaveChildArg>()
-  const factory WidgetArg.widget({
+  const factory WidgetArgDefinition.widget({
     required String name,
     required WidgetEntity? defaultValue,
-  }) = WidgetArgWidget;
+  }) = WidgetArgDefinitionWidget;
   @Implements<CanHaveChildArg>()
-  const factory WidgetArg.widgetList({
+  const factory WidgetArgDefinition.widgetList({
     required String name,
     required List<WidgetEntity> defaultValue,
-  }) = WidgetArgWidgetList;
+  }) = WidgetArgDefinitionWidgetList;
 
-  factory WidgetArg.fromJson(Map<String, dynamic> json) =>
-      _$WidgetArgFromJson(json);
+  factory WidgetArgDefinition.fromJson(Map<String, dynamic> json) =>
+      _$WidgetArgDefinitionFromJson(json);
 }
 
-sealed class CanHaveChildArg extends WidgetArg {
+sealed class CanHaveChildArg extends WidgetArgDefinition {
   factory CanHaveChildArg.fromJson(Map<String, dynamic> json) =>
-      _$WidgetArgFromJson(json) as CanHaveChildArg;
+      _$WidgetArgDefinitionFromJson(json) as CanHaveChildArg;
 }
 
-abstract class WidgetArgMixin<T> with _$WidgetArg {
+abstract class WidgetArgDefinitionMixin<T> with _$WidgetArgDefinition {
   TypedArg<T> toTyped();
 }

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:jyanken_app_drills/src/model/widget_entity/widget_arg/widget_arg.dart';
+import 'package:jyanken_app_drills/src/model/widget_entity/widget_arg/widget_arg_definition.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity_id.dart';
 part 'widget_child_selector.freezed.dart';
 part 'widget_child_selector.g.dart';

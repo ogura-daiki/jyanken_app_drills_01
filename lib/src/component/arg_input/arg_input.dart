@@ -4,11 +4,11 @@ import 'package:jyanken_app_drills/src/component/arg_input/impl/color_arg_input/
 import 'package:jyanken_app_drills/src/component/arg_input/impl/enum_base_arg_input.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/text_base_arg_input.dart';
 import 'package:jyanken_app_drills/src/core/null_ext.dart';
-import 'package:jyanken_app_drills/src/model/widget_entity/widget_arg/widget_arg.dart';
+import 'package:jyanken_app_drills/src/model/widget_entity/widget_arg/widget_arg_definition.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_arg/widget_arg_ext.dart';
 
 class ArgInput extends StatelessWidget {
-  final WidgetArg arg;
+  final WidgetArgDefinition arg;
   final dynamic value;
   final void Function(dynamic newValue) onChange;
 
@@ -22,14 +22,14 @@ class ArgInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return switch (arg) {
-      WidgetArgString a => TextBaseArgInput<String>(
+      WidgetArgDefinitionString a => TextBaseArgInput<String>(
         type: a.toTypedImpl(),
         value: value,
         mapFrom: (v) => v,
         mapTo: (v) => v,
         onChange: onChange,
       ),
-      WidgetArgDouble a => TextBaseArgInput<double>(
+      WidgetArgDefinitionDouble a => TextBaseArgInput<double>(
         type: a.toTypedImpl(),
         value: value,
         mapFrom: (String? str) => str?.let(double.tryParse) ?? 0.0,
@@ -39,7 +39,7 @@ class ArgInput extends StatelessWidget {
         ],
         onChange: onChange,
       ),
-      WidgetArgDoubleNullable a => TextBaseArgInput<double>(
+      WidgetArgDefinitionDoubleNullable a => TextBaseArgInput<double>(
         type: a.toTypedImpl(),
         value: value,
         mapFrom: (String? str) => str?.let(double.tryParse),
@@ -49,19 +49,19 @@ class ArgInput extends StatelessWidget {
         ],
         onChange: onChange,
       ),
-      WidgetArgColorNullable() => ColorEditor(
+      WidgetArgDefinitionColorNullable() => ColorEditor(
         nullable: true,
         value: value,
         onChange: onChange,
       ),
-      WidgetArgCrossAxisAlignment a => EnumBaseArgInput(
+      WidgetArgDefinitionCrossAxisAlignment a => EnumBaseArgInput(
         onChange: onChange,
         value: value,
         type: a.toTypedImpl(),
         items: CrossAxisAlignment.values,
       ),
-      WidgetArgWidget() => Text("ツリーから編集"),
-      WidgetArgWidgetList() => Text("ツリーから編集"),
+      WidgetArgDefinitionWidget() => Text("ツリーから編集"),
+      WidgetArgDefinitionWidgetList() => Text("ツリーから編集"),
     };
   }
 }
