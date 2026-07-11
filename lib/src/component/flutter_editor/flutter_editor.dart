@@ -50,11 +50,11 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
               crossAxisAlignment: .stretch,
               children: [
                 Expanded(
-                  child: switch (state.treeRoot) {
-                    WidgetEntity we => SingleChildScrollView(
+                  child: Scaffold(
+                    body: SingleChildScrollView(
                       padding: const .only(bottom: 48, top: 16),
                       child: WidgetTreeEditor(
-                        entity: we,
+                        entity: state.treeRoot,
                         selector: [],
                         onSelection: (newSelection) {
                           viewModel.updateSelection(newSelection);
@@ -64,7 +64,7 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
                         },
                       ),
                     ),
-                  },
+                  ),
                 ),
                 WidgetCatalog(widgetTypes: widget.allowTypes),
               ],

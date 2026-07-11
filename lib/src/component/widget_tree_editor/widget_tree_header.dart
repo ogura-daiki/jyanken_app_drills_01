@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_dropdown_menu/widget_tree_dropdown_menu_icon.dart';
+import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_dropdown_menu/widget_tree_dropdown_menu_item.dart';
+import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_dropdown_menu/widget_tree_dropdown_menu_label.dart';
 import 'package:jyanken_app_drills/src/component/widget_type_icon.dart';
 import 'package:jyanken_app_drills/src/model/widget_definition/widget_type.dart';
 
@@ -19,16 +22,15 @@ class WidgetTreeHeader extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final showDeleteButtonState = useState(false);
-    final showDeleteButton = showDeleteButtonState.value && type.deletable;
+    final showDropDown = useState(false);
     final focusNode = useFocusNode();
     return InkWell(
       focusNode: focusNode,
       onFocusChange: (value) {
-        showDeleteButtonState.value = value;
+        showDropDown.value = value;
       },
       onHover: (value) {
-        showDeleteButtonState.value = focusNode.hasFocus || value;
+        showDropDown.value = focusNode.hasFocus || value;
       },
       onTap: onSelect,
       child: Padding(
@@ -47,12 +49,40 @@ class WidgetTreeHeader extends HookWidget {
             WidgetTypeIcon(type: type),
             Expanded(child: Text(type.name, overflow: .ellipsis)),
             Opacity(
-              opacity: showDeleteButton ? 1 : 0,
+              opacity: showDropDown.value ? 1 : 0,
               child: IgnorePointer(
-                ignoring: !showDeleteButton,
-                child: IconButton(
-                  onPressed: onDelete,
-                  icon: Icon(Icons.delete_forever),
+                ignoring: !showDropDown.value,
+                child: PopupMenuButton(
+                  position: .under,
+                  itemBuilder: (context) => WidgetTreeDropdownMenuItem.values
+                      .map(
+                        (v) => PopupMenuItem(
+                          value: v,
+                          enabled: type.widgetTreeMenuEnable(v),
+                          child: Row(
+                            spacing: 4,
+                            children: [
+                              WidgetTreeDropdownMenuIcon(item: v),
+                              Expanded(
+                                child: WidgetTreeDropdownMenuLabel(item: v),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                      .toList(),
+                  onSelected: (v) {
+                    switch (v) {
+                      case .edit:
+                        onSelect();
+                      case .change:
+                        ScaffoldMessenger.of(
+                          context,
+                        ).showSnackBar(SnackBar(content: Text(v.name)));
+                      case .delete:
+                        onDelete();
+                    }
+                  },
                 ),
               ),
             ),
