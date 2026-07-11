@@ -5,7 +5,9 @@ enum WidgetType {
   container(categories: {.common}),
   text(categories: {.common}),
   column(categories: {.common}),
-  center(categories: {.common});
+  center(categories: {.common}),
+  align(categories: {.common}),
+  ;
 
   final bool deletable;
   final Set<WidgetCategory> categories;

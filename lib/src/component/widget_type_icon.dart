@@ -21,6 +21,7 @@ class WidgetTypeIcon extends StatelessWidget {
           child: Icon(Icons.view_column),
         ),
         .center => const Icon(Icons.center_focus_strong),
+        .align => const Icon(Icons.center_focus_weak),
       },
     );
   }

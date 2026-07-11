@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:jyanken_app_drills/src/model/alignment/alignment_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/color/color_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_arg/typed_arg.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_arg/widget_arg_definition.dart';
@@ -21,6 +22,10 @@ mixin WidgetArgKey<T> on Enum {
     ),
     NullableArg<WidgetEntity> v => .widget(name: name, defaultValue: v.value),
     NonnullArg<List<WidgetEntity>> v => .widgetList(
+      name: name,
+      defaultValue: v.value,
+    ),
+    NonnullArg<AlignmentWrapper> v => .alignment(
       name: name,
       defaultValue: v.value,
     ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:jyanken_app_drills/src/component/arg_input/impl/alignment_arg_input/alignment_arg_input.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/color_arg_input/color_arg_input.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/enum_base_arg_input.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/text_base_arg_input.dart';
@@ -62,6 +63,11 @@ class ArgInput extends StatelessWidget {
       ),
       WidgetArgDefinitionWidget() => Text("ツリーから編集"),
       WidgetArgDefinitionWidgetList() => Text("ツリーから編集"),
+      WidgetArgDefinitionAlignment a => AlignmentArgInput(
+        onChange: onChange,
+        type: a.toTypedImpl(),
+        value: value,
+      ),
     };
   }
 }

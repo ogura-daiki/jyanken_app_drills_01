@@ -134,3 +134,21 @@ Map<String, dynamic> _$WidgetArgDefinitionWidgetListToJson(
   'defaultValue': instance.defaultValue,
   'runtimeType': instance.$type,
 };
+
+WidgetArgDefinitionAlignment _$WidgetArgDefinitionAlignmentFromJson(
+  Map<String, dynamic> json,
+) => WidgetArgDefinitionAlignment(
+  name: json['name'] as String,
+  defaultValue: AlignmentWrapper.fromJson(
+    json['defaultValue'] as Map<String, dynamic>,
+  ),
+  $type: json['runtimeType'] as String?,
+);
+
+Map<String, dynamic> _$WidgetArgDefinitionAlignmentToJson(
+  WidgetArgDefinitionAlignment instance,
+) => <String, dynamic>{
+  'name': instance.name,
+  'defaultValue': instance.defaultValue,
+  'runtimeType': instance.$type,
+};

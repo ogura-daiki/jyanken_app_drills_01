@@ -77,3 +77,17 @@ Map<String, dynamic> _$WidgetEntityCenterToJson(WidgetEntityCenter instance) =>
       'args': instance.args,
       'runtimeType': instance.$type,
     };
+
+WidgetEntityAlign _$WidgetEntityAlignFromJson(Map<String, dynamic> json) =>
+    WidgetEntityAlign(
+      id: WidgetEntityId.fromJson(json['id'] as Map<String, dynamic>),
+      args: FixedAlignArgs.fromJson(json['args'] as Map<String, dynamic>),
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$WidgetEntityAlignToJson(WidgetEntityAlign instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'args': instance.args,
+      'runtimeType': instance.$type,
+    };

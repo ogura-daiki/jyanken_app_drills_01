@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:jyanken_app_drills/src/model/widget_definition/align/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget_definition/center/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget_definition/column/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget_definition/container/fixed_args.dart';
@@ -33,6 +34,10 @@ sealed class WidgetEntity with _$WidgetEntity {
     required WidgetEntityId id,
     required FixedCenterArgs args,
   }) = WidgetEntityCenter;
+  const factory WidgetEntity.align({
+    required WidgetEntityId id,
+    required FixedAlignArgs args,
+  }) = WidgetEntityAlign;
 
   WidgetType get type => switch (this) {
     WidgetEntityRoot() => .root,
@@ -40,6 +45,7 @@ sealed class WidgetEntity with _$WidgetEntity {
     WidgetEntityText() => .text,
     WidgetEntityColumn() => .column,
     WidgetEntityCenter() => .center,
+    WidgetEntityAlign() => .align,
   };
 
   factory WidgetEntity.fromType(WidgetType type) => switch (type) {
@@ -48,6 +54,7 @@ sealed class WidgetEntity with _$WidgetEntity {
     .text => .text(id: .create(), args: .initial),
     .column => .column(id: .create(), args: .initial),
     .center => .center(id: .create(), args: .initial),
+    .align => .align(id: .create(), args: .initial),
   };
 
   factory WidgetEntity.fromWrapper(WidgetEntityWrapper wrapper) =>
@@ -60,6 +67,7 @@ sealed class WidgetEntity with _$WidgetEntity {
         .text => .text(id: wrapper.id, args: .fromCommonArgs(wrapper.args)),
         .column => .column(id: wrapper.id, args: .fromCommonArgs(wrapper.args)),
         .center => .center(id: wrapper.id, args: .fromCommonArgs(wrapper.args)),
+        .align => .align(id: wrapper.id, args: .fromCommonArgs(wrapper.args)),
       };
 
   WidgetEntityWrapper toWrapper() => switch (this) {
@@ -86,6 +94,11 @@ sealed class WidgetEntity with _$WidgetEntity {
     WidgetEntityCenter w => .new(
       id: id,
       type: .center,
+      args: w.args.toCommonArgs(),
+    ),
+    WidgetEntityAlign w => .new(
+      id: id,
+      type: .align,
       args: w.args.toCommonArgs(),
     ),
   };

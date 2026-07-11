@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:jyanken_app_drills/src/model/alignment/alignment_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/color/color_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_arg/typed_arg.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_arg/widget_arg_definition.dart';
@@ -13,6 +14,7 @@ extension WidgetArgDefinitionExt on WidgetArgDefinition {
     WidgetArgDefinitionCrossAxisAlignment a => a.toTypedImpl(),
     WidgetArgDefinitionWidget a => a.toTypedImpl(),
     WidgetArgDefinitionWidgetList a => a.toTypedImpl(),
+    WidgetArgDefinitionAlignment a => a.toTypedImpl(),
   };
 }
 
@@ -45,4 +47,8 @@ extension WidgetArgDefinitionWidgetImpl on WidgetArgDefinitionWidget {
 
 extension WidgetArgDefinitionWidgetListImpl on WidgetArgDefinitionWidgetList {
   TypedArg<List<WidgetEntity>> toTypedImpl() => .nonNull(defaultValue);
+}
+
+extension WidgetArgDefinitionAlignmentImpl on WidgetArgDefinitionAlignment {
+  TypedArg<AlignmentWrapper> toTypedImpl() => .nonNull(defaultValue);
 }
