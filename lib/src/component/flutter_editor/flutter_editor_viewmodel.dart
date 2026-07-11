@@ -82,7 +82,6 @@ class FlutterEditorViewmodel extends _$FlutterEditorViewmodel {
       case WidgetTreeActionUpdate action:
         {
           updated = action.newValue;
-          if (stack.isNotEmpty) stack.removeLast();
         }
       case WidgetTreeActionRemove():
         {
