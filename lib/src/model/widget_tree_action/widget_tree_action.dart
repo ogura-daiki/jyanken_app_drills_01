@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
 import 'package:jyanken_app_drills/src/model/widget_tree/widget_child_selector.dart';
+import 'package:jyanken_app_drills/src/model/widget_tree_action/widget_tree_action_type.dart';
 part 'widget_tree_action.freezed.dart';
 part 'widget_tree_action.g.dart';
 
@@ -15,6 +16,11 @@ sealed class WidgetTreeAction with _$WidgetTreeAction {
   const factory WidgetTreeAction.remove({
     required List<WidgetChildSelector> selector,
   }) = WidgetTreeActionRemove;
+
+  WidgetTreeActionType get actionType => switch (this) {
+    WidgetTreeActionUpdate() => .editAttribute,
+    WidgetTreeActionRemove() => .remove,
+  };
 
   factory WidgetTreeAction.fromJson(Map<String, dynamic> json) =>
       _$WidgetTreeActionFromJson(json);

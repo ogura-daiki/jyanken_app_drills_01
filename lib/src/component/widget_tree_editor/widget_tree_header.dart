@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_dropdown_menu/widget_tree_dropdown_menu_icon.dart';
-import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_dropdown_menu/widget_tree_dropdown_menu_item.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_dropdown_menu/widget_tree_dropdown_menu_label.dart';
 import 'package:jyanken_app_drills/src/component/widget_type_icon.dart';
 import 'package:jyanken_app_drills/src/model/widget_definition/widget_type.dart';
+import 'package:jyanken_app_drills/src/model/widget_tree_action/widget_tree_action_type.dart';
 
 class WidgetTreeHeader extends HookWidget {
   final int depth;
   final WidgetType type;
   final void Function() onSelect;
-  final void Function() onDelete;
+  final void Function() onRemove;
 
   const WidgetTreeHeader({
     super.key,
     required this.depth,
     required this.type,
     required this.onSelect,
-    required this.onDelete,
+    required this.onRemove,
   });
 
   @override
@@ -54,11 +54,11 @@ class WidgetTreeHeader extends HookWidget {
                 ignoring: !showDropDown.value,
                 child: PopupMenuButton(
                   position: .under,
-                  itemBuilder: (context) => WidgetTreeDropdownMenuItem.values
+                  itemBuilder: (context) => WidgetTreeActionType.values
                       .map(
                         (v) => PopupMenuItem(
                           value: v,
-                          enabled: type.widgetTreeMenuEnable(v),
+                          enabled: type.isAllowedAction(v),
                           child: Row(
                             spacing: 4,
                             children: [
@@ -73,14 +73,14 @@ class WidgetTreeHeader extends HookWidget {
                       .toList(),
                   onSelected: (v) {
                     switch (v) {
-                      case .edit:
+                      case .editAttribute:
                         onSelect();
-                      case .change:
+                      case .changeWidget:
                         ScaffoldMessenger.of(
                           context,
                         ).showSnackBar(SnackBar(content: Text(v.name)));
-                      case .delete:
-                        onDelete();
+                      case .remove:
+                        onRemove();
                     }
                   },
                 ),

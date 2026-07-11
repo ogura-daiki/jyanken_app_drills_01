@@ -62,6 +62,21 @@ class FlutterEditorViewmodel extends _$FlutterEditorViewmodel {
 
     late WidgetEntity updated;
 
+    final target = stack.lastOrNull;
+    if (target != null) {
+      stack.removeLast();
+      //ターゲットが存在するがこのアクションは許可されていない
+      if (!target.type.isAllowedAction(action.actionType)) {
+        return .failure(
+          WidgetTreeActionRejectException(
+            reason: .actionNotAllowed,
+            id: target.id,
+            type: target.type,
+          ),
+        );
+      }
+    }
+
     //アクションを実行
     switch (action) {
       case WidgetTreeActionUpdate action:
@@ -71,13 +86,6 @@ class FlutterEditorViewmodel extends _$FlutterEditorViewmodel {
         }
       case WidgetTreeActionRemove():
         {
-          final self = stack.removeLast();
-          if (!self.type.deletable) {
-            //削除できないタイプのウィジェットだった
-            return .failure(
-              WidgetTreeActionRejectNotDeletable(id: self.id, type: self.type),
-            );
-          }
           final parent = stack.removeLast();
           //parentからselfを見るためのselector
           final selector = selectorHistory.removeLast();

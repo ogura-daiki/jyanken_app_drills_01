@@ -40,7 +40,7 @@ class WidgetTreeEditor extends StatelessWidget {
             onSelect: () {
               onSelection(selector);
             },
-            onDelete: () {
+            onRemove: () {
               onAction(.remove(selector: selector));
             },
           ),
