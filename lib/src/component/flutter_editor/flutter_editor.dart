@@ -113,13 +113,15 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
         ),
       ],
       mainAxis: .horizontal,
-      thumbBuilder: (i) => Container(
-        width: 50,
-        height: 50,
-        decoration: BoxDecoration(
-          color: Colors.grey,
-          border: .all(color: Colors.black, width: 1),
-          borderRadius: .circular(16),
+      thumbBuilder: (i) => Center(
+        child: Container(
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+            color: Colors.grey,
+            border: .all(color: Colors.black, width: 1),
+            borderRadius: .circular(16),
+          ),
         ),
       ),
     );

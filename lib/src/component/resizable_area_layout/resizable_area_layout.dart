@@ -125,7 +125,7 @@ class _ResizableAreaLayoutState extends State<ResizableAreaLayout> {
         switch (layoutItem) {
           ResizableAreaLayoutItemArea area => LayoutId(
             id: area.layoutId,
-            child: areasConfig[area.areaName]!.widget,
+            child: ClipRRect(child: areasConfig[area.areaName]!.widget),
           ),
           ResizableAreaLayoutItemThumb thumb => LayoutId(
             id: layoutItem.layoutId,
@@ -308,8 +308,8 @@ class ResizableAreaLayoutDelegate extends MultiChildLayoutDelegate {
           break;
         case ResizableAreaLayoutItemThumb():
           _layoutThumb(
+            size: size,
             offset: rects[item.thumbIndex + 1]
-                .addAxisStart(crossAxis, size.getAxisValue(crossAxis) / 2)
                 .topLeft,
             layoutId: item.layoutId,
           );
@@ -319,17 +319,26 @@ class ResizableAreaLayoutDelegate extends MultiChildLayoutDelegate {
   }
 
   void _layoutArea({required Rect rect, required int layoutId}) {
-    layoutChild(layoutId, .tight(rect.size));
+    layoutChild(
+      layoutId,
+      .expand(width: rect.size.width, height: rect.size.height),
+    );
     positionChild(layoutId, Offset(rect.left, rect.top));
   }
 
-  void _layoutThumb({required Offset offset, required int layoutId}) {
-    final childSize = layoutChild(layoutId, .loose(.new(100, 100)));
+  void _layoutThumb({
+    required Size size,
+    required Offset offset,
+    required int layoutId,
+  }) {
+    final childSize = layoutChild(layoutId, switch (mainAxis) {
+      .horizontal => .tightFor(height: size.height),
+      .vertical => .tightFor(width: size.width),
+    });
     positionChild(
       layoutId,
       offset
           .addAxis(mainAxis, childSize.getAxisValue(mainAxis) * -0.5)
-          .addAxis(crossAxis, childSize.getAxisValue(crossAxis) * -0.5),
     );
   }
 
