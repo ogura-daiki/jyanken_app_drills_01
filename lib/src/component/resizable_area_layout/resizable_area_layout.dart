@@ -182,6 +182,7 @@ class _ResizableAreaLayoutState extends State<ResizableAreaLayout> {
     final item = layoutItems[thumb.thumbIndex] as ResizableAreaLayoutItemArea;
     final updated = _updateAreaSpace(
       delta: delta,
+      items: layoutItems,
       item: item,
       delegate: delegate,
     );
@@ -190,6 +191,7 @@ class _ResizableAreaLayoutState extends State<ResizableAreaLayout> {
 
   bool _updateAreaSpace({
     required double delta,
+    required List<ResizableAreaLayoutItem> items,
     required ResizableAreaLayoutItemArea item,
     required ResizableAreaLayoutDelegate delegate,
   }) {
@@ -198,7 +200,16 @@ class _ResizableAreaLayoutState extends State<ResizableAreaLayout> {
       final area = areasConfig[item.areaName]!;
       final config = area.type;
       if (config is ResizableAreaTypeWeight) {
-        throw Exception();
+        final nextItem = items[item.layoutId + 1];
+        if (nextItem is ResizableAreaLayoutItemArea &&
+            areasConfig[nextItem.areaName]?.type is! ResizableAreaTypeWeight) {
+          return _updateAreaSpace(
+            delta: -delta,
+            items: items,
+            item: nextItem,
+            delegate: delegate,
+          );
+        }
       }
 
       final resolvedSize = delegate.getResolvedMainAxisSize(size);
@@ -206,19 +217,56 @@ class _ResizableAreaLayoutState extends State<ResizableAreaLayout> {
       if (currentSize == null) {
         return false;
       }
-      final ratioSpace = resolvedSize.entries
-          .where((e) => e.key is! ResizableAreaTypeFixed)
-          .map((e) => e.value)
-          .reduce((v, e) => v + e);
-      final newConfig = switch (config) {
-        ResizableAreaTypeFixed f => f.copyWith(
-          initial: max(0, currentSize + delta),
-        ),
-        ResizableAreaTypeRatio r => r.copyWith(
-          ratio: max(0, (currentSize + delta) / ratioSpace),
-        ),
-        ResizableAreaTypeWeight w => w.copy(),
-      };
+      late final ResizableAreaType newConfig;
+
+      double calcRatioSpace() {
+        return areasConfig.values
+            .where((e) => e.type is! ResizableAreaTypeFixed)
+            .map((e) => resolvedSize[e.type]!)
+            .reduce((v, e) => v + e);
+      }
+
+      double calcWeightSpace() {
+        var ratioSpace = calcRatioSpace();
+        for (final ratio in areasConfig.values.where(
+          (e) => e.type is ResizableAreaTypeRatio,
+        )) {
+          ratioSpace -= resolvedSize[ratio.type]!;
+        }
+        return ratioSpace;
+      }
+
+      double calcWeightSum() {
+        return areasConfig.values
+            .map((e) => e.type)
+            .whereType<ResizableAreaTypeWeight>()
+            .map((e) => e.weight)
+            .reduce((v, e) => v + e);
+      }
+
+      switch (config) {
+        case ResizableAreaTypeFixed f:
+          newConfig = f.copyWith(initial: max(0, currentSize + delta));
+          break;
+        case ResizableAreaTypeRatio r:
+          {
+            final ratioSpace = calcRatioSpace();
+            newConfig = r.copyWith(
+              ratio: max(0, (currentSize + delta) / ratioSpace),
+            );
+            break;
+          }
+        case ResizableAreaTypeWeight w:
+          {
+            final weightSpace = calcWeightSpace();
+            final otherSum = calcWeightSum() - w.weight;
+            final nextSize = max(0, currentSize + delta);
+            final otherSpace = max(0, weightSpace - nextSize);
+            final baseWeightSize = otherSpace / otherSum;
+            newConfig = w.copyWith(weight: nextSize / baseWeightSize);
+            break;
+          }
+      }
 
       setState(() {
         areasConfig[item.areaName] = area.copyWith(type: newConfig);

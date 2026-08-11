@@ -44,7 +44,7 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
       areas: [
         .new(
           areaName: "tree",
-          type: .fixed(300),
+          type: .ratio(1 / 3),
           widget: Material(
             clipBehavior: .antiAliasWithSaveLayer,
             child: Column(
