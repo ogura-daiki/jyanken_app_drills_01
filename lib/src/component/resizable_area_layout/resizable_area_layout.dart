@@ -1,6 +1,8 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widget_previews.dart';
+import 'package:jyanken_app_drills/src/component/mouse_hover_listener.dart';
 import 'package:jyanken_app_drills/src/component/resizable_area_layout/resizable_area.dart';
 import 'package:jyanken_app_drills/src/component/resizable_area_layout/resizable_area_layout_item.dart';
 import 'package:jyanken_app_drills/src/component/resizable_area_layout/resizable_area_type.dart';
@@ -152,7 +154,16 @@ class _ResizableAreaLayoutState extends State<ResizableAreaLayout> {
                   );
                 },
               },
-              child: widget.thumbBuilder(layoutItem.thumbIndex),
+              child: MouseHoverListener(
+                builder: (hover) {
+                  return AnimatedOpacity(
+                    opacity: hover ? 1 : 0.1,
+                    duration: .new(milliseconds: 300),
+                    curve: Curves.ease,
+                    child: widget.thumbBuilder(layoutItem.thumbIndex),
+                  );
+                },
+              ),
             ),
           ),
         },
@@ -309,8 +320,7 @@ class ResizableAreaLayoutDelegate extends MultiChildLayoutDelegate {
         case ResizableAreaLayoutItemThumb():
           _layoutThumb(
             size: size,
-            offset: rects[item.thumbIndex + 1]
-                .topLeft,
+            offset: rects[item.thumbIndex + 1].topLeft,
             layoutId: item.layoutId,
           );
           break;
@@ -337,8 +347,7 @@ class ResizableAreaLayoutDelegate extends MultiChildLayoutDelegate {
     });
     positionChild(
       layoutId,
-      offset
-          .addAxis(mainAxis, childSize.getAxisValue(mainAxis) * -0.5)
+      offset.addAxis(mainAxis, childSize.getAxisValue(mainAxis) * -0.5),
     );
   }
 
@@ -384,8 +393,8 @@ Widget resizableAreaWidgetPreview() {
       ],
       mainAxis: .horizontal,
       thumbBuilder: (i) => Container(
-        width: 50,
-        height: 50,
+        width: 8,
+        height: 48,
         decoration: BoxDecoration(
           color: Colors.grey,
           border: .all(color: Colors.black, width: 1),
