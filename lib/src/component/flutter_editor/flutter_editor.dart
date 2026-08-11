@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:jyanken_app_drills/src/component/flutter_editor/flutter_editor_viewmodel.dart';
+import 'package:jyanken_app_drills/src/component/flutter_editor/panes/flutter_editor_attribute_editor_pane.dart';
+import 'package:jyanken_app_drills/src/component/flutter_editor/panes/flutter_editor_preview_pane.dart';
+import 'package:jyanken_app_drills/src/component/flutter_editor/panes/flutter_editor_tree_pane.dart';
 import 'package:jyanken_app_drills/src/component/resizable_area_layout/resizable_area_layout.dart';
 import 'package:jyanken_app_drills/src/component/widget_catalog/widget_catalog.dart';
-import 'package:jyanken_app_drills/src/component/widget_entity_editor/widget_entity_editor.dart';
-import 'package:jyanken_app_drills/src/component/widget_entity_widget/widget_entity_widget.dart';
-import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_editor.dart';
-import 'package:jyanken_app_drills/src/core/result.dart';
 import 'package:jyanken_app_drills/src/model/widget_definition/widget_type.dart';
-import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
 
 class FlutterEditor extends StatefulHookConsumerWidget {
   final Set<WidgetType> allowTypes;
@@ -30,89 +26,52 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
     super.initState();
   }
 
+  Widget treeArea() {
+    return Material(
+      clipBehavior: .antiAliasWithSaveLayer,
+      child: Column(
+        crossAxisAlignment: .stretch,
+        children: [
+          Expanded(child: FlutterEditorTreePane(editorId: id)),
+          WidgetCatalog(widgetTypes: widget.allowTypes),
+        ],
+      ),
+    );
+  }
+
+  Widget previewArea() {
+    return Center(
+      child: Padding(
+        padding: const .all(16),
+        child: FlutterEditorPreviewPane(editorId: id),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final provider = flutterEditorViewmodelProvider(id);
-    final state = ref.watch(provider);
-    final viewModel = ref.read(provider.notifier);
+    return OrientationBuilder(
+      builder: (context, orientation) {
+        return switch (orientation) {
+          .landscape => horizontalLayout(),
+          .portrait => verticalLayout(),
+        };
+      },
+    );
+  }
 
-    final selectedWidget = useMemoized<Result<WidgetEntity>>(() {
-      return viewModel.getSelectedWidget();
-    }, [state]);
-
+  Widget horizontalLayout() {
     return ResizableAreaLayout(
+      mainAxis: .horizontal,
       areas: [
-        .new(
-          areaName: "tree",
-          type: .ratio(1 / 3),
-          widget: Material(
-            clipBehavior: .antiAliasWithSaveLayer,
-            child: Column(
-              crossAxisAlignment: .stretch,
-              children: [
-                Expanded(
-                  child: Scaffold(
-                    body: SingleChildScrollView(
-                      padding: const .only(bottom: 48, top: 16),
-                      child: WidgetTreeEditor(
-                        entity: state.treeRoot,
-                        selector: [],
-                        onSelection: (newSelection) {
-                          viewModel.updateSelection(newSelection);
-                        },
-                        onAction: (action) {
-                          viewModel.onAction(action);
-                        },
-                      ),
-                    ),
-                  ),
-                ),
-                WidgetCatalog(widgetTypes: widget.allowTypes),
-              ],
-            ),
-          ),
-        ),
+        .new(areaName: "tree", type: .ratio(1 / 3), widget: treeArea()),
         .new(
           areaName: "attribute",
           type: .ratio(1 / 3),
-          widget: switch (selectedWidget) {
-            Failure() => const Center(child: Text("ウィジェットがありません")),
-            Success(:final value) => WidgetEntityEditor(
-              key: ValueKey(value.id),
-              selector: state.selection,
-              initialValue: value,
-              onSelect: viewModel.updateSelection,
-              onChange: (newValue) {
-                viewModel.onAction(
-                  .update(
-                    selector: state.selection,
-                    oldValue: value,
-                    newValue: newValue,
-                  ),
-                );
-              },
-            ),
-          },
+          widget: FlutterEditorAttributeEditorPane(editorId: id),
         ),
-        .new(
-          areaName: "preview",
-          type: .expand(1),
-          widget: Center(
-            child: Padding(
-              padding: const .all(16),
-              child: AspectRatio(
-                aspectRatio: 9 / 19,
-                child: Material(
-                  elevation: 4,
-                  clipBehavior: .antiAliasWithSaveLayer,
-                  child: WidgetEntityWidget(entity: state.treeRoot),
-                ),
-              ),
-            ),
-          ),
-        ),
+        .new(areaName: "preview", type: .expand(1), widget: previewArea()),
       ],
-      mainAxis: .horizontal,
       thumbBuilder: (i) => Center(
         child: Container(
           width: 8,
@@ -124,6 +83,58 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
           ),
           child: Center(
             child: Text(":", style: TextStyle(color: Colors.black38)),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget verticalLayout() {
+    return ResizableAreaLayout(
+      mainAxis: .vertical,
+      areas: [
+        .new(areaName: "preview", type: .expand(1), widget: previewArea()),
+        .new(
+          areaName: "bottom",
+          type: .ratio(1 / 2),
+          widget: ResizableAreaLayout(
+            mainAxis: .horizontal,
+            areas: [
+              .new(areaName: "tree", type: .ratio(1 / 2), widget: treeArea()),
+              .new(
+                areaName: "attribute",
+                type: .expand(1),
+                widget: FlutterEditorAttributeEditorPane(editorId: id),
+              ),
+            ],
+            thumbBuilder: (_) => Center(
+              child: Container(
+                width: 8,
+                height: 48,
+                decoration: BoxDecoration(
+                  color: Colors.grey.withAlpha(128),
+                  border: .all(color: Colors.black38, width: 0.5),
+                  borderRadius: .circular(16),
+                ),
+                child: Center(
+                  child: Text(":", style: TextStyle(color: Colors.black38)),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+      thumbBuilder: (_) => Center(
+        child: Container(
+          width: 48,
+          height: 8,
+          decoration: BoxDecoration(
+            color: Colors.grey.withAlpha(128),
+            border: .all(color: Colors.black38, width: 0.5),
+            borderRadius: .circular(16),
+          ),
+          child: Center(
+            child: Text("･･", style: TextStyle(color: Colors.black38)),
           ),
         ),
       ),
