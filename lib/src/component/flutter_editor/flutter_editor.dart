@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jyanken_app_drills/src/component/flutter_editor/flutter_editor_viewmodel.dart';
+import 'package:jyanken_app_drills/src/component/resizable_area_layout/resizable_area_layout.dart';
 import 'package:jyanken_app_drills/src/component/widget_catalog/widget_catalog.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_editor/widget_entity_editor.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widget_entity_widget.dart';
@@ -39,12 +40,12 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
       return viewModel.getSelectedWidget();
     }, [state]);
 
-    return Row(
-      crossAxisAlignment: .stretch,
-      mainAxisSize: .max,
-      children: [
-        Expanded(
-          child: Material(
+    return ResizableAreaLayout(
+      areas: [
+        .new(
+          areaName: "tree",
+          type: .fixed(300),
+          widget: Material(
             clipBehavior: .antiAliasWithSaveLayer,
             child: Column(
               crossAxisAlignment: .stretch,
@@ -71,12 +72,10 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
             ),
           ),
         ),
-        Container(
-          width: 1,
-          color: Theme.of(context).colorScheme.outlineVariant,
-        ),
-        Expanded(
-          child: switch (selectedWidget) {
+        .new(
+          areaName: "attribute",
+          type: .ratio(1 / 3),
+          widget: switch (selectedWidget) {
             Failure() => const Center(child: Text("ウィジェットがありません")),
             Success(:final value) => WidgetEntityEditor(
               key: ValueKey(value.id),
@@ -95,22 +94,34 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
             ),
           },
         ),
-        Container(
-          width: 1,
-          color: Theme.of(context).colorScheme.outlineVariant,
-        ),
-        Padding(
-          padding: const .all(16),
-          child: AspectRatio(
-            aspectRatio: 9 / 19,
-            child: Material(
-              elevation: 4,
-              clipBehavior: .antiAliasWithSaveLayer,
-              child: WidgetEntityWidget(entity: state.treeRoot),
+        .new(
+          areaName: "preview",
+          type: .expand(1),
+          widget: Center(
+            child: Padding(
+              padding: const .all(16),
+              child: AspectRatio(
+                aspectRatio: 9 / 19,
+                child: Material(
+                  elevation: 4,
+                  clipBehavior: .antiAliasWithSaveLayer,
+                  child: WidgetEntityWidget(entity: state.treeRoot),
+                ),
+              ),
             ),
           ),
         ),
       ],
+      mainAxis: .horizontal,
+      thumbBuilder: (i) => Container(
+        width: 50,
+        height: 50,
+        decoration: BoxDecoration(
+          color: Colors.grey,
+          border: .all(color: Colors.black, width: 1),
+          borderRadius: .circular(16),
+        ),
+      ),
     );
   }
 }
