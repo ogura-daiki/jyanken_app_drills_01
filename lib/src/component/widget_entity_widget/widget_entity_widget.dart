@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_align.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_center.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_column.dart';

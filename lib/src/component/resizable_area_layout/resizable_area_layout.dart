@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/widget_previews.dart';
 import 'package:jyanken_app_drills/src/component/mouse_hover_listener.dart';
 import 'package:jyanken_app_drills/src/component/resizable_area_layout/resizable_area.dart';

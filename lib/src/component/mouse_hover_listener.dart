@@ -15,8 +15,8 @@ class MouseHoverListener extends HookWidget {
       onExit: (event) {
         onHover.value = false;
       },
-      child: builder(onHover.value),
       hitTestBehavior: .deferToChild,
+      child: builder(onHover.value),
     );
   }
 }
