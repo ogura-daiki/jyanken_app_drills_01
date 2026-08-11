@@ -345,6 +345,7 @@ class ResizableAreaLayoutDelegate extends MultiChildLayoutDelegate {
 
   @override
   void performLayout(Size size) {
+    _resolvedMainAxisSize = {};
     getResolvedMainAxisSize(size);
     final rects = <Rect>[];
 
