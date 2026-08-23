@@ -12,12 +12,17 @@ class FlutterEditorPreviewPane extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final provider = flutterEditorViewmodelProvider(editorId);
     final state = ref.watch(provider);
-    return AspectRatio(
-      aspectRatio: 9 / 19,
-      child: Material(
-        elevation: 4,
-        clipBehavior: .antiAliasWithSaveLayer,
-        child: WidgetEntityWidget(entity: state.treeRoot),
+    final screenSize = MediaQuery.sizeOf(context);
+    return FittedBox(
+      fit: .contain,
+      child: SizedBox(
+        height: screenSize.height,
+        width: screenSize.height * 9 / 19,
+        child: Material(
+          elevation: 4,
+          clipBehavior: .antiAliasWithSaveLayer,
+          child: WidgetEntityWidget(entity: state.treeRoot),
+        ),
       ),
     );
   }
