@@ -86,7 +86,10 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
             borderRadius: .circular(16),
           ),
           child: Center(
-            child: Text(":", style: TextStyle(color: Colors.black38)),
+            child: Text(
+              ":",
+              style: TextStyle(color: Colors.black38, fontSize: 18),
+            ),
           ),
         ),
       ),
@@ -140,8 +143,21 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
             borderRadius: .circular(16),
           ),
           child: Center(
-            child: Text("･･", style: TextStyle(color: Colors.black38)),
-          ),
+            child: OverflowBox(
+              minHeight: 18,
+              maxHeight: 18,
+              child: Text(
+                ". .",
+                style: TextStyle(
+                  color: Colors.black38,
+                  fontSize: 14,
+                  fontWeight: .w100,
+                  fontFamily: "monospace",
+                  height: 0.75,
+                ),
+              ),
+            ),
+          )
         ),
       ),
     );
