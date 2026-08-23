@@ -16,7 +16,7 @@ final class FlutterEditorViewmodelProvider
     extends $NotifierProvider<FlutterEditorViewmodel, FlutterEditorState> {
   FlutterEditorViewmodelProvider._({
     required FlutterEditorViewmodelFamily super.from,
-    required int super.argument,
+    required String super.argument,
   }) : super(
          retry: null,
          name: r'flutterEditorViewmodelProvider',
@@ -60,7 +60,7 @@ final class FlutterEditorViewmodelProvider
 }
 
 String _$flutterEditorViewmodelHash() =>
-    r'4c743f009f40c4d42c178c12d6c5563d102ee1c3';
+    r'78067e5695d10bb2b93a00a00d492f2c74970105';
 
 final class FlutterEditorViewmodelFamily extends $Family
     with
@@ -69,7 +69,7 @@ final class FlutterEditorViewmodelFamily extends $Family
           FlutterEditorState,
           FlutterEditorState,
           FlutterEditorState,
-          int
+          String
         > {
   FlutterEditorViewmodelFamily._()
     : super(
@@ -80,7 +80,7 @@ final class FlutterEditorViewmodelFamily extends $Family
         isAutoDispose: true,
       );
 
-  FlutterEditorViewmodelProvider call(int id) =>
+  FlutterEditorViewmodelProvider call(String id) =>
       FlutterEditorViewmodelProvider._(argument: id, from: this);
 
   @override
@@ -88,10 +88,10 @@ final class FlutterEditorViewmodelFamily extends $Family
 }
 
 abstract class _$FlutterEditorViewmodel extends $Notifier<FlutterEditorState> {
-  late final _$args = ref.$arg as int;
-  int get id => _$args;
+  late final _$args = ref.$arg as String;
+  String get id => _$args;
 
-  FlutterEditorState build(int id);
+  FlutterEditorState build(String id);
   @$mustCallSuper
   @override
   WhenComplete runBuild() {

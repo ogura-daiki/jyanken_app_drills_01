@@ -8,6 +8,7 @@ class ScreenEntityTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlutterEditor(
+      projectId: "FREE_PLAY",
       allowTypes: WidgetType.findByCategories({.common}).toSet(),
     );
   }

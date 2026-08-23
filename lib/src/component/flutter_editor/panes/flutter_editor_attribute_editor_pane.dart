@@ -7,7 +7,7 @@ import 'package:jyanken_app_drills/src/core/result.dart';
 import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
 
 class FlutterEditorAttributeEditorPane extends HookConsumerWidget {
-  final int editorId;
+  final String editorId;
 
   const FlutterEditorAttributeEditorPane({super.key, required this.editorId});
 
@@ -20,23 +20,25 @@ class FlutterEditorAttributeEditorPane extends HookConsumerWidget {
       return viewModel.getSelectedWidget();
     }, [state]);
 
-    return switch (selectedWidget) {
-      Failure() => const Center(child: Text("ウィジェットがありません")),
-      Success(:final value) => WidgetEntityEditor(
-        key: ValueKey(value.id),
-        selector: state.selection,
-        initialValue: value,
-        onSelect: viewModel.updateSelection,
-        onChange: (newValue) {
-          viewModel.onAction(
-            .update(
-              selector: state.selection,
-              oldValue: value,
-              newValue: newValue,
-            ),
-          );
-        },
-      ),
-    };
+    return Material(
+      child: switch (selectedWidget) {
+        Failure() => const Center(child: Text("ウィジェットがありません")),
+        Success(:final value) => WidgetEntityEditor(
+          key: ValueKey(value.id),
+          selector: state.selection,
+          initialValue: value,
+          onSelect: viewModel.updateSelection,
+          onChange: (newValue) {
+            viewModel.onAction(
+              .update(
+                selector: state.selection,
+                oldValue: value,
+                newValue: newValue,
+              ),
+            );
+          },
+        ),
+      },
+    );
   }
 }

@@ -16,7 +16,7 @@ class FlutterEditorViewmodel extends _$FlutterEditorViewmodel {
   ParseTreeNodeSelectorUsecase get _getWidget =>
       GetIt.I.get<ParseTreeNodeSelectorUsecase>();
   @override
-  FlutterEditorState build(int id) {
+  FlutterEditorState build(String id) {
     return FlutterEditorState(
       editorId: id,
       treeRoot: WidgetEntityRoot(id: .create(), args: .new()),

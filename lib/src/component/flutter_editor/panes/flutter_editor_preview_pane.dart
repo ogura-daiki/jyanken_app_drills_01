@@ -4,7 +4,7 @@ import 'package:jyanken_app_drills/src/component/flutter_editor/flutter_editor_v
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widget_entity_widget.dart';
 
 class FlutterEditorPreviewPane extends ConsumerWidget {
-  final int editorId;
+  final String editorId;
 
   const FlutterEditorPreviewPane({super.key, required this.editorId});
 

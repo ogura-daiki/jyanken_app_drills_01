@@ -8,7 +8,7 @@ part 'flutter_editor_state.g.dart';
 abstract class FlutterEditorState with _$FlutterEditorState {
   const FlutterEditorState._();
   const factory FlutterEditorState({
-    required int editorId,
+    required String editorId,
     required WidgetEntityRoot treeRoot,
     required List<WidgetChildSelector> selection,
   }) = _FlutterEditorState;

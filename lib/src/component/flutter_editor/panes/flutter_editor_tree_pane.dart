@@ -4,7 +4,7 @@ import 'package:jyanken_app_drills/src/component/flutter_editor/flutter_editor_v
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_editor.dart';
 
 class FlutterEditorTreePane extends ConsumerWidget {
-  final int editorId;
+  final String editorId;
 
   const FlutterEditorTreePane({super.key, required this.editorId});
 
