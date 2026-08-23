@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/arg_input.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_editor/widget_selector_display.dart';
-import 'package:jyanken_app_drills/src/model/widget_tree/widget_child_selector.dart';
-import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
+import 'package:jyanken_app_drills/src/model/editor/widget_tree/widget_child_selector.dart';
+import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity.dart';
 
 class WidgetEntityEditor extends HookWidget {
   final List<WidgetChildSelector> selector;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widget_previews.dart';
 import 'package:jyanken_app_drills/src/component/flutter_editor/flutter_editor.dart';
-import 'package:jyanken_app_drills/src/model/widget_definition/widget_type.dart';
+import 'package:jyanken_app_drills/src/model/widget/widget_definition/widget_type.dart';
 
 class ScreenHome extends StatelessWidget {
   const ScreenHome({super.key});

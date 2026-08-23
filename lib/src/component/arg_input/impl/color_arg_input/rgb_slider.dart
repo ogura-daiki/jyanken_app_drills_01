@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jyanken_app_drills/src/model/color/color_wrapper.dart';
+import 'package:jyanken_app_drills/src/model/type/color/color_wrapper.dart';
 
 class RGBSlider extends StatelessWidget {
   final ColorWrapper color;

@@ -5,7 +5,7 @@ import 'package:jyanken_app_drills/src/component/flutter_editor/panes/flutter_ed
 import 'package:jyanken_app_drills/src/component/flutter_editor/panes/flutter_editor_tree_pane.dart';
 import 'package:jyanken_app_drills/src/component/resizable_area_layout/resizable_area_layout.dart';
 import 'package:jyanken_app_drills/src/component/widget_catalog/widget_catalog.dart';
-import 'package:jyanken_app_drills/src/model/widget_definition/widget_type.dart';
+import 'package:jyanken_app_drills/src/model/widget/widget_definition/widget_type.dart';
 
 class FlutterEditor extends StatefulHookConsumerWidget {
   final String projectId;

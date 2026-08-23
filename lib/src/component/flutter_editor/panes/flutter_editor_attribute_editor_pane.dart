@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jyanken_app_drills/src/component/flutter_editor/flutter_editor_viewmodel.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_editor/widget_entity_editor.dart';
 import 'package:jyanken_app_drills/src/core/result.dart';
-import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
+import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity.dart';
 
 class FlutterEditorAttributeEditorPane extends HookConsumerWidget {
   final String editorId;

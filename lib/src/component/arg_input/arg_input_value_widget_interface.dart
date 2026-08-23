@@ -1,4 +1,4 @@
-import 'package:jyanken_app_drills/src/model/widget_entity/widget_arg/typed_arg.dart';
+import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_arg/typed_arg.dart';
 
 interface class ArgInputValueWidgetInterface<T> {
   final TypedArg<T> type;

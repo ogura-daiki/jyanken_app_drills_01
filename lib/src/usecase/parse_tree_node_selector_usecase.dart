@@ -1,6 +1,6 @@
 import 'package:jyanken_app_drills/src/core/result.dart';
-import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
-import 'package:jyanken_app_drills/src/model/widget_tree/widget_child_selector.dart';
+import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity.dart';
+import 'package:jyanken_app_drills/src/model/editor/widget_tree/widget_child_selector.dart';
 
 abstract class ParseTreeNodeSelectorUsecase {
   Result<WidgetEntity> execute({

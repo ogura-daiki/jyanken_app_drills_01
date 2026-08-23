@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jyanken_app_drills/src/core/line_height_ext.dart';
-import 'package:jyanken_app_drills/src/model/widget_tree/widget_child_selector.dart';
+import 'package:jyanken_app_drills/src/model/editor/widget_tree/widget_child_selector.dart';
 
 class WidgetSelectorDisplay extends StatelessWidget {
   final List<WidgetChildSelector> selector;

@@ -5,7 +5,7 @@ import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/wi
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_container.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_root.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_text.dart';
-import 'package:jyanken_app_drills/src/model/widget_entity/widget_entity.dart';
+import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity.dart';
 
 class WidgetEntityWidget extends StatelessWidget {
   final WidgetEntity? entity;

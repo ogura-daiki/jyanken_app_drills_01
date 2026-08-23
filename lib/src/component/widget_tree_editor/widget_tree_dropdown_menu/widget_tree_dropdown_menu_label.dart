@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jyanken_app_drills/src/model/widget_tree_action/widget_tree_action_type.dart';
+import 'package:jyanken_app_drills/src/model/editor/widget_tree_action/widget_tree_action_type.dart';
 
 class WidgetTreeDropdownMenuLabel extends StatelessWidget {
   final WidgetTreeActionType item;

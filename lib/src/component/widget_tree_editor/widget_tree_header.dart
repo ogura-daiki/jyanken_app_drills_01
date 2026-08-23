@@ -3,8 +3,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_dropdown_menu/widget_tree_dropdown_menu_icon.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_dropdown_menu/widget_tree_dropdown_menu_label.dart';
 import 'package:jyanken_app_drills/src/component/widget_type_icon.dart';
-import 'package:jyanken_app_drills/src/model/widget_definition/widget_type.dart';
-import 'package:jyanken_app_drills/src/model/widget_tree_action/widget_tree_action_type.dart';
+import 'package:jyanken_app_drills/src/model/widget/widget_definition/widget_type.dart';
+import 'package:jyanken_app_drills/src/model/editor/widget_tree_action/widget_tree_action_type.dart';
 
 class WidgetTreeHeader extends HookWidget {
   final int depth;
