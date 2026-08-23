@@ -30,7 +30,10 @@ Widget previewRootWidget() {
               args: .new(
                 child: .text(
                   id: .create(),
-                  args: .new(text: "test", color: .fromColor(Colors.white)),
+                  args: .new(
+                    text: "test",
+                    style: .new(color: .fromColor(Colors.white)),
+                  ),
                 ),
               ),
             ),

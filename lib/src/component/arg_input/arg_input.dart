@@ -4,6 +4,7 @@ import 'package:jyanken_app_drills/src/component/arg_input/impl/alignment_arg_in
 import 'package:jyanken_app_drills/src/component/arg_input/impl/color_arg_input/color_arg_input.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/enum_base_arg_input.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/text_base_arg_input.dart';
+import 'package:jyanken_app_drills/src/component/arg_input/impl/text_style_arg_input/text_style_arg_input.dart';
 import 'package:jyanken_app_drills/src/core/null_ext.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_arg/widget_arg_definition.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_arg/widget_arg_ext.dart';
@@ -61,11 +62,15 @@ class ArgInput extends StatelessWidget {
         type: a.toTypedImpl(),
         items: CrossAxisAlignment.values,
       ),
-      WidgetArgDefinitionWidget() => Text("ツリーから編集"),
+      WidgetArgDefinitionWidget() ||
       WidgetArgDefinitionWidgetList() => Text("ツリーから編集"),
       WidgetArgDefinitionAlignment a => AlignmentArgInput(
         onChange: onChange,
         type: a.toTypedImpl(),
+        value: value,
+      ),
+      WidgetArgDefinitionTextStyle() => TextStyleArgInput(
+        onChange: onChange,
         value: value,
       ),
     };

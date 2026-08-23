@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:jyanken_app_drills/src/screen/entity_test/screen_entity_test.dart';
 import 'package:jyanken_app_drills/src/screen/home/screen_home.dart';
 import 'package:jyanken_app_drills/src/usecase/di.dart';
 

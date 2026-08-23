@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jyanken_app_drills/src/core/result.dart';
 import 'package:jyanken_app_drills/src/model/type/alignment/alignment_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/type/color/color_wrapper.dart';
+import 'package:jyanken_app_drills/src/model/type/text_style/text_style_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_arg/typed_arg.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity_id.dart';
@@ -131,6 +132,10 @@ sealed class WidgetArgDefinition with _$WidgetArgDefinition {
     required String name,
     required AlignmentWrapper defaultValue,
   }) = WidgetArgDefinitionAlignment;
+  const factory WidgetArgDefinition.textStyle({
+    required String name,
+    required TextStyleWrapper? defaultValue,
+  }) = WidgetArgDefinitionTextStyle;
 
   factory WidgetArgDefinition.fromJson(Map<String, dynamic> json) =>
       _$WidgetArgDefinitionFromJson(json);

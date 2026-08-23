@@ -152,3 +152,21 @@ Map<String, dynamic> _$WidgetArgDefinitionAlignmentToJson(
   'defaultValue': instance.defaultValue,
   'runtimeType': instance.$type,
 };
+
+WidgetArgDefinitionTextStyle _$WidgetArgDefinitionTextStyleFromJson(
+  Map<String, dynamic> json,
+) => WidgetArgDefinitionTextStyle(
+  name: json['name'] as String,
+  defaultValue: json['defaultValue'] == null
+      ? null
+      : TextStyleWrapper.fromJson(json['defaultValue'] as Map<String, dynamic>),
+  $type: json['runtimeType'] as String?,
+);
+
+Map<String, dynamic> _$WidgetArgDefinitionTextStyleToJson(
+  WidgetArgDefinitionTextStyle instance,
+) => <String, dynamic>{
+  'name': instance.name,
+  'defaultValue': instance.defaultValue,
+  'runtimeType': instance.$type,
+};

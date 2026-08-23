@@ -47,6 +47,10 @@ WidgetArgDefinition _$WidgetArgDefinitionFromJson(
           return WidgetArgDefinitionAlignment.fromJson(
             json
           );
+                case 'textStyle':
+          return WidgetArgDefinitionTextStyle.fromJson(
+            json
+          );
         
           default:
             throw CheckedFromJsonException(
@@ -136,7 +140,7 @@ extension WidgetArgDefinitionPatterns on WidgetArgDefinition {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( WidgetArgDefinitionString value)?  string,TResult Function( WidgetArgDefinitionDouble value)?  double,TResult Function( WidgetArgDefinitionDoubleNullable value)?  doubleNullable,TResult Function( WidgetArgDefinitionColorNullable value)?  colorNullable,TResult Function( WidgetArgDefinitionCrossAxisAlignment value)?  crossAxisAlignment,TResult Function( WidgetArgDefinitionWidget value)?  widget,TResult Function( WidgetArgDefinitionWidgetList value)?  widgetList,TResult Function( WidgetArgDefinitionAlignment value)?  alignment,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( WidgetArgDefinitionString value)?  string,TResult Function( WidgetArgDefinitionDouble value)?  double,TResult Function( WidgetArgDefinitionDoubleNullable value)?  doubleNullable,TResult Function( WidgetArgDefinitionColorNullable value)?  colorNullable,TResult Function( WidgetArgDefinitionCrossAxisAlignment value)?  crossAxisAlignment,TResult Function( WidgetArgDefinitionWidget value)?  widget,TResult Function( WidgetArgDefinitionWidgetList value)?  widgetList,TResult Function( WidgetArgDefinitionAlignment value)?  alignment,TResult Function( WidgetArgDefinitionTextStyle value)?  textStyle,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case WidgetArgDefinitionString() when string != null:
@@ -147,7 +151,8 @@ return colorNullable(_that);case WidgetArgDefinitionCrossAxisAlignment() when cr
 return crossAxisAlignment(_that);case WidgetArgDefinitionWidget() when widget != null:
 return widget(_that);case WidgetArgDefinitionWidgetList() when widgetList != null:
 return widgetList(_that);case WidgetArgDefinitionAlignment() when alignment != null:
-return alignment(_that);case _:
+return alignment(_that);case WidgetArgDefinitionTextStyle() when textStyle != null:
+return textStyle(_that);case _:
   return orElse();
 
 }
@@ -165,7 +170,7 @@ return alignment(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( WidgetArgDefinitionString value)  string,required TResult Function( WidgetArgDefinitionDouble value)  double,required TResult Function( WidgetArgDefinitionDoubleNullable value)  doubleNullable,required TResult Function( WidgetArgDefinitionColorNullable value)  colorNullable,required TResult Function( WidgetArgDefinitionCrossAxisAlignment value)  crossAxisAlignment,required TResult Function( WidgetArgDefinitionWidget value)  widget,required TResult Function( WidgetArgDefinitionWidgetList value)  widgetList,required TResult Function( WidgetArgDefinitionAlignment value)  alignment,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( WidgetArgDefinitionString value)  string,required TResult Function( WidgetArgDefinitionDouble value)  double,required TResult Function( WidgetArgDefinitionDoubleNullable value)  doubleNullable,required TResult Function( WidgetArgDefinitionColorNullable value)  colorNullable,required TResult Function( WidgetArgDefinitionCrossAxisAlignment value)  crossAxisAlignment,required TResult Function( WidgetArgDefinitionWidget value)  widget,required TResult Function( WidgetArgDefinitionWidgetList value)  widgetList,required TResult Function( WidgetArgDefinitionAlignment value)  alignment,required TResult Function( WidgetArgDefinitionTextStyle value)  textStyle,}){
 final _that = this;
 switch (_that) {
 case WidgetArgDefinitionString():
@@ -176,7 +181,8 @@ return colorNullable(_that);case WidgetArgDefinitionCrossAxisAlignment():
 return crossAxisAlignment(_that);case WidgetArgDefinitionWidget():
 return widget(_that);case WidgetArgDefinitionWidgetList():
 return widgetList(_that);case WidgetArgDefinitionAlignment():
-return alignment(_that);}
+return alignment(_that);case WidgetArgDefinitionTextStyle():
+return textStyle(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -190,7 +196,7 @@ return alignment(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( WidgetArgDefinitionString value)?  string,TResult? Function( WidgetArgDefinitionDouble value)?  double,TResult? Function( WidgetArgDefinitionDoubleNullable value)?  doubleNullable,TResult? Function( WidgetArgDefinitionColorNullable value)?  colorNullable,TResult? Function( WidgetArgDefinitionCrossAxisAlignment value)?  crossAxisAlignment,TResult? Function( WidgetArgDefinitionWidget value)?  widget,TResult? Function( WidgetArgDefinitionWidgetList value)?  widgetList,TResult? Function( WidgetArgDefinitionAlignment value)?  alignment,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( WidgetArgDefinitionString value)?  string,TResult? Function( WidgetArgDefinitionDouble value)?  double,TResult? Function( WidgetArgDefinitionDoubleNullable value)?  doubleNullable,TResult? Function( WidgetArgDefinitionColorNullable value)?  colorNullable,TResult? Function( WidgetArgDefinitionCrossAxisAlignment value)?  crossAxisAlignment,TResult? Function( WidgetArgDefinitionWidget value)?  widget,TResult? Function( WidgetArgDefinitionWidgetList value)?  widgetList,TResult? Function( WidgetArgDefinitionAlignment value)?  alignment,TResult? Function( WidgetArgDefinitionTextStyle value)?  textStyle,}){
 final _that = this;
 switch (_that) {
 case WidgetArgDefinitionString() when string != null:
@@ -201,7 +207,8 @@ return colorNullable(_that);case WidgetArgDefinitionCrossAxisAlignment() when cr
 return crossAxisAlignment(_that);case WidgetArgDefinitionWidget() when widget != null:
 return widget(_that);case WidgetArgDefinitionWidgetList() when widgetList != null:
 return widgetList(_that);case WidgetArgDefinitionAlignment() when alignment != null:
-return alignment(_that);case _:
+return alignment(_that);case WidgetArgDefinitionTextStyle() when textStyle != null:
+return textStyle(_that);case _:
   return null;
 
 }
@@ -218,7 +225,7 @@ return alignment(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String name,  String defaultValue)?  string,TResult Function( String name,  double defaultValue)?  double,TResult Function( String name,  double? defaultValue)?  doubleNullable,TResult Function( String name,  ColorWrapper? defaultValue)?  colorNullable,TResult Function( String name,  CrossAxisAlignment defaultValue)?  crossAxisAlignment,TResult Function( String name,  WidgetEntity? defaultValue)?  widget,TResult Function( String name,  List<WidgetEntity> defaultValue)?  widgetList,TResult Function( String name,  AlignmentWrapper defaultValue)?  alignment,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String name,  String defaultValue)?  string,TResult Function( String name,  double defaultValue)?  double,TResult Function( String name,  double? defaultValue)?  doubleNullable,TResult Function( String name,  ColorWrapper? defaultValue)?  colorNullable,TResult Function( String name,  CrossAxisAlignment defaultValue)?  crossAxisAlignment,TResult Function( String name,  WidgetEntity? defaultValue)?  widget,TResult Function( String name,  List<WidgetEntity> defaultValue)?  widgetList,TResult Function( String name,  AlignmentWrapper defaultValue)?  alignment,TResult Function( String name,  TextStyleWrapper? defaultValue)?  textStyle,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case WidgetArgDefinitionString() when string != null:
 return string(_that.name,_that.defaultValue);case WidgetArgDefinitionDouble() when double != null:
@@ -228,7 +235,8 @@ return colorNullable(_that.name,_that.defaultValue);case WidgetArgDefinitionCros
 return crossAxisAlignment(_that.name,_that.defaultValue);case WidgetArgDefinitionWidget() when widget != null:
 return widget(_that.name,_that.defaultValue);case WidgetArgDefinitionWidgetList() when widgetList != null:
 return widgetList(_that.name,_that.defaultValue);case WidgetArgDefinitionAlignment() when alignment != null:
-return alignment(_that.name,_that.defaultValue);case _:
+return alignment(_that.name,_that.defaultValue);case WidgetArgDefinitionTextStyle() when textStyle != null:
+return textStyle(_that.name,_that.defaultValue);case _:
   return orElse();
 
 }
@@ -246,7 +254,7 @@ return alignment(_that.name,_that.defaultValue);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String name,  String defaultValue)  string,required TResult Function( String name,  double defaultValue)  double,required TResult Function( String name,  double? defaultValue)  doubleNullable,required TResult Function( String name,  ColorWrapper? defaultValue)  colorNullable,required TResult Function( String name,  CrossAxisAlignment defaultValue)  crossAxisAlignment,required TResult Function( String name,  WidgetEntity? defaultValue)  widget,required TResult Function( String name,  List<WidgetEntity> defaultValue)  widgetList,required TResult Function( String name,  AlignmentWrapper defaultValue)  alignment,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String name,  String defaultValue)  string,required TResult Function( String name,  double defaultValue)  double,required TResult Function( String name,  double? defaultValue)  doubleNullable,required TResult Function( String name,  ColorWrapper? defaultValue)  colorNullable,required TResult Function( String name,  CrossAxisAlignment defaultValue)  crossAxisAlignment,required TResult Function( String name,  WidgetEntity? defaultValue)  widget,required TResult Function( String name,  List<WidgetEntity> defaultValue)  widgetList,required TResult Function( String name,  AlignmentWrapper defaultValue)  alignment,required TResult Function( String name,  TextStyleWrapper? defaultValue)  textStyle,}) {final _that = this;
 switch (_that) {
 case WidgetArgDefinitionString():
 return string(_that.name,_that.defaultValue);case WidgetArgDefinitionDouble():
@@ -256,7 +264,8 @@ return colorNullable(_that.name,_that.defaultValue);case WidgetArgDefinitionCros
 return crossAxisAlignment(_that.name,_that.defaultValue);case WidgetArgDefinitionWidget():
 return widget(_that.name,_that.defaultValue);case WidgetArgDefinitionWidgetList():
 return widgetList(_that.name,_that.defaultValue);case WidgetArgDefinitionAlignment():
-return alignment(_that.name,_that.defaultValue);}
+return alignment(_that.name,_that.defaultValue);case WidgetArgDefinitionTextStyle():
+return textStyle(_that.name,_that.defaultValue);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -270,7 +279,7 @@ return alignment(_that.name,_that.defaultValue);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String name,  String defaultValue)?  string,TResult? Function( String name,  double defaultValue)?  double,TResult? Function( String name,  double? defaultValue)?  doubleNullable,TResult? Function( String name,  ColorWrapper? defaultValue)?  colorNullable,TResult? Function( String name,  CrossAxisAlignment defaultValue)?  crossAxisAlignment,TResult? Function( String name,  WidgetEntity? defaultValue)?  widget,TResult? Function( String name,  List<WidgetEntity> defaultValue)?  widgetList,TResult? Function( String name,  AlignmentWrapper defaultValue)?  alignment,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String name,  String defaultValue)?  string,TResult? Function( String name,  double defaultValue)?  double,TResult? Function( String name,  double? defaultValue)?  doubleNullable,TResult? Function( String name,  ColorWrapper? defaultValue)?  colorNullable,TResult? Function( String name,  CrossAxisAlignment defaultValue)?  crossAxisAlignment,TResult? Function( String name,  WidgetEntity? defaultValue)?  widget,TResult? Function( String name,  List<WidgetEntity> defaultValue)?  widgetList,TResult? Function( String name,  AlignmentWrapper defaultValue)?  alignment,TResult? Function( String name,  TextStyleWrapper? defaultValue)?  textStyle,}) {final _that = this;
 switch (_that) {
 case WidgetArgDefinitionString() when string != null:
 return string(_that.name,_that.defaultValue);case WidgetArgDefinitionDouble() when double != null:
@@ -280,7 +289,8 @@ return colorNullable(_that.name,_that.defaultValue);case WidgetArgDefinitionCros
 return crossAxisAlignment(_that.name,_that.defaultValue);case WidgetArgDefinitionWidget() when widget != null:
 return widget(_that.name,_that.defaultValue);case WidgetArgDefinitionWidgetList() when widgetList != null:
 return widgetList(_that.name,_that.defaultValue);case WidgetArgDefinitionAlignment() when alignment != null:
-return alignment(_that.name,_that.defaultValue);case _:
+return alignment(_that.name,_that.defaultValue);case WidgetArgDefinitionTextStyle() when textStyle != null:
+return textStyle(_that.name,_that.defaultValue);case _:
   return null;
 
 }
@@ -922,6 +932,93 @@ as AlignmentWrapper,
 $AlignmentWrapperCopyWith<$Res> get defaultValue {
   
   return $AlignmentWrapperCopyWith<$Res>(_self.defaultValue, (value) {
+    return _then(_self.copyWith(defaultValue: value));
+  });
+}
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class WidgetArgDefinitionTextStyle extends WidgetArgDefinition {
+  const WidgetArgDefinitionTextStyle({required this.name, required this.defaultValue, final  String? $type}): $type = $type ?? 'textStyle',super._();
+  factory WidgetArgDefinitionTextStyle.fromJson(Map<String, dynamic> json) => _$WidgetArgDefinitionTextStyleFromJson(json);
+
+@override final  String name;
+@override final  TextStyleWrapper? defaultValue;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
+
+/// Create a copy of WidgetArgDefinition
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$WidgetArgDefinitionTextStyleCopyWith<WidgetArgDefinitionTextStyle> get copyWith => _$WidgetArgDefinitionTextStyleCopyWithImpl<WidgetArgDefinitionTextStyle>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$WidgetArgDefinitionTextStyleToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WidgetArgDefinitionTextStyle&&(identical(other.name, name) || other.name == name)&&(identical(other.defaultValue, defaultValue) || other.defaultValue == defaultValue));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,name,defaultValue);
+
+@override
+String toString() {
+  return 'WidgetArgDefinition.textStyle(name: $name, defaultValue: $defaultValue)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $WidgetArgDefinitionTextStyleCopyWith<$Res> implements $WidgetArgDefinitionCopyWith<$Res> {
+  factory $WidgetArgDefinitionTextStyleCopyWith(WidgetArgDefinitionTextStyle value, $Res Function(WidgetArgDefinitionTextStyle) _then) = _$WidgetArgDefinitionTextStyleCopyWithImpl;
+@override @useResult
+$Res call({
+ String name, TextStyleWrapper? defaultValue
+});
+
+
+$TextStyleWrapperCopyWith<$Res>? get defaultValue;
+
+}
+/// @nodoc
+class _$WidgetArgDefinitionTextStyleCopyWithImpl<$Res>
+    implements $WidgetArgDefinitionTextStyleCopyWith<$Res> {
+  _$WidgetArgDefinitionTextStyleCopyWithImpl(this._self, this._then);
+
+  final WidgetArgDefinitionTextStyle _self;
+  final $Res Function(WidgetArgDefinitionTextStyle) _then;
+
+/// Create a copy of WidgetArgDefinition
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? defaultValue = freezed,}) {
+  return _then(WidgetArgDefinitionTextStyle(
+name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,defaultValue: freezed == defaultValue ? _self.defaultValue : defaultValue // ignore: cast_nullable_to_non_nullable
+as TextStyleWrapper?,
+  ));
+}
+
+/// Create a copy of WidgetArgDefinition
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TextStyleWrapperCopyWith<$Res>? get defaultValue {
+    if (_self.defaultValue == null) {
+    return null;
+  }
+
+  return $TextStyleWrapperCopyWith<$Res>(_self.defaultValue!, (value) {
     return _then(_self.copyWith(defaultValue: value));
   });
 }

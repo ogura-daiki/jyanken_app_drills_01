@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:jyanken_app_drills/src/model/type/color/color_wrapper.dart';
+import 'package:jyanken_app_drills/src/model/type/text_style/text_style_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/text/arg.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/widget_arguments_definition.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_arg/widget_arg_definition.dart';
@@ -12,21 +12,18 @@ abstract class FixedTextArgs extends WidgetArgumentsDefinition<TextArg>
   const FixedTextArgs._();
   const factory FixedTextArgs({
     required String text,
-    @Default(18.0) double fontSize,
-    @Default(null) ColorWrapper? color,
+    @Default(null) TextStyleWrapper? style,
   }) = _FixedTextArgs;
 
   @override
   dynamic getValue(TextArg key) => switch (key) {
     .text => text,
-    .fontSize => fontSize,
-    .color => color,
+    .style => style,
   };
   @override
   FixedTextArgs setValue(TextArg key, dynamic value) => switch (key) {
     .text => copyWith(text: value),
-    .fontSize => copyWith(fontSize: value),
-    .color => copyWith(color: value),
+    .style => copyWith(style: value),
   };
   @override
   Map<WidgetArgDefinition, dynamic> toCommonArgs() => {

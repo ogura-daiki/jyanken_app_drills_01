@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:jyanken_app_drills/src/model/type/alignment/alignment_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/type/color/color_wrapper.dart';
+import 'package:jyanken_app_drills/src/model/type/text_style/text_style_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_arg/typed_arg.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_arg/widget_arg_definition.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity.dart';
@@ -15,6 +16,7 @@ extension WidgetArgDefinitionExt on WidgetArgDefinition {
     WidgetArgDefinitionWidget a => a.toTypedImpl(),
     WidgetArgDefinitionWidgetList a => a.toTypedImpl(),
     WidgetArgDefinitionAlignment a => a.toTypedImpl(),
+    WidgetArgDefinitionTextStyle a => a.toTypedImpl(),
   };
 }
 
@@ -51,4 +53,8 @@ extension WidgetArgDefinitionWidgetListImpl on WidgetArgDefinitionWidgetList {
 
 extension WidgetArgDefinitionAlignmentImpl on WidgetArgDefinitionAlignment {
   TypedArg<AlignmentWrapper> toTypedImpl() => .nonNull(defaultValue);
+}
+
+extension WidgetArgDefinitionTextStyleImpl on WidgetArgDefinitionTextStyle {
+  TypedArg<TextStyleWrapper> toTypedImpl() => .nullable(defaultValue);
 }
