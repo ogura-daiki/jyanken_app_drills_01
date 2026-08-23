@@ -26,7 +26,7 @@ class WidgetSelectorDisplay extends StatelessWidget {
     final height = textStyle.lineHeight();
 
     return SizedBox(
-      height: height * 2,
+      height: height * 1.4,
       child: ListView.separated(
         padding: padding,
         scrollDirection: .horizontal,
@@ -37,6 +37,8 @@ class WidgetSelectorDisplay extends StatelessWidget {
             _ => _buildLabel(selector[index - 1]),
           };
           return ActionChip(
+            padding: const .all(0),
+            side: .none,
             label: Text(label, style: textStyle),
             onPressed: () {
               onSelect(selector.sublist(0, index));
@@ -45,7 +47,7 @@ class WidgetSelectorDisplay extends StatelessWidget {
         },
         separatorBuilder: (context, index) => SizedBox(
           height: height,
-          child: Center(child: Icon(Icons.arrow_right, size: height)),
+          child: Center(child: Icon(Icons.keyboard_arrow_right, size: height)),
         ),
       ),
     );
