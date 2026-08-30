@@ -1,18 +1,21 @@
 import 'package:flutter/widget_previews.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/arg_input_value_widget_interface.dart';
-import 'package:jyanken_app_drills/src/component/arg_input/impl/color_arg_input/rgb_slider.dart';
-import 'package:jyanken_app_drills/src/component/arg_input/impl/color_arg_input/theme_color_picker.dart';
+import 'package:jyanken_app_drills/src/component/color_picker/color_picker.dart';
+import 'package:jyanken_app_drills/src/component/color_picker/transparent_repeat_bg.dart';
+import 'package:jyanken_app_drills/src/component/popup_card/popup_card.dart';
 import 'package:jyanken_app_drills/src/model/type/color/color_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_arg/typed_arg.dart';
 
-class ColorEditor extends HookWidget
+class ColorEditor extends StatefulHookConsumerWidget
     implements ArgInputValueWidgetInterface<ColorWrapper> {
   final bool nullable;
-  
+
   @override
   TypedArg<ColorWrapper> get type => .nullable(null);
+
   @override
   final ColorWrapper? value;
   @override
@@ -26,109 +29,72 @@ class ColorEditor extends HookWidget
   });
 
   @override
+  createState() => _ColorEditorState();
+}
+
+class _ColorEditorState extends ConsumerState<ColorEditor> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final currentColor = useState(value);
-    final currentTab = useState<int>(0);
-    return Column(
-      crossAxisAlignment: .stretch,
-      mainAxisSize: .min,
-      spacing: 8,
-      children: [
-        Text("設定中の色"),
-        Container(
-          height: 40,
-          decoration: BoxDecoration(
-            color: value?.color ?? Colors.black,
-            border: .all(
-              width: 1,
-              color: Theme.of(context).colorScheme.outlineVariant,
-            ),
-            borderRadius: .circular(8),
-          ),
-          clipBehavior: .antiAliasWithSaveLayer,
-          child: switch (value) {
-            Null() => Center(
-              child: Text("未選択", style: .new(color: Colors.white54)),
-            ),
-            ColorWrapper() => null,
-          },
-        ),
-        Text("色の変更"),
-        Row(
-          spacing: 8,
+    final menuController = useMemoized(() => MenuController());
+    return PopupCard(
+      controller: menuController,
+      defaultPopupHeight: 400.0,
+      popup: ColorPicker(
+        initialColor: widget.value,
+        onChange: (newColor) {
+          menuController.close();
+          widget.onChange(newColor);
+        },
+      ),
+      child: SizedBox(
+        height: 40,
+        child: Stack(
+          fit: .expand,
           children: [
-            Expanded(
-              child: Container(
-                height: 40,
+            Container(
+              decoration: BoxDecoration(
+                border: .all(
+                  width: 1,
+                  color: Theme.of(context).colorScheme.outlineVariant,
+                ),
+                borderRadius: .all(.circular(8)),
+              ),
+              clipBehavior: .antiAliasWithSaveLayer,
+              child: TransparentRepeatBg(tileSize: 8),
+            ),
+            Material(
+              color: Colors.transparent,
+              clipBehavior: .antiAliasWithSaveLayer,
+              borderRadius: .all(.circular(8)),
+              child: Ink(
                 decoration: BoxDecoration(
-                  color: currentColor.value?.color ?? Colors.black,
                   border: .all(
                     width: 1,
                     color: Theme.of(context).colorScheme.outlineVariant,
                   ),
-                  borderRadius: .circular(8),
+                  color: widget.value?.color ?? Colors.grey,
                 ),
-                clipBehavior: .antiAliasWithSaveLayer,
-                child: switch (value) {
-                  Null() => Center(
-                    child: Text("未選択", style: .new(color: Colors.white54)),
-                  ),
-                  ColorWrapper() => null,
-                },
+                child: InkWell(
+                  onTapUp: (details) {
+                    menuController.open();
+                  },
+                  child: switch (widget.value) {
+                    Null() => Center(
+                      child: Text("null", style: .new(color: Colors.black)),
+                    ),
+                    ColorWrapper() => null,
+                  },
+                ),
               ),
             ),
-            IconButton.filled(
-              onPressed: () {
-                onChange(currentColor.value);
-              },
-              icon: Icon(Icons.check),
-            ),
-            IconButton.filledTonal(
-              onPressed: () {
-                onChange(null);
-                currentColor.value = null;
-              },
-              icon: Icon(Icons.delete_forever),
-            ),
           ],
         ),
-        SegmentedButton<int>(
-          segments: [
-            ButtonSegment(value: 0, label: Text("カスタム")),
-            ButtonSegment(value: 1, label: Text("テーマ")),
-          ],
-          onSelectionChanged: (idx) {
-            idx = {...idx};
-            idx.remove(currentTab.value);
-            currentTab.value = idx.firstOrNull ?? currentTab.value;
-          },
-          selected: {currentTab.value},
-        ),
-        Stack(
-          children:
-              [
-                    RGBSlider(
-                      color: currentColor.value ?? .fromColor(Colors.black),
-                      onChange: (newColor) {
-                        currentColor.value = newColor;
-                      },
-                    ),
-                    SizedBox(
-                      height: 250,
-                      child: ThemeColorPicker(
-                        onSelect: (newColor) => currentColor.value = newColor,
-                      ),
-                    ),
-                  ].indexed
-                  .map(
-                    (e) => Offstage(
-                      offstage: currentTab.value != e.$1,
-                      child: e.$2,
-                    ),
-                  )
-                  .toList(),
-        ),
-      ],
+      ),
     );
   }
 }
