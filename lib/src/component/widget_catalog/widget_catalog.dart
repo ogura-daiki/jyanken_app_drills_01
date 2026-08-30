@@ -5,11 +5,17 @@ import 'package:jyanken_app_drills/src/model/widget/widget_definition/widget_typ
 
 class WidgetCatalog extends HookWidget {
   final Set<WidgetType> widgetTypes;
-  const WidgetCatalog({super.key, required this.widgetTypes});
+  final bool open;
+  final void Function(bool open) onToggleOpen;
+  const WidgetCatalog({
+    super.key,
+    required this.widgetTypes,
+    required this.open,
+    required this.onToggleOpen,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final showItems = useState(true);
     return AnimatedSize(
       curve: Curves.ease,
       duration: const Duration(milliseconds: 150),
@@ -32,10 +38,10 @@ class WidgetCatalog extends HookWidget {
                     const Expanded(child: Text("ウィジェットカタログ")),
                     IconButton(
                       onPressed: () {
-                        showItems.value = !showItems.value;
+                        onToggleOpen(!open);
                       },
                       icon: AnimatedRotation(
-                        turns: showItems.value ? 0 : 0.5,
+                        turns: open ? 0 : 0.5,
                         duration: const Duration(milliseconds: 300),
                         curve: Curves.ease,
                         child: const Icon(Icons.keyboard_arrow_down),
@@ -45,10 +51,9 @@ class WidgetCatalog extends HookWidget {
                 ),
               ),
             ),
-            Visibility(
-              visible: showItems.value,
-              child: AspectRatio(
-                aspectRatio: 1.2,
+            Expanded(
+              child: Visibility(
+                visible: open,
                 child: GridView.builder(
                   padding: const .all(4),
                   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(

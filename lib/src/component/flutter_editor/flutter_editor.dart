@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jyanken_app_drills/src/component/flutter_editor/panes/flutter_editor_attribute_editor_pane.dart';
 import 'package:jyanken_app_drills/src/component/flutter_editor/panes/flutter_editor_preview_pane.dart';
@@ -29,12 +30,32 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
   Widget treeArea() {
     return Material(
       clipBehavior: .antiAliasWithSaveLayer,
-      child: Column(
-        crossAxisAlignment: .stretch,
-        children: [
-          Expanded(child: FlutterEditorTreePane(editorId: widget.projectId)),
-          WidgetCatalog(widgetTypes: widget.allowTypes),
-        ],
+      child: HookBuilder(
+        builder: (context) {
+          final open = useState(true);
+          return ResizableAreaLayout(
+            areas: [
+              .new(
+                areaName: "tree",
+                type: .expand(1),
+                widget: FlutterEditorTreePane(editorId: widget.projectId),
+              ),
+              .new(
+                areaName: open.value ? "catalog" : "close",
+                type: open.value ? .ratio(0.5) : .fixed(40),
+                widget: WidgetCatalog(
+                  open: open.value,
+                  widgetTypes: widget.allowTypes,
+                  onToggleOpen: (newOpen) {
+                    open.value = newOpen;
+                  },
+                ),
+              ),
+            ],
+            mainAxis: .vertical,
+            thumbBuilder: (i) => verticalThumb(),
+          );
+        },
       ),
     );
   }
@@ -64,6 +85,56 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
     );
   }
 
+  Widget horizontalThumb() {
+    return Center(
+      child: Container(
+        width: 8,
+        height: 48,
+        decoration: BoxDecoration(
+          color: Colors.grey.withAlpha(128),
+          border: .all(color: Colors.black38, width: 0.5),
+          borderRadius: .circular(16),
+        ),
+        child: Center(
+          child: Text(
+            ":",
+            style: TextStyle(color: Colors.black38, fontSize: 18),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget verticalThumb() {
+    return Center(
+      child: Container(
+        width: 48,
+        height: 8,
+        decoration: BoxDecoration(
+          color: Colors.grey.withAlpha(128),
+          border: .all(color: Colors.black38, width: 0.5),
+          borderRadius: .circular(16),
+        ),
+        child: Center(
+          child: OverflowBox(
+            minHeight: 18,
+            maxHeight: 18,
+            child: Text(
+              ". .",
+              style: TextStyle(
+                color: Colors.black38,
+                fontSize: 14,
+                fontWeight: .w100,
+                fontFamily: "monospace",
+                height: 0.75,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget horizontalLayout() {
     return ResizableAreaLayout(
       mainAxis: .horizontal,
@@ -76,23 +147,7 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
         ),
         .new(areaName: "preview", type: .expand(1), widget: previewArea()),
       ],
-      thumbBuilder: (i) => Center(
-        child: Container(
-          width: 8,
-          height: 48,
-          decoration: BoxDecoration(
-            color: Colors.grey.withAlpha(128),
-            border: .all(color: Colors.black38, width: 0.5),
-            borderRadius: .circular(16),
-          ),
-          child: Center(
-            child: Text(
-              ":",
-              style: TextStyle(color: Colors.black38, fontSize: 18),
-            ),
-          ),
-        ),
-      ),
+      thumbBuilder: (i) => horizontalThumb(),
     );
   }
 
@@ -116,50 +171,11 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
                 ),
               ),
             ],
-            thumbBuilder: (_) => Center(
-              child: Container(
-                width: 8,
-                height: 48,
-                decoration: BoxDecoration(
-                  color: Colors.grey.withAlpha(128),
-                  border: .all(color: Colors.black38, width: 0.5),
-                  borderRadius: .circular(16),
-                ),
-                child: Center(
-                  child: Text(":", style: TextStyle(color: Colors.black38)),
-                ),
-              ),
-            ),
+            thumbBuilder: (_) => horizontalThumb(),
           ),
         ),
       ],
-      thumbBuilder: (_) => Center(
-        child: Container(
-          width: 48,
-          height: 8,
-          decoration: BoxDecoration(
-            color: Colors.grey.withAlpha(128),
-            border: .all(color: Colors.black38, width: 0.5),
-            borderRadius: .circular(16),
-          ),
-          child: Center(
-            child: OverflowBox(
-              minHeight: 18,
-              maxHeight: 18,
-              child: Text(
-                ". .",
-                style: TextStyle(
-                  color: Colors.black38,
-                  fontSize: 14,
-                  fontWeight: .w100,
-                  fontFamily: "monospace",
-                  height: 0.75,
-                ),
-              ),
-            ),
-          )
-        ),
-      ),
+      thumbBuilder: (_) => verticalThumb(),
     );
   }
 }
