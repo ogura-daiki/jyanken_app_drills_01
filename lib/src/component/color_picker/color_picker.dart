@@ -20,6 +20,7 @@ class ColorPicker extends HookWidget {
   Widget build(BuildContext context) {
     final currentColor = useState<ColorWrapper?>(initialColor);
     final tabController = useTabController(initialLength: 2);
+    final selection = useState(0);
     return Material(
       child: Column(
         crossAxisAlignment: .stretch,
@@ -27,6 +28,9 @@ class ColorPicker extends HookWidget {
           TabBar(
             controller: tabController,
             isScrollable: true,
+            onTap: (value) {
+              selection.value = value;
+            },
             tabs: [
               Tab(text: "自由選択"),
               Tab(text: "テーマカラー"),
@@ -73,9 +77,9 @@ class ColorPicker extends HookWidget {
           ),
           const SizedBox(height: 8),
           Expanded(
-            child: TabBarView(
-              controller: tabController,
-              children: [
+            child: AnimatedSwitcher(
+              duration: Duration(milliseconds: 300),
+              child: [
                 HsvColorPicker(
                   value: currentColor.value,
                   onChange: (newColor) {
@@ -87,7 +91,7 @@ class ColorPicker extends HookWidget {
                     currentColor.value = newColor;
                   },
                 ),
-              ],
+              ][selection.value],
             ),
           ),
           Padding(
