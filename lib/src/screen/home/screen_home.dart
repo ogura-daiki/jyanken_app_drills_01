@@ -9,9 +9,9 @@ class ScreenHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: AspectRatio(
-          aspectRatio: 16 / 9,
+      body: Padding(
+        padding: const .all(16),
+        child: Center(
           child: Column(
             crossAxisAlignment: .center,
             mainAxisSize: .max,
