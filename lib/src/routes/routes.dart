@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jyanken_app_drills/src/screen/editor/screen_editor.dart';
 import 'package:jyanken_app_drills/src/screen/home/screen_home.dart';
-import 'package:jyanken_app_drills/src/screen/questions/screen_questions.dart';
+import 'package:jyanken_app_drills/src/screen/list_question/screen_questions.dart';
 part 'routes.g.dart';
 
 @TypedGoRoute<HomeScreenRoute>(
@@ -35,6 +35,6 @@ class QuestionListScreenRoute extends GoRouteData
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return ScreenQuestions();
+    return ScreenQuestionList();
   }
 }

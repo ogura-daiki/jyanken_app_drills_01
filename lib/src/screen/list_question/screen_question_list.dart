@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jyanken_app_drills/src/model/question/questions.dart';
 
-class ScreenQuestions extends StatelessWidget {
-  const ScreenQuestions({super.key});
+class ScreenQuestionList extends StatelessWidget {
+  const ScreenQuestionList({super.key});
 
   @override
   Widget build(BuildContext context) {
