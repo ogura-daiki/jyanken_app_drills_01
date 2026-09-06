@@ -32,13 +32,14 @@ class ColorPicker extends HookWidget {
               Tab(text: "テーマカラー"),
             ],
           ),
-          AspectRatio(
-            aspectRatio: 3,
+          SizedBox(
+            height: kToolbarHeight,
             child: Stack(
               fit: .passthrough,
               children: [
                 Row(
                   mainAxisSize: .max,
+                  mainAxisAlignment: .center,
                   crossAxisAlignment: .stretch,
                   children: [
                     AspectRatio(

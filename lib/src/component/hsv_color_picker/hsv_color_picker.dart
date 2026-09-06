@@ -7,7 +7,7 @@ import 'package:jyanken_app_drills/src/component/simple_slider/simple_slider.dar
 import 'package:jyanken_app_drills/src/core/hsv_ext.dart';
 import 'package:jyanken_app_drills/src/model/type/color/color_wrapper.dart';
 
-class HsvColorPicker extends StatelessWidget {
+class HsvColorPicker extends HookWidget {
   final ColorWrapper? value;
   final void Function(ColorWrapper newColor) onChange;
 
@@ -22,25 +22,27 @@ class HsvColorPicker extends StatelessWidget {
     final value =
         this.value ??
         ColorWrapper.fromColor(HSVColor.fromAHSV(1, 0, 1, 1).toColor());
+    final hue = useState(value.hsv.hue);
 
     return Column(
       crossAxisAlignment: .stretch,
       spacing: 8,
       children: [
-        AspectRatio(
-          aspectRatio: 1.5,
+        Expanded(
           child: SvPicker(
+            hue: hue.value,
             value: value,
             onChange: (newColor) {
-              onChange(newColor);
+              onChange(.fromColor(newColor.hsv.withHue(hue.value).toColor()));
             },
           ),
         ),
         SimpleSlider(
-          value: value.hsv.hue,
+          value: hue.value,
           min: 0,
           max: 360,
           onChange: (newVal) {
+            hue.value = newVal;
             onChange(
               ColorWrapper.fromColor(value.hsv.withHue(newVal).toColor()),
             );
@@ -61,6 +63,7 @@ class HsvColorPicker extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: .all(.circular(2)),
                 color: value.hsv
+                    .withHue(hue.value)
                     .withSaturation(1)
                     .withValue(1)
                     .withAlpha(1)
@@ -120,29 +123,23 @@ class HsvColorPicker extends StatelessWidget {
 @Preview(name: "previewHSVColorPicker")
 Widget previewHSVColorPicker() {
   return MaterialApp(
-    home: SizedBox(
-      width: 200,
-      child: HookBuilder(
-        builder: (context) {
-          final color = useState<ColorWrapper?>(null);
-          return Column(
-            crossAxisAlignment: .stretch,
-            mainAxisSize: .min,
-            children: [
-              Container(
-                color: color.value?.color,
-                child: SizedBox(height: 100),
-              ),
-              HsvColorPicker(
-                value: color.value,
-                onChange: (newColor) {
-                  color.value = newColor;
-                },
-              ),
-            ],
-          );
-        },
-      ),
+    home: HookBuilder(
+      builder: (context) {
+        final color = useState<ColorWrapper?>(null);
+        return Column(
+          crossAxisAlignment: .stretch,
+          mainAxisSize: .min,
+          children: [
+            Container(color: color.value?.color, child: SizedBox(height: 100)),
+            HsvColorPicker(
+              value: color.value,
+              onChange: (newColor) {
+                color.value = newColor;
+              },
+            ),
+          ],
+        );
+      },
     ),
   );
 }
