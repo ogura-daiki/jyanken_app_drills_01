@@ -6,12 +6,19 @@ part of 'routes.dart';
 // GoRouterGenerator
 // **************************************************************************
 
-List<RouteBase> get $appRoutes => [$homeScreenRoute, $editorScreenRoute];
+List<RouteBase> get $appRoutes => [$homeScreenRoute];
 
 RouteBase get $homeScreenRoute => GoRouteData.$route(
   path: '/',
   hasOverriddenOnExit: false,
   factory: $HomeScreenRoute._fromState,
+  routes: [
+    GoRouteData.$route(
+      path: '/free-play',
+      hasOverriddenOnExit: false,
+      factory: $FreePlayScreenRoute._fromState,
+    ),
+  ],
 );
 
 mixin $HomeScreenRoute on GoRouteData {
@@ -35,21 +42,12 @@ mixin $HomeScreenRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $editorScreenRoute => GoRouteData.$route(
-  path: '/editor/:projectId',
-  hasOverriddenOnExit: false,
-  factory: $EditorScreenRoute._fromState,
-);
-
-mixin $EditorScreenRoute on GoRouteData {
-  static EditorScreenRoute _fromState(GoRouterState state) =>
-      EditorScreenRoute(projectId: state.pathParameters['projectId']!);
-
-  EditorScreenRoute get _self => this as EditorScreenRoute;
+mixin $FreePlayScreenRoute on GoRouteData {
+  static FreePlayScreenRoute _fromState(GoRouterState state) =>
+      const FreePlayScreenRoute();
 
   @override
-  String get location =>
-      GoRouteData.$location('/editor/${Uri.encodeComponent(_self.projectId)}');
+  String get location => GoRouteData.$location('/free-play');
 
   @override
   void go(BuildContext context) => context.go(location);

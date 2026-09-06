@@ -24,7 +24,7 @@ class ScreenHome extends StatelessWidget {
               FilledButton(onPressed: () {}, child: Text("問題を解く")),
               FilledButton(
                 onPressed: () {
-                  EditorScreenRoute(projectId: "FREE_PLAY").push(context);
+                  FreePlayScreenRoute().go(context);
                 },
                 child: Text("フリープレイ"),
               ),
