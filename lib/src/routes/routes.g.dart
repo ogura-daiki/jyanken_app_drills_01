@@ -18,6 +18,11 @@ RouteBase get $homeScreenRoute => GoRouteData.$route(
       hasOverriddenOnExit: false,
       factory: $FreePlayScreenRoute._fromState,
     ),
+    GoRouteData.$route(
+      path: '/question',
+      hasOverriddenOnExit: false,
+      factory: $QuestionListScreenRoute._fromState,
+    ),
   ],
 );
 
@@ -48,6 +53,27 @@ mixin $FreePlayScreenRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/free-play');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $QuestionListScreenRoute on GoRouteData {
+  static QuestionListScreenRoute _fromState(GoRouterState state) =>
+      const QuestionListScreenRoute();
+
+  @override
+  String get location => GoRouteData.$location('/question');
 
   @override
   void go(BuildContext context) => context.go(location);

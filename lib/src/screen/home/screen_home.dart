@@ -21,7 +21,12 @@ class ScreenHome extends StatelessWidget {
                 "じゃんけんアプリ穴埋め問題集",
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
-              FilledButton(onPressed: () {}, child: Text("問題を解く")),
+              FilledButton(
+                onPressed: () {
+                  QuestionListScreenRoute().go(context);
+                },
+                child: Text("問題を解く"),
+              ),
               FilledButton(
                 onPressed: () {
                   FreePlayScreenRoute().go(context);
