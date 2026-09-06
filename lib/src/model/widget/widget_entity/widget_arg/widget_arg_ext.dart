@@ -13,6 +13,8 @@ extension WidgetArgDefinitionExt on WidgetArgDefinition {
     WidgetArgDefinitionDoubleNullable a => a.toTypedImpl(),
     WidgetArgDefinitionColorNullable a => a.toTypedImpl(),
     WidgetArgDefinitionCrossAxisAlignment a => a.toTypedImpl(),
+    WidgetArgDefinitionMainAxisAlignment a => a.toTypedImpl(),
+    WidgetArgDefinitionMainAxisSize a => a.toTypedImpl(),
     WidgetArgDefinitionWidget a => a.toTypedImpl(),
     WidgetArgDefinitionWidgetList a => a.toTypedImpl(),
     WidgetArgDefinitionAlignment a => a.toTypedImpl(),
@@ -41,6 +43,16 @@ extension WidgetArgDefinitionColorNullableImpl
 extension WidgetArgDefinitionCrossAxisAlignmentImpl
     on WidgetArgDefinitionCrossAxisAlignment {
   TypedArg<CrossAxisAlignment> toTypedImpl() => .nonNull(defaultValue);
+}
+
+extension WidgetArgDefinitionMainAxisAlignmentImpl
+    on WidgetArgDefinitionMainAxisAlignment {
+  TypedArg<MainAxisAlignment> toTypedImpl() => .nonNull(defaultValue);
+}
+
+extension WidgetArgDefinitionMainAxisSizeImpl
+    on WidgetArgDefinitionMainAxisSize {
+  TypedArg<MainAxisSize> toTypedImpl() => .nonNull(defaultValue);
 }
 
 extension WidgetArgDefinitionWidgetImpl on WidgetArgDefinitionWidget {

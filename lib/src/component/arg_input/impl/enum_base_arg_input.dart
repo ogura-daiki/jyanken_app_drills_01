@@ -25,7 +25,7 @@ class EnumBaseArgInput<T extends Enum> extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return DropdownMenuFormField<T?>(
-      initialSelection: type.defaultValue,
+      initialSelection: value ?? type.defaultValue,
       onSelected: (value) {
         onChange(value);
       },

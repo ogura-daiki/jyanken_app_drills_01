@@ -62,6 +62,18 @@ class ArgInput extends StatelessWidget {
         type: a.toTypedImpl(),
         items: CrossAxisAlignment.values,
       ),
+      WidgetArgDefinitionMainAxisAlignment a => EnumBaseArgInput(
+        onChange: onChange,
+        value: value,
+        type: a.toTypedImpl(),
+        items: MainAxisAlignment.values,
+      ),
+      WidgetArgDefinitionMainAxisSize a => EnumBaseArgInput(
+        onChange: onChange,
+        value: value,
+        type: a.toTypedImpl(),
+        items: MainAxisSize.values,
+      ),
       WidgetArgDefinitionWidget() ||
       WidgetArgDefinitionWidgetList() => Text("ツリーから編集"),
       WidgetArgDefinitionAlignment a => AlignmentArgInput(

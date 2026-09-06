@@ -21,6 +21,14 @@ mixin WidgetArgKey<T> on Enum {
       name: name,
       defaultValue: v.value,
     ),
+    NonnullArg<MainAxisAlignment> v => .mainAxisAlignment(
+      name: name,
+      defaultValue: v.value,
+    ),
+    NonnullArg<MainAxisSize> v => .mainAxisSize(
+      name: name,
+      defaultValue: v.value,
+    ),
     NullableArg<WidgetEntity> v => .widget(name: name, defaultValue: v.value),
     NonnullArg<List<WidgetEntity>> v => .widgetList(
       name: name,
@@ -34,6 +42,8 @@ mixin WidgetArgKey<T> on Enum {
       name: name,
       defaultValue: v.value,
     ),
-    _ => throw UnimplementedError("未対応の型の引数です: ${defaultValue.runtimeType}"),
+    _ => throw UnimplementedError(
+      "WidgetArgKey 未対応の型の引数です: ${defaultValue.runtimeType}",
+    ),
   };
 }

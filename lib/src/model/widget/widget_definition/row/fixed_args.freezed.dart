@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$FixedRowArgs {
 
- CrossAxisAlignment get crossAxisAlignment; List<WidgetEntity> get children;
+ MainAxisAlignment get mainAxisAlignment; MainAxisSize get mainAxisSize; CrossAxisAlignment get crossAxisAlignment; double get spacing; List<WidgetEntity> get children;
 /// Create a copy of FixedRowArgs
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $FixedRowArgsCopyWith<FixedRowArgs> get copyWith => _$FixedRowArgsCopyWithImpl<F
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FixedRowArgs&&(identical(other.crossAxisAlignment, crossAxisAlignment) || other.crossAxisAlignment == crossAxisAlignment)&&const DeepCollectionEquality().equals(other.children, children));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FixedRowArgs&&(identical(other.mainAxisAlignment, mainAxisAlignment) || other.mainAxisAlignment == mainAxisAlignment)&&(identical(other.mainAxisSize, mainAxisSize) || other.mainAxisSize == mainAxisSize)&&(identical(other.crossAxisAlignment, crossAxisAlignment) || other.crossAxisAlignment == crossAxisAlignment)&&(identical(other.spacing, spacing) || other.spacing == spacing)&&const DeepCollectionEquality().equals(other.children, children));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,crossAxisAlignment,const DeepCollectionEquality().hash(children));
+int get hashCode => Object.hash(runtimeType,mainAxisAlignment,mainAxisSize,crossAxisAlignment,spacing,const DeepCollectionEquality().hash(children));
 
 @override
 String toString() {
-  return 'FixedRowArgs(crossAxisAlignment: $crossAxisAlignment, children: $children)';
+  return 'FixedRowArgs(mainAxisAlignment: $mainAxisAlignment, mainAxisSize: $mainAxisSize, crossAxisAlignment: $crossAxisAlignment, spacing: $spacing, children: $children)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $FixedRowArgsCopyWith<$Res>  {
   factory $FixedRowArgsCopyWith(FixedRowArgs value, $Res Function(FixedRowArgs) _then) = _$FixedRowArgsCopyWithImpl;
 @useResult
 $Res call({
- CrossAxisAlignment crossAxisAlignment, List<WidgetEntity> children
+ MainAxisAlignment mainAxisAlignment, MainAxisSize mainAxisSize, CrossAxisAlignment crossAxisAlignment, double spacing, List<WidgetEntity> children
 });
 
 
@@ -65,10 +65,13 @@ class _$FixedRowArgsCopyWithImpl<$Res>
 
 /// Create a copy of FixedRowArgs
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? crossAxisAlignment = null,Object? children = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? mainAxisAlignment = null,Object? mainAxisSize = null,Object? crossAxisAlignment = null,Object? spacing = null,Object? children = null,}) {
   return _then(_self.copyWith(
-crossAxisAlignment: null == crossAxisAlignment ? _self.crossAxisAlignment : crossAxisAlignment // ignore: cast_nullable_to_non_nullable
-as CrossAxisAlignment,children: null == children ? _self.children : children // ignore: cast_nullable_to_non_nullable
+mainAxisAlignment: null == mainAxisAlignment ? _self.mainAxisAlignment : mainAxisAlignment // ignore: cast_nullable_to_non_nullable
+as MainAxisAlignment,mainAxisSize: null == mainAxisSize ? _self.mainAxisSize : mainAxisSize // ignore: cast_nullable_to_non_nullable
+as MainAxisSize,crossAxisAlignment: null == crossAxisAlignment ? _self.crossAxisAlignment : crossAxisAlignment // ignore: cast_nullable_to_non_nullable
+as CrossAxisAlignment,spacing: null == spacing ? _self.spacing : spacing // ignore: cast_nullable_to_non_nullable
+as double,children: null == children ? _self.children : children // ignore: cast_nullable_to_non_nullable
 as List<WidgetEntity>,
   ));
 }
@@ -154,10 +157,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( CrossAxisAlignment crossAxisAlignment,  List<WidgetEntity> children)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( MainAxisAlignment mainAxisAlignment,  MainAxisSize mainAxisSize,  CrossAxisAlignment crossAxisAlignment,  double spacing,  List<WidgetEntity> children)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FixedRowArgs() when $default != null:
-return $default(_that.crossAxisAlignment,_that.children);case _:
+return $default(_that.mainAxisAlignment,_that.mainAxisSize,_that.crossAxisAlignment,_that.spacing,_that.children);case _:
   return orElse();
 
 }
@@ -175,10 +178,10 @@ return $default(_that.crossAxisAlignment,_that.children);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( CrossAxisAlignment crossAxisAlignment,  List<WidgetEntity> children)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( MainAxisAlignment mainAxisAlignment,  MainAxisSize mainAxisSize,  CrossAxisAlignment crossAxisAlignment,  double spacing,  List<WidgetEntity> children)  $default,) {final _that = this;
 switch (_that) {
 case _FixedRowArgs():
-return $default(_that.crossAxisAlignment,_that.children);case _:
+return $default(_that.mainAxisAlignment,_that.mainAxisSize,_that.crossAxisAlignment,_that.spacing,_that.children);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -195,10 +198,10 @@ return $default(_that.crossAxisAlignment,_that.children);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( CrossAxisAlignment crossAxisAlignment,  List<WidgetEntity> children)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( MainAxisAlignment mainAxisAlignment,  MainAxisSize mainAxisSize,  CrossAxisAlignment crossAxisAlignment,  double spacing,  List<WidgetEntity> children)?  $default,) {final _that = this;
 switch (_that) {
 case _FixedRowArgs() when $default != null:
-return $default(_that.crossAxisAlignment,_that.children);case _:
+return $default(_that.mainAxisAlignment,_that.mainAxisSize,_that.crossAxisAlignment,_that.spacing,_that.children);case _:
   return null;
 
 }
@@ -210,10 +213,13 @@ return $default(_that.crossAxisAlignment,_that.children);case _:
 @JsonSerializable()
 
 class _FixedRowArgs extends FixedRowArgs {
-  const _FixedRowArgs({this.crossAxisAlignment = CrossAxisAlignment.start, final  List<WidgetEntity> children = const []}): _children = children,super._();
+  const _FixedRowArgs({this.mainAxisAlignment = MainAxisAlignment.start, this.mainAxisSize = MainAxisSize.min, this.crossAxisAlignment = CrossAxisAlignment.start, this.spacing = 0.0, final  List<WidgetEntity> children = const []}): _children = children,super._();
   factory _FixedRowArgs.fromJson(Map<String, dynamic> json) => _$FixedRowArgsFromJson(json);
 
+@override@JsonKey() final  MainAxisAlignment mainAxisAlignment;
+@override@JsonKey() final  MainAxisSize mainAxisSize;
 @override@JsonKey() final  CrossAxisAlignment crossAxisAlignment;
+@override@JsonKey() final  double spacing;
  final  List<WidgetEntity> _children;
 @override@JsonKey() List<WidgetEntity> get children {
   if (_children is EqualUnmodifiableListView) return _children;
@@ -235,16 +241,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FixedRowArgs&&(identical(other.crossAxisAlignment, crossAxisAlignment) || other.crossAxisAlignment == crossAxisAlignment)&&const DeepCollectionEquality().equals(other._children, _children));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FixedRowArgs&&(identical(other.mainAxisAlignment, mainAxisAlignment) || other.mainAxisAlignment == mainAxisAlignment)&&(identical(other.mainAxisSize, mainAxisSize) || other.mainAxisSize == mainAxisSize)&&(identical(other.crossAxisAlignment, crossAxisAlignment) || other.crossAxisAlignment == crossAxisAlignment)&&(identical(other.spacing, spacing) || other.spacing == spacing)&&const DeepCollectionEquality().equals(other._children, _children));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,crossAxisAlignment,const DeepCollectionEquality().hash(_children));
+int get hashCode => Object.hash(runtimeType,mainAxisAlignment,mainAxisSize,crossAxisAlignment,spacing,const DeepCollectionEquality().hash(_children));
 
 @override
 String toString() {
-  return 'FixedRowArgs(crossAxisAlignment: $crossAxisAlignment, children: $children)';
+  return 'FixedRowArgs(mainAxisAlignment: $mainAxisAlignment, mainAxisSize: $mainAxisSize, crossAxisAlignment: $crossAxisAlignment, spacing: $spacing, children: $children)';
 }
 
 
@@ -255,7 +261,7 @@ abstract mixin class _$FixedRowArgsCopyWith<$Res> implements $FixedRowArgsCopyWi
   factory _$FixedRowArgsCopyWith(_FixedRowArgs value, $Res Function(_FixedRowArgs) _then) = __$FixedRowArgsCopyWithImpl;
 @override @useResult
 $Res call({
- CrossAxisAlignment crossAxisAlignment, List<WidgetEntity> children
+ MainAxisAlignment mainAxisAlignment, MainAxisSize mainAxisSize, CrossAxisAlignment crossAxisAlignment, double spacing, List<WidgetEntity> children
 });
 
 
@@ -272,10 +278,13 @@ class __$FixedRowArgsCopyWithImpl<$Res>
 
 /// Create a copy of FixedRowArgs
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? crossAxisAlignment = null,Object? children = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? mainAxisAlignment = null,Object? mainAxisSize = null,Object? crossAxisAlignment = null,Object? spacing = null,Object? children = null,}) {
   return _then(_FixedRowArgs(
-crossAxisAlignment: null == crossAxisAlignment ? _self.crossAxisAlignment : crossAxisAlignment // ignore: cast_nullable_to_non_nullable
-as CrossAxisAlignment,children: null == children ? _self._children : children // ignore: cast_nullable_to_non_nullable
+mainAxisAlignment: null == mainAxisAlignment ? _self.mainAxisAlignment : mainAxisAlignment // ignore: cast_nullable_to_non_nullable
+as MainAxisAlignment,mainAxisSize: null == mainAxisSize ? _self.mainAxisSize : mainAxisSize // ignore: cast_nullable_to_non_nullable
+as MainAxisSize,crossAxisAlignment: null == crossAxisAlignment ? _self.crossAxisAlignment : crossAxisAlignment // ignore: cast_nullable_to_non_nullable
+as CrossAxisAlignment,spacing: null == spacing ? _self.spacing : spacing // ignore: cast_nullable_to_non_nullable
+as double,children: null == children ? _self._children : children // ignore: cast_nullable_to_non_nullable
 as List<WidgetEntity>,
   ));
 }

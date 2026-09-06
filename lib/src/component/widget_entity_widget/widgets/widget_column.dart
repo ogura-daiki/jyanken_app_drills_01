@@ -10,6 +10,9 @@ class WidgetColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      spacing: entity.args.spacing,
+      mainAxisAlignment: entity.args.mainAxisAlignment,
+      mainAxisSize: entity.args.mainAxisSize,
       crossAxisAlignment: entity.args.crossAxisAlignment,
       children: entity.args.children
           .map((we) => WidgetEntityWidget(entity: we))

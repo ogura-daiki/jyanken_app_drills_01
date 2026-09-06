@@ -4,7 +4,10 @@ import 'package:jyanken_app_drills/src/model/widget/widget_definition/widget_arg
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity.dart';
 
 enum ColumnArg<T> with WidgetArgKey {
+  mainAxisSize<MainAxisSize>(.nonNull(.min)),
+  mainAxisAlignment<MainAxisAlignment>(.nonNull(.start)),
   crossAxisAlignment<CrossAxisAlignment>(.nonNull(.start)),
+  spacing<double>(.nonNull(0)),
   children<List<WidgetEntity>>(.nonNull([]));
 
   @override

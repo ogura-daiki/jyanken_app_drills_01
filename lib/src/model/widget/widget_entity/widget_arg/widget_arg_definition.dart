@@ -118,6 +118,14 @@ sealed class WidgetArgDefinition with _$WidgetArgDefinition {
     required String name,
     required CrossAxisAlignment defaultValue,
   }) = WidgetArgDefinitionCrossAxisAlignment;
+  const factory WidgetArgDefinition.mainAxisAlignment({
+    required String name,
+    required MainAxisAlignment defaultValue,
+  }) = WidgetArgDefinitionMainAxisAlignment;
+  const factory WidgetArgDefinition.mainAxisSize({
+    required String name,
+    required MainAxisSize defaultValue,
+  }) = WidgetArgDefinitionMainAxisSize;
   @Implements<CanHaveChildArg>()
   const factory WidgetArgDefinition.widget({
     required String name,

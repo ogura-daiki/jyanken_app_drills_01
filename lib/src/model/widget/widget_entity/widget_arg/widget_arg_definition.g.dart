@@ -99,6 +99,55 @@ const _$CrossAxisAlignmentEnumMap = {
   CrossAxisAlignment.baseline: 'baseline',
 };
 
+WidgetArgDefinitionMainAxisAlignment
+_$WidgetArgDefinitionMainAxisAlignmentFromJson(Map<String, dynamic> json) =>
+    WidgetArgDefinitionMainAxisAlignment(
+      name: json['name'] as String,
+      defaultValue: $enumDecode(
+        _$MainAxisAlignmentEnumMap,
+        json['defaultValue'],
+      ),
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$WidgetArgDefinitionMainAxisAlignmentToJson(
+  WidgetArgDefinitionMainAxisAlignment instance,
+) => <String, dynamic>{
+  'name': instance.name,
+  'defaultValue': _$MainAxisAlignmentEnumMap[instance.defaultValue]!,
+  'runtimeType': instance.$type,
+};
+
+const _$MainAxisAlignmentEnumMap = {
+  MainAxisAlignment.start: 'start',
+  MainAxisAlignment.end: 'end',
+  MainAxisAlignment.center: 'center',
+  MainAxisAlignment.spaceBetween: 'spaceBetween',
+  MainAxisAlignment.spaceAround: 'spaceAround',
+  MainAxisAlignment.spaceEvenly: 'spaceEvenly',
+};
+
+WidgetArgDefinitionMainAxisSize _$WidgetArgDefinitionMainAxisSizeFromJson(
+  Map<String, dynamic> json,
+) => WidgetArgDefinitionMainAxisSize(
+  name: json['name'] as String,
+  defaultValue: $enumDecode(_$MainAxisSizeEnumMap, json['defaultValue']),
+  $type: json['runtimeType'] as String?,
+);
+
+Map<String, dynamic> _$WidgetArgDefinitionMainAxisSizeToJson(
+  WidgetArgDefinitionMainAxisSize instance,
+) => <String, dynamic>{
+  'name': instance.name,
+  'defaultValue': _$MainAxisSizeEnumMap[instance.defaultValue]!,
+  'runtimeType': instance.$type,
+};
+
+const _$MainAxisSizeEnumMap = {
+  MainAxisSize.min: 'min',
+  MainAxisSize.max: 'max',
+};
+
 WidgetArgDefinitionWidget _$WidgetArgDefinitionWidgetFromJson(
   Map<String, dynamic> json,
 ) => WidgetArgDefinitionWidget(
