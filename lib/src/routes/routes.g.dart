@@ -23,6 +23,11 @@ RouteBase get $homeScreenRoute => GoRouteData.$route(
       hasOverriddenOnExit: false,
       factory: $QuestionListScreenRoute._fromState,
     ),
+    GoRouteData.$route(
+      path: '/question/:questionId',
+      hasOverriddenOnExit: false,
+      factory: $QuestionScreenRoute._fromState,
+    ),
   ],
 );
 
@@ -74,6 +79,31 @@ mixin $QuestionListScreenRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/question');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $QuestionScreenRoute on GoRouteData {
+  static QuestionScreenRoute _fromState(GoRouterState state) =>
+      QuestionScreenRoute(questionId: state.pathParameters['questionId']!);
+
+  QuestionScreenRoute get _self => this as QuestionScreenRoute;
+
+  @override
+  String get location => GoRouteData.$location(
+    '/question/${Uri.encodeComponent(_self.questionId)}',
+  );
 
   @override
   void go(BuildContext context) => context.go(location);

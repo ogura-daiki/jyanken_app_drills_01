@@ -1,3 +1,4 @@
+import 'package:jyanken_app_drills/src/core/result.dart';
 import 'package:jyanken_app_drills/src/core/widget_entity.dart';
 import 'package:jyanken_app_drills/src/model/question/question.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity.dart';
@@ -29,4 +30,10 @@ final class Questions {
       ],
     ),
   ]);
+
+  static Result<Question> findById(String projectId) {
+    final index = values.indexWhere((e) => e.projectId == projectId);
+    if (index < 0) return .failure(Exception());
+    return .success(values[index]);
+  }
 }

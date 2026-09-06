@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jyanken_app_drills/src/model/question/questions.dart';
+import 'package:jyanken_app_drills/src/routes/routes.dart';
 
 class ScreenQuestionList extends StatelessWidget {
   const ScreenQuestionList({super.key});
@@ -32,7 +33,7 @@ class ScreenQuestionList extends StatelessWidget {
             trailing: Icon(Icons.keyboard_arrow_right),
             title: Text("$index. ${question.name}"),
             onTap: () {
-              // TODO: 問題画面を開く
+              QuestionScreenRoute(questionId: question.projectId).go(context);
             },
           );
         },
