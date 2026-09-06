@@ -20,7 +20,7 @@ final class FlutterEditorViewmodelProvider
   }) : super(
          retry: null,
          name: r'flutterEditorViewmodelProvider',
-         isAutoDispose: true,
+         isAutoDispose: false,
          dependencies: null,
          $allTransitiveDependencies: null,
        );
@@ -60,7 +60,7 @@ final class FlutterEditorViewmodelProvider
 }
 
 String _$flutterEditorViewmodelHash() =>
-    r'78067e5695d10bb2b93a00a00d492f2c74970105';
+    r'b8d2666d6c98327934055b50537d57c5d1a2be9a';
 
 final class FlutterEditorViewmodelFamily extends $Family
     with
@@ -77,7 +77,7 @@ final class FlutterEditorViewmodelFamily extends $Family
         name: r'flutterEditorViewmodelProvider',
         dependencies: null,
         $allTransitiveDependencies: null,
-        isAutoDispose: true,
+        isAutoDispose: false,
       );
 
   FlutterEditorViewmodelProvider call(String id) =>

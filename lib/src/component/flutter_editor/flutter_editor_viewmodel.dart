@@ -11,7 +11,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'flutter_editor_viewmodel.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class FlutterEditorViewmodel extends _$FlutterEditorViewmodel {
   ParseTreeNodeSelectorUsecase get _getWidget =>
       GetIt.I.get<ParseTreeNodeSelectorUsecase>();
