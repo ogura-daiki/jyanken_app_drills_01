@@ -4,6 +4,7 @@ import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/wi
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_column.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_container.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_root.dart';
+import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_row.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_text.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity.dart';
 
@@ -26,6 +27,7 @@ class WidgetEntityWidget extends StatelessWidget {
         WidgetEntityContainer e => WidgetContainer(entity: e),
         WidgetEntityText e => WidgetText(entity: e),
         WidgetEntityColumn e => WidgetColumn(entity: e),
+        WidgetEntityRow e => WidgetRow(entity: e),
         WidgetEntityCenter e => WidgetCenter(entity: e),
         WidgetEntityAlign e => WidgetAlign(entity: e),
       },

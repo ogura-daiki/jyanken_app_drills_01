@@ -20,6 +20,7 @@ class WidgetTypeIcon extends StatelessWidget {
           quarterTurns: 1,
           child: Icon(Icons.view_column),
         ),
+        .row => Icon(Icons.view_column),
         .center => const Icon(Icons.center_focus_strong),
         .align => const Icon(Icons.center_focus_weak),
       },

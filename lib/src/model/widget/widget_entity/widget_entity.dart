@@ -4,6 +4,7 @@ import 'package:jyanken_app_drills/src/model/widget/widget_definition/center/fix
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/column/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/container/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/root/fixed_args.dart';
+import 'package:jyanken_app_drills/src/model/widget/widget_definition/row/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/text/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity_id.dart';
@@ -30,6 +31,10 @@ sealed class WidgetEntity with _$WidgetEntity {
     required WidgetEntityId id,
     required FixedColumnArgs args,
   }) = WidgetEntityColumn;
+  const factory WidgetEntity.row({
+    required WidgetEntityId id,
+    required FixedRowArgs args,
+  }) = WidgetEntityRow;
   const factory WidgetEntity.center({
     required WidgetEntityId id,
     required FixedCenterArgs args,
@@ -44,6 +49,7 @@ sealed class WidgetEntity with _$WidgetEntity {
     WidgetEntityContainer() => .container,
     WidgetEntityText() => .text,
     WidgetEntityColumn() => .column,
+    WidgetEntityRow() => .row,
     WidgetEntityCenter() => .center,
     WidgetEntityAlign() => .align,
   };
@@ -53,6 +59,7 @@ sealed class WidgetEntity with _$WidgetEntity {
     .container => .container(id: .create(), args: .initial),
     .text => .text(id: .create(), args: .initial),
     .column => .column(id: .create(), args: .initial),
+    .row => .row(id: .create(), args: .initial),
     .center => .center(id: .create(), args: .initial),
     .align => .align(id: .create(), args: .initial),
   };
@@ -66,6 +73,7 @@ sealed class WidgetEntity with _$WidgetEntity {
         ),
         .text => .text(id: wrapper.id, args: .fromCommonArgs(wrapper.args)),
         .column => .column(id: wrapper.id, args: .fromCommonArgs(wrapper.args)),
+        .row => .row(id: wrapper.id, args: .fromCommonArgs(wrapper.args)),
         .center => .center(id: wrapper.id, args: .fromCommonArgs(wrapper.args)),
         .align => .align(id: wrapper.id, args: .fromCommonArgs(wrapper.args)),
       };
@@ -91,6 +99,7 @@ sealed class WidgetEntity with _$WidgetEntity {
       type: .column,
       args: w.args.toCommonArgs(),
     ),
+    WidgetEntityRow w => .new(id: id, type: .row, args: w.args.toCommonArgs()),
     WidgetEntityCenter w => .new(
       id: id,
       type: .center,

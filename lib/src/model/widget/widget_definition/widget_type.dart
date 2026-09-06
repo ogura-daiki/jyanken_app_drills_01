@@ -6,6 +6,7 @@ enum WidgetType {
   container(categories: {.common}),
   text(categories: {.common}),
   column(categories: {.common}),
+  row(categories: {.common}),
   center(categories: {.common}),
   align(categories: {.common});
 
@@ -25,6 +26,7 @@ enum WidgetType {
       .editAttribute => true,
       .remove => true,
     },
+    .row => true,
     .column => true,
     .center => true,
     .align => true,
