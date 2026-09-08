@@ -36,6 +36,7 @@ class EnumBaseArgInput<T extends Enum> extends StatelessWidget
           .map(
             (ca) => DropdownMenuEntry(
               value: ca,
+              leadingIcon: ca == null ? Icon(Icons.close) : null,
               label: labelBuilder?.call(ca) ?? ca?.name ?? "null",
             ),
           )
