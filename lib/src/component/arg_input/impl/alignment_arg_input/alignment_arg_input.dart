@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/arg_input_value_widget_interface.dart';
 import 'package:jyanken_app_drills/src/model/type/alignment/alignment_wrapper.dart';
-import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_arg/typed_arg.dart';
 
 class AlignmentArgInput extends StatelessWidget
     implements ArgInputValueWidgetInterface<AlignmentWrapper> {
@@ -9,7 +8,10 @@ class AlignmentArgInput extends StatelessWidget
   final void Function(AlignmentWrapper? newVal) onChange;
 
   @override
-  final TypedArg<AlignmentWrapper> type;
+  final bool nullable;
+
+  @override
+  final AlignmentWrapper? defaultValue;
 
   @override
   final AlignmentWrapper? value;
@@ -17,13 +19,14 @@ class AlignmentArgInput extends StatelessWidget
   const AlignmentArgInput({
     super.key,
     required this.onChange,
-    required this.type,
     required this.value,
+    required this.nullable,
+    required this.defaultValue,
   });
 
   @override
   Widget build(BuildContext context) {
-    final value = this.value ?? AlignmentWrapper.topLeft;
+    final value = this.value ?? defaultValue ?? .topLeft;
     return Row(
       mainAxisSize: .max,
       crossAxisAlignment: .center,

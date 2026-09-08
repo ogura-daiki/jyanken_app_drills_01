@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/depth_colored_material.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/subtree_arg_display.dart';
-import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_arg/widget_arg_definition.dart';
 import 'package:jyanken_app_drills/src/model/editor/widget_tree/widget_child_selector.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_header.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity.dart';
@@ -55,12 +54,7 @@ class WidgetTreeEditor extends StatelessWidget {
                   .update(
                     selector: selector,
                     oldValue: entity,
-                    newValue: wrapper
-                        .putWith(
-                          arg: newEntry.key as WidgetArgDefinition,
-                          value: newEntry.value,
-                        )
-                        .toEntity(),
+                    newValue: wrapper.putWithEntry(newEntry).toEntity(),
                   ),
                 );
               },

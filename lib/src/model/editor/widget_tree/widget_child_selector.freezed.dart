@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$WidgetChildSelector {
 
- CanHaveChildArg get arg; WidgetEntityId get entityId;
+ ArgumentDefinition get arg; WidgetEntityId get entityId;
 /// Create a copy of WidgetChildSelector
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,11 +48,11 @@ abstract mixin class $WidgetChildSelectorCopyWith<$Res>  {
   factory $WidgetChildSelectorCopyWith(WidgetChildSelector value, $Res Function(WidgetChildSelector) _then) = _$WidgetChildSelectorCopyWithImpl;
 @useResult
 $Res call({
- CanHaveChildArg arg, WidgetEntityId entityId
+ ArgumentDefinition arg, WidgetEntityId entityId
 });
 
 
-$WidgetEntityIdCopyWith<$Res> get entityId;
+$ArgumentDefinitionCopyWith<$Res> get arg;$WidgetEntityIdCopyWith<$Res> get entityId;
 
 }
 /// @nodoc
@@ -68,11 +68,20 @@ class _$WidgetChildSelectorCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? arg = null,Object? entityId = null,}) {
   return _then(_self.copyWith(
 arg: null == arg ? _self.arg : arg // ignore: cast_nullable_to_non_nullable
-as CanHaveChildArg,entityId: null == entityId ? _self.entityId : entityId // ignore: cast_nullable_to_non_nullable
+as ArgumentDefinition,entityId: null == entityId ? _self.entityId : entityId // ignore: cast_nullable_to_non_nullable
 as WidgetEntityId,
   ));
 }
 /// Create a copy of WidgetChildSelector
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ArgumentDefinitionCopyWith<$Res> get arg {
+  
+  return $ArgumentDefinitionCopyWith<$Res>(_self.arg, (value) {
+    return _then(_self.copyWith(arg: value));
+  });
+}/// Create a copy of WidgetChildSelector
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -163,7 +172,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( CanHaveChildArg arg,  WidgetEntityId entityId)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ArgumentDefinition arg,  WidgetEntityId entityId)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WidgetChildSelector() when $default != null:
 return $default(_that.arg,_that.entityId);case _:
@@ -184,7 +193,7 @@ return $default(_that.arg,_that.entityId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( CanHaveChildArg arg,  WidgetEntityId entityId)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ArgumentDefinition arg,  WidgetEntityId entityId)  $default,) {final _that = this;
 switch (_that) {
 case _WidgetChildSelector():
 return $default(_that.arg,_that.entityId);case _:
@@ -204,7 +213,7 @@ return $default(_that.arg,_that.entityId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( CanHaveChildArg arg,  WidgetEntityId entityId)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ArgumentDefinition arg,  WidgetEntityId entityId)?  $default,) {final _that = this;
 switch (_that) {
 case _WidgetChildSelector() when $default != null:
 return $default(_that.arg,_that.entityId);case _:
@@ -222,7 +231,7 @@ class _WidgetChildSelector extends WidgetChildSelector {
   const _WidgetChildSelector({required this.arg, required this.entityId}): super._();
   factory _WidgetChildSelector.fromJson(Map<String, dynamic> json) => _$WidgetChildSelectorFromJson(json);
 
-@override final  CanHaveChildArg arg;
+@override final  ArgumentDefinition arg;
 @override final  WidgetEntityId entityId;
 
 /// Create a copy of WidgetChildSelector
@@ -258,11 +267,11 @@ abstract mixin class _$WidgetChildSelectorCopyWith<$Res> implements $WidgetChild
   factory _$WidgetChildSelectorCopyWith(_WidgetChildSelector value, $Res Function(_WidgetChildSelector) _then) = __$WidgetChildSelectorCopyWithImpl;
 @override @useResult
 $Res call({
- CanHaveChildArg arg, WidgetEntityId entityId
+ ArgumentDefinition arg, WidgetEntityId entityId
 });
 
 
-@override $WidgetEntityIdCopyWith<$Res> get entityId;
+@override $ArgumentDefinitionCopyWith<$Res> get arg;@override $WidgetEntityIdCopyWith<$Res> get entityId;
 
 }
 /// @nodoc
@@ -278,12 +287,21 @@ class __$WidgetChildSelectorCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? arg = null,Object? entityId = null,}) {
   return _then(_WidgetChildSelector(
 arg: null == arg ? _self.arg : arg // ignore: cast_nullable_to_non_nullable
-as CanHaveChildArg,entityId: null == entityId ? _self.entityId : entityId // ignore: cast_nullable_to_non_nullable
+as ArgumentDefinition,entityId: null == entityId ? _self.entityId : entityId // ignore: cast_nullable_to_non_nullable
 as WidgetEntityId,
   ));
 }
 
 /// Create a copy of WidgetChildSelector
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ArgumentDefinitionCopyWith<$Res> get arg {
+  
+  return $ArgumentDefinitionCopyWith<$Res>(_self.arg, (value) {
+    return _then(_self.copyWith(arg: value));
+  });
+}/// Create a copy of WidgetChildSelector
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')

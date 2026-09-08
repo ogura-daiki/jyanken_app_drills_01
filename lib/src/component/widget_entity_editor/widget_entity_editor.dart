@@ -4,6 +4,7 @@ import 'package:jyanken_app_drills/src/component/arg_input/arg_input.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_editor/widget_selector_display.dart';
 import 'package:jyanken_app_drills/src/model/editor/widget_tree/widget_child_selector.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity.dart';
+import 'package:jyanken_app_drills/src/model/widget_argument/widget_argument.dart';
 
 class WidgetEntityEditor extends HookWidget {
   final List<WidgetChildSelector> selector;
@@ -50,7 +51,7 @@ class WidgetEntityEditor extends HookWidget {
           );
         }
         final key = keys[index - 1];
-        final arg = wrapper.args[key];
+        final arg = wrapper.get(key).getOrThrow(null);
         return Card(
           child: Padding(
             padding: const .symmetric(horizontal: 12, vertical: 8),
@@ -67,10 +68,12 @@ class WidgetEntityEditor extends HookWidget {
                     arg: key,
                     value: arg,
                     onChange: (newValue) {
-                      final newArgs = {...wrapper.args};
-                      newArgs[key] = newValue;
                       final newEntity = WidgetEntity.fromWrapper(
-                        wrapper.copyWith(args: newArgs),
+                        wrapper.copyWith(
+                          args: wrapper.args.updateWith(
+                            .new(definition: key, value: newValue),
+                          ),
+                        ),
                       );
                       onChange(newEntity);
                       entity.value = newEntity;

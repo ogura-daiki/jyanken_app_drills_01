@@ -1,13 +1,13 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/root/arg.dart';
-import 'package:jyanken_app_drills/src/model/widget/widget_definition/widget_arguments_definition.dart';
-import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_arg/widget_arg_definition.dart';
+import 'package:jyanken_app_drills/src/model/widget/widget_definition/widget_arguments.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity.dart';
+import 'package:jyanken_app_drills/src/model/widget_argument/widget_argument.dart';
 part 'fixed_args.freezed.dart';
 part 'fixed_args.g.dart';
 
 @freezed
-abstract class FixedRootArgs extends WidgetArgumentsDefinition<RootArg>
+abstract class FixedRootArgs extends WidgetArguments<RootArg>
     with _$FixedRootArgs {
   const FixedRootArgs._();
   const factory FixedRootArgs({@Default(null) WidgetEntity? child}) =
@@ -22,15 +22,21 @@ abstract class FixedRootArgs extends WidgetArgumentsDefinition<RootArg>
     .child => copyWith(child: value),
   };
   @override
-  Map<WidgetArgDefinition, dynamic> toCommonArgs() => {
-    for (final key in RootArg.values) key.arg: getValue(key),
+  Set<WidgetArgument> toCommonArgs() => {
+    for (final key in RootArg.values)
+      .new(
+        definition: key.definition,
+        value: key.definition.defaultValue.copyWithDynamic(
+          rawValue: getValue(key),
+        ),
+      ),
   };
 
   static const initial = FixedRootArgs();
-  factory FixedRootArgs.fromCommonArgs(Map<WidgetArgDefinition, dynamic> args) {
+  factory FixedRootArgs.fromCommonArgs(Set<WidgetArgument> args) {
     var result = initial;
     for (final key in RootArg.values) {
-      result = result.setValue(key, args[key.arg]);
+      result = result.setValue(key, args.findValue(key).rawValue);
     }
     return result;
   }

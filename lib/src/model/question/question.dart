@@ -12,7 +12,7 @@ abstract class Question with _$Question {
     required String name,
     required WidgetEntityRoot initialRoot,
 
-    /// required List<QuestionDescription> descriptions,
+    /// required List&lt;QuestionDescription$gt; descriptions,
     ///
     /// QuestionDescription({
     ///   required String descriptionText,

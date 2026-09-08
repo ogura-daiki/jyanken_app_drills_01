@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Question {
 
- int get index; String get projectId; String get name; WidgetEntityRoot get initialRoot;/// required List<QuestionDescription> descriptions,
+ int get index; String get projectId; String get name; WidgetEntityRoot get initialRoot;/// required List&lt;QuestionDescription$gt; descriptions,
 ///
 /// QuestionDescription({
 ///   required String descriptionText,
@@ -224,7 +224,7 @@ class _Question extends Question {
 @override final  String projectId;
 @override final  String name;
 @override final  WidgetEntityRoot initialRoot;
-/// required List<QuestionDescription> descriptions,
+/// required List&lt;QuestionDescription$gt; descriptions,
 ///
 /// QuestionDescription({
 ///   required String descriptionText,
@@ -232,7 +232,7 @@ class _Question extends Question {
 /// })
 ///
  final  List<QuestionRule> _validators;
-/// required List<QuestionDescription> descriptions,
+/// required List&lt;QuestionDescription$gt; descriptions,
 ///
 /// QuestionDescription({
 ///   required String descriptionText,

@@ -7,15 +7,13 @@ import 'package:jyanken_app_drills/src/component/color_picker/color_picker.dart'
 import 'package:jyanken_app_drills/src/component/color_picker/transparent_repeat_bg.dart';
 import 'package:jyanken_app_drills/src/component/popup_card/popup_card.dart';
 import 'package:jyanken_app_drills/src/model/type/color/color_wrapper.dart';
-import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_arg/typed_arg.dart';
 
 class ColorEditor extends StatefulHookConsumerWidget
     implements ArgInputValueWidgetInterface<ColorWrapper> {
-  final bool nullable;
-
   @override
-  TypedArg<ColorWrapper> get type => .nullable(null);
-
+  final bool nullable;
+  @override
+  final ColorWrapper? defaultValue;
   @override
   final ColorWrapper? value;
   @override
@@ -26,6 +24,7 @@ class ColorEditor extends StatefulHookConsumerWidget
     required this.nullable,
     required this.value,
     required this.onChange,
+    required this.defaultValue,
   });
 
   @override
@@ -45,7 +44,7 @@ class _ColorEditorState extends ConsumerState<ColorEditor> {
       controller: menuController,
       defaultPopupHeight: 400.0,
       popup: ColorPicker(
-        initialColor: widget.value,
+        initialColor: widget.value ?? widget.defaultValue,
         onChange: (newColor) {
           menuController.close();
           widget.onChange(newColor);
@@ -107,6 +106,7 @@ Widget previewColorEditor() {
         final color = useState<ColorWrapper?>(.fromColor(Colors.amber));
         return ColorEditor(
           nullable: true,
+          defaultValue: null,
           value: color.value,
           onChange: (newColor) {
             color.value = newColor;

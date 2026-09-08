@@ -1,11 +1,13 @@
 import 'package:get_it/get_it.dart';
 import 'package:jyanken_app_drills/src/component/flutter_editor/flutter_editor_state.dart';
+import 'package:jyanken_app_drills/src/core/null_ext.dart';
 import 'package:jyanken_app_drills/src/core/result.dart';
-import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_arg/widget_arg_definition.dart';
+import 'package:jyanken_app_drills/src/model/variable_value/variable_value.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity.dart';
 import 'package:jyanken_app_drills/src/model/editor/widget_tree/widget_child_selector.dart';
 import 'package:jyanken_app_drills/src/model/editor/widget_tree_action/widget_tree_action.dart';
 import 'package:jyanken_app_drills/src/model/editor/widget_tree_action/widget_tree_action_reject_reason.dart';
+import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity_wrapper.dart';
 import 'package:jyanken_app_drills/src/usecase/parse_tree_node_selector_usecase.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -95,8 +97,10 @@ class FlutterEditorViewmodel extends _$FlutterEditorViewmodel {
                 value: wrapper
                     .getEntry(selector.arg)
                     .getOrThrow(null)
+                    .value
+                    .requireType<VariableTypeWidget>()
                     .copyWithRemoveId(selector.entityId)
-                    .value,
+                    .rawValue,
               )
               .toEntity();
         }
@@ -114,7 +118,10 @@ class FlutterEditorViewmodel extends _$FlutterEditorViewmodel {
               .new(arg: selector.arg, entityId: selector.entityId),
             ]),
           );
-      final newEntry = targetEntry.copyWithUpdateWidget(newEntity: updated);
+      final newEntry = targetEntry.value
+          .requireType<VariableTypeWidget>()
+          .copyWithUpdateWidget(newEntity: updated)
+          .let((v) => targetEntry.copyWith(value: v));
       updated = parent.toWrapper().putWithEntry(newEntry).toEntity();
     }
 

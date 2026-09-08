@@ -1,16 +1,19 @@
-import 'package:jyanken_app_drills/src/model/type/alignment/alignment_wrapper.dart';
-import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_arg/typed_arg.dart';
-import 'package:jyanken_app_drills/src/model/widget/widget_definition/widget_arg_key.dart';
-import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity.dart';
+import 'package:jyanken_app_drills/src/model/argument_definition/argument_definition.dart';
+import 'package:jyanken_app_drills/src/model/widget/widget_definition/widget_arguments_definition.dart';
 
-enum AlignArg<T> with WidgetArgKey<T> {
-  child<WidgetEntity>(.nullable()),
-  alignment<AlignmentWrapper>(.nonNull(.topLeft));
+enum AlignArg with WidgetArgumentsDefinition {
+  child(.new(name: "child", defaultValue: .widget(rawValue: null))),
+  alignment(
+    .new(
+      name: "alignment",
+      defaultValue: .alignment(rawValue: .topLeft),
+    ),
+  );
 
   @override
-  final TypedArg<T> defaultValue;
+  final ArgumentDefinition definition;
 
-  const AlignArg(this.defaultValue);
+  const AlignArg(this.definition);
 
   static AlignArg fromName(String name) =>
       values.singleWhere((e) => e.name == name);

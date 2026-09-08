@@ -1,13 +1,13 @@
-import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_arg/typed_arg.dart';
-
 interface class ArgInputValueWidgetInterface<T> {
-  final TypedArg<T> type;
+  final bool nullable;
   final T? value;
+  final T? defaultValue;
   final void Function(T? newVal) onChange;
 
   ArgInputValueWidgetInterface({
-    required this.type,
+    required this.nullable,
     required this.value,
+    required this.defaultValue,
     required this.onChange,
   });
 }

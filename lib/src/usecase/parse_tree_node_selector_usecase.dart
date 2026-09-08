@@ -1,6 +1,8 @@
 import 'package:jyanken_app_drills/src/core/result.dart';
+import 'package:jyanken_app_drills/src/model/variable_value/variable_value.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity.dart';
 import 'package:jyanken_app_drills/src/model/editor/widget_tree/widget_child_selector.dart';
+import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity_wrapper.dart';
 
 abstract class ParseTreeNodeSelectorUsecase {
   Result<WidgetEntity> execute({
@@ -31,17 +33,13 @@ class ParseTreeNodeSelectorUsecaseImpl implements ParseTreeNodeSelectorUsecase {
     var cursor = treeRoot;
     for (final s in selector) {
       final wrapper = cursor.toWrapper();
-      final value = wrapper.args[s.arg];
-      if (value == null) {
+      final value = wrapper.get(s.arg).getOrThrow(null);
+      if (value.rawValue == null) {
         return .failure(WidgetEntityNotFoundException(selector));
       }
       try {
         cursor = switch (value) {
-          WidgetEntity we => we,
-          List<WidgetEntity> list => list.singleWhere(
-            (e) => e.id == s.entityId,
-            orElse: () => throw WidgetEntityNotFoundException(selector),
-          ),
+          VariableTypeWidget w => w.getChild(s.entityId).getOrThrow(null),
           _ => throw UnimplementedError(
             "この型からはWidgetEntityを取得できません：${value.runtimeType.toString()}",
           ),

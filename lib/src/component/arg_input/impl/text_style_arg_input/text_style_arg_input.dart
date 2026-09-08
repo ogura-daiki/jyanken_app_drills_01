@@ -11,27 +11,41 @@ import 'package:jyanken_app_drills/src/model/type/font_weight/font_weight_defini
 import 'package:jyanken_app_drills/src/model/type/text_decoration/text_decoration_definition.dart';
 import 'package:jyanken_app_drills/src/model/type/text_style/built_in_text_style.dart';
 import 'package:jyanken_app_drills/src/model/type/text_style/text_style_wrapper.dart';
-import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_arg/typed_arg.dart';
 
 class TextStyleArgInput extends StatelessWidget
     implements ArgInputValueWidgetInterface<TextStyleWrapper> {
   @override
-  TypedArg<TextStyleWrapper> get type => .nullable();
-
-  @override
   final void Function(TextStyleWrapper? newVal) onChange;
   @override
   final TextStyleWrapper? value;
+  @override
+  final bool nullable;
+  @override
+  final TextStyleWrapper defaultValue;
 
-  const TextStyleArgInput({
+  const TextStyleArgInput._({
     super.key,
     required this.onChange,
     required this.value,
+    required this.nullable,
+    required this.defaultValue,
   });
+
+  factory TextStyleArgInput({
+    Key? key,
+    required TextStyleWrapper? value,
+    required void Function(TextStyleWrapper? newVal) onChange,
+  }) => TextStyleArgInput._(
+    key: key,
+    onChange: onChange,
+    value: value,
+    nullable: true,
+    defaultValue: .new(),
+  );
 
   @override
   Widget build(BuildContext context) {
-    final value = this.value ?? .new();
+    final value = this.value ?? defaultValue;
     return Column(
       crossAxisAlignment: .stretch,
       mainAxisSize: .min,
@@ -44,13 +58,15 @@ class TextStyleArgInput extends StatelessWidget
           onChange: (newVal) {
             onChange(value.copyWith(baseStyle: newVal));
           },
-          type: .nullable(),
+          nullable: true,
+          defaultValue: null,
           value: value.baseStyle,
           items: BuiltInTextStyle.values,
         ),
         Text("文字色"),
         ColorEditor(
           nullable: true,
+          defaultValue: null,
           value: value.color,
           onChange: (newVal) {
             onChange(value.copyWith(color: newVal));
@@ -59,6 +75,7 @@ class TextStyleArgInput extends StatelessWidget
         Text("背景色"),
         ColorEditor(
           nullable: true,
+          defaultValue: null,
           value: value.backgroundColor,
           onChange: (newVal) {
             onChange(value.copyWith(backgroundColor: newVal));
@@ -76,7 +93,8 @@ class TextStyleArgInput extends StatelessWidget
           onChange: (newVal) {
             onChange(value.copyWith(fontWeight: newVal));
           },
-          type: .nullable(),
+          defaultValue: null,
+          nullable: true,
           value: value.fontWeight,
           items: FontWeightDefinition.values,
         ),
@@ -85,7 +103,8 @@ class TextStyleArgInput extends StatelessWidget
           onChange: (newVal) {
             onChange(value.copyWith(fontStyle: newVal));
           },
-          type: .nullable(),
+          defaultValue: null,
+          nullable: true,
           value: value.fontStyle,
           items: FontStyle.values,
         ),
@@ -140,6 +159,7 @@ class TextStyleArgInput extends StatelessWidget
         Text("装飾線の色"),
         ColorEditor(
           nullable: true,
+          defaultValue: null,
           value: value.decorationColor,
           onChange: (newVal) {
             onChange(value.copyWith(decorationColor: newVal));
@@ -150,7 +170,8 @@ class TextStyleArgInput extends StatelessWidget
           onChange: (newVal) {
             onChange(value.copyWith(decorationStyle: newVal));
           },
-          type: .nullable(),
+          defaultValue: null,
+          nullable: true,
           value: value.decorationStyle,
           items: TextDecorationStyle.values,
         ),
@@ -166,7 +187,8 @@ class TextStyleArgInput extends StatelessWidget
           onChange: (newVal) {
             onChange(value.copyWith(overflow: newVal));
           },
-          type: .nullable(),
+          defaultValue: null,
+          nullable: true,
           value: value.overflow,
           items: TextOverflow.values,
         ),
@@ -179,7 +201,8 @@ class TextStyleArgInput extends StatelessWidget
     required void Function(double?) onChange,
   }) {
     return TextBaseArgInput<double>(
-      type: .nullable(),
+      defaultValue: null,
+      nullable: true,
       value: value,
       inputFormatters: [],
       mapFrom: (val) => val?.let(double.tryParse),

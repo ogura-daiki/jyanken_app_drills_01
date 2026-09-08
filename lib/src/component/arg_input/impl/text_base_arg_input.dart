@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/arg_input_value_widget_interface.dart';
-import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_arg/typed_arg.dart';
 
-class TextBaseArgInput<T> extends StatelessWidget implements ArgInputValueWidgetInterface<T>{
+class TextBaseArgInput<T> extends StatelessWidget
+    implements ArgInputValueWidgetInterface<T> {
   final List<TextInputFormatter>? inputFormatters;
   final T? Function(String? str) mapFrom;
   final String? Function(T? value) mapTo;
   @override
-  final TypedArg<T> type;
+  final bool nullable;
+  @override
+  final T? defaultValue;
   @override
   final T? value;
   @override
@@ -16,7 +18,8 @@ class TextBaseArgInput<T> extends StatelessWidget implements ArgInputValueWidget
 
   const TextBaseArgInput({
     super.key,
-    required this.type,
+    required this.nullable,
+    this.defaultValue,
     required this.value,
     this.inputFormatters,
     required this.mapFrom,
@@ -26,12 +29,12 @@ class TextBaseArgInput<T> extends StatelessWidget implements ArgInputValueWidget
 
   @override
   Widget build(BuildContext context) {
+    final initialValue = nullable ? value : (value ?? defaultValue);
     return TextFormField(
-      initialValue: mapTo(value),
+      initialValue: mapTo(initialValue),
       inputFormatters: inputFormatters,
-      onChanged: (value) {
-        var newVal = mapFrom(value);
-        onChange(newVal);
+      onChanged: (newVal) {
+        onChange(mapFrom(newVal));
       },
     );
   }
