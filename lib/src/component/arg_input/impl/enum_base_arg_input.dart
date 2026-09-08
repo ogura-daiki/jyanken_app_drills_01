@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/arg_input_value_widget_interface.dart';
-import 'package:jyanken_app_drills/src/model/variable_value/variable_value.dart';
 
 class EnumBaseArgInput<T extends Enum> extends StatelessWidget
     implements ArgInputValueWidgetInterface<T> {
@@ -33,7 +32,7 @@ class EnumBaseArgInput<T extends Enum> extends StatelessWidget
       onSelected: (newVal) {
         onChange(newVal);
       },
-      dropdownMenuEntries: [...items, if (value is VariableTypeNullable) null]
+      dropdownMenuEntries: [...items, if (nullable) null]
           .map(
             (ca) => DropdownMenuEntry(
               value: ca,
