@@ -13,9 +13,11 @@ part 'routes.g.dart';
 @TypedGoRoute<HomeScreenRoute>(
   path: "/",
   routes: [
-    TypedGoRoute<FreePlayScreenRoute>(path: "/free-play"),
-    TypedGoRoute<QuestionListScreenRoute>(path: "/question"),
-    TypedGoRoute<QuestionScreenRoute>(path: "/question/:questionId"),
+    TypedGoRoute<FreePlayScreenRoute>(path: "free-play"),
+    TypedGoRoute<QuestionListScreenRoute>(
+      path: "question",
+      routes: [TypedGoRoute<QuestionScreenRoute>(path: ":questionId")],
+    ),
   ],
 )
 class HomeScreenRoute extends GoRouteData with $HomeScreenRoute {

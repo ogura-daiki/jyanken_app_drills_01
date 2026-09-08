@@ -14,19 +14,21 @@ RouteBase get $homeScreenRoute => GoRouteData.$route(
   factory: $HomeScreenRoute._fromState,
   routes: [
     GoRouteData.$route(
-      path: '/free-play',
+      path: 'free-play',
       hasOverriddenOnExit: false,
       factory: $FreePlayScreenRoute._fromState,
     ),
     GoRouteData.$route(
-      path: '/question',
+      path: 'question',
       hasOverriddenOnExit: false,
       factory: $QuestionListScreenRoute._fromState,
-    ),
-    GoRouteData.$route(
-      path: '/question/:questionId',
-      hasOverriddenOnExit: false,
-      factory: $QuestionScreenRoute._fromState,
+      routes: [
+        GoRouteData.$route(
+          path: ':questionId',
+          hasOverriddenOnExit: false,
+          factory: $QuestionScreenRoute._fromState,
+        ),
+      ],
     ),
   ],
 );
