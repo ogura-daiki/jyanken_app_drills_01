@@ -61,7 +61,9 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
   }
 
   Widget previewArea() {
+    final colorScheme = ColorScheme.of(context);
     return Material(
+      color: colorScheme.surfaceContainer,
       child: Center(
         child: Padding(
           padding: const .all(16),

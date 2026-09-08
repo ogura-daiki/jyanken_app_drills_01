@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:jyanken_app_drills/src/component/widget_catalog/widget_catalog_item.dart';
+import 'package:jyanken_app_drills/src/core/line_height_ext.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/widget_type.dart';
 
 class WidgetCatalog extends HookWidget {
@@ -34,8 +35,16 @@ class WidgetCatalog extends HookWidget {
                   crossAxisAlignment: .center,
                   mainAxisSize: .max,
                   children: [
-                    const Icon(Icons.list),
-                    const Expanded(child: Text("ウィジェットカタログ")),
+                    Icon(
+                      Icons.list,
+                      size: TextTheme.of(context).bodyMedium?.lineHeight(),
+                    ),
+                    Expanded(
+                      child: Text(
+                        "ウィジェットカタログ",
+                        style: TextTheme.of(context).bodyMedium,
+                      ),
+                    ),
                     IconButton(
                       onPressed: () {
                         onToggleOpen(!open);

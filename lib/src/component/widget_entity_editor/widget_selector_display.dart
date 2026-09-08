@@ -7,7 +7,7 @@ class WidgetSelectorDisplay extends StatelessWidget {
   final EdgeInsets padding;
   final void Function(List<WidgetChildSelector> selector) onSelect;
 
-  static const TextStyle defaultStyle = .new(fontSize: 18, height: 1.3);
+  static const TextStyle defaultStyle = .new(fontSize: 12, height: 1.3);
 
   const WidgetSelectorDisplay({
     super.key,
@@ -22,7 +22,7 @@ class WidgetSelectorDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = Theme.of(context).textTheme.labelLarge ?? defaultStyle;
+    final textStyle = Theme.of(context).textTheme.labelMedium ?? defaultStyle;
     final height = textStyle.lineHeight();
 
     return SizedBox(
@@ -36,13 +36,18 @@ class WidgetSelectorDisplay extends StatelessWidget {
             0 => rootLabel,
             _ => _buildLabel(selector[index - 1]),
           };
-          return ActionChip(
-            padding: const .all(0),
-            side: .none,
-            label: Text(label, style: textStyle),
-            onPressed: () {
-              onSelect(selector.sublist(0, index));
-            },
+          return Material(
+            borderRadius: .all(.circular(4)),
+            clipBehavior: .antiAliasWithSaveLayer,
+            child: InkWell(
+              onTap: () {
+                onSelect(selector.sublist(0, index));
+              },
+              child: Padding(
+                padding: const .symmetric(horizontal: 2),
+                child: Center(child: Text(label, style: textStyle)),
+              ),
+            ),
           );
         },
         separatorBuilder: (context, index) => SizedBox(

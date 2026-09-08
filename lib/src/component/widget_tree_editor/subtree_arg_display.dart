@@ -42,10 +42,15 @@ class SubtreeArgDisplay extends StatelessWidget {
           padding: .only(
             left: 16 + 8.0 * selector.length,
             right: 8,
-            top: 4,
-            bottom: 0,
+            top: 1,
+            bottom: 1,
           ),
-          child: Text(argEntry.definition.name),
+          child: Text(
+            argEntry.definition.name,
+            style: TextTheme.of(
+              context,
+            ).bodySmall?.copyWith(color: ColorScheme.of(context).onSurface),
+          ),
         ),
         ...children.map(
           (we) => WidgetTreeEditor(

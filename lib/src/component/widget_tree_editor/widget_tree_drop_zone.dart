@@ -53,7 +53,7 @@ class WidgetTreeDropZone extends StatelessWidget {
         return Padding(
           padding: const .all(4),
           child: Container(
-            height: 40,
+            height: 32,
             decoration: BoxDecoration(
               color: bgColor,
               border: Border.all(color: borderColor, width: borderWidth),

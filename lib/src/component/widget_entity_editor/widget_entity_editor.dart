@@ -43,7 +43,7 @@ class WidgetEntityEditor extends HookWidget {
                   padding: const .symmetric(horizontal: 16),
                   child: Text(
                     "#${entity.value.id.value} ${entity.value.type.name}",
-                    style: Theme.of(context).textTheme.headlineLarge,
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
                 ),
               ],

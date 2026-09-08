@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_dropdown_menu/widget_tree_dropdown_menu_icon.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_dropdown_menu/widget_tree_dropdown_menu_label.dart';
 import 'package:jyanken_app_drills/src/component/widget_type_icon.dart';
+import 'package:jyanken_app_drills/src/core/line_height_ext.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/widget_type.dart';
 import 'package:jyanken_app_drills/src/model/editor/widget_tree_action/widget_tree_action_type.dart';
 
@@ -32,13 +33,16 @@ class WidgetTreeHeader extends HookWidget {
       onHover: (value) {
         showDropDown.value = focusNode.hasFocus || value;
       },
+      onTapDown: (details) {
+        showDropDown.value = true;
+      },
       onTap: onSelect,
       child: Padding(
         padding: .only(
           left: 8 + 8 * depth.toDouble(),
           right: 4,
-          top: 4,
-          bottom: 4,
+          top: 0,
+          bottom: 0,
         ),
         child: Row(
           mainAxisSize: .max,
@@ -46,8 +50,20 @@ class WidgetTreeHeader extends HookWidget {
           crossAxisAlignment: .center,
           spacing: 4,
           children: [
-            WidgetTypeIcon(type: type),
-            Expanded(child: Text(type.name, overflow: .ellipsis)),
+            WidgetTypeIcon(
+              type: type,
+              size: TextTheme.of(context).bodyMedium?.lineHeight(),
+              color: ColorScheme.of(context).onSurface,
+            ),
+            Expanded(
+              child: Text(
+                type.name,
+                overflow: .ellipsis,
+                style: TextTheme.of(context).bodyMedium?.copyWith(
+                  color: ColorScheme.of(context).onSurface,
+                ),
+              ),
+            ),
             Opacity(
               opacity: showDropDown.value ? 1 : 0,
               child: IgnorePointer(

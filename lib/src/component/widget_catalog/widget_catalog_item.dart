@@ -17,7 +17,12 @@ class WidgetCatalogItem extends StatelessWidget {
           mainAxisSize: .min,
           children: [
             Expanded(
-              child: Center(child: WidgetTypeIcon(type: type)),
+              child: Center(
+                child: WidgetTypeIcon(
+                  type: type,
+                  color: ColorScheme.of(context).onSurface,
+                ),
+              ),
             ),
             Text(type.name, style: Theme.of(context).textTheme.labelSmall),
           ],

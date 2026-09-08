@@ -13,19 +13,17 @@ class FlutterEditorTreePane extends ConsumerWidget {
     final provider = flutterEditorViewmodelProvider(editorId);
     final state = ref.watch(provider);
     final viewModel = ref.read(provider.notifier);
-    return Scaffold(
-      body: SingleChildScrollView(
-        padding: const .only(bottom: 48, top: 16),
-        child: WidgetTreeEditor(
-          entity: state.treeRoot,
-          selector: [],
-          onSelection: (newSelection) {
-            viewModel.updateSelection(newSelection);
-          },
-          onAction: (action) {
-            viewModel.onAction(action);
-          },
-        ),
+    return SingleChildScrollView(
+      padding: const .only(bottom: 48, top: 0),
+      child: WidgetTreeEditor(
+        entity: state.treeRoot,
+        selector: [],
+        onSelection: (newSelection) {
+          viewModel.updateSelection(newSelection);
+        },
+        onAction: (action) {
+          viewModel.onAction(action);
+        },
       ),
     );
   }
