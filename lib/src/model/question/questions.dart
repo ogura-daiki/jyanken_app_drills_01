@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_container.dart';
 import 'package:jyanken_app_drills/src/core/null_ext.dart';
 import 'package:jyanken_app_drills/src/core/result.dart';
-import 'package:jyanken_app_drills/src/core/widget_entity.dart';
 import 'package:jyanken_app_drills/src/model/project_id/project_id.dart';
 import 'package:jyanken_app_drills/src/model/question/question.dart';
 import 'package:jyanken_app_drills/src/model/type/color/color_wrapper.dart';
@@ -26,7 +24,6 @@ final class Questions {
         .new(
           valSelector: (root) => root.args.child
               .requireType<WidgetEntityText>()
-              .getOrThrow(null)
               .args
               .text,
           matcher: .requiredValue("こんにちは"),
@@ -49,11 +46,15 @@ final class Questions {
                 .container(
                   id: .create(),
                   args: .new(
-                    color: .fromColor(Colors.red),
-                    height: 60,
+                    color: .fromColor(
+                      HSVColor.fromColor(Colors.red).withValue(0.6).toColor(),
+                    ),
                     child: .text(
                       id: .create(),
-                      args: .new(text: "下側に色付きContainerを追加"),
+                      args: .new(
+                        text: "下側に色付きContainerを追加",
+                        style: .new(color: .fromColor(Colors.white)),
+                      ),
                     ),
                   ),
                 ),
@@ -110,10 +111,15 @@ final class Questions {
                 .container(
                   id: .create(),
                   args: .new(
-                    color: .fromColor(Colors.red),
+                    color: .fromColor(
+                      HSVColor.fromColor(Colors.red).withValue(0.6).toColor(),
+                    ),
                     child: .text(
                       id: .create(),
-                      args: .new(text: "右側に色付きContainerを追加"),
+                      args: .new(
+                        text: "右側に色付きContainerを追加",
+                        style: .new(color: .fromColor(Colors.white)),
+                      ),
                     ),
                   ),
                 ),
@@ -145,6 +151,81 @@ final class Questions {
               ?.requireType<WidgetEntityRow>()
               .args
               .children[1]
+              .requireType<WidgetEntityContainer>()
+              .args
+              .color,
+          matcher: .requiredType<ColorWrapper>(),
+          errorMessage: "追加したContainerに色を設定してください",
+        ),
+      ],
+    ),
+    .new(
+      index: 3,
+      projectId: .new("q1-3"),
+      name: "残りを埋める",
+      initialRoot: .new(
+        id: .create(),
+        args: .new(
+          child: .column(
+            id: .create(),
+            args: .new(
+              crossAxisAlignment: .stretch,
+              children: [
+                .container(
+                  id: .create(),
+                  args: .new(
+                    height: 60,
+                    color: .fromColor(
+                      HSVColor.fromColor(
+                        Colors.lightGreenAccent,
+                      ).withSaturation(0.6).withValue(0.6).toColor(),
+                    ),
+                    child: .text(
+                      id: .create(),
+                      args: .new(
+                        text: "下側にExpendedと色付きContainerを追加",
+                        style: .new(color: .fromColor(Colors.white)),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      validators: [
+        .new(
+          valSelector: (root) => root.args.child
+              ?.requireType<WidgetEntityColumn>()
+              .args
+              .children
+              .whereType<WidgetEntityExpanded>()
+              .first,
+          matcher: .requiredType<WidgetEntityExpanded>(),
+          errorMessage: "ColumnにExpandedを追加してください",
+        ),
+        .new(
+          valSelector: (root) => root.args.child
+              ?.requireType<WidgetEntityColumn>()
+              .args
+              .children
+              .whereType<WidgetEntityExpanded>()
+              .first
+              .args
+              .child,
+          matcher: .requiredType<WidgetEntityContainer>(),
+          errorMessage: "ExpandedにContainerを追加してください",
+        ),
+        .new(
+          valSelector: (root) => root.args.child
+              ?.requireType<WidgetEntityColumn>()
+              .args
+              .children
+              .whereType<WidgetEntityExpanded>()
+              .first
+              .args
+              .child
               .requireType<WidgetEntityContainer>()
               .args
               .color,
