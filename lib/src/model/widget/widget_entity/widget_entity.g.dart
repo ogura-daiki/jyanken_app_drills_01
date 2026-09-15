@@ -122,10 +122,24 @@ Map<String, dynamic> _$WidgetEntityAlignToJson(WidgetEntityAlign instance) =>
       'runtimeType': instance.$type,
     };
 
+WidgetEntityScope _$WidgetEntityScopeFromJson(Map<String, dynamic> json) =>
+    WidgetEntityScope(
+      id: WidgetEntityId.fromJson(json['id'] as Map<String, dynamic>),
+      args: FixedScopeArgs.fromJson(json['args'] as Map<String, dynamic>),
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$WidgetEntityScopeToJson(WidgetEntityScope instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'args': instance.args,
+      'runtimeType': instance.$type,
+    };
+
 WidgetEntityQ2_1 _$WidgetEntityQ2_1FromJson(Map<String, dynamic> json) =>
     WidgetEntityQ2_1(
       id: WidgetEntityId.fromJson(json['id'] as Map<String, dynamic>),
-      args: FixedAlignArgs.fromJson(json['args'] as Map<String, dynamic>),
+      args: FixedQ2_1Args.fromJson(json['args'] as Map<String, dynamic>),
       $type: json['runtimeType'] as String?,
     );
 

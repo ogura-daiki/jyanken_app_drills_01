@@ -1,3 +1,5 @@
+import 'dart:developer' as dev;
+
 import 'package:get_it/get_it.dart';
 import 'package:jyanken_app_drills/src/component/flutter_editor/flutter_editor_state.dart';
 import 'package:jyanken_app_drills/src/core/null_ext.dart';
@@ -131,5 +133,70 @@ class FlutterEditorViewmodel extends _$FlutterEditorViewmodel {
     }
     state = state.copyWith(treeRoot: updated);
     return .success(null);
+  }
+
+  Result<VariableValue> getScopeVariable({
+    required List<WidgetChildSelector> from,
+    required String name,
+  }) {
+    final selector = [...from];
+    try {
+      while (selector.isNotEmpty) {
+        selector.removeLast();
+        final entity = _getWidget
+            .execute(selector: selector, treeRoot: state.treeRoot)
+            .getOrThrow(null);
+        if (entity is! WidgetEntityScope) continue;
+
+        final index = entity.args.variables.variables.indexWhere(
+          (e) => e.name == name,
+        );
+        if (index < 0) continue;
+        return .success(entity.args.variables.variables[index].value);
+      }
+    } catch (e) {
+      dev.log("[getScopeVariable] :$e");
+    }
+    return .failure(Exception("変数名：$name を取得できませんでした。Scopeの設定を確認してください。"));
+  }
+
+  void setScopeVariable({
+    required List<WidgetChildSelector> from,
+    required String name,
+    required VariableValue newValue,
+  }) {
+    final selector = [...from];
+    try {
+      while (selector.isNotEmpty) {
+        selector.removeLast();
+        final entity = _getWidget
+            .execute(selector: selector, treeRoot: state.treeRoot)
+            .getOrThrow(null);
+        if (entity is! WidgetEntityScope) continue;
+
+        final index = entity.args.variables.variables.indexWhere(
+          (e) => e.name == name,
+        );
+        if (index < 0) continue;
+        final target = entity.args.variables.variables[index].value;
+        if (target.toEnum() != newValue.toEnum()) {
+          //TODO: 暫定エラーメッセージ
+          throw Exception("変数の型と書き込もうとしている値の型が違います");
+        }
+
+        final newVariables = [...entity.args.variables.variables];
+        newVariables[index] = newVariables[index].copyWith(value: newValue);
+
+        onAction(
+          .update(
+            selector: selector,
+            oldValue: entity,
+            newValue: entity.copyWith.args.variables(variables: newVariables),
+          ),
+        );
+      }
+    } catch (e) {
+      dev.log("[getScopeVariable] :$e");
+    }
   }
 }

@@ -10,7 +10,8 @@ enum WidgetType {
   expanded(categories: {.common}),
   center(categories: {.common}),
   align(categories: {.common}),
-  q2_1(categories: {}),
+  scope(categories: {.common}),
+  q2_1(categories: {.common}),
   q2_2(categories: {}),
   q2_3(categories: {});
 
@@ -35,6 +36,7 @@ enum WidgetType {
     .center => true,
     .expanded => true,
     .align => true,
+    .scope => true,
     .q2_1 || .q2_2 || .q2_3 => switch (type) {
       .editAttribute => true,
       .remove => false,

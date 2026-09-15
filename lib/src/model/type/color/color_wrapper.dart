@@ -29,6 +29,9 @@ abstract class ColorWrapper with _$ColorWrapper {
     (blue * 255).round(),
   );
 
+  String get argbString =>
+      "#${[alpha, red, green, blue].map((e) => (e * 255).round().toRadixString(16))}";
+
   factory ColorWrapper.fromJson(Map<String, dynamic> json) =>
       _$ColorWrapperFromJson(json);
 }

@@ -22,7 +22,11 @@ class FlutterEditorPreviewPane extends ConsumerWidget {
         child: Material(
           elevation: 4,
           clipBehavior: .antiAliasWithSaveLayer,
-          child: WidgetEntityWidget(entity: state.treeRoot),
+          child: WidgetEntityWidget(
+            projectId: projectId,
+            selector: [],
+            entity: state.treeRoot,
+          ),
         ),
       ),
     );

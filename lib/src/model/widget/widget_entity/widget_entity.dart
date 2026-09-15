@@ -4,8 +4,10 @@ import 'package:jyanken_app_drills/src/model/widget/widget_definition/center/fix
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/expanded/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/column/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/container/fixed_args.dart';
+import 'package:jyanken_app_drills/src/model/widget/widget_definition/q2/01/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/root/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/row/fixed_args.dart';
+import 'package:jyanken_app_drills/src/model/widget/widget_definition/scope/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/text/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity_id.dart';
@@ -48,9 +50,13 @@ sealed class WidgetEntity with _$WidgetEntity {
     required WidgetEntityId id,
     required FixedAlignArgs args,
   }) = WidgetEntityAlign;
+  const factory WidgetEntity.scope({
+    required WidgetEntityId id,
+    required FixedScopeArgs args,
+  }) = WidgetEntityScope;
   const factory WidgetEntity.q2_1({
     required WidgetEntityId id,
-    required FixedAlignArgs args,
+    required FixedQ2_1Args args,
   }) = WidgetEntityQ2_1;
   const factory WidgetEntity.q2_2({
     required WidgetEntityId id,
@@ -70,6 +76,7 @@ sealed class WidgetEntity with _$WidgetEntity {
     WidgetEntityExpanded() => .expanded,
     WidgetEntityCenter() => .center,
     WidgetEntityAlign() => .align,
+    WidgetEntityScope() => .scope,
     WidgetEntityQ2_1() => .q2_1,
     WidgetEntityQ2_2() => .q2_2,
     WidgetEntityQ2_3() => .q2_3,
@@ -84,6 +91,7 @@ sealed class WidgetEntity with _$WidgetEntity {
     .expanded => .expanded(id: .create(), args: .initial),
     .center => .center(id: .create(), args: .initial),
     .align => .align(id: .create(), args: .initial),
+    .scope => .scope(id: .create(), args: .initial),
     .q2_1 => .q2_1(id: .create(), args: .initial),
     .q2_2 => .q2_2(id: .create(), args: .initial),
     .q2_3 => .q2_3(id: .create(), args: .initial),
@@ -105,6 +113,7 @@ sealed class WidgetEntity with _$WidgetEntity {
         ),
         .center => .center(id: wrapper.id, args: .fromCommonArgs(wrapper.args)),
         .align => .align(id: wrapper.id, args: .fromCommonArgs(wrapper.args)),
+        .scope => .scope(id: wrapper.id, args: .fromCommonArgs(wrapper.args)),
         .q2_1 => .q2_1(id: wrapper.id, args: .fromCommonArgs(wrapper.args)),
         .q2_2 => .q2_2(id: wrapper.id, args: .fromCommonArgs(wrapper.args)),
         .q2_3 => .q2_3(id: wrapper.id, args: .fromCommonArgs(wrapper.args)),
@@ -147,9 +156,26 @@ sealed class WidgetEntity with _$WidgetEntity {
       type: .align,
       args: w.args.toCommonArgs(),
     ),
-    WidgetEntityQ2_1 w => .new(id: id, type: type, args: w.args.toCommonArgs()),
-    WidgetEntityQ2_2 w => .new(id: id, type: type, args: w.args.toCommonArgs()),
-    WidgetEntityQ2_3 w => .new(id: id, type: type, args: w.args.toCommonArgs()),
+    WidgetEntityScope w => .new(
+      id: id,
+      type: .scope,
+      args: w.args.toCommonArgs(),
+    ),
+    WidgetEntityQ2_1 w => .new(
+      id: id,
+      type: .q2_1,
+      args: w.args.toCommonArgs(),
+    ),
+    WidgetEntityQ2_2 w => .new(
+      id: id,
+      type: .q2_2,
+      args: w.args.toCommonArgs(),
+    ),
+    WidgetEntityQ2_3 w => .new(
+      id: id,
+      type: .q2_3,
+      args: w.args.toCommonArgs(),
+    ),
   };
 
   factory WidgetEntity.fromJson(Map<String, dynamic> json) =>

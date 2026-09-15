@@ -5,8 +5,10 @@ import 'package:flutter/services.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/alignment_arg_input/alignment_arg_input.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/color_arg_input/color_arg_input.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/enum_base_arg_input.dart';
+import 'package:jyanken_app_drills/src/component/arg_input/impl/scope_arg_input/scope_arg_input.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/text_base_arg_input.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/text_style_arg_input/text_style_arg_input.dart';
+import 'package:jyanken_app_drills/src/component/arg_input/impl/variable_arg_input/variable_arg_input.dart';
 import 'package:jyanken_app_drills/src/core/null_ext.dart';
 import 'package:jyanken_app_drills/src/model/argument_definition/argument_definition.dart';
 import 'package:jyanken_app_drills/src/model/type/alignment/alignment_wrapper.dart';
@@ -102,6 +104,14 @@ class ArgInput extends StatelessWidget {
         onChange: (v) => notifyValue(v),
       ),
       VariableValueTextStyle a => TextStyleArgInput(
+        value: a.rawValue,
+        onChange: (v) => notifyValue(v),
+      ),
+      VariableValueVariable a => VariableArgInput(
+        value: a.rawValue,
+        onChange: (v) => notifyValue(v),
+      ),
+      VariableValueScope a => ScopeArgInput(
         value: a.rawValue,
         onChange: (v) => notifyValue(v),
       ),

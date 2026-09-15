@@ -198,3 +198,31 @@ Map<String, dynamic> _$VariableValueTextStyleToJson(
   'rawValue': instance.rawValue,
   'runtimeType': instance.$type,
 };
+
+VariableValueVariable _$VariableValueVariableFromJson(
+  Map<String, dynamic> json,
+) => VariableValueVariable(
+  rawValue: Variable.fromJson(json['rawValue'] as Map<String, dynamic>),
+  $type: json['runtimeType'] as String?,
+);
+
+Map<String, dynamic> _$VariableValueVariableToJson(
+  VariableValueVariable instance,
+) => <String, dynamic>{
+  'rawValue': instance.rawValue,
+  'runtimeType': instance.$type,
+};
+
+VariableValueScope _$VariableValueScopeFromJson(Map<String, dynamic> json) =>
+    VariableValueScope(
+      rawValue: ScopeDefinition.fromJson(
+        json['rawValue'] as Map<String, dynamic>,
+      ),
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$VariableValueScopeToJson(VariableValueScope instance) =>
+    <String, dynamic>{
+      'rawValue': instance.rawValue,
+      'runtimeType': instance.$type,
+    };
