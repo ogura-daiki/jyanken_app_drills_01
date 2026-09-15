@@ -14,6 +14,7 @@ sealed class VariableValue with _$VariableValue {
       VariableValueString;
   const factory VariableValue.double({required double rawValue}) =
       VariableValueDouble;
+  const factory VariableValue.int({required int rawValue}) = VariableValueInt;
   @Implements<VariableTypeNullable>()
   const factory VariableValue.doubleNullable({required double? rawValue}) =
       VariableValueDoubleNullable;
@@ -48,6 +49,7 @@ sealed class VariableValue with _$VariableValue {
   VariableValue copyWithDynamic({required dynamic rawValue}) => switch (this) {
     VariableValueString v => v.copyWith(rawValue: rawValue),
     VariableValueDouble v => v.copyWith(rawValue: rawValue),
+    VariableValueInt v => v.copyWith(rawValue: rawValue),
     VariableValueDoubleNullable v => v.copyWith(rawValue: rawValue),
     VariableValueColorNullable v => v.copyWith(rawValue: rawValue),
     VariableValueCrossAxisAlignment v => v.copyWith(rawValue: rawValue),

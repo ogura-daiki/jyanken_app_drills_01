@@ -32,6 +32,18 @@ Map<String, dynamic> _$VariableValueDoubleToJson(
   'runtimeType': instance.$type,
 };
 
+VariableValueInt _$VariableValueIntFromJson(Map<String, dynamic> json) =>
+    VariableValueInt(
+      rawValue: (json['rawValue'] as num).toInt(),
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$VariableValueIntToJson(VariableValueInt instance) =>
+    <String, dynamic>{
+      'rawValue': instance.rawValue,
+      'runtimeType': instance.$type,
+    };
+
 VariableValueDoubleNullable _$VariableValueDoubleNullableFromJson(
   Map<String, dynamic> json,
 ) => VariableValueDoubleNullable(

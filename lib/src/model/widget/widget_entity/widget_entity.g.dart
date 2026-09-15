@@ -78,6 +78,22 @@ Map<String, dynamic> _$WidgetEntityRowToJson(WidgetEntityRow instance) =>
       'runtimeType': instance.$type,
     };
 
+WidgetEntityExpanded _$WidgetEntityExpandedFromJson(
+  Map<String, dynamic> json,
+) => WidgetEntityExpanded(
+  id: WidgetEntityId.fromJson(json['id'] as Map<String, dynamic>),
+  args: FixedExpandedArgs.fromJson(json['args'] as Map<String, dynamic>),
+  $type: json['runtimeType'] as String?,
+);
+
+Map<String, dynamic> _$WidgetEntityExpandedToJson(
+  WidgetEntityExpanded instance,
+) => <String, dynamic>{
+  'id': instance.id,
+  'args': instance.args,
+  'runtimeType': instance.$type,
+};
+
 WidgetEntityCenter _$WidgetEntityCenterFromJson(Map<String, dynamic> json) =>
     WidgetEntityCenter(
       id: WidgetEntityId.fromJson(json['id'] as Map<String, dynamic>),

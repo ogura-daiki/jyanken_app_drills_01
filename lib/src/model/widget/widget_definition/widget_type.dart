@@ -7,6 +7,7 @@ enum WidgetType {
   text(categories: {.common}),
   column(categories: {.common}),
   row(categories: {.common}),
+  expanded(categories: {.common}),
   center(categories: {.common}),
   align(categories: {.common});
 
@@ -29,6 +30,7 @@ enum WidgetType {
     .row => true,
     .column => true,
     .center => true,
+    .expanded => true,
     .align => true,
   };
 

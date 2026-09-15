@@ -59,6 +59,14 @@ class ArgInput extends StatelessWidget {
         ],
         onChange: (v) => notifyValue(v),
       ),
+      VariableValueInt a => TextBaseArgInput<int>(
+        nullable: a is VariableTypeNullable,
+        value: a.rawValue,
+        mapFrom: (String? str) => str?.let(int.tryParse) ?? 0,
+        mapTo: (int? value) => value?.toString() ?? "",
+        inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9]*'))],
+        onChange: (v) => notifyValue(v),
+      ),
       VariableValueColorNullable a => ColorEditor(
         nullable: a is VariableTypeNullable,
         defaultValue: arg.defaultValue.rawValue as ColorWrapper?,
