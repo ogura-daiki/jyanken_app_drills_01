@@ -24,7 +24,9 @@ class ScreenQuestionList extends StatelessWidget {
           if (index == 0) {
             return Padding(
               padding: const .all(16),
-              child: Text("Flutterの基礎的な部分から、じゃんけんアプリを作成するまでの問題です。"),
+              child: Text(
+                "Flutterの基礎的な部分から、じゃんけんアプリを作成するまでの問題です。\n制作期間の都合上、任意の関数の実行機能は付いていません。",
+              ),
             );
           }
           final question = Questions.values[index - 1];
