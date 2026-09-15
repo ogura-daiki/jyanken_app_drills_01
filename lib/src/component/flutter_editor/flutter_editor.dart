@@ -6,10 +6,11 @@ import 'package:jyanken_app_drills/src/component/flutter_editor/panes/flutter_ed
 import 'package:jyanken_app_drills/src/component/flutter_editor/panes/flutter_editor_tree_pane.dart';
 import 'package:jyanken_app_drills/src/component/resizable_area_layout/resizable_area_layout.dart';
 import 'package:jyanken_app_drills/src/component/widget_catalog/widget_catalog.dart';
+import 'package:jyanken_app_drills/src/model/project_id/project_id.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/widget_type.dart';
 
 class FlutterEditor extends StatefulHookConsumerWidget {
-  final String projectId;
+  final ProjectId projectId;
   final Set<WidgetType> allowTypes;
   const FlutterEditor({
     super.key,
@@ -38,7 +39,7 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
               .new(
                 areaName: "tree",
                 type: .expand(1),
-                widget: FlutterEditorTreePane(editorId: widget.projectId),
+                widget: FlutterEditorTreePane(projectId: widget.projectId),
               ),
               .new(
                 areaName: open.value ? "catalog" : "close",
@@ -67,7 +68,7 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
       child: Center(
         child: Padding(
           padding: const .all(16),
-          child: FlutterEditorPreviewPane(editorId: widget.projectId),
+          child: FlutterEditorPreviewPane(projectId: widget.projectId),
         ),
       ),
     );
@@ -145,7 +146,7 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
         .new(
           areaName: "attribute",
           type: .ratio(1 / 3),
-          widget: FlutterEditorAttributeEditorPane(editorId: widget.projectId),
+          widget: FlutterEditorAttributeEditorPane(projectId: widget.projectId),
         ),
         .new(areaName: "preview", type: .expand(1), widget: previewArea()),
       ],
@@ -169,7 +170,7 @@ class _FlutterEditorState extends ConsumerState<FlutterEditor> {
                 areaName: "attribute",
                 type: .expand(1),
                 widget: FlutterEditorAttributeEditorPane(
-                  editorId: widget.projectId,
+                  projectId: widget.projectId,
                 ),
               ),
             ],

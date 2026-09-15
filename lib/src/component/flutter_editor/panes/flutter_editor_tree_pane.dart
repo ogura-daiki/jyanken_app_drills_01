@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jyanken_app_drills/src/component/flutter_editor/flutter_editor_viewmodel.dart';
 import 'package:jyanken_app_drills/src/component/widget_tree_editor/widget_tree_editor.dart';
+import 'package:jyanken_app_drills/src/model/project_id/project_id.dart';
 
 class FlutterEditorTreePane extends ConsumerWidget {
-  final String editorId;
+  final ProjectId projectId;
 
-  const FlutterEditorTreePane({super.key, required this.editorId});
+  const FlutterEditorTreePane({super.key, required this.projectId});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final provider = flutterEditorViewmodelProvider(editorId);
+    final provider = flutterEditorViewmodelProvider(projectId);
     final state = ref.watch(provider);
     final viewModel = ref.read(provider.notifier);
     return SingleChildScrollView(

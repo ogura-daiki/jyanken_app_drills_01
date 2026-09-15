@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jyanken_app_drills/src/component/flutter_editor/flutter_editor.dart';
+import 'package:jyanken_app_drills/src/model/project_id/project_id.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/widget_type.dart';
 
 class ScreenEditor extends StatelessWidget {
-  final String id;
+  final ProjectId id;
 
   const ScreenEditor({super.key, required this.id});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(id),
+        title: Text(id.projectTitle),
         leading: IconButton(
           onPressed: () {
             context.pop();

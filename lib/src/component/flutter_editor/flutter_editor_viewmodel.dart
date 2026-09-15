@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:jyanken_app_drills/src/component/flutter_editor/flutter_editor_state.dart';
 import 'package:jyanken_app_drills/src/core/null_ext.dart';
 import 'package:jyanken_app_drills/src/core/result.dart';
+import 'package:jyanken_app_drills/src/model/project_id/project_id.dart';
 import 'package:jyanken_app_drills/src/model/variable_value/variable_value.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity.dart';
 import 'package:jyanken_app_drills/src/model/editor/widget_tree/widget_child_selector.dart';
@@ -18,10 +19,10 @@ class FlutterEditorViewmodel extends _$FlutterEditorViewmodel {
   ParseTreeNodeSelectorUsecase get _getWidget =>
       GetIt.I.get<ParseTreeNodeSelectorUsecase>();
   @override
-  FlutterEditorState build(String id) {
+  FlutterEditorState build(ProjectId id) {
     return FlutterEditorState(
-      editorId: id,
-      treeRoot: WidgetEntityRoot(id: .create(), args: .new()),
+      projectId: id,
+      treeRoot: id.projectRoot,
       selection: [],
     );
   }

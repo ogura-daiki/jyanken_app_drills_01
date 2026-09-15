@@ -98,13 +98,19 @@ mixin $QuestionListScreenRoute on GoRouteData {
 
 mixin $QuestionScreenRoute on GoRouteData {
   static QuestionScreenRoute _fromState(GoRouterState state) =>
-      QuestionScreenRoute(questionId: state.pathParameters['questionId']!);
+      QuestionScreenRoute(
+        questionId: (String json0) {
+          return ProjectIdTypeQuestion.fromJson(
+            jsonDecode(json0) as Map<String, dynamic>,
+          );
+        }(state.pathParameters['questionId']!),
+      );
 
   QuestionScreenRoute get _self => this as QuestionScreenRoute;
 
   @override
   String get location => GoRouteData.$location(
-    '/question/${Uri.encodeComponent(_self.questionId)}',
+    '/question/${Uri.encodeComponent(jsonEncode(_self.questionId.toJson()))}',
   );
 
   @override

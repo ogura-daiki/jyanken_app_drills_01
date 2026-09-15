@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Question {
 
- int get index; String get projectId; String get name; WidgetEntityRoot get initialRoot;/// required List&lt;QuestionDescription$gt; descriptions,
+ int get index; ProjectIdTypeQuestion get projectId; String get name; WidgetEntityRoot get initialRoot;/// required List&lt;QuestionDescription$gt; descriptions,
 ///
 /// QuestionDescription({
 ///   required String descriptionText,
@@ -32,12 +32,12 @@ $QuestionCopyWith<Question> get copyWith => _$QuestionCopyWithImpl<Question>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Question&&(identical(other.index, index) || other.index == index)&&(identical(other.projectId, projectId) || other.projectId == projectId)&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.initialRoot, initialRoot)&&const DeepCollectionEquality().equals(other.validators, validators));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Question&&(identical(other.index, index) || other.index == index)&&const DeepCollectionEquality().equals(other.projectId, projectId)&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.initialRoot, initialRoot)&&const DeepCollectionEquality().equals(other.validators, validators));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,index,projectId,name,const DeepCollectionEquality().hash(initialRoot),const DeepCollectionEquality().hash(validators));
+int get hashCode => Object.hash(runtimeType,index,const DeepCollectionEquality().hash(projectId),name,const DeepCollectionEquality().hash(initialRoot),const DeepCollectionEquality().hash(validators));
 
 @override
 String toString() {
@@ -52,7 +52,7 @@ abstract mixin class $QuestionCopyWith<$Res>  {
   factory $QuestionCopyWith(Question value, $Res Function(Question) _then) = _$QuestionCopyWithImpl;
 @useResult
 $Res call({
- int index, String projectId, String name, WidgetEntityRoot initialRoot, List<QuestionRule> validators
+ int index, ProjectIdTypeQuestion projectId, String name, WidgetEntityRoot initialRoot, List<QuestionRule> validators
 });
 
 
@@ -69,11 +69,11 @@ class _$QuestionCopyWithImpl<$Res>
 
 /// Create a copy of Question
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? index = null,Object? projectId = null,Object? name = null,Object? initialRoot = freezed,Object? validators = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? index = null,Object? projectId = freezed,Object? name = null,Object? initialRoot = freezed,Object? validators = null,}) {
   return _then(_self.copyWith(
 index: null == index ? _self.index : index // ignore: cast_nullable_to_non_nullable
-as int,projectId: null == projectId ? _self.projectId : projectId // ignore: cast_nullable_to_non_nullable
-as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as int,projectId: freezed == projectId ? _self.projectId : projectId // ignore: cast_nullable_to_non_nullable
+as ProjectIdTypeQuestion,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,initialRoot: freezed == initialRoot ? _self.initialRoot : initialRoot // ignore: cast_nullable_to_non_nullable
 as WidgetEntityRoot,validators: null == validators ? _self.validators : validators // ignore: cast_nullable_to_non_nullable
 as List<QuestionRule>,
@@ -161,7 +161,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int index,  String projectId,  String name,  WidgetEntityRoot initialRoot,  List<QuestionRule> validators)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int index,  ProjectIdTypeQuestion projectId,  String name,  WidgetEntityRoot initialRoot,  List<QuestionRule> validators)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Question() when $default != null:
 return $default(_that.index,_that.projectId,_that.name,_that.initialRoot,_that.validators);case _:
@@ -182,7 +182,7 @@ return $default(_that.index,_that.projectId,_that.name,_that.initialRoot,_that.v
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int index,  String projectId,  String name,  WidgetEntityRoot initialRoot,  List<QuestionRule> validators)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int index,  ProjectIdTypeQuestion projectId,  String name,  WidgetEntityRoot initialRoot,  List<QuestionRule> validators)  $default,) {final _that = this;
 switch (_that) {
 case _Question():
 return $default(_that.index,_that.projectId,_that.name,_that.initialRoot,_that.validators);case _:
@@ -202,7 +202,7 @@ return $default(_that.index,_that.projectId,_that.name,_that.initialRoot,_that.v
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int index,  String projectId,  String name,  WidgetEntityRoot initialRoot,  List<QuestionRule> validators)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int index,  ProjectIdTypeQuestion projectId,  String name,  WidgetEntityRoot initialRoot,  List<QuestionRule> validators)?  $default,) {final _that = this;
 switch (_that) {
 case _Question() when $default != null:
 return $default(_that.index,_that.projectId,_that.name,_that.initialRoot,_that.validators);case _:
@@ -221,7 +221,7 @@ class _Question extends Question {
   
 
 @override final  int index;
-@override final  String projectId;
+@override final  ProjectIdTypeQuestion projectId;
 @override final  String name;
 @override final  WidgetEntityRoot initialRoot;
 /// required List&lt;QuestionDescription$gt; descriptions,
@@ -256,12 +256,12 @@ _$QuestionCopyWith<_Question> get copyWith => __$QuestionCopyWithImpl<_Question>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Question&&(identical(other.index, index) || other.index == index)&&(identical(other.projectId, projectId) || other.projectId == projectId)&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.initialRoot, initialRoot)&&const DeepCollectionEquality().equals(other._validators, _validators));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Question&&(identical(other.index, index) || other.index == index)&&const DeepCollectionEquality().equals(other.projectId, projectId)&&(identical(other.name, name) || other.name == name)&&const DeepCollectionEquality().equals(other.initialRoot, initialRoot)&&const DeepCollectionEquality().equals(other._validators, _validators));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,index,projectId,name,const DeepCollectionEquality().hash(initialRoot),const DeepCollectionEquality().hash(_validators));
+int get hashCode => Object.hash(runtimeType,index,const DeepCollectionEquality().hash(projectId),name,const DeepCollectionEquality().hash(initialRoot),const DeepCollectionEquality().hash(_validators));
 
 @override
 String toString() {
@@ -276,7 +276,7 @@ abstract mixin class _$QuestionCopyWith<$Res> implements $QuestionCopyWith<$Res>
   factory _$QuestionCopyWith(_Question value, $Res Function(_Question) _then) = __$QuestionCopyWithImpl;
 @override @useResult
 $Res call({
- int index, String projectId, String name, WidgetEntityRoot initialRoot, List<QuestionRule> validators
+ int index, ProjectIdTypeQuestion projectId, String name, WidgetEntityRoot initialRoot, List<QuestionRule> validators
 });
 
 
@@ -293,11 +293,11 @@ class __$QuestionCopyWithImpl<$Res>
 
 /// Create a copy of Question
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? index = null,Object? projectId = null,Object? name = null,Object? initialRoot = freezed,Object? validators = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? index = null,Object? projectId = freezed,Object? name = null,Object? initialRoot = freezed,Object? validators = null,}) {
   return _then(_Question(
 index: null == index ? _self.index : index // ignore: cast_nullable_to_non_nullable
-as int,projectId: null == projectId ? _self.projectId : projectId // ignore: cast_nullable_to_non_nullable
-as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as int,projectId: freezed == projectId ? _self.projectId : projectId // ignore: cast_nullable_to_non_nullable
+as ProjectIdTypeQuestion,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,initialRoot: freezed == initialRoot ? _self.initialRoot : initialRoot // ignore: cast_nullable_to_non_nullable
 as WidgetEntityRoot,validators: null == validators ? _self._validators : validators // ignore: cast_nullable_to_non_nullable
 as List<QuestionRule>,

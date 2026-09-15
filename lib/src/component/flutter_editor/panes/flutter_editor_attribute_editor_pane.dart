@@ -4,16 +4,17 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jyanken_app_drills/src/component/flutter_editor/flutter_editor_viewmodel.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_editor/widget_entity_editor.dart';
 import 'package:jyanken_app_drills/src/core/result.dart';
+import 'package:jyanken_app_drills/src/model/project_id/project_id.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity.dart';
 
 class FlutterEditorAttributeEditorPane extends HookConsumerWidget {
-  final String editorId;
+  final ProjectId projectId;
 
-  const FlutterEditorAttributeEditorPane({super.key, required this.editorId});
+  const FlutterEditorAttributeEditorPane({super.key, required this.projectId});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final provider = flutterEditorViewmodelProvider(editorId);
+    final provider = flutterEditorViewmodelProvider(projectId);
     final state = ref.watch(provider);
     final viewModel = ref.read(provider.notifier);
     final selectedWidget = useMemoized<Result<WidgetEntity>>(() {

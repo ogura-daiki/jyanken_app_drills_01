@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jyanken_app_drills/src/core/result.dart';
+import 'package:jyanken_app_drills/src/model/project_id/project_id.dart';
 import 'package:jyanken_app_drills/src/model/question/questions.dart';
 import 'package:jyanken_app_drills/src/screen/editor/screen_editor.dart';
 import 'package:jyanken_app_drills/src/screen/home/screen_home.dart';
@@ -32,7 +34,7 @@ class FreePlayScreenRoute extends GoRouteData with $FreePlayScreenRoute {
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
-      ScreenEditor(id: "free-play");
+      ScreenEditor(id: .userProject("free-play"));
 }
 
 class QuestionListScreenRoute extends GoRouteData
@@ -46,7 +48,7 @@ class QuestionListScreenRoute extends GoRouteData
 }
 
 class QuestionScreenRoute extends GoRouteData with $QuestionScreenRoute {
-  final String questionId;
+  final ProjectIdTypeQuestion questionId;
   const QuestionScreenRoute({required this.questionId});
 
   @override

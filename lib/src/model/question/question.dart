@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:jyanken_app_drills/src/model/project_id/project_id.dart';
 import 'package:jyanken_app_drills/src/model/question/question_rule.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity.dart';
 part 'question.freezed.dart';
@@ -8,7 +9,7 @@ abstract class Question with _$Question {
   const Question._();
   const factory Question({
     required int index,
-    required String projectId,
+    required ProjectIdTypeQuestion projectId,
     required String name,
     required WidgetEntityRoot initialRoot,
 

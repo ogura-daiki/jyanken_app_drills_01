@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$FlutterEditorState {
 
- String get editorId; WidgetEntityRoot get treeRoot; List<WidgetChildSelector> get selection;
+ ProjectId get projectId; WidgetEntityRoot get treeRoot; List<WidgetChildSelector> get selection;
 /// Create a copy of FlutterEditorState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $FlutterEditorStateCopyWith<FlutterEditorState> get copyWith => _$FlutterEditorS
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FlutterEditorState&&(identical(other.editorId, editorId) || other.editorId == editorId)&&const DeepCollectionEquality().equals(other.treeRoot, treeRoot)&&const DeepCollectionEquality().equals(other.selection, selection));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FlutterEditorState&&(identical(other.projectId, projectId) || other.projectId == projectId)&&const DeepCollectionEquality().equals(other.treeRoot, treeRoot)&&const DeepCollectionEquality().equals(other.selection, selection));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,editorId,const DeepCollectionEquality().hash(treeRoot),const DeepCollectionEquality().hash(selection));
+int get hashCode => Object.hash(runtimeType,projectId,const DeepCollectionEquality().hash(treeRoot),const DeepCollectionEquality().hash(selection));
 
 @override
 String toString() {
-  return 'FlutterEditorState(editorId: $editorId, treeRoot: $treeRoot, selection: $selection)';
+  return 'FlutterEditorState(projectId: $projectId, treeRoot: $treeRoot, selection: $selection)';
 }
 
 
@@ -48,11 +48,11 @@ abstract mixin class $FlutterEditorStateCopyWith<$Res>  {
   factory $FlutterEditorStateCopyWith(FlutterEditorState value, $Res Function(FlutterEditorState) _then) = _$FlutterEditorStateCopyWithImpl;
 @useResult
 $Res call({
- String editorId, WidgetEntityRoot treeRoot, List<WidgetChildSelector> selection
+ ProjectId projectId, WidgetEntityRoot treeRoot, List<WidgetChildSelector> selection
 });
 
 
-
+$ProjectIdCopyWith<$Res> get projectId;
 
 }
 /// @nodoc
@@ -65,15 +65,24 @@ class _$FlutterEditorStateCopyWithImpl<$Res>
 
 /// Create a copy of FlutterEditorState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? editorId = null,Object? treeRoot = freezed,Object? selection = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? projectId = null,Object? treeRoot = freezed,Object? selection = null,}) {
   return _then(_self.copyWith(
-editorId: null == editorId ? _self.editorId : editorId // ignore: cast_nullable_to_non_nullable
-as String,treeRoot: freezed == treeRoot ? _self.treeRoot : treeRoot // ignore: cast_nullable_to_non_nullable
+projectId: null == projectId ? _self.projectId : projectId // ignore: cast_nullable_to_non_nullable
+as ProjectId,treeRoot: freezed == treeRoot ? _self.treeRoot : treeRoot // ignore: cast_nullable_to_non_nullable
 as WidgetEntityRoot,selection: null == selection ? _self.selection : selection // ignore: cast_nullable_to_non_nullable
 as List<WidgetChildSelector>,
   ));
 }
-
+/// Create a copy of FlutterEditorState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProjectIdCopyWith<$Res> get projectId {
+  
+  return $ProjectIdCopyWith<$Res>(_self.projectId, (value) {
+    return _then(_self.copyWith(projectId: value));
+  });
+}
 }
 
 
@@ -155,10 +164,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String editorId,  WidgetEntityRoot treeRoot,  List<WidgetChildSelector> selection)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ProjectId projectId,  WidgetEntityRoot treeRoot,  List<WidgetChildSelector> selection)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FlutterEditorState() when $default != null:
-return $default(_that.editorId,_that.treeRoot,_that.selection);case _:
+return $default(_that.projectId,_that.treeRoot,_that.selection);case _:
   return orElse();
 
 }
@@ -176,10 +185,10 @@ return $default(_that.editorId,_that.treeRoot,_that.selection);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String editorId,  WidgetEntityRoot treeRoot,  List<WidgetChildSelector> selection)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ProjectId projectId,  WidgetEntityRoot treeRoot,  List<WidgetChildSelector> selection)  $default,) {final _that = this;
 switch (_that) {
 case _FlutterEditorState():
-return $default(_that.editorId,_that.treeRoot,_that.selection);case _:
+return $default(_that.projectId,_that.treeRoot,_that.selection);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -196,10 +205,10 @@ return $default(_that.editorId,_that.treeRoot,_that.selection);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String editorId,  WidgetEntityRoot treeRoot,  List<WidgetChildSelector> selection)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ProjectId projectId,  WidgetEntityRoot treeRoot,  List<WidgetChildSelector> selection)?  $default,) {final _that = this;
 switch (_that) {
 case _FlutterEditorState() when $default != null:
-return $default(_that.editorId,_that.treeRoot,_that.selection);case _:
+return $default(_that.projectId,_that.treeRoot,_that.selection);case _:
   return null;
 
 }
@@ -211,10 +220,10 @@ return $default(_that.editorId,_that.treeRoot,_that.selection);case _:
 @JsonSerializable()
 
 class _FlutterEditorState extends FlutterEditorState {
-  const _FlutterEditorState({required this.editorId, required this.treeRoot, required final  List<WidgetChildSelector> selection}): _selection = selection,super._();
+  const _FlutterEditorState({required this.projectId, required this.treeRoot, required final  List<WidgetChildSelector> selection}): _selection = selection,super._();
   factory _FlutterEditorState.fromJson(Map<String, dynamic> json) => _$FlutterEditorStateFromJson(json);
 
-@override final  String editorId;
+@override final  ProjectId projectId;
 @override final  WidgetEntityRoot treeRoot;
  final  List<WidgetChildSelector> _selection;
 @override List<WidgetChildSelector> get selection {
@@ -237,16 +246,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FlutterEditorState&&(identical(other.editorId, editorId) || other.editorId == editorId)&&const DeepCollectionEquality().equals(other.treeRoot, treeRoot)&&const DeepCollectionEquality().equals(other._selection, _selection));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FlutterEditorState&&(identical(other.projectId, projectId) || other.projectId == projectId)&&const DeepCollectionEquality().equals(other.treeRoot, treeRoot)&&const DeepCollectionEquality().equals(other._selection, _selection));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,editorId,const DeepCollectionEquality().hash(treeRoot),const DeepCollectionEquality().hash(_selection));
+int get hashCode => Object.hash(runtimeType,projectId,const DeepCollectionEquality().hash(treeRoot),const DeepCollectionEquality().hash(_selection));
 
 @override
 String toString() {
-  return 'FlutterEditorState(editorId: $editorId, treeRoot: $treeRoot, selection: $selection)';
+  return 'FlutterEditorState(projectId: $projectId, treeRoot: $treeRoot, selection: $selection)';
 }
 
 
@@ -257,11 +266,11 @@ abstract mixin class _$FlutterEditorStateCopyWith<$Res> implements $FlutterEdito
   factory _$FlutterEditorStateCopyWith(_FlutterEditorState value, $Res Function(_FlutterEditorState) _then) = __$FlutterEditorStateCopyWithImpl;
 @override @useResult
 $Res call({
- String editorId, WidgetEntityRoot treeRoot, List<WidgetChildSelector> selection
+ ProjectId projectId, WidgetEntityRoot treeRoot, List<WidgetChildSelector> selection
 });
 
 
-
+@override $ProjectIdCopyWith<$Res> get projectId;
 
 }
 /// @nodoc
@@ -274,16 +283,25 @@ class __$FlutterEditorStateCopyWithImpl<$Res>
 
 /// Create a copy of FlutterEditorState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? editorId = null,Object? treeRoot = freezed,Object? selection = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? projectId = null,Object? treeRoot = freezed,Object? selection = null,}) {
   return _then(_FlutterEditorState(
-editorId: null == editorId ? _self.editorId : editorId // ignore: cast_nullable_to_non_nullable
-as String,treeRoot: freezed == treeRoot ? _self.treeRoot : treeRoot // ignore: cast_nullable_to_non_nullable
+projectId: null == projectId ? _self.projectId : projectId // ignore: cast_nullable_to_non_nullable
+as ProjectId,treeRoot: freezed == treeRoot ? _self.treeRoot : treeRoot // ignore: cast_nullable_to_non_nullable
 as WidgetEntityRoot,selection: null == selection ? _self._selection : selection // ignore: cast_nullable_to_non_nullable
 as List<WidgetChildSelector>,
   ));
 }
 
-
+/// Create a copy of FlutterEditorState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProjectIdCopyWith<$Res> get projectId {
+  
+  return $ProjectIdCopyWith<$Res>(_self.projectId, (value) {
+    return _then(_self.copyWith(projectId: value));
+  });
+}
 }
 
 // dart format on
