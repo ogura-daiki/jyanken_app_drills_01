@@ -22,10 +22,8 @@ final class Questions {
           errorMessage: "ルート要素の直下にTextを配置してください",
         ),
         .new(
-          valSelector: (root) => root.args.child
-              .requireType<WidgetEntityText>()
-              .args
-              .text,
+          valSelector: (root) =>
+              root.args.child.requireType<WidgetEntityText>().args.text,
           matcher: .requiredValue("こんにちは"),
           errorMessage: "Textに こんにちは と表示してください",
         ),
@@ -231,6 +229,64 @@ final class Questions {
               .color,
           matcher: .requiredType<ColorWrapper>(),
           errorMessage: "追加したContainerに色を設定してください",
+        ),
+      ],
+    ),
+    .new(
+      index: 10,
+      projectId: .new("q2-1"),
+      name: "ボタンを押してアクション",
+      initialRoot: .new(
+        id: .create(),
+        args: .new(
+          child: .scope(
+            id: .create(),
+            args: .new(
+              variables: .new(
+                variables: [
+                  .new(
+                    name: "displayText",
+                    initialValue: .string(rawValue: "初期テキスト"),
+                    value: .string(rawValue: "初期テキスト"),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+      validators: [
+        .new(
+          valSelector: (root) =>
+              root.args.child?.requireType<WidgetEntityScope>().args.child,
+          matcher: .requiredType<WidgetEntityQ2_1>(),
+          errorMessage: "q2_1をScopeに追加してください",
+        ),
+        .new(
+          valSelector: (root) => root.args.child
+              ?.requireType<WidgetEntityScope>()
+              .args
+              .child
+              ?.requireType<WidgetEntityQ2_1>()
+              .args
+              .displayText,
+          matcher: .requiredValue("テスト"),
+          errorMessage: "q2_1のdisplayTextに テスト と設定してください",
+        ),
+        .new(
+          valSelector: (root) => root.args.child
+              ?.requireType<WidgetEntityScope>()
+              .args
+              .variables
+              .variables
+              .where(
+                (e) => e.name == "displayText" && e.value.toEnum() == .string,
+              )
+              .first
+              .value
+              .rawValue,
+          matcher: .requiredValue("テスト"),
+          errorMessage: "プレビュー欄からq2_1のボタンを押して、ボタンの上側に表示されている文字列を テスト にしてください",
         ),
       ],
     ),
