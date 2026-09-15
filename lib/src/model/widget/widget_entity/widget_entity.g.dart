@@ -121,3 +121,45 @@ Map<String, dynamic> _$WidgetEntityAlignToJson(WidgetEntityAlign instance) =>
       'args': instance.args,
       'runtimeType': instance.$type,
     };
+
+WidgetEntityQ2_1 _$WidgetEntityQ2_1FromJson(Map<String, dynamic> json) =>
+    WidgetEntityQ2_1(
+      id: WidgetEntityId.fromJson(json['id'] as Map<String, dynamic>),
+      args: FixedAlignArgs.fromJson(json['args'] as Map<String, dynamic>),
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$WidgetEntityQ2_1ToJson(WidgetEntityQ2_1 instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'args': instance.args,
+      'runtimeType': instance.$type,
+    };
+
+WidgetEntityQ2_2 _$WidgetEntityQ2_2FromJson(Map<String, dynamic> json) =>
+    WidgetEntityQ2_2(
+      id: WidgetEntityId.fromJson(json['id'] as Map<String, dynamic>),
+      args: FixedAlignArgs.fromJson(json['args'] as Map<String, dynamic>),
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$WidgetEntityQ2_2ToJson(WidgetEntityQ2_2 instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'args': instance.args,
+      'runtimeType': instance.$type,
+    };
+
+WidgetEntityQ2_3 _$WidgetEntityQ2_3FromJson(Map<String, dynamic> json) =>
+    WidgetEntityQ2_3(
+      id: WidgetEntityId.fromJson(json['id'] as Map<String, dynamic>),
+      args: FixedAlignArgs.fromJson(json['args'] as Map<String, dynamic>),
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$WidgetEntityQ2_3ToJson(WidgetEntityQ2_3 instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'args': instance.args,
+      'runtimeType': instance.$type,
+    };

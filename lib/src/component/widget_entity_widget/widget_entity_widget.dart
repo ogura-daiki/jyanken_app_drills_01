@@ -32,6 +32,9 @@ class WidgetEntityWidget extends StatelessWidget {
         WidgetEntityExpanded e => WidgetExpanded(entity: e),
         WidgetEntityCenter e => WidgetCenter(entity: e),
         WidgetEntityAlign e => WidgetAlign(entity: e),
+        WidgetEntityQ2_1 e => Text("WidgetEntityWidget未実装"),
+        WidgetEntityQ2_2 e => Text("WidgetEntityWidget未実装"),
+        WidgetEntityQ2_3 e => Text("WidgetEntityWidget未実装"),
       },
     };
   }

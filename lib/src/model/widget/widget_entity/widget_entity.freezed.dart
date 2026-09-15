@@ -47,6 +47,18 @@ WidgetEntity _$WidgetEntityFromJson(
           return WidgetEntityAlign.fromJson(
             json
           );
+                case 'q2_1':
+          return WidgetEntityQ2_1.fromJson(
+            json
+          );
+                case 'q2_2':
+          return WidgetEntityQ2_2.fromJson(
+            json
+          );
+                case 'q2_3':
+          return WidgetEntityQ2_3.fromJson(
+            json
+          );
         
           default:
             throw CheckedFromJsonException(
@@ -145,7 +157,7 @@ extension WidgetEntityPatterns on WidgetEntity {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( WidgetEntityRoot value)?  root,TResult Function( WidgetEntityContainer value)?  container,TResult Function( WidgetEntityText value)?  text,TResult Function( WidgetEntityColumn value)?  column,TResult Function( WidgetEntityRow value)?  row,TResult Function( WidgetEntityExpanded value)?  expanded,TResult Function( WidgetEntityCenter value)?  center,TResult Function( WidgetEntityAlign value)?  align,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( WidgetEntityRoot value)?  root,TResult Function( WidgetEntityContainer value)?  container,TResult Function( WidgetEntityText value)?  text,TResult Function( WidgetEntityColumn value)?  column,TResult Function( WidgetEntityRow value)?  row,TResult Function( WidgetEntityExpanded value)?  expanded,TResult Function( WidgetEntityCenter value)?  center,TResult Function( WidgetEntityAlign value)?  align,TResult Function( WidgetEntityQ2_1 value)?  q2_1,TResult Function( WidgetEntityQ2_2 value)?  q2_2,TResult Function( WidgetEntityQ2_3 value)?  q2_3,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case WidgetEntityRoot() when root != null:
@@ -156,7 +168,10 @@ return column(_that);case WidgetEntityRow() when row != null:
 return row(_that);case WidgetEntityExpanded() when expanded != null:
 return expanded(_that);case WidgetEntityCenter() when center != null:
 return center(_that);case WidgetEntityAlign() when align != null:
-return align(_that);case _:
+return align(_that);case WidgetEntityQ2_1() when q2_1 != null:
+return q2_1(_that);case WidgetEntityQ2_2() when q2_2 != null:
+return q2_2(_that);case WidgetEntityQ2_3() when q2_3 != null:
+return q2_3(_that);case _:
   return orElse();
 
 }
@@ -174,7 +189,7 @@ return align(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( WidgetEntityRoot value)  root,required TResult Function( WidgetEntityContainer value)  container,required TResult Function( WidgetEntityText value)  text,required TResult Function( WidgetEntityColumn value)  column,required TResult Function( WidgetEntityRow value)  row,required TResult Function( WidgetEntityExpanded value)  expanded,required TResult Function( WidgetEntityCenter value)  center,required TResult Function( WidgetEntityAlign value)  align,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( WidgetEntityRoot value)  root,required TResult Function( WidgetEntityContainer value)  container,required TResult Function( WidgetEntityText value)  text,required TResult Function( WidgetEntityColumn value)  column,required TResult Function( WidgetEntityRow value)  row,required TResult Function( WidgetEntityExpanded value)  expanded,required TResult Function( WidgetEntityCenter value)  center,required TResult Function( WidgetEntityAlign value)  align,required TResult Function( WidgetEntityQ2_1 value)  q2_1,required TResult Function( WidgetEntityQ2_2 value)  q2_2,required TResult Function( WidgetEntityQ2_3 value)  q2_3,}){
 final _that = this;
 switch (_that) {
 case WidgetEntityRoot():
@@ -185,7 +200,10 @@ return column(_that);case WidgetEntityRow():
 return row(_that);case WidgetEntityExpanded():
 return expanded(_that);case WidgetEntityCenter():
 return center(_that);case WidgetEntityAlign():
-return align(_that);}
+return align(_that);case WidgetEntityQ2_1():
+return q2_1(_that);case WidgetEntityQ2_2():
+return q2_2(_that);case WidgetEntityQ2_3():
+return q2_3(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -199,7 +217,7 @@ return align(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( WidgetEntityRoot value)?  root,TResult? Function( WidgetEntityContainer value)?  container,TResult? Function( WidgetEntityText value)?  text,TResult? Function( WidgetEntityColumn value)?  column,TResult? Function( WidgetEntityRow value)?  row,TResult? Function( WidgetEntityExpanded value)?  expanded,TResult? Function( WidgetEntityCenter value)?  center,TResult? Function( WidgetEntityAlign value)?  align,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( WidgetEntityRoot value)?  root,TResult? Function( WidgetEntityContainer value)?  container,TResult? Function( WidgetEntityText value)?  text,TResult? Function( WidgetEntityColumn value)?  column,TResult? Function( WidgetEntityRow value)?  row,TResult? Function( WidgetEntityExpanded value)?  expanded,TResult? Function( WidgetEntityCenter value)?  center,TResult? Function( WidgetEntityAlign value)?  align,TResult? Function( WidgetEntityQ2_1 value)?  q2_1,TResult? Function( WidgetEntityQ2_2 value)?  q2_2,TResult? Function( WidgetEntityQ2_3 value)?  q2_3,}){
 final _that = this;
 switch (_that) {
 case WidgetEntityRoot() when root != null:
@@ -210,7 +228,10 @@ return column(_that);case WidgetEntityRow() when row != null:
 return row(_that);case WidgetEntityExpanded() when expanded != null:
 return expanded(_that);case WidgetEntityCenter() when center != null:
 return center(_that);case WidgetEntityAlign() when align != null:
-return align(_that);case _:
+return align(_that);case WidgetEntityQ2_1() when q2_1 != null:
+return q2_1(_that);case WidgetEntityQ2_2() when q2_2 != null:
+return q2_2(_that);case WidgetEntityQ2_3() when q2_3 != null:
+return q2_3(_that);case _:
   return null;
 
 }
@@ -227,7 +248,7 @@ return align(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( WidgetEntityId id,  FixedRootArgs args)?  root,TResult Function( WidgetEntityId id,  FixedContainerArgs args)?  container,TResult Function( WidgetEntityId id,  FixedTextArgs args)?  text,TResult Function( WidgetEntityId id,  FixedColumnArgs args)?  column,TResult Function( WidgetEntityId id,  FixedRowArgs args)?  row,TResult Function( WidgetEntityId id,  FixedExpandedArgs args)?  expanded,TResult Function( WidgetEntityId id,  FixedCenterArgs args)?  center,TResult Function( WidgetEntityId id,  FixedAlignArgs args)?  align,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( WidgetEntityId id,  FixedRootArgs args)?  root,TResult Function( WidgetEntityId id,  FixedContainerArgs args)?  container,TResult Function( WidgetEntityId id,  FixedTextArgs args)?  text,TResult Function( WidgetEntityId id,  FixedColumnArgs args)?  column,TResult Function( WidgetEntityId id,  FixedRowArgs args)?  row,TResult Function( WidgetEntityId id,  FixedExpandedArgs args)?  expanded,TResult Function( WidgetEntityId id,  FixedCenterArgs args)?  center,TResult Function( WidgetEntityId id,  FixedAlignArgs args)?  align,TResult Function( WidgetEntityId id,  FixedAlignArgs args)?  q2_1,TResult Function( WidgetEntityId id,  FixedAlignArgs args)?  q2_2,TResult Function( WidgetEntityId id,  FixedAlignArgs args)?  q2_3,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case WidgetEntityRoot() when root != null:
 return root(_that.id,_that.args);case WidgetEntityContainer() when container != null:
@@ -237,7 +258,10 @@ return column(_that.id,_that.args);case WidgetEntityRow() when row != null:
 return row(_that.id,_that.args);case WidgetEntityExpanded() when expanded != null:
 return expanded(_that.id,_that.args);case WidgetEntityCenter() when center != null:
 return center(_that.id,_that.args);case WidgetEntityAlign() when align != null:
-return align(_that.id,_that.args);case _:
+return align(_that.id,_that.args);case WidgetEntityQ2_1() when q2_1 != null:
+return q2_1(_that.id,_that.args);case WidgetEntityQ2_2() when q2_2 != null:
+return q2_2(_that.id,_that.args);case WidgetEntityQ2_3() when q2_3 != null:
+return q2_3(_that.id,_that.args);case _:
   return orElse();
 
 }
@@ -255,7 +279,7 @@ return align(_that.id,_that.args);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( WidgetEntityId id,  FixedRootArgs args)  root,required TResult Function( WidgetEntityId id,  FixedContainerArgs args)  container,required TResult Function( WidgetEntityId id,  FixedTextArgs args)  text,required TResult Function( WidgetEntityId id,  FixedColumnArgs args)  column,required TResult Function( WidgetEntityId id,  FixedRowArgs args)  row,required TResult Function( WidgetEntityId id,  FixedExpandedArgs args)  expanded,required TResult Function( WidgetEntityId id,  FixedCenterArgs args)  center,required TResult Function( WidgetEntityId id,  FixedAlignArgs args)  align,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( WidgetEntityId id,  FixedRootArgs args)  root,required TResult Function( WidgetEntityId id,  FixedContainerArgs args)  container,required TResult Function( WidgetEntityId id,  FixedTextArgs args)  text,required TResult Function( WidgetEntityId id,  FixedColumnArgs args)  column,required TResult Function( WidgetEntityId id,  FixedRowArgs args)  row,required TResult Function( WidgetEntityId id,  FixedExpandedArgs args)  expanded,required TResult Function( WidgetEntityId id,  FixedCenterArgs args)  center,required TResult Function( WidgetEntityId id,  FixedAlignArgs args)  align,required TResult Function( WidgetEntityId id,  FixedAlignArgs args)  q2_1,required TResult Function( WidgetEntityId id,  FixedAlignArgs args)  q2_2,required TResult Function( WidgetEntityId id,  FixedAlignArgs args)  q2_3,}) {final _that = this;
 switch (_that) {
 case WidgetEntityRoot():
 return root(_that.id,_that.args);case WidgetEntityContainer():
@@ -265,7 +289,10 @@ return column(_that.id,_that.args);case WidgetEntityRow():
 return row(_that.id,_that.args);case WidgetEntityExpanded():
 return expanded(_that.id,_that.args);case WidgetEntityCenter():
 return center(_that.id,_that.args);case WidgetEntityAlign():
-return align(_that.id,_that.args);}
+return align(_that.id,_that.args);case WidgetEntityQ2_1():
+return q2_1(_that.id,_that.args);case WidgetEntityQ2_2():
+return q2_2(_that.id,_that.args);case WidgetEntityQ2_3():
+return q2_3(_that.id,_that.args);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -279,7 +306,7 @@ return align(_that.id,_that.args);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( WidgetEntityId id,  FixedRootArgs args)?  root,TResult? Function( WidgetEntityId id,  FixedContainerArgs args)?  container,TResult? Function( WidgetEntityId id,  FixedTextArgs args)?  text,TResult? Function( WidgetEntityId id,  FixedColumnArgs args)?  column,TResult? Function( WidgetEntityId id,  FixedRowArgs args)?  row,TResult? Function( WidgetEntityId id,  FixedExpandedArgs args)?  expanded,TResult? Function( WidgetEntityId id,  FixedCenterArgs args)?  center,TResult? Function( WidgetEntityId id,  FixedAlignArgs args)?  align,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( WidgetEntityId id,  FixedRootArgs args)?  root,TResult? Function( WidgetEntityId id,  FixedContainerArgs args)?  container,TResult? Function( WidgetEntityId id,  FixedTextArgs args)?  text,TResult? Function( WidgetEntityId id,  FixedColumnArgs args)?  column,TResult? Function( WidgetEntityId id,  FixedRowArgs args)?  row,TResult? Function( WidgetEntityId id,  FixedExpandedArgs args)?  expanded,TResult? Function( WidgetEntityId id,  FixedCenterArgs args)?  center,TResult? Function( WidgetEntityId id,  FixedAlignArgs args)?  align,TResult? Function( WidgetEntityId id,  FixedAlignArgs args)?  q2_1,TResult? Function( WidgetEntityId id,  FixedAlignArgs args)?  q2_2,TResult? Function( WidgetEntityId id,  FixedAlignArgs args)?  q2_3,}) {final _that = this;
 switch (_that) {
 case WidgetEntityRoot() when root != null:
 return root(_that.id,_that.args);case WidgetEntityContainer() when container != null:
@@ -289,7 +316,10 @@ return column(_that.id,_that.args);case WidgetEntityRow() when row != null:
 return row(_that.id,_that.args);case WidgetEntityExpanded() when expanded != null:
 return expanded(_that.id,_that.args);case WidgetEntityCenter() when center != null:
 return center(_that.id,_that.args);case WidgetEntityAlign() when align != null:
-return align(_that.id,_that.args);case _:
+return align(_that.id,_that.args);case WidgetEntityQ2_1() when q2_1 != null:
+return q2_1(_that.id,_that.args);case WidgetEntityQ2_2() when q2_2 != null:
+return q2_2(_that.id,_that.args);case WidgetEntityQ2_3() when q2_3 != null:
+return q2_3(_that.id,_that.args);case _:
   return null;
 
 }
@@ -1014,6 +1044,285 @@ class _$WidgetEntityAlignCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? args = null,}) {
   return _then(WidgetEntityAlign(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as WidgetEntityId,args: null == args ? _self.args : args // ignore: cast_nullable_to_non_nullable
+as FixedAlignArgs,
+  ));
+}
+
+/// Create a copy of WidgetEntity
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WidgetEntityIdCopyWith<$Res> get id {
+  
+  return $WidgetEntityIdCopyWith<$Res>(_self.id, (value) {
+    return _then(_self.copyWith(id: value));
+  });
+}/// Create a copy of WidgetEntity
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$FixedAlignArgsCopyWith<$Res> get args {
+  
+  return $FixedAlignArgsCopyWith<$Res>(_self.args, (value) {
+    return _then(_self.copyWith(args: value));
+  });
+}
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class WidgetEntityQ2_1 extends WidgetEntity {
+  const WidgetEntityQ2_1({required this.id, required this.args, final  String? $type}): $type = $type ?? 'q2_1',super._();
+  factory WidgetEntityQ2_1.fromJson(Map<String, dynamic> json) => _$WidgetEntityQ2_1FromJson(json);
+
+@override final  WidgetEntityId id;
+@override final  FixedAlignArgs args;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
+
+/// Create a copy of WidgetEntity
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$WidgetEntityQ2_1CopyWith<WidgetEntityQ2_1> get copyWith => _$WidgetEntityQ2_1CopyWithImpl<WidgetEntityQ2_1>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$WidgetEntityQ2_1ToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WidgetEntityQ2_1&&(identical(other.id, id) || other.id == id)&&(identical(other.args, args) || other.args == args));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,args);
+
+@override
+String toString() {
+  return 'WidgetEntity.q2_1(id: $id, args: $args)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $WidgetEntityQ2_1CopyWith<$Res> implements $WidgetEntityCopyWith<$Res> {
+  factory $WidgetEntityQ2_1CopyWith(WidgetEntityQ2_1 value, $Res Function(WidgetEntityQ2_1) _then) = _$WidgetEntityQ2_1CopyWithImpl;
+@override @useResult
+$Res call({
+ WidgetEntityId id, FixedAlignArgs args
+});
+
+
+@override $WidgetEntityIdCopyWith<$Res> get id;$FixedAlignArgsCopyWith<$Res> get args;
+
+}
+/// @nodoc
+class _$WidgetEntityQ2_1CopyWithImpl<$Res>
+    implements $WidgetEntityQ2_1CopyWith<$Res> {
+  _$WidgetEntityQ2_1CopyWithImpl(this._self, this._then);
+
+  final WidgetEntityQ2_1 _self;
+  final $Res Function(WidgetEntityQ2_1) _then;
+
+/// Create a copy of WidgetEntity
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? args = null,}) {
+  return _then(WidgetEntityQ2_1(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as WidgetEntityId,args: null == args ? _self.args : args // ignore: cast_nullable_to_non_nullable
+as FixedAlignArgs,
+  ));
+}
+
+/// Create a copy of WidgetEntity
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WidgetEntityIdCopyWith<$Res> get id {
+  
+  return $WidgetEntityIdCopyWith<$Res>(_self.id, (value) {
+    return _then(_self.copyWith(id: value));
+  });
+}/// Create a copy of WidgetEntity
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$FixedAlignArgsCopyWith<$Res> get args {
+  
+  return $FixedAlignArgsCopyWith<$Res>(_self.args, (value) {
+    return _then(_self.copyWith(args: value));
+  });
+}
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class WidgetEntityQ2_2 extends WidgetEntity {
+  const WidgetEntityQ2_2({required this.id, required this.args, final  String? $type}): $type = $type ?? 'q2_2',super._();
+  factory WidgetEntityQ2_2.fromJson(Map<String, dynamic> json) => _$WidgetEntityQ2_2FromJson(json);
+
+@override final  WidgetEntityId id;
+@override final  FixedAlignArgs args;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
+
+/// Create a copy of WidgetEntity
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$WidgetEntityQ2_2CopyWith<WidgetEntityQ2_2> get copyWith => _$WidgetEntityQ2_2CopyWithImpl<WidgetEntityQ2_2>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$WidgetEntityQ2_2ToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WidgetEntityQ2_2&&(identical(other.id, id) || other.id == id)&&(identical(other.args, args) || other.args == args));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,args);
+
+@override
+String toString() {
+  return 'WidgetEntity.q2_2(id: $id, args: $args)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $WidgetEntityQ2_2CopyWith<$Res> implements $WidgetEntityCopyWith<$Res> {
+  factory $WidgetEntityQ2_2CopyWith(WidgetEntityQ2_2 value, $Res Function(WidgetEntityQ2_2) _then) = _$WidgetEntityQ2_2CopyWithImpl;
+@override @useResult
+$Res call({
+ WidgetEntityId id, FixedAlignArgs args
+});
+
+
+@override $WidgetEntityIdCopyWith<$Res> get id;$FixedAlignArgsCopyWith<$Res> get args;
+
+}
+/// @nodoc
+class _$WidgetEntityQ2_2CopyWithImpl<$Res>
+    implements $WidgetEntityQ2_2CopyWith<$Res> {
+  _$WidgetEntityQ2_2CopyWithImpl(this._self, this._then);
+
+  final WidgetEntityQ2_2 _self;
+  final $Res Function(WidgetEntityQ2_2) _then;
+
+/// Create a copy of WidgetEntity
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? args = null,}) {
+  return _then(WidgetEntityQ2_2(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as WidgetEntityId,args: null == args ? _self.args : args // ignore: cast_nullable_to_non_nullable
+as FixedAlignArgs,
+  ));
+}
+
+/// Create a copy of WidgetEntity
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WidgetEntityIdCopyWith<$Res> get id {
+  
+  return $WidgetEntityIdCopyWith<$Res>(_self.id, (value) {
+    return _then(_self.copyWith(id: value));
+  });
+}/// Create a copy of WidgetEntity
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$FixedAlignArgsCopyWith<$Res> get args {
+  
+  return $FixedAlignArgsCopyWith<$Res>(_self.args, (value) {
+    return _then(_self.copyWith(args: value));
+  });
+}
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class WidgetEntityQ2_3 extends WidgetEntity {
+  const WidgetEntityQ2_3({required this.id, required this.args, final  String? $type}): $type = $type ?? 'q2_3',super._();
+  factory WidgetEntityQ2_3.fromJson(Map<String, dynamic> json) => _$WidgetEntityQ2_3FromJson(json);
+
+@override final  WidgetEntityId id;
+@override final  FixedAlignArgs args;
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
+
+/// Create a copy of WidgetEntity
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$WidgetEntityQ2_3CopyWith<WidgetEntityQ2_3> get copyWith => _$WidgetEntityQ2_3CopyWithImpl<WidgetEntityQ2_3>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$WidgetEntityQ2_3ToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WidgetEntityQ2_3&&(identical(other.id, id) || other.id == id)&&(identical(other.args, args) || other.args == args));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,args);
+
+@override
+String toString() {
+  return 'WidgetEntity.q2_3(id: $id, args: $args)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $WidgetEntityQ2_3CopyWith<$Res> implements $WidgetEntityCopyWith<$Res> {
+  factory $WidgetEntityQ2_3CopyWith(WidgetEntityQ2_3 value, $Res Function(WidgetEntityQ2_3) _then) = _$WidgetEntityQ2_3CopyWithImpl;
+@override @useResult
+$Res call({
+ WidgetEntityId id, FixedAlignArgs args
+});
+
+
+@override $WidgetEntityIdCopyWith<$Res> get id;$FixedAlignArgsCopyWith<$Res> get args;
+
+}
+/// @nodoc
+class _$WidgetEntityQ2_3CopyWithImpl<$Res>
+    implements $WidgetEntityQ2_3CopyWith<$Res> {
+  _$WidgetEntityQ2_3CopyWithImpl(this._self, this._then);
+
+  final WidgetEntityQ2_3 _self;
+  final $Res Function(WidgetEntityQ2_3) _then;
+
+/// Create a copy of WidgetEntity
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? args = null,}) {
+  return _then(WidgetEntityQ2_3(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as WidgetEntityId,args: null == args ? _self.args : args // ignore: cast_nullable_to_non_nullable
 as FixedAlignArgs,

@@ -9,7 +9,10 @@ enum WidgetType {
   row(categories: {.common}),
   expanded(categories: {.common}),
   center(categories: {.common}),
-  align(categories: {.common});
+  align(categories: {.common}),
+  q2_1(categories: {}),
+  q2_2(categories: {}),
+  q2_3(categories: {});
 
   final Set<WidgetCategory> categories;
 
@@ -32,6 +35,11 @@ enum WidgetType {
     .center => true,
     .expanded => true,
     .align => true,
+    .q2_1 || .q2_2 || .q2_3 => switch (type) {
+      .editAttribute => true,
+      .remove => false,
+      .changeWidget => false,
+    },
   };
 
   static Iterable<WidgetType> findByCategories(

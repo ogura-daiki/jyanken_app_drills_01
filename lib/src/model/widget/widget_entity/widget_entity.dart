@@ -48,6 +48,18 @@ sealed class WidgetEntity with _$WidgetEntity {
     required WidgetEntityId id,
     required FixedAlignArgs args,
   }) = WidgetEntityAlign;
+  const factory WidgetEntity.q2_1({
+    required WidgetEntityId id,
+    required FixedAlignArgs args,
+  }) = WidgetEntityQ2_1;
+  const factory WidgetEntity.q2_2({
+    required WidgetEntityId id,
+    required FixedAlignArgs args,
+  }) = WidgetEntityQ2_2;
+  const factory WidgetEntity.q2_3({
+    required WidgetEntityId id,
+    required FixedAlignArgs args,
+  }) = WidgetEntityQ2_3;
 
   WidgetType get type => switch (this) {
     WidgetEntityRoot() => .root,
@@ -58,6 +70,9 @@ sealed class WidgetEntity with _$WidgetEntity {
     WidgetEntityExpanded() => .expanded,
     WidgetEntityCenter() => .center,
     WidgetEntityAlign() => .align,
+    WidgetEntityQ2_1() => .q2_1,
+    WidgetEntityQ2_2() => .q2_2,
+    WidgetEntityQ2_3() => .q2_3,
   };
 
   factory WidgetEntity.fromType(WidgetType type) => switch (type) {
@@ -69,6 +84,9 @@ sealed class WidgetEntity with _$WidgetEntity {
     .expanded => .expanded(id: .create(), args: .initial),
     .center => .center(id: .create(), args: .initial),
     .align => .align(id: .create(), args: .initial),
+    .q2_1 => .q2_1(id: .create(), args: .initial),
+    .q2_2 => .q2_2(id: .create(), args: .initial),
+    .q2_3 => .q2_3(id: .create(), args: .initial),
   };
 
   factory WidgetEntity.fromWrapper(WidgetEntityWrapper wrapper) =>
@@ -87,6 +105,9 @@ sealed class WidgetEntity with _$WidgetEntity {
         ),
         .center => .center(id: wrapper.id, args: .fromCommonArgs(wrapper.args)),
         .align => .align(id: wrapper.id, args: .fromCommonArgs(wrapper.args)),
+        .q2_1 => .q2_1(id: wrapper.id, args: .fromCommonArgs(wrapper.args)),
+        .q2_2 => .q2_2(id: wrapper.id, args: .fromCommonArgs(wrapper.args)),
+        .q2_3 => .q2_3(id: wrapper.id, args: .fromCommonArgs(wrapper.args)),
       };
 
   WidgetEntityWrapper toWrapper() => switch (this) {
@@ -126,6 +147,9 @@ sealed class WidgetEntity with _$WidgetEntity {
       type: .align,
       args: w.args.toCommonArgs(),
     ),
+    WidgetEntityQ2_1 w => .new(id: id, type: type, args: w.args.toCommonArgs()),
+    WidgetEntityQ2_2 w => .new(id: id, type: type, args: w.args.toCommonArgs()),
+    WidgetEntityQ2_3 w => .new(id: id, type: type, args: w.args.toCommonArgs()),
   };
 
   factory WidgetEntity.fromJson(Map<String, dynamic> json) =>
