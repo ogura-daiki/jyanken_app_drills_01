@@ -24,7 +24,7 @@ class WidgetTypeIcon extends StatelessWidget {
         .expanded => const Icon(Icons.expand),
         .center => const Icon(Icons.center_focus_strong),
         .align => const Icon(Icons.center_focus_weak),
-        .scope => const Icon(Icons.change_circle),
+        .scope => const Icon(Icons.data_object),
         .q2_1 || .q2_2 || .q2_3 => const Icon(Icons.question_mark),
       },
     );
