@@ -6,6 +6,7 @@ import 'package:jyanken_app_drills/src/component/arg_input/impl/alignment_arg_in
 import 'package:jyanken_app_drills/src/component/arg_input/impl/color_arg_input/color_arg_input.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/enum_base_arg_input.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/scope_arg_input/scope_arg_input.dart';
+import 'package:jyanken_app_drills/src/component/arg_input/impl/string_list_arg_input/string_list_arg_input.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/text_base_arg_input.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/text_style_arg_input/text_style_arg_input.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/variable_arg_input/variable_arg_input.dart';
@@ -39,6 +40,10 @@ class ArgInput extends StatelessWidget {
         value: a.rawValue,
         mapFrom: (v) => v,
         mapTo: (v) => v,
+        onChange: (v) => notifyValue(v),
+      ),
+      VariableValueStringList a => StringListArgInput(
+        value: a.rawValue,
         onChange: (v) => notifyValue(v),
       ),
       VariableValueDouble a => TextBaseArgInput<double>(

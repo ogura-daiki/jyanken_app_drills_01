@@ -153,7 +153,7 @@ Map<String, dynamic> _$WidgetEntityQ2_1ToJson(WidgetEntityQ2_1 instance) =>
 WidgetEntityQ2_2 _$WidgetEntityQ2_2FromJson(Map<String, dynamic> json) =>
     WidgetEntityQ2_2(
       id: WidgetEntityId.fromJson(json['id'] as Map<String, dynamic>),
-      args: FixedAlignArgs.fromJson(json['args'] as Map<String, dynamic>),
+      args: FixedQ2_2Args.fromJson(json['args'] as Map<String, dynamic>),
       $type: json['runtimeType'] as String?,
     );
 

@@ -11,6 +11,7 @@ part 'variable_value.g.dart';
 
 enum VariableValueEnum {
   string,
+  stringList,
   double,
   int,
   doubleNullable,
@@ -27,6 +28,7 @@ enum VariableValueEnum {
 
   bool get canCreateVariable => switch (this) {
     VariableValueEnum.string ||
+    VariableValueEnum.stringList ||
     VariableValueEnum.double ||
     VariableValueEnum.int ||
     VariableValueEnum.doubleNullable ||
@@ -51,6 +53,8 @@ sealed class VariableValue with _$VariableValue {
   const VariableValue._();
   const factory VariableValue.string({required String rawValue}) =
       VariableValueString;
+  const factory VariableValue.stringList({required List<String> rawValue}) =
+      VariableValueStringList;
   const factory VariableValue.double({required double rawValue}) =
       VariableValueDouble;
   const factory VariableValue.int({required int rawValue}) = VariableValueInt;
@@ -91,6 +95,7 @@ sealed class VariableValue with _$VariableValue {
 
   VariableValue copyWithDynamic({required dynamic rawValue}) => switch (this) {
     VariableValueString v => v.copyWith(rawValue: rawValue),
+    VariableValueStringList v => v.copyWith(rawValue: rawValue),
     VariableValueDouble v => v.copyWith(rawValue: rawValue),
     VariableValueInt v => v.copyWith(rawValue: rawValue),
     VariableValueDoubleNullable v => v.copyWith(rawValue: rawValue),
@@ -108,6 +113,7 @@ sealed class VariableValue with _$VariableValue {
 
   VariableValueEnum toEnum() => switch (this) {
     VariableValueString() => .string,
+    VariableValueStringList() => .stringList,
     VariableValueDouble() => .double,
     VariableValueInt() => .int,
     VariableValueDoubleNullable() => .doubleNullable,
@@ -125,6 +131,7 @@ sealed class VariableValue with _$VariableValue {
 
   static VariableValue fromEnum(VariableValueEnum e) => switch (e) {
     VariableValueEnum.string => .string(rawValue: ""),
+    VariableValueEnum.stringList => .stringList(rawValue: []),
     VariableValueEnum.double => .double(rawValue: 0),
     VariableValueEnum.int => .int(rawValue: 0),
     VariableValueEnum.doubleNullable => .doubleNullable(rawValue: null),

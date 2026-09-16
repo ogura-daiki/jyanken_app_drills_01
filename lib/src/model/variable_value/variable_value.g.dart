@@ -19,6 +19,22 @@ Map<String, dynamic> _$VariableValueStringToJson(
   'runtimeType': instance.$type,
 };
 
+VariableValueStringList _$VariableValueStringListFromJson(
+  Map<String, dynamic> json,
+) => VariableValueStringList(
+  rawValue: (json['rawValue'] as List<dynamic>)
+      .map((e) => e as String)
+      .toList(),
+  $type: json['runtimeType'] as String?,
+);
+
+Map<String, dynamic> _$VariableValueStringListToJson(
+  VariableValueStringList instance,
+) => <String, dynamic>{
+  'rawValue': instance.rawValue,
+  'runtimeType': instance.$type,
+};
+
 VariableValueDouble _$VariableValueDoubleFromJson(Map<String, dynamic> json) =>
     VariableValueDouble(
       rawValue: (json['rawValue'] as num).toDouble(),

@@ -1,34 +1,30 @@
+// ignore_for_file: camel_case_types
+
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:jyanken_app_drills/src/model/type/alignment/alignment_wrapper.dart';
-import 'package:jyanken_app_drills/src/model/widget/widget_definition/align/arg.dart';
+import 'package:jyanken_app_drills/src/model/widget/widget_definition/q2/02/arg.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/widget_arguments.dart';
-import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity.dart';
 import 'package:jyanken_app_drills/src/model/widget_argument/widget_argument.dart';
 part 'fixed_args.freezed.dart';
 part 'fixed_args.g.dart';
 
 @freezed
-abstract class FixedAlignArgs extends WidgetArguments<AlignArg>
-    with _$FixedAlignArgs {
-  const FixedAlignArgs._();
-  const factory FixedAlignArgs({
-    @Default(null) WidgetEntity? child,
-    required AlignmentWrapper alignment,
-  }) = _FixedAlignArgs;
+abstract class FixedQ2_2Args extends WidgetArguments<Q2_2Arg>
+    with _$FixedQ2_2Args {
+  const FixedQ2_2Args._();
+  const factory FixedQ2_2Args({@Default([]) List<String> hands}) =
+      _FixedQ2_2Args;
 
   @override
-  dynamic getValue(AlignArg key) => switch (key) {
-    .child => child,
-    .alignment => alignment,
+  dynamic getValue(Q2_2Arg key) => switch (key) {
+    .hands => hands,
   };
   @override
-  FixedAlignArgs setValue(AlignArg key, dynamic value) => switch (key) {
-    .child => copyWith(child: value),
-    .alignment => copyWith(alignment: value),
+  FixedQ2_2Args setValue(Q2_2Arg key, dynamic value) => switch (key) {
+    .hands => copyWith(hands: value),
   };
   @override
   Set<WidgetArgument> toCommonArgs() => {
-    for (final key in AlignArg.values)
+    for (final key in Q2_2Arg.values)
       .new(
         definition: key.definition,
         value: key.definition.defaultValue.copyWithDynamic(
@@ -37,15 +33,15 @@ abstract class FixedAlignArgs extends WidgetArguments<AlignArg>
       ),
   };
 
-  static const initial = FixedAlignArgs(alignment: .topLeft);
-  factory FixedAlignArgs.fromCommonArgs(Set<WidgetArgument> args) {
+  static const initial = FixedQ2_2Args();
+  factory FixedQ2_2Args.fromCommonArgs(Set<WidgetArgument> args) {
     var result = initial;
-    for (final key in AlignArg.values) {
+    for (final key in Q2_2Arg.values) {
       result = result.setValue(key, args.findValue(key).rawValue);
     }
     return result;
   }
 
-  factory FixedAlignArgs.fromJson(Map<String, dynamic> json) =>
-      _$FixedAlignArgsFromJson(json);
+  factory FixedQ2_2Args.fromJson(Map<String, dynamic> json) =>
+      _$FixedQ2_2ArgsFromJson(json);
 }

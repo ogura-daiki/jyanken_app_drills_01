@@ -19,6 +19,10 @@ VariableValue _$VariableValueFromJson(
           return VariableValueString.fromJson(
             json
           );
+                case 'stringList':
+          return VariableValueStringList.fromJson(
+            json
+          );
                 case 'double':
           return VariableValueDouble.fromJson(
             json
@@ -129,11 +133,12 @@ extension VariableValuePatterns on VariableValue {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( VariableValueString value)?  string,TResult Function( VariableValueDouble value)?  double,TResult Function( VariableValueInt value)?  int,TResult Function( VariableValueDoubleNullable value)?  doubleNullable,TResult Function( VariableValueColorNullable value)?  colorNullable,TResult Function( VariableValueCrossAxisAlignment value)?  crossAxisAlignment,TResult Function( VariableValueMainAxisAlignment value)?  mainAxisAlignment,TResult Function( VariableValueMainAxisSize value)?  mainAxisSize,TResult Function( VariableValueWidget value)?  widget,TResult Function( VariableValueWidgetList value)?  widgetList,TResult Function( VariableValueAlignment value)?  alignment,TResult Function( VariableValueTextStyle value)?  textStyle,TResult Function( VariableValueVariable value)?  variable,TResult Function( VariableValueScope value)?  scope,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( VariableValueString value)?  string,TResult Function( VariableValueStringList value)?  stringList,TResult Function( VariableValueDouble value)?  double,TResult Function( VariableValueInt value)?  int,TResult Function( VariableValueDoubleNullable value)?  doubleNullable,TResult Function( VariableValueColorNullable value)?  colorNullable,TResult Function( VariableValueCrossAxisAlignment value)?  crossAxisAlignment,TResult Function( VariableValueMainAxisAlignment value)?  mainAxisAlignment,TResult Function( VariableValueMainAxisSize value)?  mainAxisSize,TResult Function( VariableValueWidget value)?  widget,TResult Function( VariableValueWidgetList value)?  widgetList,TResult Function( VariableValueAlignment value)?  alignment,TResult Function( VariableValueTextStyle value)?  textStyle,TResult Function( VariableValueVariable value)?  variable,TResult Function( VariableValueScope value)?  scope,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case VariableValueString() when string != null:
-return string(_that);case VariableValueDouble() when double != null:
+return string(_that);case VariableValueStringList() when stringList != null:
+return stringList(_that);case VariableValueDouble() when double != null:
 return double(_that);case VariableValueInt() when int != null:
 return int(_that);case VariableValueDoubleNullable() when doubleNullable != null:
 return doubleNullable(_that);case VariableValueColorNullable() when colorNullable != null:
@@ -164,11 +169,12 @@ return scope(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( VariableValueString value)  string,required TResult Function( VariableValueDouble value)  double,required TResult Function( VariableValueInt value)  int,required TResult Function( VariableValueDoubleNullable value)  doubleNullable,required TResult Function( VariableValueColorNullable value)  colorNullable,required TResult Function( VariableValueCrossAxisAlignment value)  crossAxisAlignment,required TResult Function( VariableValueMainAxisAlignment value)  mainAxisAlignment,required TResult Function( VariableValueMainAxisSize value)  mainAxisSize,required TResult Function( VariableValueWidget value)  widget,required TResult Function( VariableValueWidgetList value)  widgetList,required TResult Function( VariableValueAlignment value)  alignment,required TResult Function( VariableValueTextStyle value)  textStyle,required TResult Function( VariableValueVariable value)  variable,required TResult Function( VariableValueScope value)  scope,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( VariableValueString value)  string,required TResult Function( VariableValueStringList value)  stringList,required TResult Function( VariableValueDouble value)  double,required TResult Function( VariableValueInt value)  int,required TResult Function( VariableValueDoubleNullable value)  doubleNullable,required TResult Function( VariableValueColorNullable value)  colorNullable,required TResult Function( VariableValueCrossAxisAlignment value)  crossAxisAlignment,required TResult Function( VariableValueMainAxisAlignment value)  mainAxisAlignment,required TResult Function( VariableValueMainAxisSize value)  mainAxisSize,required TResult Function( VariableValueWidget value)  widget,required TResult Function( VariableValueWidgetList value)  widgetList,required TResult Function( VariableValueAlignment value)  alignment,required TResult Function( VariableValueTextStyle value)  textStyle,required TResult Function( VariableValueVariable value)  variable,required TResult Function( VariableValueScope value)  scope,}){
 final _that = this;
 switch (_that) {
 case VariableValueString():
-return string(_that);case VariableValueDouble():
+return string(_that);case VariableValueStringList():
+return stringList(_that);case VariableValueDouble():
 return double(_that);case VariableValueInt():
 return int(_that);case VariableValueDoubleNullable():
 return doubleNullable(_that);case VariableValueColorNullable():
@@ -195,11 +201,12 @@ return scope(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( VariableValueString value)?  string,TResult? Function( VariableValueDouble value)?  double,TResult? Function( VariableValueInt value)?  int,TResult? Function( VariableValueDoubleNullable value)?  doubleNullable,TResult? Function( VariableValueColorNullable value)?  colorNullable,TResult? Function( VariableValueCrossAxisAlignment value)?  crossAxisAlignment,TResult? Function( VariableValueMainAxisAlignment value)?  mainAxisAlignment,TResult? Function( VariableValueMainAxisSize value)?  mainAxisSize,TResult? Function( VariableValueWidget value)?  widget,TResult? Function( VariableValueWidgetList value)?  widgetList,TResult? Function( VariableValueAlignment value)?  alignment,TResult? Function( VariableValueTextStyle value)?  textStyle,TResult? Function( VariableValueVariable value)?  variable,TResult? Function( VariableValueScope value)?  scope,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( VariableValueString value)?  string,TResult? Function( VariableValueStringList value)?  stringList,TResult? Function( VariableValueDouble value)?  double,TResult? Function( VariableValueInt value)?  int,TResult? Function( VariableValueDoubleNullable value)?  doubleNullable,TResult? Function( VariableValueColorNullable value)?  colorNullable,TResult? Function( VariableValueCrossAxisAlignment value)?  crossAxisAlignment,TResult? Function( VariableValueMainAxisAlignment value)?  mainAxisAlignment,TResult? Function( VariableValueMainAxisSize value)?  mainAxisSize,TResult? Function( VariableValueWidget value)?  widget,TResult? Function( VariableValueWidgetList value)?  widgetList,TResult? Function( VariableValueAlignment value)?  alignment,TResult? Function( VariableValueTextStyle value)?  textStyle,TResult? Function( VariableValueVariable value)?  variable,TResult? Function( VariableValueScope value)?  scope,}){
 final _that = this;
 switch (_that) {
 case VariableValueString() when string != null:
-return string(_that);case VariableValueDouble() when double != null:
+return string(_that);case VariableValueStringList() when stringList != null:
+return stringList(_that);case VariableValueDouble() when double != null:
 return double(_that);case VariableValueInt() when int != null:
 return int(_that);case VariableValueDoubleNullable() when doubleNullable != null:
 return doubleNullable(_that);case VariableValueColorNullable() when colorNullable != null:
@@ -229,10 +236,11 @@ return scope(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String rawValue)?  string,TResult Function( double rawValue)?  double,TResult Function( int rawValue)?  int,TResult Function( double? rawValue)?  doubleNullable,TResult Function( ColorWrapper? rawValue)?  colorNullable,TResult Function( CrossAxisAlignment rawValue)?  crossAxisAlignment,TResult Function( MainAxisAlignment rawValue)?  mainAxisAlignment,TResult Function( MainAxisSize rawValue)?  mainAxisSize,TResult Function( WidgetEntity? rawValue)?  widget,TResult Function( List<WidgetEntity> rawValue)?  widgetList,TResult Function( AlignmentWrapper rawValue)?  alignment,TResult Function( TextStyleWrapper? rawValue)?  textStyle,TResult Function( Variable rawValue)?  variable,TResult Function( ScopeDefinition rawValue)?  scope,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String rawValue)?  string,TResult Function( List<String> rawValue)?  stringList,TResult Function( double rawValue)?  double,TResult Function( int rawValue)?  int,TResult Function( double? rawValue)?  doubleNullable,TResult Function( ColorWrapper? rawValue)?  colorNullable,TResult Function( CrossAxisAlignment rawValue)?  crossAxisAlignment,TResult Function( MainAxisAlignment rawValue)?  mainAxisAlignment,TResult Function( MainAxisSize rawValue)?  mainAxisSize,TResult Function( WidgetEntity? rawValue)?  widget,TResult Function( List<WidgetEntity> rawValue)?  widgetList,TResult Function( AlignmentWrapper rawValue)?  alignment,TResult Function( TextStyleWrapper? rawValue)?  textStyle,TResult Function( Variable rawValue)?  variable,TResult Function( ScopeDefinition rawValue)?  scope,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case VariableValueString() when string != null:
-return string(_that.rawValue);case VariableValueDouble() when double != null:
+return string(_that.rawValue);case VariableValueStringList() when stringList != null:
+return stringList(_that.rawValue);case VariableValueDouble() when double != null:
 return double(_that.rawValue);case VariableValueInt() when int != null:
 return int(_that.rawValue);case VariableValueDoubleNullable() when doubleNullable != null:
 return doubleNullable(_that.rawValue);case VariableValueColorNullable() when colorNullable != null:
@@ -263,10 +271,11 @@ return scope(_that.rawValue);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String rawValue)  string,required TResult Function( double rawValue)  double,required TResult Function( int rawValue)  int,required TResult Function( double? rawValue)  doubleNullable,required TResult Function( ColorWrapper? rawValue)  colorNullable,required TResult Function( CrossAxisAlignment rawValue)  crossAxisAlignment,required TResult Function( MainAxisAlignment rawValue)  mainAxisAlignment,required TResult Function( MainAxisSize rawValue)  mainAxisSize,required TResult Function( WidgetEntity? rawValue)  widget,required TResult Function( List<WidgetEntity> rawValue)  widgetList,required TResult Function( AlignmentWrapper rawValue)  alignment,required TResult Function( TextStyleWrapper? rawValue)  textStyle,required TResult Function( Variable rawValue)  variable,required TResult Function( ScopeDefinition rawValue)  scope,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String rawValue)  string,required TResult Function( List<String> rawValue)  stringList,required TResult Function( double rawValue)  double,required TResult Function( int rawValue)  int,required TResult Function( double? rawValue)  doubleNullable,required TResult Function( ColorWrapper? rawValue)  colorNullable,required TResult Function( CrossAxisAlignment rawValue)  crossAxisAlignment,required TResult Function( MainAxisAlignment rawValue)  mainAxisAlignment,required TResult Function( MainAxisSize rawValue)  mainAxisSize,required TResult Function( WidgetEntity? rawValue)  widget,required TResult Function( List<WidgetEntity> rawValue)  widgetList,required TResult Function( AlignmentWrapper rawValue)  alignment,required TResult Function( TextStyleWrapper? rawValue)  textStyle,required TResult Function( Variable rawValue)  variable,required TResult Function( ScopeDefinition rawValue)  scope,}) {final _that = this;
 switch (_that) {
 case VariableValueString():
-return string(_that.rawValue);case VariableValueDouble():
+return string(_that.rawValue);case VariableValueStringList():
+return stringList(_that.rawValue);case VariableValueDouble():
 return double(_that.rawValue);case VariableValueInt():
 return int(_that.rawValue);case VariableValueDoubleNullable():
 return doubleNullable(_that.rawValue);case VariableValueColorNullable():
@@ -293,10 +302,11 @@ return scope(_that.rawValue);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String rawValue)?  string,TResult? Function( double rawValue)?  double,TResult? Function( int rawValue)?  int,TResult? Function( double? rawValue)?  doubleNullable,TResult? Function( ColorWrapper? rawValue)?  colorNullable,TResult? Function( CrossAxisAlignment rawValue)?  crossAxisAlignment,TResult? Function( MainAxisAlignment rawValue)?  mainAxisAlignment,TResult? Function( MainAxisSize rawValue)?  mainAxisSize,TResult? Function( WidgetEntity? rawValue)?  widget,TResult? Function( List<WidgetEntity> rawValue)?  widgetList,TResult? Function( AlignmentWrapper rawValue)?  alignment,TResult? Function( TextStyleWrapper? rawValue)?  textStyle,TResult? Function( Variable rawValue)?  variable,TResult? Function( ScopeDefinition rawValue)?  scope,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String rawValue)?  string,TResult? Function( List<String> rawValue)?  stringList,TResult? Function( double rawValue)?  double,TResult? Function( int rawValue)?  int,TResult? Function( double? rawValue)?  doubleNullable,TResult? Function( ColorWrapper? rawValue)?  colorNullable,TResult? Function( CrossAxisAlignment rawValue)?  crossAxisAlignment,TResult? Function( MainAxisAlignment rawValue)?  mainAxisAlignment,TResult? Function( MainAxisSize rawValue)?  mainAxisSize,TResult? Function( WidgetEntity? rawValue)?  widget,TResult? Function( List<WidgetEntity> rawValue)?  widgetList,TResult? Function( AlignmentWrapper rawValue)?  alignment,TResult? Function( TextStyleWrapper? rawValue)?  textStyle,TResult? Function( Variable rawValue)?  variable,TResult? Function( ScopeDefinition rawValue)?  scope,}) {final _that = this;
 switch (_that) {
 case VariableValueString() when string != null:
-return string(_that.rawValue);case VariableValueDouble() when double != null:
+return string(_that.rawValue);case VariableValueStringList() when stringList != null:
+return stringList(_that.rawValue);case VariableValueDouble() when double != null:
 return double(_that.rawValue);case VariableValueInt() when int != null:
 return int(_that.rawValue);case VariableValueDoubleNullable() when doubleNullable != null:
 return doubleNullable(_that.rawValue);case VariableValueColorNullable() when colorNullable != null:
@@ -384,6 +394,85 @@ class _$VariableValueStringCopyWithImpl<$Res>
   return _then(VariableValueString(
 rawValue: null == rawValue ? _self.rawValue : rawValue // ignore: cast_nullable_to_non_nullable
 as String,
+  ));
+}
+
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class VariableValueStringList extends VariableValue {
+  const VariableValueStringList({required final  List<String> rawValue, final  String? $type}): _rawValue = rawValue,$type = $type ?? 'stringList',super._();
+  factory VariableValueStringList.fromJson(Map<String, dynamic> json) => _$VariableValueStringListFromJson(json);
+
+ final  List<String> _rawValue;
+@override List<String> get rawValue {
+  if (_rawValue is EqualUnmodifiableListView) return _rawValue;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_rawValue);
+}
+
+
+@JsonKey(name: 'runtimeType')
+final String $type;
+
+
+/// Create a copy of VariableValue
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$VariableValueStringListCopyWith<VariableValueStringList> get copyWith => _$VariableValueStringListCopyWithImpl<VariableValueStringList>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$VariableValueStringListToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VariableValueStringList&&const DeepCollectionEquality().equals(other._rawValue, _rawValue));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_rawValue));
+
+@override
+String toString() {
+  return 'VariableValue.stringList(rawValue: $rawValue)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $VariableValueStringListCopyWith<$Res> implements $VariableValueCopyWith<$Res> {
+  factory $VariableValueStringListCopyWith(VariableValueStringList value, $Res Function(VariableValueStringList) _then) = _$VariableValueStringListCopyWithImpl;
+@useResult
+$Res call({
+ List<String> rawValue
+});
+
+
+
+
+}
+/// @nodoc
+class _$VariableValueStringListCopyWithImpl<$Res>
+    implements $VariableValueStringListCopyWith<$Res> {
+  _$VariableValueStringListCopyWithImpl(this._self, this._then);
+
+  final VariableValueStringList _self;
+  final $Res Function(VariableValueStringList) _then;
+
+/// Create a copy of VariableValue
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? rawValue = null,}) {
+  return _then(VariableValueStringList(
+rawValue: null == rawValue ? _self._rawValue : rawValue // ignore: cast_nullable_to_non_nullable
+as List<String>,
   ));
 }
 

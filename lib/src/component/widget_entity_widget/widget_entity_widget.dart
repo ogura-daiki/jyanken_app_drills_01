@@ -5,6 +5,7 @@ import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/wi
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_container.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_expanded.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_q2_1.dart';
+import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_q2_2.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_root.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_row.dart';
 import 'package:jyanken_app_drills/src/component/widget_entity_widget/widgets/widget_scope.dart';
@@ -84,7 +85,11 @@ class WidgetEntityWidget extends StatelessWidget {
           projectId: projectId,
           selector: selector,
         ),
-        WidgetEntityQ2_2 e => Text("WidgetEntityWidget未実装"),
+        WidgetEntityQ2_2 e => WidgetQ2_2(
+          entity: e,
+          projectId: projectId,
+          selector: selector,
+        ),
         WidgetEntityQ2_3 e => Text("WidgetEntityWidget未実装"),
       },
     };

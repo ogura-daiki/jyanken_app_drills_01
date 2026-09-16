@@ -5,7 +5,6 @@ import 'package:jyanken_app_drills/src/component/arg_input/arg_input.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/arg_input_value_widget_interface.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/enum_base_arg_input.dart';
 import 'package:jyanken_app_drills/src/component/popup_card/popup_card.dart';
-import 'package:jyanken_app_drills/src/core/null_ext.dart';
 import 'package:jyanken_app_drills/src/model/type/variable/variable.dart';
 import 'package:jyanken_app_drills/src/model/variable_value/variable_value.dart';
 
@@ -45,8 +44,8 @@ class _VariableEditorState extends ConsumerState<VariableArgInput> {
       popup: HookBuilder(
         builder: (context) {
           final defaultVar = widget.value ?? widget.defaultValue;
-          final name = useTextEditingController();
           final value = useState(defaultVar.initialValue);
+          final name = useTextEditingController(text: defaultVar.name);
           return Column(
             crossAxisAlignment: .stretch,
             children: [
@@ -108,12 +107,22 @@ class _VariableEditorState extends ConsumerState<VariableArgInput> {
             Text("値", style: theme.textTheme.labelSmall),
             Padding(
               padding: const .only(left: 4),
-              child: Text(
-                widget.value.let(
-                  //暫定対応 変数の内容表示ウィジェットを実装する
-                  (v) => v == null
-                      ? "null"
-                      : switch (v.initialValue) {
+              child: variableToDisplay(widget.value?.initialValue),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+//TODO: ちゃんとしたウィジェットにする
+Widget variableToDisplay(VariableValue? v) {
+  if (v == null) {
+    return Text("null");
+  }
+
+  return switch (v) {
                           VariableValueString() ||
                           VariableValueDouble() ||
                           VariableValueInt() ||
@@ -122,23 +131,21 @@ class _VariableEditorState extends ConsumerState<VariableArgInput> {
                           VariableValueMainAxisAlignment() ||
                           VariableValueMainAxisSize() ||
                           VariableValueAlignment() =>
-                            "${v.initialValue.rawValue}",
+                            Text("${v.rawValue}"),
                           VariableValueColorNullable(:var rawValue) =>
-                            rawValue?.argbString ?? "null",
+                            Text(
+      rawValue?.argbString.toString() ?? "null",
+    ),
+
+    VariableValueStringList() => Wrap(
+      children: v.rawValue
+          .map((e) => variableToDisplay(.string(rawValue: e)))
+          .toList(),
+    ),
                           VariableValueTextStyle() ||
                           VariableValueWidget() ||
                           VariableValueWidgetList() ||
                           VariableValueVariable() ||
-                          VariableValueScope() => "未対応",
-                        },
-                ),
-                style: theme.textTheme.bodyMedium,
-                overflow: .ellipsis,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+    VariableValueScope() => Text("非対応"),
+  };
 }

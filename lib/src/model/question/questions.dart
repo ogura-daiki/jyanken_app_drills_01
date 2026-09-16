@@ -290,6 +290,89 @@ final class Questions {
         ),
       ],
     ),
+    .new(
+      index: 11,
+      projectId: .new("q2-2"),
+      name: "ランダムな手を出す",
+      initialRoot: .new(
+        id: .create(),
+        args: .new(
+          child: .scope(
+            id: .create(),
+            args: .new(
+              variables: .new(
+                variables: [
+                  .new(
+                    name: "random",
+                    initialValue: .int(rawValue: 0),
+                    value: .int(rawValue: 0),
+                  ),
+                  .new(
+                    name: "displayText",
+                    initialValue: .string(rawValue: ""),
+                    value: .string(rawValue: ""),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+      validators: [
+        .new(
+          valSelector: (root) =>
+              root.args.child?.requireType<WidgetEntityScope>().args.child,
+          matcher: .requiredType<WidgetEntityQ2_2>(),
+          errorMessage: "q2_2をScopeに追加してください",
+        ),
+        .new(
+          valSelector: (root) => root.args.child
+              ?.requireType<WidgetEntityScope>()
+              .args
+              .child
+              ?.requireType<WidgetEntityQ2_2>()
+              .args
+              .hands,
+          matcher: .new(
+            matcher: (value) {
+              if (value is! List<String>) return .failure(Exception());
+              if (value.length != 3) return .failure(Exception());
+              const requiredValues = ["✊", "✌", "✋"];
+              if (requiredValues.every((e) => value.contains(e))) {
+                return .success(null);
+              }
+              return .failure(Exception());
+            },
+          ),
+          errorMessage: "q2_2の hands の配列の中身を ✊, ✌, ✋ にしてください",
+        ),
+        .new(
+          valSelector: (root) => root.args.child
+              ?.requireType<WidgetEntityScope>()
+              .args
+              .variables
+              .variables
+              .where(
+                (e) => e.name == "displayText" && e.value.toEnum() == .string,
+              )
+              .first
+              .value
+              .rawValue,
+          matcher: .new(
+            matcher: (value) {
+              if (value is! String) return .failure(Exception());
+              const requiredValues = ["✊", "✌", "✋"];
+              if (requiredValues.any((e) => value == e)) {
+                return .success(null);
+              }
+              return .failure(Exception());
+            },
+          ),
+          errorMessage:
+              "プレビュー欄からq2_2のボタンを押して、ボタンの上側に表示されている文字列を ✊、✌、✋ のどれかにしてください",
+        ),
+      ],
+    ),
   ]);
 
   static Result<Question> findById(ProjectIdTypeQuestion projectId) {

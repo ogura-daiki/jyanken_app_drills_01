@@ -1,20 +1,19 @@
 import 'package:jyanken_app_drills/src/model/argument_definition/argument_definition.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/widget_arguments_definition.dart';
 
-enum AlignArg with WidgetArgumentsDefinition {
-  child(.new(name: "child", defaultValue: .widget(rawValue: null))),
-  alignment(
+enum Q2_2Arg with WidgetArgumentsDefinition {
+  hands(
     .new(
-      name: "alignment",
-      defaultValue: .alignment(rawValue: .topLeft),
+      name: "hands",
+      defaultValue: .stringList(rawValue: []),
     ),
   );
 
   @override
   final ArgumentDefinition definition;
 
-  const AlignArg(this.definition);
+  const Q2_2Arg(this.definition);
 
-  static AlignArg fromName(String name) =>
+  static Q2_2Arg fromName(String name) =>
       values.singleWhere((e) => e.name == name);
 }
