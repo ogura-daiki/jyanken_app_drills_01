@@ -424,7 +424,7 @@ final class Questions {
               vsPaper: {.rock: .lose, .scissors: .win, .paper: .draw},
             ),
           ),
-          errorMessage: "正しいルールのじゃんけんが行われるようにしてください",
+          errorMessage: "q2_3を編集し、正しいルールのじゃんけんが行われるようにしてください",
         ),
       ],
     ),
