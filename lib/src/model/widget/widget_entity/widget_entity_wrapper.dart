@@ -20,7 +20,7 @@ abstract class WidgetEntityWrapper with _$WidgetEntityWrapper {
     required Set<WidgetArgument> args,
   }) = _WidgetEntityWrapper;
 
-  Result<WidgetArgument> getEntry(ArgumentDefinition definition) {
+  Result<WidgetArgument, Exception> getEntry(ArgumentDefinition definition) {
     try {
       return .success(args.findByArgDefinition(definition));
     } catch (e) {
@@ -31,7 +31,7 @@ abstract class WidgetEntityWrapper with _$WidgetEntityWrapper {
     }
   }
 
-  Result<VariableValue> get(ArgumentDefinition definition) =>
+  Result<VariableValue, Exception> get(ArgumentDefinition definition) =>
       getEntry(definition).convert((v) => v.value);
 
   WidgetEntity getChildOrThrow({
@@ -93,7 +93,7 @@ extension VariableTypeWidgetExt on VariableTypeWidget {
     VariableValueWidgetList(:final rawValue) => rawValue,
   };
 
-  Result<WidgetEntity> getChild(WidgetEntityId id) {
+  Result<WidgetEntity, Exception> getChild(WidgetEntityId id) {
     try {
       return .success(children.singleWhere((w) => w.id == id));
     } catch (e) {

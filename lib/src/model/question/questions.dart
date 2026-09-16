@@ -20,13 +20,13 @@ final class Questions {
         .new(
           valSelector: (root) => root.args.child,
           matcher: .requiredType<WidgetEntityText>(),
-          errorMessage: "ルート要素の直下にTextを配置してください",
+          hint: "ルート要素の直下にTextを配置してください",
         ),
         .new(
           valSelector: (root) =>
               root.args.child.requireType<WidgetEntityText>().args.text,
           matcher: .requiredValue("こんにちは"),
-          errorMessage: "Textに こんにちは と表示してください",
+          hint: "Textに こんにちは と表示してください",
         ),
       ],
     ),
@@ -69,7 +69,7 @@ final class Questions {
               .args
               .children[1],
           matcher: .requiredType<WidgetEntityContainer>(),
-          errorMessage: "ColumnにContainerを追加してください",
+          hint: "ColumnにContainerを追加してください",
         ),
         .new(
           valSelector: (root) => root.args.child
@@ -80,7 +80,7 @@ final class Questions {
               .args
               .height,
           matcher: .requiredType<double>(),
-          errorMessage: "追加したContainerに高さを設定してください",
+          hint: "追加したContainerに高さを設定してください",
         ),
         .new(
           valSelector: (root) => root.args.child
@@ -91,7 +91,7 @@ final class Questions {
               .args
               .color,
           matcher: .requiredType<ColorWrapper>(),
-          errorMessage: "追加したContainerに色を設定してください",
+          hint: "追加したContainerに色を設定してください",
         ),
       ],
     ),
@@ -132,7 +132,7 @@ final class Questions {
           valSelector: (root) =>
               root.args.child?.requireType<WidgetEntityRow>().args.children[1],
           matcher: .requiredType<WidgetEntityContainer>(),
-          errorMessage: "RowにContainerを追加してください",
+          hint: "RowにContainerを追加してください",
         ),
         .new(
           valSelector: (root) => root.args.child
@@ -143,7 +143,7 @@ final class Questions {
               .args
               .width,
           matcher: .requiredType<double>(),
-          errorMessage: "追加したContainerに横幅を設定してください",
+          hint: "追加したContainerに横幅を設定してください",
         ),
         .new(
           valSelector: (root) => root.args.child
@@ -154,7 +154,7 @@ final class Questions {
               .args
               .color,
           matcher: .requiredType<ColorWrapper>(),
-          errorMessage: "追加したContainerに色を設定してください",
+          hint: "追加したContainerに色を設定してください",
         ),
       ],
     ),
@@ -202,7 +202,7 @@ final class Questions {
               .whereType<WidgetEntityExpanded>()
               .first,
           matcher: .requiredType<WidgetEntityExpanded>(),
-          errorMessage: "ColumnにExpandedを追加してください",
+          hint: "ColumnにExpandedを追加してください",
         ),
         .new(
           valSelector: (root) => root.args.child
@@ -214,7 +214,7 @@ final class Questions {
               .args
               .child,
           matcher: .requiredType<WidgetEntityContainer>(),
-          errorMessage: "ExpandedにContainerを追加してください",
+          hint: "ExpandedにContainerを追加してください",
         ),
         .new(
           valSelector: (root) => root.args.child
@@ -229,7 +229,7 @@ final class Questions {
               .args
               .color,
           matcher: .requiredType<ColorWrapper>(),
-          errorMessage: "追加したContainerに色を設定してください",
+          hint: "追加したContainerに色を設定してください",
         ),
       ],
     ),
@@ -261,7 +261,7 @@ final class Questions {
           valSelector: (root) =>
               root.args.child?.requireType<WidgetEntityScope>().args.child,
           matcher: .requiredType<WidgetEntityQ2_1>(),
-          errorMessage: "q2_1をScopeに追加してください",
+          hint: "q2_1をScopeに追加してください",
         ),
         .new(
           valSelector: (root) => root.args.child
@@ -272,7 +272,7 @@ final class Questions {
               .args
               .displayText,
           matcher: .requiredValue("テスト"),
-          errorMessage: "q2_1のdisplayTextに テスト と設定してください",
+          hint: "q2_1のdisplayTextに テスト と設定してください",
         ),
         .new(
           valSelector: (root) => root.args.child
@@ -287,7 +287,7 @@ final class Questions {
               .value
               .rawValue,
           matcher: .requiredValue("テスト"),
-          errorMessage: "プレビュー欄からq2_1のボタンを押して、ボタンの上側に表示されている文字列を テスト にしてください",
+          hint: "プレビュー欄からq2_1のボタンを押して、ボタンの上側に表示されている文字列を テスト にしてください",
         ),
       ],
     ),
@@ -324,7 +324,7 @@ final class Questions {
           valSelector: (root) =>
               root.args.child?.requireType<WidgetEntityScope>().args.child,
           matcher: .requiredType<WidgetEntityQ2_2>(),
-          errorMessage: "q2_2をScopeに追加してください",
+          hint: "q2_2をScopeに追加してください",
         ),
         .new(
           valSelector: (root) => root.args.child
@@ -336,16 +336,29 @@ final class Questions {
               .hands,
           matcher: .new(
             matcher: (value) {
-              if (value is! List<String>) return .failure(Exception());
-              if (value.length != 3) return .failure(Exception());
+              if (value is! List<String>) {
+                return .failure(.new("値が List<String> ではありません"));
+              }
+              if (value.length != 3) {
+                return .failure(
+                  .new(
+                    "リストの長さが3ではありません。文字列を${switch (value.length < 3) {
+                      true => "${3 - value.length}つ追加",
+                      false => "${value.length - 3}つ削除",
+                    }}してください。",
+                  ),
+                );
+              }
               const requiredValues = ["✊", "✌", "✋"];
               if (requiredValues.every((e) => value.contains(e))) {
                 return .success(null);
               }
-              return .failure(Exception());
+              return .failure(
+                .new("値は ${requiredValues.join(", ")} のみにしてください"),
+              );
             },
           ),
-          errorMessage: "q2_2の hands の配列の中身を ✊, ✌, ✋ にしてください",
+          hint: "q2_2の hands の配列の中身を ✊, ✌, ✋ にしてください",
         ),
         .new(
           valSelector: (root) => root.args.child
@@ -361,15 +374,19 @@ final class Questions {
               .rawValue,
           matcher: .new(
             matcher: (value) {
-              if (value is! String) return .failure(Exception());
+              if (value is! String) {
+                return .failure(.new("値の型が String ではありません"));
+              }
               const requiredValues = ["✊", "✌", "✋"];
               if (requiredValues.any((e) => value == e)) {
                 return .success(null);
               }
-              return .failure(Exception());
+              return .failure(
+                .new("値が ${requiredValues.join(", ")} のどれでもありません。"),
+              );
             },
           ),
-          errorMessage:
+          hint:
               "プレビュー欄からq2_2のボタンを押して、ボタンの上側に表示されている文字列を ✊、✌、✋ のどれかにしてください",
         ),
       ],
@@ -407,7 +424,7 @@ final class Questions {
           valSelector: (root) =>
               root.args.child?.requireType<WidgetEntityScope>().args.child,
           matcher: .requiredType<WidgetEntityQ2_3>(),
-          errorMessage: "q2_3をScopeに追加してください",
+          hint: "q2_3をScopeに追加してください",
         ),
         .new(
           valSelector: (root) => root.args.child
@@ -424,13 +441,13 @@ final class Questions {
               vsPaper: {.rock: .lose, .scissors: .win, .paper: .draw},
             ),
           ),
-          errorMessage: "q2_3を編集し、正しいルールのじゃんけんが行われるようにしてください",
+          hint: "q2_3を編集し、正しいルールのじゃんけんが行われるようにしてください",
         ),
       ],
     ),
   ]);
 
-  static Result<Question> findById(ProjectIdTypeQuestion projectId) {
+  static Result<Question, Exception> findById(ProjectIdTypeQuestion projectId) {
     final index = values.indexWhere((e) => e.projectId == projectId);
     if (index < 0) return .failure(Exception());
     return .success(values[index]);

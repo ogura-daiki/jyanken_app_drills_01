@@ -29,7 +29,7 @@ class FlutterEditorViewmodel extends _$FlutterEditorViewmodel {
     );
   }
 
-  Result<WidgetEntity> getSelectedWidget() {
+  Result<WidgetEntity, Exception> getSelectedWidget() {
     return _getWidget.execute(
       selector: state.selection,
       treeRoot: state.treeRoot,
@@ -135,7 +135,7 @@ class FlutterEditorViewmodel extends _$FlutterEditorViewmodel {
     return .success(null);
   }
 
-  Result<VariableValue> getScopeVariable({
+  Result<VariableValue, Exception> getScopeVariable({
     required List<WidgetChildSelector> from,
     required String name,
   }) {

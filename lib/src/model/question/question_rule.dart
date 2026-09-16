@@ -5,15 +5,15 @@ import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity.
 class QuestionRule<T> {
   final T? Function(WidgetEntityRoot root) valSelector;
   final QuestionMatcher matcher;
-  final String errorMessage;
+  final String hint;
 
   QuestionRule({
     required this.valSelector,
     required this.matcher,
-    required this.errorMessage,
+    required this.hint,
   });
 
-  Result<void> validate(WidgetEntityRoot root) {
+  Result<void, QuestionMatchException> validate(WidgetEntityRoot root) {
     dynamic val;
     try {
       val = valSelector.call(root);
@@ -24,15 +24,15 @@ class QuestionRule<T> {
     try {
       return matcher.matcher.call(val);
     } catch (e) {
-      if (e is Exception) {
+      if (e is QuestionMatchException) {
         return .failure(e);
       }
       if (e is Error) {
         return .failure(
-          Exception("不明なエラー：${e.runtimeType}, stackTrace:${e.stackTrace}"),
+          .new("不明なエラー：${e.runtimeType}, stackTrace:${e.stackTrace}"),
         );
       }
-      return .failure(Exception("不明なエラー:$e"));
+      return .failure(.new("不明なエラー:$e"));
     }
   }
 }

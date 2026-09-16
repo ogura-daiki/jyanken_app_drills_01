@@ -17,7 +17,7 @@ class FlutterEditorAttributeEditorPane extends HookConsumerWidget {
     final provider = flutterEditorViewmodelProvider(projectId);
     final state = ref.watch(provider);
     final viewModel = ref.read(provider.notifier);
-    final selectedWidget = useMemoized<Result<WidgetEntity>>(() {
+    final selectedWidget = useMemoized<Result<WidgetEntity, Exception>>(() {
       return viewModel.getSelectedWidget();
     }, [state]);
 

@@ -1,26 +1,26 @@
-sealed class Result<T> {
+sealed class Result<T, E extends Exception> {
   factory Result.success(T value) {
     return Success(value);
   }
-  factory Result.failure(Exception exception) {
+  factory Result.failure(E exception) {
     return Failure(exception);
   }
 
-  Result<V> convert<V>(V Function(T value) convert);
+  Result<V, E> convert<V>(V Function(T value) convert);
 
   ///
   ///Success：Resultの値を取得する。
   ///
   ///Failure：渡された例外をスローする。　nullが渡された時は自分の持つ例外を再度スローする。
-  T getOrThrow(Exception? e);
+  T getOrThrow(E? e);
 }
 
-class Success<T> implements Result<T> {
+class Success<T, E extends Exception> implements Result<T, E> {
   final T value;
   Success(this.value);
 
   @override
-  Result<V> convert<V>(V Function(T value) convert) {
+  Result<V, E> convert<V>(V Function(T value) convert) {
     return .success(convert(value));
   }
 
@@ -28,13 +28,13 @@ class Success<T> implements Result<T> {
   T getOrThrow(Exception? e) => value;
 }
 
-class Failure<Void> implements Result<Void> {
-  final Exception exception;
+class Failure<Void, E extends Exception> implements Result<Void, E> {
+  final E exception;
 
   Failure(this.exception);
 
   @override
-  Result<V> convert<V>(V Function(Void value) convert) {
+  Result<V, E> convert<V>(V Function(Void value) convert) {
     return .failure(exception);
   }
 

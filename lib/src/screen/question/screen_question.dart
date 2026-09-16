@@ -8,6 +8,7 @@ import 'package:jyanken_app_drills/src/component/flutter_editor/flutter_editor_v
 import 'package:jyanken_app_drills/src/component/result_chip.dart';
 import 'package:jyanken_app_drills/src/core/result.dart';
 import 'package:jyanken_app_drills/src/model/question/question.dart';
+import 'package:jyanken_app_drills/src/model/question/question_matcher.dart';
 import 'package:jyanken_app_drills/src/model/question/question_rule.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/widget_type.dart';
 import 'package:jyanken_app_drills/src/routes/routes.dart';
@@ -24,7 +25,10 @@ class ScreenQuestion extends StatefulHookConsumerWidget {
 
 class _ScreenQuestionState extends ConsumerState<ScreenQuestion> {
   bool showMenu = false;
-  List<({Result<void> result, QuestionRule<dynamic> rule})> validateResultList =
+  List<
+    ({Result<void, QuestionMatchException> result, QuestionRule<dynamic> rule})
+  >
+  validateResultList =
       [];
 
   @override
@@ -72,7 +76,7 @@ class _ScreenQuestionState extends ConsumerState<ScreenQuestion> {
               child: ErrorBadge(
                 errorCount: validateResultList
                     .map((e) => e.result)
-                    .whereType<Failure<void>>()
+                    .whereType<Failure>()
                     .length,
                 child: IconButton.filledTonal(
                   style: IconButton.styleFrom(
@@ -105,7 +109,7 @@ class _ScreenQuestionState extends ConsumerState<ScreenQuestion> {
             builder: (context) {
               final failureCount = validateResultList
                   .map((e) => e.result)
-                  .whereType<Failure<void>>()
+                  .whereType<Failure>()
                   .length;
               return ResultChip(
                 success: failureCount <= 0,
@@ -173,7 +177,21 @@ class _ScreenQuestionState extends ConsumerState<ScreenQuestion> {
                       color: ColorScheme.of(context).error,
                     ),
                   },
-                  title: Text(validate.rule.errorMessage),
+                  title: Text(validate.rule.hint),
+                  subtitle: switch (validate.result) {
+                    Success() => Text(
+                      "達成済み",
+                      style: TextStyle(
+                        color: Theme.of(context).appColors.success,
+                      ),
+                    ),
+                    Failure(:final exception) => Text(
+                      exception.message,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.error,
+                      ),
+                    ),
+                  },
                 );
               },
             ),
