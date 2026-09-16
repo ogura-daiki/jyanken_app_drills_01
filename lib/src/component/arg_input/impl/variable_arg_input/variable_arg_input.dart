@@ -123,17 +123,15 @@ Widget variableToDisplay(VariableValue? v) {
   }
 
   return switch (v) {
-                          VariableValueString() ||
-                          VariableValueDouble() ||
-                          VariableValueInt() ||
-                          VariableValueDoubleNullable() ||
-                          VariableValueCrossAxisAlignment() ||
-                          VariableValueMainAxisAlignment() ||
-                          VariableValueMainAxisSize() ||
-                          VariableValueAlignment() =>
-                            Text("${v.rawValue}"),
-                          VariableValueColorNullable(:var rawValue) =>
-                            Text(
+    VariableValueString() ||
+    VariableValueDouble() ||
+    VariableValueInt() ||
+    VariableValueDoubleNullable() ||
+    VariableValueCrossAxisAlignment() ||
+    VariableValueMainAxisAlignment() ||
+    VariableValueMainAxisSize() ||
+    VariableValueAlignment() => Text("${v.rawValue}"),
+    VariableValueColorNullable(:var rawValue) => Text(
       rawValue?.argbString.toString() ?? "null",
     ),
 
@@ -142,10 +140,11 @@ Widget variableToDisplay(VariableValue? v) {
           .map((e) => variableToDisplay(.string(rawValue: e)))
           .toList(),
     ),
-                          VariableValueTextStyle() ||
-                          VariableValueWidget() ||
-                          VariableValueWidgetList() ||
-                          VariableValueVariable() ||
+    VariableValueHandsResult() ||
+    VariableValueTextStyle() ||
+    VariableValueWidget() ||
+    VariableValueWidgetList() ||
+    VariableValueVariable() ||
     VariableValueScope() => Text("非対応"),
   };
 }

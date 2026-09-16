@@ -242,3 +242,17 @@ Map<String, dynamic> _$VariableValueScopeToJson(VariableValueScope instance) =>
       'rawValue': instance.rawValue,
       'runtimeType': instance.$type,
     };
+
+VariableValueHandsResult _$VariableValueHandsResultFromJson(
+  Map<String, dynamic> json,
+) => VariableValueHandsResult(
+  rawValue: HandsResult.fromJson(json['rawValue'] as Map<String, dynamic>),
+  $type: json['runtimeType'] as String?,
+);
+
+Map<String, dynamic> _$VariableValueHandsResultToJson(
+  VariableValueHandsResult instance,
+) => <String, dynamic>{
+  'rawValue': instance.rawValue,
+  'runtimeType': instance.$type,
+};

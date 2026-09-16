@@ -4,6 +4,7 @@ import 'package:jyanken_app_drills/src/core/result.dart';
 import 'package:jyanken_app_drills/src/model/project_id/project_id.dart';
 import 'package:jyanken_app_drills/src/model/question/question.dart';
 import 'package:jyanken_app_drills/src/model/type/color/color_wrapper.dart';
+import 'package:jyanken_app_drills/src/model/type/q3_3/hands_result.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_entity/widget_entity.dart';
 
 final class Questions {
@@ -370,6 +371,60 @@ final class Questions {
           ),
           errorMessage:
               "プレビュー欄からq2_2のボタンを押して、ボタンの上側に表示されている文字列を ✊、✌、✋ のどれかにしてください",
+        ),
+      ],
+    ),
+    .new(
+      index: 12,
+      projectId: .new("q2-3"),
+      name: "勝敗を判定する",
+      initialRoot: .new(
+        id: .create(),
+        args: .new(
+          child: .scope(
+            id: .create(),
+            args: .new(
+              variables: .new(
+                variables: [
+                  .new(
+                    name: "enemyHandId",
+                    initialValue: .int(rawValue: 0),
+                    value: .int(rawValue: 0),
+                  ),
+                  .new(
+                    name: "myHandId",
+                    initialValue: .int(rawValue: 0),
+                    value: .int(rawValue: 0),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+      validators: [
+        .new(
+          valSelector: (root) =>
+              root.args.child?.requireType<WidgetEntityScope>().args.child,
+          matcher: .requiredType<WidgetEntityQ2_3>(),
+          errorMessage: "q2_3をScopeに追加してください",
+        ),
+        .new(
+          valSelector: (root) => root.args.child
+              ?.requireType<WidgetEntityScope>()
+              .args
+              .child
+              .requireType<WidgetEntityQ2_3>()
+              .args
+              .handsResult,
+          matcher: .requiredValue(
+            HandsResult(
+              vsRock: {.rock: .draw, .scissors: .lose, .paper: .win},
+              vsScissors: {.rock: .win, .scissors: .draw, .paper: .lose},
+              vsPaper: {.rock: .lose, .scissors: .win, .paper: .draw},
+            ),
+          ),
+          errorMessage: "正しいルールのじゃんけんが行われるようにしてください",
         ),
       ],
     ),

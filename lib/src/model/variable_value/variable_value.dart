@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jyanken_app_drills/src/model/type/alignment/alignment_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/type/color/color_wrapper.dart';
+import 'package:jyanken_app_drills/src/model/type/q3_3/hands_result.dart';
 import 'package:jyanken_app_drills/src/model/type/scope_definition/scope_definition.dart';
 import 'package:jyanken_app_drills/src/model/type/text_style/text_style_wrapper.dart';
 import 'package:jyanken_app_drills/src/model/type/variable/variable.dart';
@@ -24,7 +25,8 @@ enum VariableValueEnum {
   alignment,
   textStyle,
   variable,
-  scope;
+  scope,
+  handsResult;
 
   bool get canCreateVariable => switch (this) {
     VariableValueEnum.string ||
@@ -38,6 +40,7 @@ enum VariableValueEnum {
     VariableValueEnum.mainAxisSize ||
     VariableValueEnum.textStyle ||
     VariableValueEnum.alignment => true,
+    .handsResult || 
     VariableValueEnum.widget ||
     VariableValueEnum.widgetList ||
     VariableValueEnum.variable ||
@@ -89,6 +92,8 @@ sealed class VariableValue with _$VariableValue {
       VariableValueVariable;
   const factory VariableValue.scope({required ScopeDefinition rawValue}) =
       VariableValueScope;
+  const factory VariableValue.handsResult({required HandsResult rawValue}) =
+      VariableValueHandsResult;
 
   factory VariableValue.fromJson(Map<String, dynamic> json) =>
       _$VariableValueFromJson(json);
@@ -109,6 +114,7 @@ sealed class VariableValue with _$VariableValue {
     VariableValueTextStyle v => v.copyWith(rawValue: rawValue),
     VariableValueVariable v => v.copyWith(rawValue: rawValue),
     VariableValueScope v => v.copyWith(rawValue: rawValue),
+    VariableValueHandsResult v => v.copyWith(rawValue: rawValue),
   };
 
   VariableValueEnum toEnum() => switch (this) {
@@ -127,6 +133,7 @@ sealed class VariableValue with _$VariableValue {
     VariableValueTextStyle() => .textStyle,
     VariableValueVariable() => .variable,
     VariableValueScope() => .scope,
+    VariableValueHandsResult() => .handsResult,
   };
 
   static VariableValue fromEnum(VariableValueEnum e) => switch (e) {
@@ -153,6 +160,7 @@ sealed class VariableValue with _$VariableValue {
       ),
     ),
     VariableValueEnum.scope => .scope(rawValue: .new(variables: [])),
+    .handsResult => .handsResult(rawValue: .new()),
   };
 }
 

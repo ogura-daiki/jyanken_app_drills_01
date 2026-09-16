@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/alignment_arg_input/alignment_arg_input.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/color_arg_input/color_arg_input.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/enum_base_arg_input.dart';
+import 'package:jyanken_app_drills/src/component/arg_input/impl/hands_result_input/hands_result_arg_input.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/scope_arg_input/scope_arg_input.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/string_list_arg_input/string_list_arg_input.dart';
 import 'package:jyanken_app_drills/src/component/arg_input/impl/text_base_arg_input.dart';
@@ -117,6 +118,10 @@ class ArgInput extends StatelessWidget {
         onChange: (v) => notifyValue(v),
       ),
       VariableValueScope a => ScopeArgInput(
+        value: a.rawValue,
+        onChange: (v) => notifyValue(v),
+      ),
+      VariableValueHandsResult a => HandsResultArgInput(
         value: a.rawValue,
         onChange: (v) => notifyValue(v),
       ),

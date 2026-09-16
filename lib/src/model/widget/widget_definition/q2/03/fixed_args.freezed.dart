@@ -13,92 +13,79 @@ part of 'fixed_args.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$FixedAlignArgs {
+mixin _$FixedQ2_3Args {
 
- WidgetEntity? get child; AlignmentWrapper get alignment;
-/// Create a copy of FixedAlignArgs
+ HandsResult get handsResult;
+/// Create a copy of FixedQ2_3Args
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$FixedAlignArgsCopyWith<FixedAlignArgs> get copyWith => _$FixedAlignArgsCopyWithImpl<FixedAlignArgs>(this as FixedAlignArgs, _$identity);
+$FixedQ2_3ArgsCopyWith<FixedQ2_3Args> get copyWith => _$FixedQ2_3ArgsCopyWithImpl<FixedQ2_3Args>(this as FixedQ2_3Args, _$identity);
 
-  /// Serializes this FixedAlignArgs to a JSON map.
+  /// Serializes this FixedQ2_3Args to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FixedAlignArgs&&(identical(other.child, child) || other.child == child)&&(identical(other.alignment, alignment) || other.alignment == alignment));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FixedQ2_3Args&&(identical(other.handsResult, handsResult) || other.handsResult == handsResult));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,child,alignment);
+int get hashCode => Object.hash(runtimeType,handsResult);
 
 @override
 String toString() {
-  return 'FixedAlignArgs(child: $child, alignment: $alignment)';
+  return 'FixedQ2_3Args(handsResult: $handsResult)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $FixedAlignArgsCopyWith<$Res>  {
-  factory $FixedAlignArgsCopyWith(FixedAlignArgs value, $Res Function(FixedAlignArgs) _then) = _$FixedAlignArgsCopyWithImpl;
+abstract mixin class $FixedQ2_3ArgsCopyWith<$Res>  {
+  factory $FixedQ2_3ArgsCopyWith(FixedQ2_3Args value, $Res Function(FixedQ2_3Args) _then) = _$FixedQ2_3ArgsCopyWithImpl;
 @useResult
 $Res call({
- WidgetEntity? child, AlignmentWrapper alignment
+ HandsResult handsResult
 });
 
 
-$WidgetEntityCopyWith<$Res>? get child;$AlignmentWrapperCopyWith<$Res> get alignment;
+$HandsResultCopyWith<$Res> get handsResult;
 
 }
 /// @nodoc
-class _$FixedAlignArgsCopyWithImpl<$Res>
-    implements $FixedAlignArgsCopyWith<$Res> {
-  _$FixedAlignArgsCopyWithImpl(this._self, this._then);
+class _$FixedQ2_3ArgsCopyWithImpl<$Res>
+    implements $FixedQ2_3ArgsCopyWith<$Res> {
+  _$FixedQ2_3ArgsCopyWithImpl(this._self, this._then);
 
-  final FixedAlignArgs _self;
-  final $Res Function(FixedAlignArgs) _then;
+  final FixedQ2_3Args _self;
+  final $Res Function(FixedQ2_3Args) _then;
 
-/// Create a copy of FixedAlignArgs
+/// Create a copy of FixedQ2_3Args
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? child = freezed,Object? alignment = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? handsResult = null,}) {
   return _then(_self.copyWith(
-child: freezed == child ? _self.child : child // ignore: cast_nullable_to_non_nullable
-as WidgetEntity?,alignment: null == alignment ? _self.alignment : alignment // ignore: cast_nullable_to_non_nullable
-as AlignmentWrapper,
+handsResult: null == handsResult ? _self.handsResult : handsResult // ignore: cast_nullable_to_non_nullable
+as HandsResult,
   ));
 }
-/// Create a copy of FixedAlignArgs
+/// Create a copy of FixedQ2_3Args
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$WidgetEntityCopyWith<$Res>? get child {
-    if (_self.child == null) {
-    return null;
-  }
-
-  return $WidgetEntityCopyWith<$Res>(_self.child!, (value) {
-    return _then(_self.copyWith(child: value));
-  });
-}/// Create a copy of FixedAlignArgs
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$AlignmentWrapperCopyWith<$Res> get alignment {
+$HandsResultCopyWith<$Res> get handsResult {
   
-  return $AlignmentWrapperCopyWith<$Res>(_self.alignment, (value) {
-    return _then(_self.copyWith(alignment: value));
+  return $HandsResultCopyWith<$Res>(_self.handsResult, (value) {
+    return _then(_self.copyWith(handsResult: value));
   });
 }
 }
 
 
-/// Adds pattern-matching-related methods to [FixedAlignArgs].
-extension FixedAlignArgsPatterns on FixedAlignArgs {
+/// Adds pattern-matching-related methods to [FixedQ2_3Args].
+extension FixedQ2_3ArgsPatterns on FixedQ2_3Args {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -111,10 +98,10 @@ extension FixedAlignArgsPatterns on FixedAlignArgs {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _FixedAlignArgs value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _FixedQ2_3Args value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _FixedAlignArgs() when $default != null:
+case _FixedQ2_3Args() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -133,10 +120,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _FixedAlignArgs value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _FixedQ2_3Args value)  $default,){
 final _that = this;
 switch (_that) {
-case _FixedAlignArgs():
+case _FixedQ2_3Args():
 return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -154,10 +141,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _FixedAlignArgs value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _FixedQ2_3Args value)?  $default,){
 final _that = this;
 switch (_that) {
-case _FixedAlignArgs() when $default != null:
+case _FixedQ2_3Args() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -175,10 +162,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( WidgetEntity? child,  AlignmentWrapper alignment)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( HandsResult handsResult)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _FixedAlignArgs() when $default != null:
-return $default(_that.child,_that.alignment);case _:
+case _FixedQ2_3Args() when $default != null:
+return $default(_that.handsResult);case _:
   return orElse();
 
 }
@@ -196,10 +183,10 @@ return $default(_that.child,_that.alignment);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( WidgetEntity? child,  AlignmentWrapper alignment)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( HandsResult handsResult)  $default,) {final _that = this;
 switch (_that) {
-case _FixedAlignArgs():
-return $default(_that.child,_that.alignment);case _:
+case _FixedQ2_3Args():
+return $default(_that.handsResult);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -216,10 +203,10 @@ return $default(_that.child,_that.alignment);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( WidgetEntity? child,  AlignmentWrapper alignment)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( HandsResult handsResult)?  $default,) {final _that = this;
 switch (_that) {
-case _FixedAlignArgs() when $default != null:
-return $default(_that.child,_that.alignment);case _:
+case _FixedQ2_3Args() when $default != null:
+return $default(_that.handsResult);case _:
   return null;
 
 }
@@ -230,91 +217,77 @@ return $default(_that.child,_that.alignment);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _FixedAlignArgs extends FixedAlignArgs {
-  const _FixedAlignArgs({this.child = null, required this.alignment}): super._();
-  factory _FixedAlignArgs.fromJson(Map<String, dynamic> json) => _$FixedAlignArgsFromJson(json);
+class _FixedQ2_3Args extends FixedQ2_3Args {
+  const _FixedQ2_3Args({this.handsResult = const HandsResult()}): super._();
+  factory _FixedQ2_3Args.fromJson(Map<String, dynamic> json) => _$FixedQ2_3ArgsFromJson(json);
 
-@override@JsonKey() final  WidgetEntity? child;
-@override final  AlignmentWrapper alignment;
+@override@JsonKey() final  HandsResult handsResult;
 
-/// Create a copy of FixedAlignArgs
+/// Create a copy of FixedQ2_3Args
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$FixedAlignArgsCopyWith<_FixedAlignArgs> get copyWith => __$FixedAlignArgsCopyWithImpl<_FixedAlignArgs>(this, _$identity);
+_$FixedQ2_3ArgsCopyWith<_FixedQ2_3Args> get copyWith => __$FixedQ2_3ArgsCopyWithImpl<_FixedQ2_3Args>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$FixedAlignArgsToJson(this, );
+  return _$FixedQ2_3ArgsToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FixedAlignArgs&&(identical(other.child, child) || other.child == child)&&(identical(other.alignment, alignment) || other.alignment == alignment));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FixedQ2_3Args&&(identical(other.handsResult, handsResult) || other.handsResult == handsResult));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,child,alignment);
+int get hashCode => Object.hash(runtimeType,handsResult);
 
 @override
 String toString() {
-  return 'FixedAlignArgs(child: $child, alignment: $alignment)';
+  return 'FixedQ2_3Args(handsResult: $handsResult)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$FixedAlignArgsCopyWith<$Res> implements $FixedAlignArgsCopyWith<$Res> {
-  factory _$FixedAlignArgsCopyWith(_FixedAlignArgs value, $Res Function(_FixedAlignArgs) _then) = __$FixedAlignArgsCopyWithImpl;
+abstract mixin class _$FixedQ2_3ArgsCopyWith<$Res> implements $FixedQ2_3ArgsCopyWith<$Res> {
+  factory _$FixedQ2_3ArgsCopyWith(_FixedQ2_3Args value, $Res Function(_FixedQ2_3Args) _then) = __$FixedQ2_3ArgsCopyWithImpl;
 @override @useResult
 $Res call({
- WidgetEntity? child, AlignmentWrapper alignment
+ HandsResult handsResult
 });
 
 
-@override $WidgetEntityCopyWith<$Res>? get child;@override $AlignmentWrapperCopyWith<$Res> get alignment;
+@override $HandsResultCopyWith<$Res> get handsResult;
 
 }
 /// @nodoc
-class __$FixedAlignArgsCopyWithImpl<$Res>
-    implements _$FixedAlignArgsCopyWith<$Res> {
-  __$FixedAlignArgsCopyWithImpl(this._self, this._then);
+class __$FixedQ2_3ArgsCopyWithImpl<$Res>
+    implements _$FixedQ2_3ArgsCopyWith<$Res> {
+  __$FixedQ2_3ArgsCopyWithImpl(this._self, this._then);
 
-  final _FixedAlignArgs _self;
-  final $Res Function(_FixedAlignArgs) _then;
+  final _FixedQ2_3Args _self;
+  final $Res Function(_FixedQ2_3Args) _then;
 
-/// Create a copy of FixedAlignArgs
+/// Create a copy of FixedQ2_3Args
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? child = freezed,Object? alignment = null,}) {
-  return _then(_FixedAlignArgs(
-child: freezed == child ? _self.child : child // ignore: cast_nullable_to_non_nullable
-as WidgetEntity?,alignment: null == alignment ? _self.alignment : alignment // ignore: cast_nullable_to_non_nullable
-as AlignmentWrapper,
+@override @pragma('vm:prefer-inline') $Res call({Object? handsResult = null,}) {
+  return _then(_FixedQ2_3Args(
+handsResult: null == handsResult ? _self.handsResult : handsResult // ignore: cast_nullable_to_non_nullable
+as HandsResult,
   ));
 }
 
-/// Create a copy of FixedAlignArgs
+/// Create a copy of FixedQ2_3Args
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$WidgetEntityCopyWith<$Res>? get child {
-    if (_self.child == null) {
-    return null;
-  }
-
-  return $WidgetEntityCopyWith<$Res>(_self.child!, (value) {
-    return _then(_self.copyWith(child: value));
-  });
-}/// Create a copy of FixedAlignArgs
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$AlignmentWrapperCopyWith<$Res> get alignment {
+$HandsResultCopyWith<$Res> get handsResult {
   
-  return $AlignmentWrapperCopyWith<$Res>(_self.alignment, (value) {
-    return _then(_self.copyWith(alignment: value));
+  return $HandsResultCopyWith<$Res>(_self.handsResult, (value) {
+    return _then(_self.copyWith(handsResult: value));
   });
 }
 }

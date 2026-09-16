@@ -6,15 +6,12 @@ part of 'fixed_args.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_FixedAlignArgs _$FixedAlignArgsFromJson(Map<String, dynamic> json) =>
-    _FixedAlignArgs(
-      child: json['child'] == null
-          ? null
-          : WidgetEntity.fromJson(json['child'] as Map<String, dynamic>),
-      alignment: AlignmentWrapper.fromJson(
-        json['alignment'] as Map<String, dynamic>,
-      ),
+_FixedQ2_3Args _$FixedQ2_3ArgsFromJson(Map<String, dynamic> json) =>
+    _FixedQ2_3Args(
+      handsResult: json['handsResult'] == null
+          ? const HandsResult()
+          : HandsResult.fromJson(json['handsResult'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$FixedAlignArgsToJson(_FixedAlignArgs instance) =>
-    <String, dynamic>{'child': instance.child, 'alignment': instance.alignment};
+Map<String, dynamic> _$FixedQ2_3ArgsToJson(_FixedQ2_3Args instance) =>
+    <String, dynamic>{'handsResult': instance.handsResult};

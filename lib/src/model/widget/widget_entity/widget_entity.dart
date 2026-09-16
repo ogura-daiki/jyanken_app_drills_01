@@ -6,6 +6,7 @@ import 'package:jyanken_app_drills/src/model/widget/widget_definition/column/fix
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/container/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/q2/01/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/q2/02/fixed_args.dart';
+import 'package:jyanken_app_drills/src/model/widget/widget_definition/q2/03/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/root/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/row/fixed_args.dart';
 import 'package:jyanken_app_drills/src/model/widget/widget_definition/scope/fixed_args.dart';
@@ -65,7 +66,7 @@ sealed class WidgetEntity with _$WidgetEntity {
   }) = WidgetEntityQ2_2;
   const factory WidgetEntity.q2_3({
     required WidgetEntityId id,
-    required FixedAlignArgs args,
+    required FixedQ2_3Args args,
   }) = WidgetEntityQ2_3;
 
   WidgetType get type => switch (this) {

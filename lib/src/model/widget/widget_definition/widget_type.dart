@@ -13,7 +13,7 @@ enum WidgetType {
   scope(categories: {.common}),
   q2_1(categories: {.common}),
   q2_2(categories: {.common}),
-  q2_3(categories: {});
+  q2_3(categories: {.common});
 
   final Set<WidgetCategory> categories;
 
